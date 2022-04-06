@@ -7,9 +7,13 @@
 <br/>
 <br/>
 
-<h3 align='center'>bind</h3>
 <p align='center'>
-  Link Text Standard Library
+  <img src='https://github.com/drumworkteam/wolf/blob/make/view/view.svg?raw=true' height='312'>
+</p>
+
+<h3 align='center'>wolf</h3>
+<p align='center'>
+  Link Text Standard Library Implementation
 </p>
 
 <br/>
@@ -18,7 +22,7 @@
 
 ### Welcome
 
-The `bind` library aims to normalize over as many APIs and interfaces as possible, so you can code with a bigger impact (like with Rails, but without the framework). In this sense it is like a robust, all-encompassing "standard library" (stdlib).
+The `wolf` library aims to normalize over as many APIs and interfaces as possible, so you can code with a bigger impact (like with Rails, but without the framework). In this sense it is like a robust, all-encompassing "standard library" (stdlib).
 
 ### License
 
