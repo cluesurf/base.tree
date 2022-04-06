@@ -1,0 +1,8 @@
+
+form map
+  task get
+  task set
+  task clear
+  task walk-keys
+  task walk-values
+  task walk

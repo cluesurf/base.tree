@@ -1,0 +1,35 @@
+
+task has-flag
+  take flags
+  take flag
+
+  test is-equal
+    call bitwise-intersect
+      loan flags
+      loan flag
+    loan flag
+
+task add-flag
+  take flags
+  take flag
+
+  call bitwise-unite
+    loan flags
+    loan flag
+
+task remove-flag
+  take flags
+  take flag
+
+  call bitwise-intersect
+    loan flags
+    call bitwise-negate
+      loan flag
+
+task toggle-flag
+  take flags
+  take flag
+
+  call bitwise-exclusive-unite
+    loan flags
+    loan flag

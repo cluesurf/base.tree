@@ -1,0 +1,91 @@
+
+load @drumwork/land/code/javascript/array
+  take form array
+    save form javascript-array
+
+form line
+  dock javascript-array
+
+  head item-type, like like
+
+  task add-to-start
+    take self, like self
+    take item, like item-type
+    call self/dock/unshift
+      loan item
+
+  task add-to-end
+    take self, like self
+    take item, like item-type
+    call self/dock/push
+      loan item
+
+  task remove-from-start
+    take self, like self
+    free item, like item-type
+    call self/dock/shift
+
+  task remove-from-end
+    take self, like self
+    free item, like item-type
+    call self/dock/pop
+
+  task walk
+    take self, like self
+    take step, like task
+
+    save i, size 0
+    save n
+      call get-size
+        loan self
+
+    call loop-javascript
+      fork loop
+      hook test
+        test is-less-than
+          loan i
+          loan n
+      hook step
+        kick step
+          call get-at-index
+            loan self
+            loan i
+          loan i
+
+          hook bust
+            bust loop
+
+        call increment
+          loan i, lock free
+
+  task reverse
+    take self, like self
+    call self/dock/reverse
+    loan self
+
+  task find-first
+    take self, like self
+
+  task filter
+    take self, like self
+
+  task map
+    take self, like self
+    take hook
+    free seed
+      like line
+        like item-type
+
+    save result
+      make line
+
+    call self/walk
+      hook step
+        take item
+        take position
+        call result/push
+          call hook
+            loan item
+            loan position
+
+    move result

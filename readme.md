@@ -7,9 +7,9 @@
 <br/>
 <br/>
 
-<h3 align='center'>crow</h3>
+<h3 align='center'>bind</h3>
 <p align='center'>
-  Link Text Framework
+  Link Text Standard Library
 </p>
 
 <br/>
@@ -17,6 +17,8 @@
 <br/>
 
 ### Welcome
+
+The `bind` library aims to normalize over as many APIs and interfaces as possible, so you can code with a bigger impact (like with Rails, but without the framework). In this sense it is like a robust, all-encompassing "standard library" (stdlib).
 
 ### License
 

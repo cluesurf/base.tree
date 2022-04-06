@@ -1,0 +1,13 @@
+
+task mark # get now
+
+form time
+  task get-duration-since
+    take earlier, like time
+    free seed
+      like result
+        like duration
+        like system-time-error
+  task get-elapsed
+  task checked-add
+  task checked-subtract
