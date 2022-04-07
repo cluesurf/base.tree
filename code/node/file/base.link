@@ -2,62 +2,6 @@
 load @drumwork/land/code/javascript/promise
   take task make-javascript-promise
 
-task read
-  wait take
-
-  take path, like text
-  take encoding, like text
-
-  call make-javascript-promise
-    hook evaluate
-      take resolve, like task
-      call fs/read-file
-        loan path/dock/bulb
-        loan encoding/dock/bulb
-        hook read
-          take content
-          call resolve
-            mold text
-              loan content
-
-task write
-  take path, like text
-  take content, like text
-
-  wait take
-
-  call make-javascript-promise
-    hook evaluate
-      take resolve, like task
-      call fs/write-file
-        loan path/dock/bulb
-        loan content/dock/bulb
-        hook complete
-          call resolve
-
-form file
-  task read
-  task write
-  task append
-  task prepend
-
-task convert-flags-to-text
-  hide take
-
-  take flags, like size-8
-
-  stem case, loan flags
-    case can-create-read-write
-      text <wx+>
-    case can-create-clear-append
-      text <a>
-    case can-create-append
-      text <ax>
-    case can-create-clear-read-append
-      text <a+>
-    case can-create-read-append
-      text <ax+>
-
 task make-temporary-file
 
 task make-temporary-directory
