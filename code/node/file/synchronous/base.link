@@ -130,9 +130,11 @@ tree open-body-call
 
 tree open-call
   hook bind
-    call fs/open-sync
+    make file
       loan path
-      loan flag
+      call fs/open-sync
+        loan path
+        loan flag
 
 tree read-call
   hook bind
