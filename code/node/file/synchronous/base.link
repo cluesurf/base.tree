@@ -77,27 +77,6 @@ task open
   take can-append, like true
   fuse open-body, text <ax+>
 
-tree open-body
-  take node-flag
-
-  hook bind
-    fuse open-result
-
-    save flag, loan node-flag
-
-    fuse open-call
-
-tree open-call
-  hook bind
-    call try
-      make ok
-        call fs/open-sync
-          loan path
-          loan flag
-      hook fault
-        take error
-        loan error
-
 task read
   take path
   fuse try, loan read-call
@@ -138,16 +117,22 @@ task file-clear
   take leave-bytes, like unsigned-integer
   fuse try, loan file-clear-call-2
 
-tree file-clear-call-1
+tree open-body
+  take node-flag
   hook bind
-    call fs/ftruncate
-      loan file
+    fuse open-result
+    save flag, loan node-flag
+    fuse open-body-call
 
-tree file-clear-call-2
+tree open-body-call
   hook bind
-    call fs/ftruncate
-      loan file
-      loan leave-bytes
+    fuse try, loan open-call
+
+tree open-call
+  hook bind
+    call fs/open-sync
+      loan path
+      loan flag
 
 tree read-call
   hook bind
@@ -181,6 +166,17 @@ tree file-read-call
       loan buffer-start-position
       loan byte-count
       loan file-start-position
+
+tree file-clear-call-1
+  hook bind
+    call fs/ftruncate
+      loan file
+
+tree file-clear-call-2
+  hook bind
+    call fs/ftruncate
+      loan file
+      loan leave-bytes
 
 tree try
   take call
