@@ -1,0 +1,118 @@
+
+form connection
+
+form request
+  take nodejs-request
+    hide true
+
+  task get-header-by-key
+    take self
+    take key
+    call self/nodejs-request/get-header
+      loan key
+
+  task get-headers-iterator
+    make object-iterator
+      call self/nodejs-request/headers
+
+  task get-body
+
+  task get-host
+    loan self/nodejs-request/host
+
+  task get-http-version
+    loan self/nodejs-request/http-version
+
+  task get-protocol
+    loan self/nodejs-request/protocol
+
+  task get-method
+    loan self/nodejs-request/method
+
+  task get-path
+    loan self/nodejs-request/path
+
+  task get-ip-address
+
+form response
+  take nodejs-response
+    hide true
+
+  task set-status
+    take code
+    save self/nodejs-response/status-sode
+      loan code
+
+  task set-header-by-key
+
+  task write-utf-8
+    take chunk
+    call self/nodejs-response/write
+      loan chunk
+      text <utf-8>
+
+  task write-utf-16
+    take chunk
+    call self/nodejs-response/write
+      loan chunk
+      text <utf-16>
+
+  task end
+  task redirect
+  task has-header
+  task get-header
+  task remove-header
+  task were-headers-sent
+    loan self/nodejs-response/headers-sent
+  task was-writable-stream-closed
+    loan self/nodejs-response/writable-ended
+  task was-writable-stream-flushed
+    loan self/nodejs-response/writable-finished
+  task get-length-of-body-ready-to-send
+    loan self/nodejs-response/writable-length
+  task send-continue-message
+    loan self/nodejs-response/write-continue
+
+form handle-context
+  task get-request
+    free result, like request
+  task get-response
+    free result, like response
+
+  task get-request
+  task get-response
+
+task response-handler
+  take context, like handle-context
+
+task make-server
+  take handler, like task, base response-handler
+  take port, like unsigned-integer-16
+  take max-header-size, like unsigned-integer-32
+
+  free server, like server
+
+  make server
+    call http/create-server
+      make http-create-server-options
+        bind max-header-size, loan max-header-size
+      loan handler
+    loan port
+
+task make-server
+  take handler, like task, base response-handler
+  take port, like unsigned-integer-16
+
+  free server, like server
+
+  make server
+    call http/create-server
+      loan handler
+    loan port
+
+form server
+  take bond, like nodejs-http-server
+  take port, like unsigned-integer-16
+
+  task listen
+    free seed, like self
