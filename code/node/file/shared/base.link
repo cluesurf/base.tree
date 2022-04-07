@@ -1,0 +1,17 @@
+
+host fs, call require, text <fs>
+
+tree open-head
+  take note
+
+  hook bind
+    note note
+
+    take path, like string
+
+tree open-result
+  hook bind
+    free seed
+      like result
+        like size-32
+        like error

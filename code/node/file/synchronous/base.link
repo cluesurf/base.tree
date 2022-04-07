@@ -1,0 +1,93 @@
+
+load @drumwork/wolf/code/node/file/shared
+  take tree open-head
+  take tree open-result
+  take host fs
+
+task open
+  fuse open-head, text <Synchronous open read only>
+  take can-read, like true
+  fuse open-body, text <r>
+
+task open
+  fuse open-head, text <Synchronous open read and write>
+  take can-read, like true
+  take can-write, like true
+  fuse open-body, text <r+>
+
+task open
+  fuse open-head, text <Synchronous open create, clear, write>
+  take can-create, like true
+  take can-clear, like true
+  take can-write, like true
+  fuse open-body, text <w>
+
+task open
+  fuse open-head, text <Synchronous open create, write>
+  take can-create, like true
+  take can-write, like true
+  fuse open-body, text <wx>
+
+task open
+  fuse open-head, text <Synchronous open create, clear, read, write>
+  take can-create, like true
+  take can-clear, like true
+  take can-read, like true
+  take can-write, like true
+  fuse open-body, text <w+>
+
+task open
+  fuse open-head, text <Synchronous open create, read, write>
+  take can-create, like true
+  take can-read, like true
+  take can-write, like true
+  fuse open-body, text <wx+>
+
+task open
+  fuse open-head, text <Synchronous open create, clear, append>
+  take can-create, like true
+  take can-clear, like true
+  take can-append, like true
+  fuse open-body, text <a>
+
+task open
+  fuse open-head, text <Synchronous open create, append>
+  take can-create, like true
+  take can-append, like true
+  fuse open-body, text <ax>
+
+task open
+  fuse open-head, text <Synchronous open create, clear, read, append>
+  take can-create, like true
+  take can-clear, like true
+  take can-read, like true
+  take can-append, like true
+  fuse open-body, text <a+>
+
+task open
+  fuse open-head, text <Synchronous open create, clear, read, append>
+  take can-create, like true
+  take can-read, like true
+  take can-append, like true
+  fuse open-body, text <ax+>
+
+tree open-body
+  take node-flag
+
+  hook bind
+    fuse open-result
+
+    save flag, loan node-flag
+
+    fuse open-call
+
+tree open-call
+  hook bind
+    call try
+      make ok
+        call fs/open-sync
+          loan path
+          loan flag
+      hook fault
+        take error
+        loan error
