@@ -91,7 +91,7 @@ task open
 task read
   wait true
   take path
-  fuse call-promise
+  fuse call-promise-with-callback-result
     loan read-call
     loan read-result
 
@@ -99,19 +99,16 @@ task write
   wait true
   take path
   take content
-  fuse call-promise
+  fuse call-promise-with-callback-result
     loan write-call
     loan write-result
 
 tree open-body
   take node-flag
-
   hook bind
     fuse open-result
-
     save flag, loan node-flag
-
-    fuse call-promise
+    fuse call-promise-with-callback-result
       loan open-body-call
       loan open-body-result
 
@@ -152,24 +149,3 @@ tree write-call
 tree write-result
   hook bind
     loan void
-
-tree call-promise
-  take call
-  take result
-
-  hook bind
-    call make-javascript-promise
-      hook evaluate
-        take resolve, like task
-
-        fuse call
-          test is-present
-            loan error
-            hook true
-              call resolve
-                make error
-                  loan error
-            hook false
-              call resolve
-                make ok
-                  fuse result

@@ -1,12 +1,29 @@
 
-load @drumwork/land/code/javascript/array
+load @drumwork/moon/code/javascript/array
   take form array
     save form javascript-array
 
-form line
+form array
   dock javascript-array
 
   head item-type, like like
+
+  task get-at-position
+    take self, like self
+    take position, like unsigned-integer-32
+    free seed, like item-type
+    call javascript-dynamic-get
+      loan self
+      loan position
+
+  task set-at-position
+    take self, like self
+    take position, like unsigned-integer-32
+    take item, like item-type
+    call javascript-dynamic-set
+      loan self
+      loan position
+      loan item
 
   task add-to-start
     take self, like self

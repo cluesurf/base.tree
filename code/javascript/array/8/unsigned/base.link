@@ -1,0 +1,107 @@
+
+form array-unsigned-integer-8
+  task read-integer-64-big-endian
+
+  task read-integer-64-big-endian
+    take offset
+
+  task read-integer-64-little-endian
+
+  task read-integer-64-little-endian
+    take offset
+
+  task read-unsigned-integer-64-big-endian
+
+  task read-unsigned-integer-64-big-endian
+    take offset
+
+  task read-unsigned-integer-64-little-endian
+
+  task read-unsigned-integer-64-little-endian
+    take offset
+
+  task read-double-big-endian
+
+  task read-double-big-endian
+    take offset
+
+  task read-double-little-endian
+
+  task read-double-little-endian
+    take offset
+
+  task read-float-big-endian
+
+  task read-float-big-endian
+    take offset
+
+  task read-float-little-endian
+
+  task read-float-little-endian
+    take offset
+
+  task read-int8
+
+  task read-int8
+    take offset
+
+  task read-int16-big-endian
+
+  task read-int16-big-endian
+    take offset
+
+  task read-int16-little-endian
+
+  task read-int16-little-endian
+    take offset
+
+  task read-int32-big-endian
+
+  task read-int32-big-endian
+    take offset
+
+  task read-int32-little-endian
+
+  task read-int32-little-endian
+    take offset
+
+  task read-int-big-endian
+    take offset
+    take byte-length
+
+  task read-int-little-endian
+    take offset
+    take byte-length
+
+  task read-unsigned-int8
+
+  task read-unsigned-int8
+    take offset
+
+  task read-unsigned-int16-big-endian
+
+  task read-unsigned-int16-big-endian
+    take offset
+
+  task read-unsigned-int16-little-endian
+
+  task read-unsigned-int16-little-endian
+    take offset
+
+  task read-unsigned-int32-big-endian
+
+  task read-unsigned-int32-big-endian
+    take offset
+
+  task read-unsigned-int32-little-endian
+
+  task read-unsigned-int32-little-endian
+    take offset
+
+  task read-unsigned-int-big-endian
+    take offset
+    take byte-length
+
+  task read-unsigned-int-little-endian
+    take offset
+    take byte-length
