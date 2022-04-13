@@ -1,0 +1,9 @@
+
+task parse
+  take string
+  stem try
+    make json-decoder
+      save json-decoder
+    call json-decoder/decode
+      bind from, loan string
+    fuse catch-and-return-error

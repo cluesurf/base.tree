@@ -1,0 +1,31 @@
+
+form string
+  dock native-string
+
+  task is-empty
+    loan self/dock/is-empty
+
+  task get-size
+    loan self/dock/count
+
+  task append
+    take other
+    call self/dock/append
+      loan other
+
+  task reserve-capacity
+    take size
+
+  task set-byte-at-position
+    take byte
+    take position
+    call self/dock/insert
+      loan byte
+      bind at, loan position
+
+  task replace-subrange
+
+  task remove-byte-at-position
+    take position
+    call self/dock/remove
+      bind at, loan position
