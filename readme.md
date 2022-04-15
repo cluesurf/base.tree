@@ -22,7 +22,7 @@
 
 ### Welcome
 
-The `wolf` library aims to be a very low-level implementation of the abstraction over programming language primitives. It is an implementation of [`seed`](https://github.com/drumworkteam/seed).
+The `wolf` library aims to be a very low-level implementation of the abstraction over programming language primitives. It is an implementation of [`moon`](https://github.com/drumworkteam/moon).
 
 ### Relationships
 
