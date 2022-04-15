@@ -24,6 +24,17 @@
 
 The `wolf` library aims to normalize over as many APIs and interfaces as possible, so you can code with a bigger impact (like with Rails, but without the framework). In this sense it is like a robust, all-encompassing "standard library" (stdlib).
 
+### Relationships
+
+| specification | implementation | description |
+|:----:|:----:|:----|
+| [`seed`](https://github.com/drumworkteam/seed) | [`wolf`](https://github.com/drumworkteam/wolf) | **Standard Library** |
+| <a href="https://github.com/drumworkteam/seed"><img src='https://github.com/drumworkteam/seed/blob/make/view/view.svg?raw=true' height='64'></a> | <a href="https://github.com/drumworkteam/wolf"><img src='https://github.com/drumworkteam/wolf/blob/make/view/view.svg?raw=true' height='64'></a> | These are the lowest-level datatypes and standards for abstracting away architectures in a basic programming language environment. |
+| [`leaf`](https://github.com/drumworkteam/leaf) | [`hare`](https://github.com/drumworkteam/hare) | **Common Utilities** |
+| <a href="https://github.com/drumworkteam/leaf"><img src='https://github.com/drumworkteam/leaf/blob/make/view/view.svg?raw=true' height='64'></a> | <a href="https://github.com/drumworkteam/hare"><img src='https://github.com/drumworkteam/hare/blob/make/view/view.svg?raw=true' height='64'></a> | These are middle-level utilities which have a common / standard structure that works easily across programming language environments. |
+| [`tree`](https://github.com/drumworkteam/tree) | [`crow`](https://github.com/drumworkteam/crow) | **Framework** |
+| <a href="https://github.com/drumworkteam/tree"><img src='https://github.com/drumworkteam/tree/blob/make/view/view.svg?raw=true' height='64'></a> | <a href="https://github.com/drumworkteam/crow"><img src='https://github.com/drumworkteam/crow/blob/make/view/view.svg?raw=true' height='64'></a> | These are high-level framework components, which is an opinionated abstraction for commong web app development paradigms. |
+
 ### License
 
 Copyright 2022 <a href='https://drum.work'>DrumWork</a>
