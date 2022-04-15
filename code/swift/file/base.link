@@ -1,0 +1,10 @@
+
+task get-documents-directory
+  free path, like url
+
+  save paths
+    call file-manager/default/urls
+      bind for, .documentDirectory
+      bind in, .userDomainMask
+
+  call paths/get-first
