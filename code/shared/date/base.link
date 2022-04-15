@@ -1,0 +1,418 @@
+
+# https://github.com/v8/v8/blob/f6911f6be82f5ea1d9d095f594b717ea28e17588/src/date-delay.js
+# https://github.com/hebcal/hebcal-es6
+# https://github.com/commenthol/date-chinese
+# https://github.com/xsoh/solarHijri-js
+# https://github.com/vvo/tzdb
+
+host hours-per-day, mark 24
+host minutes-per-hour, mark 60
+host seconds-per-minute, mark 60
+host milliseconds-per-second, mark 1-000
+host milliseconds-per-minute, mark 60-000
+host milliseconds-per-hour, mark 3-600-000
+host milliseconds-per-day, mark 86-400-000
+host milliseconds-per-month, mark 2-592-000-000
+
+host k-day-zero-in-julian-day, mark 2-440-588 # ToJulianDay(1970, 0, 1)
+host k-month-mask, mark 0h1e0
+host k-day-mask, mark 0h01f
+host k-year-shift, mark 9
+host k-month-shift, mark 5
+
+task get-days-in-year
+  take year
+
+  stem test
+    call is-not-equal
+      call remainder
+        loan year
+        mark 4
+      mark 0
+    hook true, back 365
+
+  stem and
+    stem test
+      call is-equal
+        call remainder
+          loan year
+          mark 100
+        mark 0
+    stem test
+      call is-not-equal
+        call remainder
+          loan year
+          mark 400
+        mark 0
+    hook true, back 365
+
+  back 366
+
+# https://en.wikipedia.org/wiki/Date_format_by_country
+
+function DayTriplet(year, month, date) {
+  this.year = year;
+  this.month = month;
+  this.date = date;
+}
+
+
+function GetMillisecondsFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return msFromTime(LocalTimeNoCheck(t));
+}
+
+
+function GetUTCMillisecondsFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return msFromTime(t);
+}
+
+
+function GetSecondsFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return SecFromTime(LocalTimeNoCheck(t));
+}
+
+
+function GetUTCSecondsFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return SecFromTime(t);
+}
+
+
+function GetMinutesFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return MinFromTime(LocalTimeNoCheck(t));
+}
+
+
+function GetUTCMinutesFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return MinFromTime(t);
+}
+
+
+function GetHoursFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return HourFromTime(LocalTimeNoCheck(t));
+}
+
+
+function GetUTCHoursFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return HourFromTime(t);
+}
+
+
+function GetFullYearFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return YearFromTime(LocalTimeNoCheck(t));
+}
+
+
+function GetUTCFullYearFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return YearFromTime(t);
+}
+
+
+function GetMonthFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return MonthFromTime(LocalTimeNoCheck(t));
+}
+
+
+function GetUTCMonthFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return MonthFromTime(t);
+}
+
+Intl.DateTimeFormat().resolvedOptions().timeZone
+
+function GetDateFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return DateFromTime(LocalTimeNoCheck(t));
+}
+var local_time_offset = DateLocalTimeOffset();
+
+function LocalTime(time) {
+  if ($isNaN(time)) return time;
+  return time + local_time_offset + DaylightSavingsOffset(time);
+}
+
+function LocalTimeNoCheck(time) {
+  return time + local_time_offset + DaylightSavingsOffset(time);
+}
+
+function GetUTCDateFrom(aDate) {
+  var t = aDate.getMilliseconds();
+  if ($isNaN(t)) return t;
+  return DateFromTime(t);
+}
+
+// Compute modified Julian day from year, month, date.
+// The missing days in 1582 are ignored for JavaScript compatibility.
+function ToJulianDay(year, month, date) {
+  var jy = (month > 1) ? year : year - 1;
+  var jm = (month > 1) ? month + 2 : month + 14;
+  var ja = FLOOR(0.01*jy);
+  return FLOOR(FLOOR(365.25*jy) + FLOOR(30.6001*jm) + date + 1720995) + 2 - ja + FLOOR(0.25*ja);
+}
+
+
+
+var four_year_cycle_table = CalculateDateTable();
+
+
+function CalculateDateTable() {
+  var month_lengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  var four_year_cycle_table = new $Array(1461);
+
+  var cumulative = 0;
+  var position = 0;
+  var leap_position = 0;
+  for (var month = 0; month < 12; month++) {
+    var length = month_lengths[month];
+    for (var day = 1; day <= length; day++) {
+      four_year_cycle_table[leap_position] =
+        (month << kMonthShift) + day;
+      four_year_cycle_table[366 + position] =
+        (1 << kYearShift) + (month << kMonthShift) + day;
+      four_year_cycle_table[731 + position] =
+        (2 << kYearShift) + (month << kMonthShift) + day;
+      four_year_cycle_table[1096 + position] =
+        (3 << kYearShift) + (month << kMonthShift) + day;
+      leap_position++;
+      position++;
+    }
+    if (month == 1) {
+      four_year_cycle_table[leap_position++] =
+        (month << kMonthShift) + 29;
+    }
+  }
+  return four_year_cycle_table;
+}
+
+form date
+  take second
+  take millisecond
+  take zone
+
+  task get-millisecond
+    take self
+    call add
+      call multiply
+        loan self/second
+        mark 1000
+      loan self/millisecond
+
+  task get-day
+    take self
+    call floor
+      call divide
+        call self/get-millisecond
+        loan milliseconds-per-day
+
+  function YearFromTime(time) {
+  return FromJulianDay(Day(time) + kDayZeroInJulianDay).year;
+}
+// ECMA 262 - 15.9.1.4
+function MonthFromTime(time) {
+  return FromJulianDay(Day(time) + kDayZeroInJulianDay).month;
+}
+// ECMA 262 - 15.9.1.5
+function DateFromTime(time) {
+  return FromJulianDay(Day(time) + kDayZeroInJulianDay).date;
+}
+
+// Compute year, month, and day from modified Julian day.
+// The missing days in 1582 are ignored for JavaScript compatibility.
+function FromJulianDay(julian) {
+  // Avoid floating point and non-Smi maths in common case.  This is also a period of
+  // time where leap years are very regular.  The range is not too large to avoid overflow
+  // when doing the multiply-to-divide trick.
+  if (julian > kDayZeroInJulianDay &&
+      (julian - kDayZeroInJulianDay) < 40177) { // 1970 - 2080
+    var jsimple = (julian - kDayZeroInJulianDay) + 731; // Day 0 is 1st January 1968
+    var y = 1968;
+    // Divide by 1461 by multiplying with 22967 and shifting down by 25!
+    var after_1968 = (jsimple * 22967) >> 25;
+    y += after_1968 << 2;
+    jsimple -= 1461 * after_1968;
+    var four_year_cycle = four_year_cycle_table[jsimple];
+    return new DayTriplet(y + (four_year_cycle >> kYearShift),
+                           (four_year_cycle & kMonthMask) >> kMonthShift,
+                           four_year_cycle & kDayMask);
+  }
+  var jalpha = FLOOR((julian - 1867216.25) / 36524.25);
+  var jb = julian + 1 + jalpha - FLOOR(0.25 * jalpha) + 1524;
+  var jc = FLOOR(6680.0 + ((jb-2439870) - 122.1)/365.25);
+  var jd = FLOOR(365 * jc + (0.25 * jc));
+  var je = FLOOR((jb - jd)/30.6001);
+  var m = je - 1;
+  if (m > 12) m -= 13;
+  var y = jc - 4715;
+  if (m > 2) { --y; --m; }
+  var d = jb - jd - FLOOR(30.6001 * je);
+  return new DayTriplet(y, m, d);
+}
+
+function aDate.getMilliseconds() {
+  if (IS_DATE(aDate)) return _ValueOf(aDate);
+  throw new $TypeError('this is not a Date object.');
+}
+
+
+function msFromTime(time) {
+  return Modulo(time, msPerSecond);
+}
+
+
+// ECMA 262 - 5.2
+function Modulo(value, remainder) {
+  var mod = value % remainder;
+  // Guard against returning -0.
+  if (mod == 0) return 0;
+  return mod >= 0 ? mod : mod + remainder;
+}
+
+task calculate-four-year-cycle-table
+  save month-lengths
+    make list
+      mark 31
+      mark 28
+      mark 31
+      mark 30
+      mark 31
+      mark 30
+      mark 31
+      mark 31
+      mark 30
+      mark 31
+      mark 30
+      mark 31
+  save four-year-cycle-table
+    make array
+      mark 1461
+  save cumulative, mark 0
+  save position, mark 0
+  save leap-position, mark 0
+  save month, mark 0
+
+  walk test, fork fork5
+    hook test
+      call is-less-than
+        loan month
+        mark 12
+
+    hook true
+      save length, loan month-lengths[month]
+      save day, mark 1
+
+      walk test, fork fork3
+        hook test
+          call is-less-than-or-equal-to
+            loan day
+            loan length
+
+        hook true
+          save four-year-cycle-table[leap-position]
+            call add
+              call shift-left
+                loan month
+                loan k-month-shift
+              loan day
+          save next-position
+            call add
+              mark 366
+              loan position
+          save four-year-cycle-table[next-position]
+            call add
+              call add
+                call shift-left
+                  mark 1
+                  loan k-year-shift
+                call shift-left
+                  loan month
+                  loan k-month-shift
+              loan day
+          save next-position
+            call add
+              mark 731
+              loan position
+          save four-year-cycle-table[next-position]
+            call add
+              call add
+                call shift-left
+                  mark 2
+                  loan k-year-shift
+                call shift-left
+                  loan month
+                  loan k-month-shift
+              loan day
+          save next-position
+            call add
+              mark 1096
+              loan position
+          save four-year-cycle-table[next-position]
+            call add
+              call add
+                call shift-left
+                  mark 3
+                  loan k-year-shift
+                call shift-left
+                  loan month
+                  loan k-month-shift
+              loan day
+          save leap-position
+            call increment
+              bind value, loan leap-position
+          save position
+            call increment
+              bind value, loan position
+          save day
+            call increment
+              bind value, loan day
+
+        hook false
+          bust fork3
+
+      stem test
+        call is-equal
+          loan month
+          mark 1
+
+        hook true
+          save next-position
+            save leap-position
+              call increment
+                bind value, loan leap-position
+          save four-year-cycle-table[next-position]
+            call add
+              call shift-left
+                loan month
+                loan k-month-shift
+              mark 29
+
+      save month
+        call increment
+          bind value, loan month
+
+    hook false
+      bust fork5
+
+  back seed, loan four-year-cycle-table

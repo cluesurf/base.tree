@@ -13,16 +13,17 @@ task allocate
   free text, like text-utf-8
 
 form text-utf-8
-  take list, like list, like mark-8
+  take list, list mark-8
+    hide true
 
-  task transform-to-upper-case
-  task transform-to-lower-case
-  task transform-to-snake-case
-  task transform-to-kebab-case
-  task transform-to-camel-case
-  task transform-to-capital-case
-  task transform-to-swap-case
-  task transform-to-title-case
+  task make-upper-case
+  task make-lower-case
+  task make-snake-case
+  task make-kebab-case
+  task make-camel-case
+  task make-capital-case
+  task make-swap-case
+  task make-title-case
 
   task trim-whitespace
   task trim-whitespace-start

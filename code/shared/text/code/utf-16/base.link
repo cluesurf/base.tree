@@ -13,7 +13,8 @@ task allocate
   free text, like text-utf-16
 
 form text-utf-16
-  take list, like list, like mark-16
+  take list, list mark-16
+    hide true
 
   task get-size, like mark
 

@@ -1,0 +1,9 @@
+
+note <Generic BigUint.>
+
+form mark
+  take list, list mark-32
+    hide true
+
+# https://github.com/vukicevic/crunch
+# https://github.com/GoogleChromeLabs/jsbi/blob/main/lib/jsbi.ts
