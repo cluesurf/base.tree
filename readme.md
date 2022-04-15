@@ -22,7 +22,7 @@
 
 ### Welcome
 
-The `wolf` library aims to normalize over as many APIs and interfaces as possible, so you can code with a bigger impact (like with Rails, but without the framework). In this sense it is like a robust, all-encompassing "standard library" (stdlib).
+The `wolf` library aims to be a very low-level implementation of the abstraction over programming language primitives. It is an implementation of [`seed`](https://github.com/drumworkteam/seed).
 
 ### Relationships
 
