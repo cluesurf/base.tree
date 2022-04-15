@@ -1,4 +1,15 @@
 
-form size-8
-form size-16
-form size-32
+form mark-8
+  dock javascript-number
+
+form mark-16
+  dock javascript-number
+
+form mark-32
+  dock javascript-number
+
+form mark-64
+  dock javascript-big-integer
+
+form mark-128
+  dock javascript-big-integer

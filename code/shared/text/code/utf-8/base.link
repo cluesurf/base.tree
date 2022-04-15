@@ -1,0 +1,34 @@
+
+load @drumwork/moon/code/list
+  take form list
+
+load @drumwork/moon/code/mark/8
+  take form mark-8
+
+load @drumwork/moon/code/text/code/utf-8
+  take form text-utf-8
+
+task allocate
+  take size
+  free text, like text-utf-8
+
+form text-utf-8
+  take list, like list, like mark-8
+
+  task transform-to-upper-case
+  task transform-to-lower-case
+  task transform-to-snake-case
+  task transform-to-kebab-case
+  task transform-to-camel-case
+  task transform-to-capital-case
+  task transform-to-swap-case
+  task transform-to-title-case
+
+  task trim-whitespace
+  task trim-whitespace-start
+  task trim-whitespace-end
+
+  task split
+
+  task replace
+

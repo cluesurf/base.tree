@@ -3,12 +3,12 @@ load @drumwork/moon/code/javascript/array
   take form array
     save form javascript-array
 
-form array
+form line
   dock javascript-array
 
   head item-type, like like
 
-  task get-at-position
+  task get
     take self, like self
     take position, like unsigned-integer-32
     free seed, like item-type
@@ -16,7 +16,7 @@ form array
       loan self
       loan position
 
-  task set-at-position
+  task set
     take self, like self
     take position, like unsigned-integer-32
     take item, like item-type
@@ -24,28 +24,6 @@ form array
       loan self
       loan position
       loan item
-
-  task add-to-start
-    take self, like self
-    take item, like item-type
-    call self/dock/unshift
-      loan item
-
-  task add-to-end
-    take self, like self
-    take item, like item-type
-    call self/dock/push
-      loan item
-
-  task remove-from-start
-    take self, like self
-    free item, like item-type
-    call self/dock/shift
-
-  task remove-from-end
-    take self, like self
-    free item, like item-type
-    call self/dock/pop
 
   task walk
     take self, like self

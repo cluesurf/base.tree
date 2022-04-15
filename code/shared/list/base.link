@@ -1,0 +1,89 @@
+
+form list
+  head item-type
+
+  task set
+    take position, like mark-32
+    take element, like item-type
+
+  task set
+    take position, like mark-32
+    take elements, like list, like item-type
+
+  task get
+    take position, like mark-32
+    free element, like item-type
+
+  task locate
+    take element
+
+  task replace
+    take pattern, like text-utf-8
+    take replacement, like text-utf-8
+    free seed, like text-utf-8
+
+  task replace
+    take pattern, like text-utf-8
+    take replacement
+      like task
+        take text
+        free seed, like text-utf-8
+    free seed, like text-utf-8
+
+  task get-every-match-position
+    take self
+    take pattern
+    free positions, like list, like mark-32
+
+  task get-first-match-position
+    take self
+    take pattern
+    free position, like mark-32
+
+  task get-first-match-binding
+
+  task get-first-match
+
+  task get-last-match-position
+    take self
+    take pattern
+    free position, like mark-32
+
+  task insert
+    take element
+  task insert
+    take elements
+
+  task append
+    take element
+  task append
+    take elements
+
+  task prepend
+    take element
+  task prepend
+    take elements
+
+  task split
+
+  task clone
+
+  task map
+
+  task filter
+
+  task reduce
+
+  task sort
+
+  task fill
+
+  task walk
+
+  task reverse
+
+  task shuffle
+
+  task trim
+  task trim-start
+  task trim-end

@@ -1,7 +1,0 @@
-
-load @drumwork/land/code/rust/string
-  take form string
-    save form rust-string
-
-form text
-  dock rust-string

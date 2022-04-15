@@ -1,0 +1,7 @@
+
+form line-mark-8
+  like line, like mark-8
+
+  task sum
+  task get-minimum
+  task get-maximum
