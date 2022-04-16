@@ -13,7 +13,12 @@ task allocate
   free text, like text-utf-8
 
 form text-utf-8
-  take list, list mark-8
+  head list-type, like like
+    base like list
+
+  take list
+    like list-type
+      like mark-8
     hide true
 
   task make-upper-case
