@@ -117,7 +117,6 @@ coat form
     head allocator
 
     wear becoming-iteratable
-      head i
       take item, like item
       take iterator
         like becoming-iterator
@@ -150,7 +149,6 @@ coat form
     head allocator
 
     wear becoming-iteratable
-      head i
       take item, loan true
         time a
         like item
@@ -164,3 +162,60 @@ coat form
         free slice/iterator
           time a
           like item
+
+# impl<'a, T, A: Allocator> IntoIterator for &'a mut Vec<T, A> {
+#     type Item = &'a mut T;
+#     type IntoIter = slice::IterMut<'a, T>;
+
+#     fn into_iter(self) -> slice::IterMut<'a, T> {
+#         self.iter_mut()
+#     }
+# }
+
+coat form
+  time a
+  head item
+  head allocator, base allocator
+
+  suit list, loan true
+    flex true
+    time a
+    head item
+    head allocator
+
+    wear becoming-iteratable
+      take item, loan true
+        flex true
+        time a
+        like item
+      take iterator
+        like slice/iterator-flex
+          time a
+          like item
+
+      task become-iterator
+        take self, move true
+        free slice/iterator-flex
+          time a
+          like item
+
+# impl<T, A: Allocator> Vec<T, A>
+
+coat form
+  head item
+  head allocator, base allocator
+
+  suit list
+    head item
+    head allocator
+
+    task splice
+      head r, like range-bounds, like usize
+      head i, like becoming-iterable, bind item, base item
+      task self, flex true
+      task range, like r
+      task replace-with, like i
+      free splice
+        have time
+        like i/iterator
+        like allocator
