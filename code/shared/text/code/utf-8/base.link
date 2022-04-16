@@ -38,3 +38,257 @@ form text-utf-8
 
   task replace
 
+task make-utf-8-from-utf-16
+  take text, like text-utf-16
+  save h
+  save l
+  save j
+  save i, mark 0
+  save size, mark 0
+
+  walk test
+    hook test
+      call is-less-than
+        loan i
+        loan text/get-size
+    hook step
+      save h, loan text[i]
+      stem and
+        call is-greater-than-or-equal-to
+          loan h
+          mark 0hD800
+        call is-less-than-or-equal-to
+          loan h
+          mark 0hDBFF
+        hook true
+          stem test
+            call is-less-than
+              call add
+                loan i
+                mark 1
+              loan text/get-size
+            hook true
+              save l, loan text[i]
+              stem and
+                call is-greater-than-or-equal-to
+                  loan l
+                  mark 0hDC00
+                call is-less-than-or-equal-to
+                  loan l
+                  mark 0hDFFF
+                hook true
+                  save size
+                    call increment
+                      loan size
+                      mark 4
+                hook false
+                  save size
+                    call increment
+                      loan size
+                      mark 3
+            hook false
+              save size
+                call increment
+                  loan size
+                  mark 3
+        hook false
+          stem roll
+            stem test
+              call is-less-than
+                loan h
+                mark 0h80
+              hook true
+                save size
+                  call increment
+                    loan size
+                    mark 1
+            stem test
+              call is-less-than
+                loan h
+                mark 0h800
+              hook true
+                save size
+                  call increment
+                    loan size
+                    mark 2
+            stem test
+              call is-less-than
+                loan h
+                mark 0h10000
+              hook true
+                save size
+                  call increment
+                    loan size
+                    mark 3
+  save head-text, make array, loan size
+  save i, mark 0
+  walk test
+    hook test
+      call is-less-than
+        loan i
+        loan text/get-size
+    hook step
+      save h, loan text[i]
+      stem and
+        call is-greater-than-or-equal-to
+          loan h
+          mark 0hD800
+        call is-less-than-or-equal-to
+          loan h
+          mark 0hDBFF
+        hook true
+          stem test
+            call is-less-than
+              call add
+                loan i
+                mark 1
+              loan text/get-size
+            hook true
+              save l, loan text[i]
+              stem and
+                call is-greater-than-or-equal-to
+                  loan l
+                  mark 0xDC00
+                call is-less-than-or-equal-to
+                  loan l
+                  mark 0xDFFF
+                hook true
+                  save cp
+                    call add
+                      call shift-left
+                        call subtract
+                          loan h
+                          mark 0hD800
+                        mark 10
+                      call add
+                        loan l
+                        mark 0h2400
+                  save tmp2, loan j
+                  save j, call increment, loan j
+                  save head-text[tmp2]
+                    call bitwise-or
+                      mark 0hF0
+                      call shift-right
+                        loan cp
+                        mark 0h12
+                  save tmp3, loan j
+                  save j, call increment, loan j
+                  save head-text[tmp3]
+                    call bitwise-or
+                      mark 0h80
+                      call bitwise-and
+                        call shift-right
+                          loan cp
+                          mark 0h0C
+                        mark 0h3F
+                  save tmp4, loan j
+                  save j, call increment, loan j
+                  save head-text[tmp4]
+                    call bitwise-or
+                      mark 0h80
+                      call bitwise-and
+                        call shift-right
+                          loan cp
+                          mark 0h06
+                        mark 0h3F
+                  save tmp5, loan j
+                  save j, call increment, loan j
+                  save head-text[tmp5]
+                    call bitwise-or
+                      mark 0h80
+                      call bitwise-and
+                        loan cp
+                        mark 0h3F
+                hook false
+                  save tmp6, loan j
+                  save j, call increment, loan j
+                  save head-text[tmp6], mark 0hEF
+                  save tmp7, loan j
+                  save j, call increment, loan j
+                  save head-text[tmp7], mark 0hBF
+                  save tmp8, loan j
+                  save j, call increment, loan j
+                  save head-text[tmp8], mark 0hBD
+            hook false
+              save tmp9, loan j
+              save j, call increment, loan j
+              save head-text[tmp9], mark 0hEF
+              save tmp10, loan j
+              save j, call increment, loan j
+              save head-text[tmp10], mark 0hBF
+              save tmp11, loan j
+              save j, call increment, loan j
+              save head-text[tmp11], mark 0hBD
+        hook false
+          stem roll
+            stem test
+              call is-less-than
+                loan h
+                mark 0h80
+              hook true
+                save tmp12, loan j
+                save j, call increment, loan j
+                save head-text[tmp12], loan h
+            stem test
+              call is-less-than
+                loan h
+                mark 0h800
+              hook true
+                save tmp13, loan j
+                save j, call increment, loan j
+                save head-text[tmp13]
+                  call bitwise-or
+                    mark 0hC0
+                    call shift-right
+                      loan h
+                      mark 6
+                save tmp14, loan j
+                save j, call increment, loan j
+                save head-text[tmp14]
+                  call bitwise-or
+                    mark 0h80
+                    call bitwise-and
+                      loan h
+                      mark 0h3F
+                save size
+                  call increment
+                    loan size
+                    mark 2
+            stem test
+              call is-less-than
+                loan h
+                mark 0h10000
+              hook true
+                save tmp15, loan j
+                save j, call increment, loan j
+                save head-text[tmp15]
+                  call bitwise-or
+                    mark 0hE0
+                    call shift-right
+                      loan h
+                      mark 0hC
+                save tmp16, loan j
+                save j, call increment, loan j
+                save head-text[tmp16]
+                  call bitwise-or
+                    mark 0h80
+                    call bitwise-and
+                      call shift-right
+                        loan h
+                        mark 0h6
+                      mark 0h3F
+                save tmp17, loan j
+                save j, call increment, loan j
+                save head-text[tmp17]
+                  call bitwise-or
+                    mark 0h80
+                    call bitwise-and
+                      call shift-right
+                        loan h
+                        mark 0h0
+                      mark 0h3F
+                save size
+                  call increment
+                    loan size
+                    mark 3
+  back seed, loan head-text
