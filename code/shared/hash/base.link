@@ -1,0 +1,26 @@
+
+task hash-djb2-xor
+  take text
+  save size, loan text/get-size
+  save hash, mark 5381
+  save mark, mark 0
+  walk test
+    hook test
+      call test
+        call is-less-than
+          loan mark
+          loan size
+    hook true
+      save hash
+        call bitwise-xor
+          call multiply
+            loan hash
+            mark 33
+          loan text[i]
+      save mark
+        call increment
+          bind value, loan mark
+  back seed
+    call unsigned-shift-right
+      loan hash
+      mark 0
