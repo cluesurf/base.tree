@@ -1,3 +1,6 @@
+// https://github.com/komagata/eastasianwidth/blob/master/eastasianwidth.js
+// https://github.com/sindresorhus/string-width/blob/main/index.js
+
 /**
  * Mnemonist HashedArrayTree
  * ==========================

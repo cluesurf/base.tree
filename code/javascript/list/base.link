@@ -1,0 +1,8 @@
+
+form list-mark-8
+  take dock, like javascript-uint-8-array
+
+  task set
+    take list, like list-mark-8
+    call self/dock/set
+      loan list

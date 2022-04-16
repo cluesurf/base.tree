@@ -33,3 +33,37 @@ task toggle-flag
   call bitwise-exclusive-unite
     loan flags
     loan flag
+
+# http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetParallel
+task count-bits-set-parallel
+  take v
+  save v
+    call decrement
+      bind v
+      call bitwise-and
+        call shift-right
+          loan v
+          mark 1
+        mark 0x55555555
+  save v
+    call add
+      call bitwise-and
+        loan v
+        mark 0x33333333
+      call bitwise-and
+        call shift-right
+          loan v
+          mark 2
+        mark 0x33333333
+  back seed
+    call shift-right
+      call multiply
+        call bitwise-and
+          call add
+            loan v
+            call shift-right
+              loan v
+              mark 4
+          mark 0xf0f0f0f
+        mark 168430x1010101009
+      mark 24
