@@ -292,3 +292,119 @@ task make-utf-8-from-utf-16
                     loan size
                     mark 3
   back seed, loan head-text
+
+task make-utf-16-from-utf-8
+  take text
+  save point, mark 0
+  save state, mark 0
+  save head-text, make text-utf-16
+
+  task decode-byte
+    take byte
+    save type, loan utf-8-decoding-table/get, loan byte
+    stem test
+      call is-not-equal
+        loan state
+        mark 0
+      hook true
+        save point
+          call bitwise-or
+            call bitwise-and
+              loan byte
+              mark 0h3f
+            call shift-left
+              loan point
+              mark 6
+      hook false
+        save point
+          call bitwise-and
+            call shift-right
+              mark 0hff
+              loan type
+            loan byte
+    save state
+      call utf-8-decoding-table/get
+        call add
+          call add
+            mark 256
+            call multiply
+              loan state
+              mark 16
+          loan type
+    back seed, loan state
+  save i, mark 0
+  walk test, fork decode-byte-walk
+    hook test
+      call is-less-than
+        loan i
+        loan text/length
+    hook step
+      save point, mark 0
+      stem case, call decode-byte, loan text[i]
+        fork case
+        case 0, bust case
+        case 1
+          call head-text/push
+            bind mark 0hfffd
+          walk test, fork fork3
+            hook test
+              stem and
+                call is-less-than
+                  call add
+                    loan i
+                    mark 1
+                  loan text/length
+                call is-equal
+                  call bitwise-and
+                    call text/get
+                      call add
+                        loan i
+                        mark 1
+                    mark 0hc0
+                  mark 0h80
+            hook step
+              save i, call increment, loan i
+          save state, loan point
+          roll decode-byte-walk
+        stem fall
+          roll decode-byte-walk
+      stem test
+        call is-less-than-or-equal-to
+          loan point
+          mark 0xffff
+        hook true
+          call head-text/push
+            bind loan point
+        hook false
+          call head-text/push
+            call add
+              mark 0hd7c0
+              call shift-right
+                loan point
+                mark 10
+          call head-text/push
+            call add
+              mark 0hdc00
+              call bitwise-and
+                loan point
+                mark 0h3ff
+      save point, mark 0
+      save i, call increment, loan i
+
+  back seed, loan head-text
+
+host utf-8-decoding-table
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+  7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+  8, 8, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+  0ha, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h4, 0h3, 0h3,
+  0hb, 0h6, 0h6, 0h6, 0h5, 0h8, 0h8, 0h8, 0h8, 0h8, 0h8, 0h8, 0h8, 0h8, 0h8, 0h8,
+  0h0, 0h1, 0h2, 0h3, 0h5, 0h8, 0h7, 0h1, 0h1, 0h1, 0h4, 0h6, 0h1, 0h1, 0h1, 0h1,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1,
+  1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1,
+  1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 1, 1, 1,
+  1, 3, 1, 1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
