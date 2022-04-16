@@ -173,40 +173,6 @@ function ToJulianDay(year, month, date) {
   return FLOOR(FLOOR(365.25*jy) + FLOOR(30.6001*jm) + date + 1720995) + 2 - ja + FLOOR(0.25*ja);
 }
 
-
-
-var four_year_cycle_table = CalculateDateTable();
-
-
-function CalculateDateTable() {
-  var month_lengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  var four_year_cycle_table = new $Array(1461);
-
-  var cumulative = 0;
-  var position = 0;
-  var leap_position = 0;
-  for (var month = 0; month < 12; month++) {
-    var length = month_lengths[month];
-    for (var day = 1; day <= length; day++) {
-      four_year_cycle_table[leap_position] =
-        (month << kMonthShift) + day;
-      four_year_cycle_table[366 + position] =
-        (1 << kYearShift) + (month << kMonthShift) + day;
-      four_year_cycle_table[731 + position] =
-        (2 << kYearShift) + (month << kMonthShift) + day;
-      four_year_cycle_table[1096 + position] =
-        (3 << kYearShift) + (month << kMonthShift) + day;
-      leap_position++;
-      position++;
-    }
-    if (month == 1) {
-      four_year_cycle_table[leap_position++] =
-        (month << kMonthShift) + 29;
-    }
-  }
-  return four_year_cycle_table;
-}
-
 form date
   take second
   take millisecond
@@ -239,38 +205,6 @@ function DateFromTime(time) {
   return FromJulianDay(Day(time) + kDayZeroInJulianDay).date;
 }
 
-// Compute year, month, and day from modified Julian day.
-// The missing days in 1582 are ignored for JavaScript compatibility.
-function FromJulianDay(julian) {
-  // Avoid floating point and non-Smi maths in common case.  This is also a period of
-  // time where leap years are very regular.  The range is not too large to avoid overflow
-  // when doing the multiply-to-divide trick.
-  if (julian > kDayZeroInJulianDay &&
-      (julian - kDayZeroInJulianDay) < 40177) { // 1970 - 2080
-    var jsimple = (julian - kDayZeroInJulianDay) + 731; // Day 0 is 1st January 1968
-    var y = 1968;
-    // Divide by 1461 by multiplying with 22967 and shifting down by 25!
-    var after_1968 = (jsimple * 22967) >> 25;
-    y += after_1968 << 2;
-    jsimple -= 1461 * after_1968;
-    var four_year_cycle = four_year_cycle_table[jsimple];
-    return new DayTriplet(y + (four_year_cycle >> kYearShift),
-                           (four_year_cycle & kMonthMask) >> kMonthShift,
-                           four_year_cycle & kDayMask);
-  }
-  var jalpha = FLOOR((julian - 1867216.25) / 36524.25);
-  var jb = julian + 1 + jalpha - FLOOR(0.25 * jalpha) + 1524;
-  var jc = FLOOR(6680.0 + ((jb-2439870) - 122.1)/365.25);
-  var jd = FLOOR(365 * jc + (0.25 * jc));
-  var je = FLOOR((jb - jd)/30.6001);
-  var m = je - 1;
-  if (m > 12) m -= 13;
-  var y = jc - 4715;
-  if (m > 2) { --y; --m; }
-  var d = jb - jd - FLOOR(30.6001 * je);
-  return new DayTriplet(y, m, d);
-}
-
 function aDate.getMilliseconds() {
   if (IS_DATE(aDate)) return _ValueOf(aDate);
   throw new $TypeError('this is not a Date object.');
@@ -289,6 +223,139 @@ function Modulo(value, remainder) {
   if (mod == 0) return 0;
   return mod >= 0 ? mod : mod + remainder;
 }
+
+task convert-from-julian-day-to-gregorian-day
+  take day
+  stem roll
+    stem and
+      call is-greater-than
+        loan day
+        loan k-day-zero-in-julian-day
+      call is-less-than
+        call subtract
+          loan day
+          loan k-day-zero-in-julian-day
+        mark 40177
+      hook true
+        save jsimple
+          call add
+            call subtract
+              loan day
+              loan k-day-zero-in-julian-day
+            mark 731
+        save y, mark 1968
+        save after-1968
+          call shift-right
+            call multiply
+              loan jsimple
+              mark 22967
+            mark 25
+        save y
+          call shift-left
+            loan after-1968
+            mark 2
+        save jsimple
+          call multiply
+            mark 1461
+            loan after-1968
+        save four-year-cycle, loan four-year-cycle-table[jsimple]
+        back seed
+          make day-triplet
+            call add
+              loan y
+              call shift-right
+                loan four-year-cycle
+                loan k-year-shift
+            call shift-right
+              call bitwise-and
+                loan four-year-cycle
+                loan k-month-mask
+              loan k-month-shift
+            call bitwise-and
+              loan four-year-cycle
+              loan k-day-mask
+  save jalpha
+    call floor
+      call divide
+        call subtract
+          loan day
+          mark 1867216.25
+        mark 36524.25
+  save jb
+    call add
+      call subtract
+        call add
+          call add
+            loan day
+            mark 1
+          loan jalpha
+        call floor
+          call multiply
+            mark 0.25
+            loan jalpha
+      mark 1524
+  save jc
+    call floor
+      call add
+        mark 6680
+        call divide
+          call subtract
+            call subtract
+              loan jb
+              mark 2439870
+            mark 122.1
+          mark 365.25
+  save jd
+    call floor
+      call add
+        call multiply
+          mark 365
+          loan jc
+        call multiply
+          mark 0.25
+          loan jc
+  save je
+    call floor
+      call divide
+        call subtract
+          loan jb
+          loan jd
+        mark 30.6001
+  save m
+    call subtract
+      loan je
+      mark 1
+  stem test
+    call is-greater-than
+      loan m
+      mark 12
+    hook true
+      save m, mark 13
+  save y
+    call subtract
+      loan jc
+      mark 4715
+  stem test
+    call is-greater-than
+      loan m
+      mark 2
+    hook true
+      save y, call decrement, loan y
+      save m, call decrement, loan m
+  save d
+    call subtract
+      call subtract
+        loan jb
+        loan jd
+      call floor
+        call multiply
+          mark 30.6001
+          loan je
+  back seed
+    make day-triplet
+      loan y
+      loan m
+      loan d
 
 task calculate-four-year-cycle-table
   save month-lengths
