@@ -13,9 +13,6 @@ task allocate
   free text, like text-utf-8
 
 form text-utf-8
-  head list-type, like like
-    base like list
-
   take list
     like list-type
       like mark-8
@@ -49,249 +46,249 @@ task make-utf-8-from-utf-16
   walk test
     hook test
       call is-less-than
-        loan i
-        loan text/get-size
+        read i
+        read text/get-size
     hook step
-      save h, loan text[i]
+      save h, read text[i]
       stem and
         call is-greater-than-or-equal-to
-          loan h
+          read h
           mark 0hD800
         call is-less-than-or-equal-to
-          loan h
+          read h
           mark 0hDBFF
         hook true
           stem test
             call is-less-than
               call add
-                loan i
+                read i
                 mark 1
-              loan text/get-size
+              read text/get-size
             hook true
-              save l, loan text[i]
+              save l, read text[i]
               stem and
                 call is-greater-than-or-equal-to
-                  loan l
+                  read l
                   mark 0hDC00
                 call is-less-than-or-equal-to
-                  loan l
+                  read l
                   mark 0hDFFF
                 hook true
                   save size
                     call increment
-                      loan size
+                      read size
                       mark 4
                 hook false
                   save size
                     call increment
-                      loan size
+                      read size
                       mark 3
             hook false
               save size
                 call increment
-                  loan size
+                  read size
                   mark 3
         hook false
           stem roll
             stem test
               call is-less-than
-                loan h
+                read h
                 mark 0h80
               hook true
                 save size
                   call increment
-                    loan size
+                    read size
                     mark 1
             stem test
               call is-less-than
-                loan h
+                read h
                 mark 0h800
               hook true
                 save size
                   call increment
-                    loan size
+                    read size
                     mark 2
             stem test
               call is-less-than
-                loan h
+                read h
                 mark 0h10000
               hook true
                 save size
                   call increment
-                    loan size
+                    read size
                     mark 3
-  save head-text, make array, loan size
+  save head-text, make array, read size
   save i, mark 0
   walk test
     hook test
       call is-less-than
-        loan i
-        loan text/get-size
+        read i
+        read text/get-size
     hook step
-      save h, loan text[i]
+      save h, read text[i]
       stem and
         call is-greater-than-or-equal-to
-          loan h
+          read h
           mark 0hD800
         call is-less-than-or-equal-to
-          loan h
+          read h
           mark 0hDBFF
         hook true
           stem test
             call is-less-than
               call add
-                loan i
+                read i
                 mark 1
-              loan text/get-size
+              read text/get-size
             hook true
-              save l, loan text[i]
+              save l, read text[i]
               stem and
                 call is-greater-than-or-equal-to
-                  loan l
+                  read l
                   mark 0xDC00
                 call is-less-than-or-equal-to
-                  loan l
+                  read l
                   mark 0xDFFF
                 hook true
                   save cp
                     call add
                       call shift-left
                         call subtract
-                          loan h
+                          read h
                           mark 0hD800
                         mark 10
                       call add
-                        loan l
+                        read l
                         mark 0h2400
-                  save tmp, loan j
-                  save j, call increment, loan j
+                  save tmp, read j
+                  save j, call increment, read j
                   save head-text[tmp]
                     call bitwise-or
                       mark 0hF0
                       call shift-right
-                        loan cp
+                        read cp
                         mark 0h12
-                  save tmp, loan j
-                  save j, call increment, loan j
+                  save tmp, read j
+                  save j, call increment, read j
                   save head-text[tmp]
                     call bitwise-or
                       mark 0h80
                       call bitwise-and
                         call shift-right
-                          loan cp
+                          read cp
                           mark 0h0C
                         mark 0h3F
-                  save tmp, loan j
-                  save j, call increment, loan j
+                  save tmp, read j
+                  save j, call increment, read j
                   save head-text[tmp]
                     call bitwise-or
                       mark 0h80
                       call bitwise-and
                         call shift-right
-                          loan cp
+                          read cp
                           mark 0h06
                         mark 0h3F
-                  save tmp, loan j
-                  save j, call increment, loan j
+                  save tmp, read j
+                  save j, call increment, read j
                   save head-text[tmp]
                     call bitwise-or
                       mark 0h80
                       call bitwise-and
-                        loan cp
+                        read cp
                         mark 0h3F
                 hook false
-                  save tmp, loan j
-                  save j, call increment, loan j
+                  save tmp, read j
+                  save j, call increment, read j
                   save head-text[tmp], mark 0hEF
-                  save tmp, loan j
-                  save j, call increment, loan j
+                  save tmp, read j
+                  save j, call increment, read j
                   save head-text[tmp], mark 0hBF
-                  save tmp, loan j
-                  save j, call increment, loan j
+                  save tmp, read j
+                  save j, call increment, read j
                   save head-text[tmp], mark 0hBD
             hook false
-              save tmp, loan j
-              save j, call increment, loan j
+              save tmp, read j
+              save j, call increment, read j
               save head-text[tmp], mark 0hEF
-              save tmp, loan j
-              save j, call increment, loan j
+              save tmp, read j
+              save j, call increment, read j
               save head-text[tmp], mark 0hBF
-              save tmp, loan j
-              save j, call increment, loan j
+              save tmp, read j
+              save j, call increment, read j
               save head-text[tmp], mark 0hBD
         hook false
           stem roll
             stem test
               call is-less-than
-                loan h
+                read h
                 mark 0h80
               hook true
-                save tmp, loan j
-                save j, call increment, loan j
-                save head-text[tmp], loan h
+                save tmp, read j
+                save j, call increment, read j
+                save head-text[tmp], read h
             stem test
               call is-less-than
-                loan h
+                read h
                 mark 0h800
               hook true
-                save tmp, loan j
-                save j, call increment, loan j
+                save tmp, read j
+                save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
                     mark 0hC0
                     call shift-right
-                      loan h
+                      read h
                       mark 6
-                save tmp, loan j
-                save j, call increment, loan j
+                save tmp, read j
+                save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
                     mark 0h80
                     call bitwise-and
-                      loan h
+                      read h
                       mark 0h3F
                 save size
                   call increment
-                    loan size
+                    read size
                     mark 2
             stem test
               call is-less-than
-                loan h
+                read h
                 mark 0h10000
               hook true
-                save tmp, loan j
-                save j, call increment, loan j
+                save tmp, read j
+                save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
                     mark 0hE0
                     call shift-right
-                      loan h
+                      read h
                       mark 0hC
-                save tmp, loan j
-                save j, call increment, loan j
+                save tmp, read j
+                save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
                     mark 0h80
                     call bitwise-and
                       call shift-right
-                        loan h
+                        read h
                         mark 0h6
                       mark 0h3F
-                save tmp, loan j
-                save j, call increment, loan j
+                save tmp, read j
+                save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
                     mark 0h80
                     call bitwise-and
                       call shift-right
-                        loan h
+                        read h
                         mark 0h0
                       mark 0h3F
                 save size
                   call increment
-                    loan size
+                    read size
                     mark 3
-  back seed, loan head-text
+  back seed, read head-text
 
 task make-utf-16-from-utf-8
   take text
@@ -301,46 +298,46 @@ task make-utf-16-from-utf-8
 
   task decode-byte
     take byte
-    save type, loan utf-8-decoding-table/get, loan byte
+    save type, read utf-8-decoding-table/get, read byte
     stem test
       call is-not-equal
-        loan state
+        read state
         mark 0
       hook true
         save point
           call bitwise-or
             call bitwise-and
-              loan byte
+              read byte
               mark 0h3f
             call shift-left
-              loan point
+              read point
               mark 6
       hook false
         save point
           call bitwise-and
             call shift-right
               mark 0hff
-              loan type
-            loan byte
+              read type
+            read byte
     save state
       call utf-8-decoding-table/get
         call add
           call add
             mark 256
             call multiply
-              loan state
+              read state
               mark 16
-          loan type
-    back seed, loan state
+          read type
+    back seed, read state
   save i, mark 0
   walk test, fork decode-byte-walk
     hook test
       call is-less-than
-        loan i
-        loan text/length
+        read i
+        read text/length
     hook step
       save point, mark 0
-      stem case, call decode-byte, loan text[i]
+      stem case, call decode-byte, read text[i]
         fork case
         case 0, bust case
         case 1
@@ -351,47 +348,47 @@ task make-utf-16-from-utf-8
               stem and
                 call is-less-than
                   call add
-                    loan i
+                    read i
                     mark 1
-                  loan text/length
+                  read text/length
                 call is-equal
                   call bitwise-and
                     call text/get
                       call add
-                        loan i
+                        read i
                         mark 1
                     mark 0hc0
                   mark 0h80
             hook step
-              save i, call increment, loan i
-          save state, loan point
+              save i, call increment, read i
+          save state, read point
           roll decode-byte-walk
         stem fall
           roll decode-byte-walk
       stem test
         call is-less-than-or-equal-to
-          loan point
+          read point
           mark 0xffff
         hook true
           call head-text/push
-            bind loan point
+            bind read point
         hook false
           call head-text/push
             call add
               mark 0hd7c0
               call shift-right
-                loan point
+                read point
                 mark 10
           call head-text/push
             call add
               mark 0hdc00
               call bitwise-and
-                loan point
+                read point
                 mark 0h3ff
       save point, mark 0
-      save i, call increment, loan i
+      save i, call increment, read i
 
-  back seed, loan head-text
+  back seed, read head-text
 
 host utf-8-decoding-table
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

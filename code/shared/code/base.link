@@ -5,34 +5,34 @@ task has-flag
 
   test is-equal
     call bitwise-intersect
-      loan flags
-      loan flag
-    loan flag
+      read flags
+      read flag
+    read flag
 
 task add-flag
   take flags
   take flag
 
   call bitwise-unite
-    loan flags
-    loan flag
+    read flags
+    read flag
 
 task remove-flag
   take flags
   take flag
 
   call bitwise-intersect
-    loan flags
+    read flags
     call bitwise-negate
-      loan flag
+      read flag
 
 task toggle-flag
   take flags
   take flag
 
   call bitwise-exclusive-unite
-    loan flags
-    loan flag
+    read flags
+    read flag
 
 # http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetParallel
 task count-bits-set-parallel
@@ -42,17 +42,17 @@ task count-bits-set-parallel
       bind v
       call bitwise-and
         call shift-right
-          loan v
+          read v
           mark 1
         mark 0x55555555
   save v
     call add
       call bitwise-and
-        loan v
+        read v
         mark 0x33333333
       call bitwise-and
         call shift-right
-          loan v
+          read v
           mark 2
         mark 0x33333333
   back seed
@@ -60,9 +60,9 @@ task count-bits-set-parallel
       call multiply
         call bitwise-and
           call add
-            loan v
+            read v
             call shift-right
-              loan v
+              read v
               mark 4
           mark 0xf0f0f0f
         mark 168430x1010101009

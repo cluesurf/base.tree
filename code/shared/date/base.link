@@ -26,7 +26,7 @@ task get-days-in-year
   stem test
     call is-not-equal
       call remainder
-        loan year
+        read year
         mark 4
       mark 0
     hook true, back 365
@@ -35,13 +35,13 @@ task get-days-in-year
     stem test
       call is-equal
         call remainder
-          loan year
+          read year
           mark 100
         mark 0
     stem test
       call is-not-equal
         call remainder
-          loan year
+          read year
           mark 400
         mark 0
     hook true, back 365
@@ -182,16 +182,16 @@ form date
     take self
     call add
       call multiply
-        loan self/second
+        read self/second
         mark 1000
-      loan self/millisecond
+      read self/millisecond
 
   task get-day
     take self
     call floor
       call divide
         call self/get-millisecond
-        loan milliseconds-per-day
+        read milliseconds-per-day
 
   function YearFromTime(time) {
   return FromJulianDay(Day(time) + kDayZeroInJulianDay).year;
@@ -229,56 +229,56 @@ task convert-from-julian-day-to-gregorian-day
   stem roll
     stem and
       call is-greater-than
-        loan day
-        loan k-day-zero-in-julian-day
+        read day
+        read k-day-zero-in-julian-day
       call is-less-than
         call subtract
-          loan day
-          loan k-day-zero-in-julian-day
+          read day
+          read k-day-zero-in-julian-day
         mark 40177
       hook true
         save jsimple
           call add
             call subtract
-              loan day
-              loan k-day-zero-in-julian-day
+              read day
+              read k-day-zero-in-julian-day
             mark 731
         save y, mark 1968
         save after-1968
           call shift-right
             call multiply
-              loan jsimple
+              read jsimple
               mark 22967
             mark 25
         save y
           call shift-left
-            loan after-1968
+            read after-1968
             mark 2
         save jsimple
           call multiply
             mark 1461
-            loan after-1968
-        save four-year-cycle, loan four-year-cycle-table[jsimple]
+            read after-1968
+        save four-year-cycle, read four-year-cycle-table[jsimple]
         back seed
           make day-triplet
             call add
-              loan y
+              read y
               call shift-right
-                loan four-year-cycle
-                loan k-year-shift
+                read four-year-cycle
+                read k-year-shift
             call shift-right
               call bitwise-and
-                loan four-year-cycle
-                loan k-month-mask
-              loan k-month-shift
+                read four-year-cycle
+                read k-month-mask
+              read k-month-shift
             call bitwise-and
-              loan four-year-cycle
-              loan k-day-mask
+              read four-year-cycle
+              read k-day-mask
   save jalpha
     call floor
       call divide
         call subtract
-          loan day
+          read day
           mark 1867216.25
         mark 36524.25
   save jb
@@ -286,13 +286,13 @@ task convert-from-julian-day-to-gregorian-day
       call subtract
         call add
           call add
-            loan day
+            read day
             mark 1
-          loan jalpha
+          read jalpha
         call floor
           call multiply
             mark 0.25
-            loan jalpha
+            read jalpha
       mark 1524
   save jc
     call floor
@@ -301,7 +301,7 @@ task convert-from-julian-day-to-gregorian-day
         call divide
           call subtract
             call subtract
-              loan jb
+              read jb
               mark 2439870
             mark 122.1
           mark 365.25
@@ -310,52 +310,52 @@ task convert-from-julian-day-to-gregorian-day
       call add
         call multiply
           mark 365
-          loan jc
+          read jc
         call multiply
           mark 0.25
-          loan jc
+          read jc
   save je
     call floor
       call divide
         call subtract
-          loan jb
-          loan jd
+          read jb
+          read jd
         mark 30.6001
   save m
     call subtract
-      loan je
+      read je
       mark 1
   stem test
     call is-greater-than
-      loan m
+      read m
       mark 12
     hook true
       save m, mark 13
   save y
     call subtract
-      loan jc
+      read jc
       mark 4715
   stem test
     call is-greater-than
-      loan m
+      read m
       mark 2
     hook true
-      save y, call decrement, loan y
-      save m, call decrement, loan m
+      save y, call decrement, read y
+      save m, call decrement, read m
   save d
     call subtract
       call subtract
-        loan jb
-        loan jd
+        read jb
+        read jd
       call floor
         call multiply
           mark 30.6001
-          loan je
+          read je
   back seed
     make day-triplet
-      loan y
-      loan m
-      loan d
+      read y
+      read m
+      read d
 
 task calculate-four-year-cycle-table
   save month-lengths
@@ -383,103 +383,103 @@ task calculate-four-year-cycle-table
   walk test, fork fork5
     hook test
       call is-less-than
-        loan month
+        read month
         mark 12
 
     hook true
-      save length, loan month-lengths[month]
+      save length, read month-lengths[month]
       save day, mark 1
 
       walk test, fork fork3
         hook test
           call is-less-than-or-equal-to
-            loan day
-            loan length
+            read day
+            read length
 
         hook true
           save four-year-cycle-table[leap-position]
             call add
               call shift-left
-                loan month
-                loan k-month-shift
-              loan day
+                read month
+                read k-month-shift
+              read day
           save next-position
             call add
               mark 366
-              loan position
+              read position
           save four-year-cycle-table[next-position]
             call add
               call add
                 call shift-left
                   mark 1
-                  loan k-year-shift
+                  read k-year-shift
                 call shift-left
-                  loan month
-                  loan k-month-shift
-              loan day
+                  read month
+                  read k-month-shift
+              read day
           save next-position
             call add
               mark 731
-              loan position
+              read position
           save four-year-cycle-table[next-position]
             call add
               call add
                 call shift-left
                   mark 2
-                  loan k-year-shift
+                  read k-year-shift
                 call shift-left
-                  loan month
-                  loan k-month-shift
-              loan day
+                  read month
+                  read k-month-shift
+              read day
           save next-position
             call add
               mark 1096
-              loan position
+              read position
           save four-year-cycle-table[next-position]
             call add
               call add
                 call shift-left
                   mark 3
-                  loan k-year-shift
+                  read k-year-shift
                 call shift-left
-                  loan month
-                  loan k-month-shift
-              loan day
+                  read month
+                  read k-month-shift
+              read day
           save leap-position
             call increment
-              bind value, loan leap-position
+              bind value, read leap-position
           save position
             call increment
-              bind value, loan position
+              bind value, read position
           save day
             call increment
-              bind value, loan day
+              bind value, read day
 
         hook false
           bust fork3
 
       stem test
         call is-equal
-          loan month
+          read month
           mark 1
 
         hook true
           save next-position
             save leap-position
               call increment
-                bind value, loan leap-position
+                bind value, read leap-position
           save four-year-cycle-table[next-position]
             call add
               call shift-left
-                loan month
-                loan k-month-shift
+                read month
+                read k-month-shift
               mark 29
 
       save month
         call increment
-          bind value, loan month
+          bind value, read month
 
     hook false
       bust fork5
 
-  back seed, loan four-year-cycle-table
+  back seed, read four-year-cycle-table

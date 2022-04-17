@@ -13,17 +13,17 @@ form hash-table
 
     save self/list
       make array
-        loan capacity
+        read capacity
     save self/size, mark 0
 
   task is-full
     call is-equal
-      loan self/list/size
-      loan self/size
+      read self/list/size
+      read self/size
 
   task is-empty
     call is-equal
-      loan self/list/size
+      read self/list/size
       mark 0
 
   save set
@@ -33,16 +33,16 @@ form hash-table
     walk test
       hook test
         call is-present
-          loan self/list[i]
+          read self/list[i]
       hook true
         fuse update-hash
     save self/list[i]
       make leaf
-        loan key
-        loan value
+        read key
+        read value
     save self/size
       call increment
-        loan self/size
+        read self/size
 
   task find
     take key
@@ -51,14 +51,14 @@ form hash-table
       hook step
         stem roll
           stem test
-            call not, loan self/list[i]
+            call not, read self/list[i]
             hook true, back seed
           stem test
             call is-equal
-              loan self/list[i]/key
-              loan key
+              read self/list[i]/key
+              read key
             hook true
-              back seed, loan self/list[i]/value
+              back seed, read self/list[i]/value
           stem fall
             fuse update-hash
         fuse increment-step
@@ -70,17 +70,17 @@ form hash-table
       hook step
         stem roll
           stem test
-            call not, loan self/list[i]
+            call not, read self/list[i]
             hook true, back seed
           stem test
             call is-equal
-              loan self/list[i]/key
-              loan key
+              read self/list[i]/key
+              read key
             hook true
-              save self/list[i], loan void
+              save self/list[i], read void
               save self/size
                 call decrement
-                  loan self/size
+                  read self/size
           stem fall
             fuse update-hash
         fuse increment-step
@@ -94,19 +94,19 @@ tree update-hash
     save i
       call hash
         call add
-          loan base
+          read base
           call multiply
-            loan step
-            loan step
+            read step
+            read step
 
 tree increment-step
   hook bind
     save step
       call increment
-        loan step
+        read step
 
 tree initialize-loop
   hook bind
-    save base, call hash, loan key
-    save i, loan base
+    save base, call hash, read key
+    save i, read base
     save step, mark 1
