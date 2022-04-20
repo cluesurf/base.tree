@@ -238,7 +238,7 @@ tree mark
 
     suit form
       coat mark-{size}
-        mask notation-binary
+        mask binary-manipulable
           task make-big-endian-bytes
           task make-little-endian-bytes
           task make-native-endian-bytes
