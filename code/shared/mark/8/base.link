@@ -1,0 +1,29 @@
+
+task count-zeroes-in-mark-8
+  call count-ones-in-mark-8
+    call bitwise-negate
+      read i
+
+task count-ones-in-mark-8
+  free seed, like mark-8
+  call add
+    call add
+      call add
+        call self/bitwise-intersect
+          call self/bitwise-shift-right
+            loan i
+            mark 3
+          mark 1
+        call self/bitwise-intersect
+          call self/bitwise-shift-right
+            loan i
+            mark 2
+          mark 1
+      call self/bitwise-intersect
+        call self/bitwise-shift-right
+          loan i
+          mark 1
+        mark 1
+    call self/bitwise-intersect
+      loan i
+      mark 1

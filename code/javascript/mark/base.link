@@ -1,229 +1,326 @@
 
 # https://github.com/infusion/Complex.js
+# http://www-graphics.stanford.edu/~seander/bithacks.html
 
 tree mark
-  take self-type, like like
-  take side-type, like like
+  take size, like mark-8
 
   hook bind
-    task add
-      take a, like self-type
-      take b, like self-type
-      save c
-        call js-add
+    form mark-{size}
+      task seek-add
+        take a, like mark-{size}
+        take b, like mark-{size}
+        fuse free-result, like mark-{size}
+        save c
+          call add-js
+            read a
+            read b
+        fuse is-below-or-return-error
+          read c
+          mark 256
+        move c
+
+      task seek-add-signed
+        take a, like mark-{size}
+        take b, like mark-{size}
+        save c
+          call add-js
+            read a
+            read b
+        fuse is-below-or-return-error
+          read c
+          mark 256
+        fuse is-minimally-or-return-error
+          read c
+          mark 0
+        move c
+
+      task seek-divide-base
+        take a, like mark-{size}
+        take b, like mark-{size}
+        fuse is-not-or-return-error
+          read b
+          mark 0
+        call math-floor-js
+          call divide-js
+            read a
+            read b
+
+      task seek-divide-head
+        take a, like mark-{size}
+        take b, like mark-{size}
+        fuse is-not-or-return-error
+          read b
+          mark 0
+        call math-ceiling-js
+          call divide-js
+            read a
+            read b
+
+      task seek-divide-euclid
+        take a, like mark-{size}
+        take b, like mark-{size}
+        call divide-base
           read a
           read b
-      have is-less-than
-        read c
-        mark 256
-      move c
 
-    task add-signed
-      take a, like self-type
-      take b, like self-type
-      save c
-        call js-add
-          read a
-          read b
-      have is-less-than
-        read c
-        mark 256
-      have is-greater-than-or-equal-to
-        read c
-        mark 0
-      move c
-
-    task divide-base
-      take a, like self-type
-      take b, like self-type
-      have is-not
-        read b
-        mark 0
-      call js-math-floor
-        call js-divide
-          read a
-          read b
-
-    task divide-head
-      take a, like self-type
-      take b, like self-type
-      have is-not
-        read b
-        mark 0
-      call js-math-ceiling
-        call js-divide
-          read a
-          read b
-
-    task divide-euclid
-      take a, like self-type
-      take b, like self-type
-      call divide-base
-        read a
-        read b
-
-    task fall
-      take a, like self-type
-      take base, like self-type
-      have is-at-least
-        read base
-        mark 2
-      have is-larger-than
-        read a
-        mark 0
-      call js-math-floor
-        call js-math-log
-          read a
+      task seek-fall
+        take a, like mark-{size}
+        take base, like mark-{size}
+        fuse is-minimally-or-return-error
           read base
-
-    task fall-10
-      take a, like self-type
-      have is-larger-than
-        read a
-        mark 0
-      call js-math-floor
-        call js-math-log-10
+          mark 2
+        fuse is-above-or-return-error
           read a
+          mark 0
+        call math-floor-js
+          call math-log-js
+            read a
+            read base
 
-    task fall-2
-      take a, like self-type
-      have is-larger-than
-        read a
-        mark 0
-      call js-math-floor
-        call js-math-log-2
+      task seek-fall-10
+        take a, like mark-{size}
+        fuse is-above-or-return-error
           read a
+          mark 0
+        call math-floor-js
+          call math-log-10-js
+            read a
 
-    task multiply
-      take a, like self-type
-      take b, like self-type
-      save c
-        call js-multiply
+      task seek-fall-2
+        take a, like mark-{size}
+        fuse is-above-or-return-error
           read a
-          read b
-      have is-below
-        read c
-        mark 256
+          mark 0
+        call math-floor-js
+          call math-log-2-js
+            read a
 
-    task get-next-multiple-of
+      task seek-multiply
+        take a, like mark-{size}
+        take b, like mark-{size}
+        save c
+          call multiply-js
+            read a
+            read b
+        fuse is-below-or-return-error
+          read c
+          mark 256
+        move c
 
-    task get-next-power-of-two
-    task rise
-    task remainder
-    task remainder-euclid
-    task shift-left
-    task shift-right
-    task subtract
-    task unsign
+      task seek-get-next-multiple-of
 
-    task checked-add
-    task checked-add-signed
-    task checked-divide
-    task checked-divide-euclid
-    task checked-fall
-    task checked-fall-10
-    task checked-fall-2
-    task checked-multiply
-    task checked-negate
-    task checked-get-next-multiple-of
-    task checked-get-next-power-of-two
-    task checked-rise # exponentiation
-    task checked-remainder
-    task checked-remainder-euclid
-    task checked-shift-left
-    task checked-shift-right
-    task checked-subtract
-    task checked-unsign
+      task seek-get-next-power-of-two
+      task seek-rise
+      task seek-remainder
+      task seek-remainder-euclid
+      task seek-shift-base
+      task seek-shift-head
+      task seek-subtract
+      task seek-unsign
 
-    task saturating-add
-    task saturating-add-signed
-    task saturating-divide
-    task saturating-divide-euclid
-    task saturating-fall
-    task saturating-fall-10
-    task saturating-fall-2
-    task saturating-multiply
-    task saturating-negate
-    task saturating-get-next-multiple-of
-    task saturating-get-next-power-of-two
-    task saturating-rise # exponentiation
-    task saturating-remainder
-    task saturating-remainder-euclid
-    task saturating-shift-left
-    task saturating-shift-right
-    task saturating-subtract
-    task saturating-unsign
+      # checked
+      task test-add
+        take a, like mark-{size}
+        take b, like mark-{size}
+        free seed, like maybe, like mark-{size}
 
-    task wrapping-add
-    task wrapping-add-signed
-    task wrapping-divide
-    task wrapping-divide-euclid
-    task wrapping-fall
-    task wrapping-fall-10
-    task wrapping-fall-2
-    task wrapping-multiply
-    task wrapping-negate
-    task wrapping-get-next-multiple-of
-    task wrapping-get-next-power-of-two
-    task wrapping-rise # exponentiation
-    task wrapping-remainder
-    task wrapping-remainder-euclid
-    task wrapping-shift-left
-    task wrapping-shift-right
-    task wrapping-subtract
-    task wrapping-unsign
+      task test-add-signed
+        take a, like mark-{size}
+        take b, like mark-{size}
+        free seed, like maybe, like mark-{size}
 
-    task overflowing-add
-    task overflowing-add-signed
-    task overflowing-divide
-    task overflowing-divide-euclid
-    task overflowing-fall
-    task overflowing-fall-10
-    task overflowing-fall-2
-    task overflowing-multiply
-    task overflowing-negate
-    task overflowing-get-next-multiple-of
-    task overflowing-get-next-power-of-two
-    task overflowing-rise # exponentiation
-    task overflowing-remainder
-    task overflowing-remainder-euclid
-    task overflowing-shift-left
-    task overflowing-shift-right
-    task overflowing-subtract
-    task overflowing-unsign
+      task test-divide
+        take a, like mark-{size}
+        take b, like mark-{size}
+        free seed, like maybe, like mark-{size}
 
-    task is-negative
-    task is-positive
+      task test-divide-euclid
+        take a, like mark-{size}
+        take b, like mark-{size}
+        free seed, like maybe, like mark-{size}
 
-    task make-big-endian-bytes
-    task make-little-endian-bytes
-    task make-native-endian-bytes
-    task make-big-endian
-    task make-little-endian
-    task rotate-left
-    task rotate-right
-    task swap-bytes
-    task reverse-bits
-    task bitwise-intersect # bit-and
-    task bitwise-unify # bit-or
-    task bitwise-miss # bit-xor
+      task test-fall
+        take a, like mark-{size}
+        take base, like mark-{size}
+        free seed, like maybe, like mark-{size}
 
-    task count-ones
-      free seed, like side-type
+      task test-fall-10
+      task test-fall-2
+      task test-multiply
+        take a, like mark-{size}
+        take b, like mark-{size}
+        free seed, like maybe, like mark-{size}
 
-    task count-zeroes
-      free seed, like side-type
+      task test-negate
+      task test-get-next-multiple-of
+      task test-get-next-power-of-two
+      task test-rise # exponentiation
+      task test-remainder
+      task test-remainder-euclid
+      task test-shift-base
+      task test-shift-head
+      task test-subtract
+      task test-unsign
 
-    task count-leading-ones
-      free seed, like side-type
+      # clamped
+      task add-sink
+      task add-signed-sink
+      task divide-sink
+      task divide-euclid-sink
+      task fall-sink
+      task fall-10-sink
+      task fall-2-sink
+      task multiply-sink
+      task negate-sink
+      task get-next-multiple-of-sink
+      task get-next-power-of-two-sink
+      task rise # exponentiation-sink
+      task remainder-sink
+      task remainder-euclid-sink
+      task shift-base-sink
+      task shift-head-sink
+      task subtract-sink
+      task unsign-sink
 
-    task count-leading-zeroes
-      free seed, like side-type
+      task add-roll
+      task add-signed-roll
+      task divide-roll
+      task divide-euclid-roll
+      task fall-roll
+      task fall-10-roll
+      task fall-2-roll
+      task multiply-roll
+      task negate-roll
+      task get-next-multiple-of-roll
+      task get-next-power-of-two-roll
+      task rise # exponentiation-roll
+      task remainder-roll
+      task remainder-euclid-roll
+      task shift-base-roll
+      task shift-head-roll
+      task subtract-roll
+      task unsign-roll
 
-    task count-trailing-ones
-      free seed, like side-type
+      # unchecked
+      task add-free
+        risk true
+      task multiply-free
+        risk true
+      task shift-base-free
+        risk true
+      task shift-head-free
+        risk true
+      task subtract-free
+        risk true
 
-    task count-trailing-zeroes
-      free seed, like side-type
+      task add-test-and-roll
+      task add-signed-test-and-roll
+      task divide-test-and-roll
+      task divide-euclid-test-and-roll
+      task fall-test-and-roll
+      task fall-10-test-and-roll
+      task fall-2-test-and-roll
+      task multiply-test-and-roll
+      task negate-test-and-roll
+      task get-next-multiple-of-test-and-roll
+      task get-next-power-of-two-test-and-roll
+      task rise # exponentiation-test-and-roll
+      task remainder-test-and-roll
+      task remainder-euclid-test-and-roll
+      task shift-base-test-and-roll
+      task shift-head-test-and-roll
+      task subtract-test-and-roll
+      task unsign-test-and-roll
 
-    task clone
+      task is-negative
+      task is-positive
+
+    suit form
+      coat mark-{size}
+        mask notation-binary
+          task make-big-endian-bytes
+          task make-little-endian-bytes
+          task make-native-endian-bytes
+          task make-big-endian
+          task make-little-endian
+          task rotate-base
+          task rotate-head
+          task swap-bytes
+          task reverse-bits
+          task intersect-bitwise # bit-and
+            take a, like mark-{size}
+            take b, like mark-{size}
+            call intersect-bitwise-js
+              read a
+              read b
+
+          task unify-bitwise # bit-or
+            take a, like mark-{size}
+            take b, like mark-{size}
+            call unify-bitwise-js
+              read a
+              read b
+
+          task miss-bitwise # bit-xor
+            take a, like mark-{size}
+            take b, like mark-{size}
+            call miss-bitwise-js
+              read a
+              read b
+
+          task count-ones
+            free seed, like mark-{size}
+
+          task count-zeroes
+            free seed, like mark-{size}
+
+          task count-leading-ones
+            free seed, like mark-{size}
+
+          task count-leading-zeroes
+            free seed, like mark-{size}
+
+          task count-trailing-ones
+            free seed, like mark-{size}
+
+          task count-trailing-zeroes
+            free seed, like mark-{size}
+
+    suit form
+      coat mark-{size}
+        mask incomplete-comparison
+          task is-equal
+            take a, like mark-{size}
+            take b, like mark-{size}
+            free seed, like wave
+
+          task is-not-equal
+            take a, like mark-{size}
+            take b, like mark-{size}
+            free seed, like wave
+
+          task is-above
+            take a, like mark-{size}
+            take b, like mark-{size}
+            free seed, like wave
+
+          task is-below
+            take a, like mark-{size}
+            take b, like mark-{size}
+            free seed, like wave
+
+          task is-minimally
+            take a, like mark-{size}
+            take b, like mark-{size}
+            free seed, like wave
+
+          task is-maximally
+            take a, like mark-{size}
+            take b, like mark-{size}
+            free seed, like wave
+
+    suit form
+      coat mark-{size}
+        mask replication
+          task clone

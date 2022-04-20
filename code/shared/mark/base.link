@@ -7,3 +7,53 @@ form mark
 
 # https://github.com/vukicevic/crunch
 # https://github.com/GoogleChromeLabs/jsbi/blob/main/lib/jsbi.ts
+
+tree is-power-of-two
+  take size, like mark-8
+
+  hook bind
+    task is-power-of-two
+      take n, like mark-{size}
+      call and
+        call is-not-equal
+          loan n
+          mark 0
+        call is-equal
+          call bitwise-and
+            loan n
+            call subtract
+              loan n
+              mark 1
+          mark 0
+
+tree rotate
+  take size, like mark-8
+
+  hook bind
+    task rotate-base
+      take a, like mark-{size}
+      take b, like mark-{size}
+
+      call bitwise-or
+        call shift-left
+          loan a
+          loan b
+        call shift-right
+          loan a
+          call subtract
+            loan size
+            loan b
+
+    task rotate-head
+      take a, like mark-{size}
+      take b, like mark-{size}
+
+      call bitwise-or
+        call shift-right
+          loan a
+          loan b
+        call shift-left
+          loan a
+          call subtract
+            loan size
+            loan b

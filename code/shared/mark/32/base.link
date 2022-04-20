@@ -1,0 +1,54 @@
+
+task get-next-power-of-two
+  take n
+  stem test
+    call is-equal
+      read n
+      mark 0
+    hook true
+      back seed, read 1
+  save n, call decrement, read n
+  save n
+    call bitwise-or
+      read n
+      read n
+  save n
+    call shift-right
+      read n
+      mark 1
+  save n
+    call bitwise-or
+      read n
+      read n
+  save n
+    call shift-right
+      read n
+      mark 2
+  save n
+    call bitwise-or
+      read n
+      read n
+  save n
+    call shift-right
+      read n
+      mark 4
+  save n
+    call bitwise-or
+      read n
+      read n
+  save n
+    call shift-right
+      read n
+      mark 8
+  save n
+    call bitwise-or
+      read n
+      read n
+  save n
+    call shift-right
+      read n
+      mark 16
+  back seed
+    call add
+      read n
+      mark 1
