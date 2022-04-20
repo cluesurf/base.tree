@@ -548,3 +548,103 @@ task make-de-bruijn-trailing-zero-table
       save i, call increment, loan i
 
   back seed, loan table
+
+host binary-count-one-table, call make-lookup-table
+
+task make-lookup-table
+  save table, make uint8-array, mark 256
+  save i, mark 0
+  walk test
+    hook test
+      call is-below
+        loan i
+        mark 256
+    hook true
+      call table/set
+        loan i
+        call add
+          call bitwise-and
+            loan i
+            mark 1
+          call table/get
+            call bitwise-or
+              call divide
+                loan i
+                mark 2
+              mark 0
+      save i, call increment, loan i
+  back seed, loan table
+
+task count-one-bits-32
+  take x
+
+  call add
+    call add
+      call add
+        call binary-count-one-table/get
+          call bitwise-and
+            loan x
+            mark #xff
+        call binary-count-one-table/get
+          call bitwise-and
+            call shift-right
+              loan x
+              mark 8
+            mark #xff
+      call binary-count-one-table/get
+        call bitwise-and
+          call shift-right
+            loan x
+            mark 16
+          mark #xff
+    call binary-count-one-table/get
+      call bitwise-and
+        call shift-right
+          loan x
+          mark 24
+        mark #xff
+
+task count-one-bits-16
+  take x
+  call add
+    call binary-count-one-table/get
+      call bitwise-and
+        loan x
+        mark #xff
+    call binary-count-one-table/get
+      call bitwise-and
+        call shift-right
+          loan x
+          mark 8
+        mark #xff
+
+task count-one-bits8
+  take x
+  call binary-count-one-table/get
+    call bitwise-and
+      loan x
+      mark #xff
+
+task count-zero-bits-32
+  take x
+  call count-one-bits-32
+    call unsigned-shift-right
+      call negate-bitwise
+        loan x
+      mark 0
+
+task count-zero-bits-16
+  take x
+  call count-one-bits-16
+    call unsigned-shift-right
+      call negate-bitwise
+        loan x
+      mark 0
+
+task count-zero-bits-8
+  take x
+  call count-one-bits-8
+    call unsigned-shift-right
+      call negate-bitwise
+        loan x
+      mark 0
