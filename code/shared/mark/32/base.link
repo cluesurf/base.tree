@@ -1,3 +1,38 @@
+task is-bit-count-odd
+  take x, like mark-32
+  save x
+    call oppose-bitwise
+      call shift-head
+        read x
+        mark 16
+      read x
+  save x
+    call oppose-bitwise
+      call shift-head
+        read x
+        mark 8
+      read x
+  save x
+    call oppose-bitwise
+      call shift-head
+        read x
+        mark 4
+      read x
+  save x
+    call oppose-bitwise
+      call shift-head
+        read x
+        mark 2
+      read x
+  save x
+    call oppose-bitwise
+      call shift-head
+        read x
+        mark 1
+      read x
+  call intersect-bitwise
+    read x
+    mark 1
 
 task get-next-power-of-two
   take n
@@ -52,3 +87,38 @@ task get-next-power-of-two
     call add
       read n
       mark 1
+
+task reverse-bits
+  take n
+  back seed
+    call bitwise-or
+      call bitwise-or
+        call bitwise-or
+          call bit-reversal-table/get
+            call bitwise-and
+              call shift-right
+                loan n
+                mark 24
+              mark 255
+          call shift-left
+            call bit-reversal-table/get
+              call bitwise-and
+                call shift-right
+                  loan n
+                  mark 16
+                mark 255
+            mark 8
+        call shift-left
+          call bit-reversal-table/get
+            call bitwise-and
+              call shift-right
+                loan n
+                mark 8
+              mark 255
+          mark 16
+      call shift-left
+        call bit-reversal-table/get
+          call bitwise-and
+            loan n
+            mark 255
+        mark 24
