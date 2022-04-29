@@ -53,10 +53,10 @@ task make-utf-8-from-utf-16
       stem and
         call is-greater-than-or-equal-to
           read h
-          mark 0hD800
+          mark #xD800
         call is-less-than-or-equal-to
           read h
-          mark 0hDBFF
+          mark #xDBFF
         hook true
           stem test
             call is-less-than
@@ -69,10 +69,10 @@ task make-utf-8-from-utf-16
               stem and
                 call is-greater-than-or-equal-to
                   read l
-                  mark 0hDC00
+                  mark #xDC00
                 call is-less-than-or-equal-to
                   read l
-                  mark 0hDFFF
+                  mark #xDFFF
                 hook true
                   save size
                     call increment
@@ -93,7 +93,7 @@ task make-utf-8-from-utf-16
             stem test
               call is-less-than
                 read h
-                mark 0h80
+                mark #x80
               hook true
                 save size
                   call increment
@@ -102,7 +102,7 @@ task make-utf-8-from-utf-16
             stem test
               call is-less-than
                 read h
-                mark 0h800
+                mark #x800
               hook true
                 save size
                   call increment
@@ -111,7 +111,7 @@ task make-utf-8-from-utf-16
             stem test
               call is-less-than
                 read h
-                mark 0h10000
+                mark #x10000
               hook true
                 save size
                   call increment
@@ -129,10 +129,10 @@ task make-utf-8-from-utf-16
       stem and
         call is-greater-than-or-equal-to
           read h
-          mark 0hD800
+          mark #xD800
         call is-less-than-or-equal-to
           read h
-          mark 0hDBFF
+          mark #xDBFF
         hook true
           stem test
             call is-less-than
@@ -155,73 +155,73 @@ task make-utf-8-from-utf-16
                       call shift-left
                         call subtract
                           read h
-                          mark 0hD800
+                          mark #xD800
                         mark 10
                       call add
                         read l
-                        mark 0h2400
+                        mark #x2400
                   save tmp, read j
                   save j, call increment, read j
                   save head-text[tmp]
                     call bitwise-or
-                      mark 0hF0
+                      mark #xF0
                       call shift-right
                         read cp
-                        mark 0h12
+                        mark #x12
                   save tmp, read j
                   save j, call increment, read j
                   save head-text[tmp]
                     call bitwise-or
-                      mark 0h80
+                      mark #x80
                       call bitwise-and
                         call shift-right
                           read cp
-                          mark 0h0C
-                        mark 0h3F
+                          mark #x0C
+                        mark #x3F
                   save tmp, read j
                   save j, call increment, read j
                   save head-text[tmp]
                     call bitwise-or
-                      mark 0h80
+                      mark #x80
                       call bitwise-and
                         call shift-right
                           read cp
-                          mark 0h06
-                        mark 0h3F
+                          mark #x06
+                        mark #x3F
                   save tmp, read j
                   save j, call increment, read j
                   save head-text[tmp]
                     call bitwise-or
-                      mark 0h80
+                      mark #x80
                       call bitwise-and
                         read cp
-                        mark 0h3F
+                        mark #x3F
                 hook false
                   save tmp, read j
                   save j, call increment, read j
-                  save head-text[tmp], mark 0hEF
+                  save head-text[tmp], mark #xEF
                   save tmp, read j
                   save j, call increment, read j
-                  save head-text[tmp], mark 0hBF
+                  save head-text[tmp], mark #xBF
                   save tmp, read j
                   save j, call increment, read j
-                  save head-text[tmp], mark 0hBD
+                  save head-text[tmp], mark #xBD
             hook false
               save tmp, read j
               save j, call increment, read j
-              save head-text[tmp], mark 0hEF
+              save head-text[tmp], mark #xEF
               save tmp, read j
               save j, call increment, read j
-              save head-text[tmp], mark 0hBF
+              save head-text[tmp], mark #xBF
               save tmp, read j
               save j, call increment, read j
-              save head-text[tmp], mark 0hBD
+              save head-text[tmp], mark #xBD
         hook false
           stem roll
             stem test
               call is-less-than
                 read h
-                mark 0h80
+                mark #x80
               hook true
                 save tmp, read j
                 save j, call increment, read j
@@ -229,13 +229,13 @@ task make-utf-8-from-utf-16
             stem test
               call is-less-than
                 read h
-                mark 0h800
+                mark #x800
               hook true
                 save tmp, read j
                 save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
-                    mark 0hC0
+                    mark #xC0
                     call shift-right
                       read h
                       mark 6
@@ -243,10 +243,10 @@ task make-utf-8-from-utf-16
                 save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
-                    mark 0h80
+                    mark #x80
                     call bitwise-and
                       read h
-                      mark 0h3F
+                      mark #x3F
                 save size
                   call increment
                     read size
@@ -254,36 +254,36 @@ task make-utf-8-from-utf-16
             stem test
               call is-less-than
                 read h
-                mark 0h10000
+                mark #x10000
               hook true
                 save tmp, read j
                 save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
-                    mark 0hE0
+                    mark #xE0
                     call shift-right
                       read h
-                      mark 0hC
+                      mark #xC
                 save tmp, read j
                 save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
-                    mark 0h80
+                    mark #x80
                     call bitwise-and
                       call shift-right
                         read h
-                        mark 0h6
-                      mark 0h3F
+                        mark #x6
+                      mark #x3F
                 save tmp, read j
                 save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
-                    mark 0h80
+                    mark #x80
                     call bitwise-and
                       call shift-right
                         read h
-                        mark 0h0
-                      mark 0h3F
+                        mark #x0
+                      mark #x3F
                 save size
                   call increment
                     read size
@@ -308,7 +308,7 @@ task make-utf-16-from-utf-8
           call bitwise-or
             call bitwise-and
               read byte
-              mark 0h3f
+              mark #x3f
             call shift-left
               read point
               mark 6
@@ -316,7 +316,7 @@ task make-utf-16-from-utf-8
         save point
           call bitwise-and
             call shift-right
-              mark 0hff
+              mark #xff
               read type
             read byte
     save state
@@ -342,7 +342,7 @@ task make-utf-16-from-utf-8
         case 0, bust case
         case 1
           call head-text/push
-            bind mark 0hfffd
+            mark #xfffd
           walk test, fork fork3
             hook test
               stem and
@@ -357,8 +357,8 @@ task make-utf-16-from-utf-8
                       call add
                         read i
                         mark 1
-                    mark 0hc0
-                  mark 0h80
+                    mark #xc0
+                  mark #x80
             hook step
               save i, call increment, read i
           save state, read point
@@ -375,16 +375,16 @@ task make-utf-16-from-utf-8
         hook false
           call head-text/push
             call add
-              mark 0hd7c0
+              mark #xd7c0
               call shift-right
                 read point
                 mark 10
           call head-text/push
             call add
-              mark 0hdc00
+              mark #xdc00
               call bitwise-and
                 read point
-                mark 0h3ff
+                mark #x3ff
       save point, mark 0
       save i, call increment, read i
 
@@ -398,9 +398,9 @@ host utf-8-decoding-table
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
   7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
   8, 8, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-  0ha, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h3, 0h4, 0h3, 0h3,
-  0hb, 0h6, 0h6, 0h6, 0h5, 0h8, 0h8, 0h8, 0h8, 0h8, 0h8, 0h8, 0h8, 0h8, 0h8, 0h8,
-  0h0, 0h1, 0h2, 0h3, 0h5, 0h8, 0h7, 0h1, 0h1, 0h1, 0h4, 0h6, 0h1, 0h1, 0h1, 0h1,
+  #xa, #x3, #x3, #x3, #x3, #x3, #x3, #x3, #x3, #x3, #x3, #x3, #x3, #x4, #x3, #x3,
+  #xb, #x6, #x6, #x6, #x5, #x8, #x8, #x8, #x8, #x8, #x8, #x8, #x8, #x8, #x8, #x8,
+  #x0, #x1, #x2, #x3, #x5, #x8, #x7, #x1, #x1, #x1, #x4, #x6, #x1, #x1, #x1, #x1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1,
   1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 1, 1, 1,

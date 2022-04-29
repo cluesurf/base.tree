@@ -1,7 +1,7 @@
 
 task get-now
   make date
-    call native-date-form/now
+    call native-date/now
 
 form date
   task transform-to-native-date

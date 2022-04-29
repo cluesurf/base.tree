@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "dependencies": {
+    "find-cycle": "^1.0.0",
+    "javascript-algorithms-and-data-structures": "^0.0.4"
+  }
+}

@@ -8,15 +8,15 @@
 host hours-per-day, mark 24
 host minutes-per-hour, mark 60
 host seconds-per-minute, mark 60
-host milliseconds-per-second, mark 1-000
-host milliseconds-per-minute, mark 60-000
-host milliseconds-per-hour, mark 3-600-000
-host milliseconds-per-day, mark 86-400-000
-host milliseconds-per-month, mark 2-592-000-000
+host milliseconds-per-second, mark 1,000
+host milliseconds-per-minute, mark 60,000
+host milliseconds-per-hour, mark 3,600,000
+host milliseconds-per-day, mark 86,400,000
+host milliseconds-per-month, mark 2,592,000,000
 
-host k-day-zero-in-julian-day, mark 2-440-588 # ToJulianDay(1970, 0, 1)
-host k-month-mask, mark 0h1e0
-host k-day-mask, mark 0h01f
+host k-day-zero-in-julian-day, mark 2,440,588 # ToJulianDay(1970, 0, 1)
+host k-month-mask, mark #h1e0
+host k-day-mask, mark #h01f
 host k-year-shift, mark 9
 host k-month-shift, mark 5
 

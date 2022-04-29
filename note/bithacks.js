@@ -1410,3 +1410,148 @@ console.log('countTrailingZeroes8', countTrailingZeroes8(0b00000010))
 console.log('countTrailingOnes32', countTrailingOnes32(0b00000011000011110000110000011111))
 console.log('countTrailingOnes16', countTrailingOnes16(0b0000001100001111))
 console.log('countTrailingOnes8', countTrailingOnes8(0b00000011))
+
+int32 Integer::numberOfLeadingZeros (int32 x)
+{
+    static int32 v[64] = {
+        32, -1, 1, 19, -1, -1, -1, 27, -1, 24, 3, -1, 29, -1, 9, -1,
+        12, 7, -1, 20, -1, -1, 4, 30, 10, -1, 21, -1, 5, 31, -1, -1,
+        -1, -1, 0, 18, 17, 16, -1, -1, 15, -1, -1, -1, 26, -1, 14, -1,
+        23, -1, 2, -1, -1, 28, 25, -1, -1, 13, 8, -1, -1, 11, 22, 6};
+    x |= x >> 1;
+    x |= x >> 2;
+    x |= x >> 4;
+    x |= x >> 8;
+    x |= x >> 16;
+    x *= 0x749c0b5d;
+    return v[cast<uint32>(x) >> 26];
+}
+
+int32 Integer::numberOfTrailingZeros (int32 x)
+{
+    static int32 v[64] = {
+        32, -1, 2, -1, 3, -1, -1, -1, -1, 4, -1, 17, 13, -1, -1, 7,
+        0, -1, -1, 5, -1, -1, 27, 18, 29, 14, 24, -1, -1, 20, 8, -1,
+        31, 1, -1, -1, -1, 16, 12, 6, -1, -1, -1, 26, 28, 23, 19, -1,
+        30, -1, 15, 11, -1, 25, 22, -1, -1, 10, -1, 21, 9, -1, -1, -1};
+    x &= -x;
+    x *= 0x4279976b;
+    return v[cast<uint32>(x) >> 26];
+}
+
+// https://stackoverflow.com/questions/21888140/de-bruijn-algorithm-binary-digit-count-64bits-c-sharp
+
+// https://github.com/bringhurst/qemu/blob/master/include/qemu/bitops.h
+
+// from https://en.wikipedia.org/wiki/De_Bruijn_sequence#Algorithm
+
+module.exports = function deBruijn (k, n) {
+  var a = [];
+  for (var i = 0; i < k * n; i++) a.push(0);
+
+  var sequence = [];
+  (function db (t, p) {
+      if (t > n) {
+          if (n % p !== 0) return;
+          for (var j = 1; j <= p; j++) {
+              sequence.push(a[j]);
+          }
+          return;
+      }
+
+      a[t] = a[t-p];
+      db(t + 1, p);
+      for (var j = a[t-p] + 1; j < k; j++) {
+          a[t] = j;
+          db(t + 1, t);
+      }
+  })(1,1);
+  return sequence
+};
+
+function getPrimeFactors(integer) {
+  const primeArray = [];
+  let isPrime;
+
+  // Find divisors starting with 2
+  for (let i = 2; i <= integer; i++) {
+    if (integer % i !== 0) continue;
+
+    // Check if the divisor is a prime number
+    for (let j = 2; j <= i / 2; j++) {
+      isPrime = i % j !== 0;
+    }
+
+    if (!isPrime) continue;
+    // if the divisor is prime, divide integer with the number and store it in the array
+    integer /= i
+    primeArray.push(i);
+  }
+
+  return primeArray;
+}
+
+function getParity(n)
+{
+    var parity = false;
+    while(n != 0)
+    {
+        parity = !parity;
+        n = n & (n - 1);
+    }
+    return parity;
+}
+
+function findParity(x) {
+  x ^= x >> 16;
+  x ^= x >> 8;
+  x ^= x >> 4;
+  x ^= x >> 2;
+  x ^= x >> 1;
+  return (~x) & 1;
+}
+
+DWORD rol(DWORD x,int shift,int bits)
+    {
+    // masks                           |       bits        |
+    DWORD m0=(1<<(bits-shift))-1;   // |0000000|11111111111|
+                                    // | shift |           |
+    DWORD m1=(1<<shift)-1;          // |00000000000|1111111|
+                                    // |           | shift |
+    return ((x&m0)<<shift) | ((x>>(bits-shift))&m1);
+    }
+//---------------------------------------------------------------------------
+DWORD ror(DWORD x,int shift,int bits)
+    {
+    // masks                           |       bits        |
+    DWORD m0=(1<<(bits-shift))-1;   // |0000000|11111111111|
+                                    // | shift |           |
+    DWORD m1=(1<<shift)-1;          // |00000000000|1111111|
+                                    // |           | shift |
+    return ((x>>shift)&m0) | ((x&m1)<<(bits-shift));
+    }
+
+
+    DWORD rol(DWORD x,int shift,int bits)
+    {
+    if (shift<0) return ror(x,-shift,bits);
+    shift%=bits;
+    // masks                           |       bits        |
+    DWORD m0=(1<<(bits-shift))-1;   // |0000000|11111111111|
+                                    // | shift |           |
+    DWORD m1=(1<<shift)-1;          // |00000000000|1111111|
+                                    // |           | shift |
+    return ((x&m0)<<shift) | ((x>>(bits-shift))&m1);
+    }
+//---------------------------------------------------------------------------
+DWORD ror(DWORD x,int shift,int bits)
+    {
+    if (shift<0) return rol(x,-shift,bits);
+    shift%=bits;
+    // masks                           |       bits        |
+    DWORD m0=(1<<(bits-shift))-1;   // |0000000|11111111111|
+                                    // | shift |           |
+    DWORD m1=(1<<shift)-1;          // |00000000000|1111111|
+                                    // |           | shift |
+    return ((x>>shift)&m0) | ((x&m1)<<(bits-shift));
+    }
