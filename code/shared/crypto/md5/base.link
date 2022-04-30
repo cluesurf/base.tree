@@ -3,21 +3,16 @@ task create-table
   save t, make list
   save i, mark 0
   walk test
-    hook step
+    hook test
       call i/is-below, mark 64
-    hook true
+    hook step
       save t[i]
-        call bitwise-or
-          call multiply
-            call math/abs
-              call math/sin
-                call add
-                  loan i
-                  mark 1
-            mark 4294967296
-          mark 0
-      save i, call increment, loan i
-  back seed, loan t
+        call math/abs, call math/sin, call i/add, mark 1
+          link multiply, mark 4294967296
+          link unite-bitwise, mark 0
+      save i, call increment, read i
+  back seed, read t
+
 task doreset
   save self/hash
     make word-array/init
@@ -26,132 +21,63 @@ task doreset
         mark 4023233417
         mark 2562383102
         mark 271733878
+
 task process
   take m
   take offset
   save i, mark 0
-  walk test, fork fork3
+  walk test
     hook test
-      call is-below
-        loan i
-        mark 16
-    hook true
-      save tmp2
-        call add
-          loan offset
-          loan i
-      save offset-i, loan tmp2
-      save m-offset-i, loan m[offset-i]
+      call i/is-below, mark 16
+    hook step
+      save offset-i, call offset/add, read i
+      save m-offset-i, m[offset-i]
       save m[offset-i]
-        call bitwise-or
-          call bitwise-and
-            call bitwise-or
-              call shift-left
-                loan m-offset-i
-                mark 8
-              call unsigned-shift-right
-                loan m-offset-i
-                mark 24
-            mark 16711935
-          call bitwise-and
-            call bitwise-or
-              call shift-left
-                loan m-offset-i
-                mark 24
-              call unsigned-shift-right
-                loan m-offset-i
-                mark 8
-            mark 4278255360
-      save i
-        call increment
-          bind value, loan i
-    hook false
-      bust fork3
-  save h, loan self/hash/words
-  save tmp4
-    call add
-      loan offset
-      mark 0
-  save m-offset-0, loan m[tmp4]
-  save tmp5
-    call add
-      loan offset
-      mark 1
-  save m-offset-1, loan m[tmp5]
-  save tmp6
-    call add
-      loan offset
-      mark 2
-  save m-offset-2, loan m[tmp6]
-  save tmp7
-    call add
-      loan offset
-      mark 3
-  save m-offset-3, loan m[tmp7]
-  save tmp8
-    call add
-      loan offset
-      mark 4
-  save m-offset-4, loan m[tmp8]
-  save tmp9
-    call add
-      loan offset
-      mark 5
-  save m-offset-5, loan m[tmp9]
-  save tmp10
-    call add
-      loan offset
-      mark 6
-  save m-offset-6, loan m[tmp10]
-  save tmp11
-    call add
-      loan offset
-      mark 7
-  save m-offset-7, loan m[tmp11]
-  save tmp12
-    call add
-      loan offset
-      mark 8
-  save m-offset-8, loan m[tmp12]
-  save tmp13
-    call add
-      loan offset
-      mark 9
-  save m-offset-9, loan m[tmp13]
-  save tmp14
-    call add
-      loan offset
-      mark 10
-  save m-offset-10, loan m[tmp14]
-  save tmp15
-    call add
-      loan offset
-      mark 11
-  save m-offset-11, loan m[tmp15]
-  save tmp16
-    call add
-      loan offset
-      mark 12
-  save m-offset-12, loan m[tmp16]
-  save tmp17
-    call add
-      loan offset
-      mark 13
-  save m-offset-13, loan m[tmp17]
-  save tmp18
-    call add
-      loan offset
-      mark 14
-  save m-offset-14, loan m[tmp18]
-  save tmp19
-    call add
-      loan offset
-      mark 15
-  save m-offset-15, loan m[tmp19]
-  save a, loan h[0]
-  save b, loan h[1]
-  save c, loan h[2]
-  save d, loan h[3]
+        call m-offset-i/shift-base, mark 8
+          link unite-bitwise, call m-offset-i/shift-head-unsigned, mark 24
+          link intersect-bitwise, mark 16711935
+          link unite-bitwise
+            call m-offset-i/shift-base, mark 24
+              link unite-bitwise, call m-offset-i/shift-head-unsigned, mark 8
+              link intersect-bitwise, mark 4278255360
+      save i, call increment, read i
+  save h, self/hash/words
+  save tmp2, call offset/add, mark 0
+  save m-offset-0, m[tmp2]
+  save tmp3, call offset/add, mark 1
+  save m-offset-1, m[tmp3]
+  save tmp4, call offset/add, mark 2
+  save m-offset-2, m[tmp4]
+  save tmp5, call offset/add, mark 3
+  save m-offset-3, m[tmp5]
+  save tmp6, call offset/add, mark 4
+  save m-offset-4, m[tmp6]
+  save tmp7, call offset/add, mark 5
+  save m-offset-5, m[tmp7]
+  save tmp8, call offset/add, mark 6
+  save m-offset-6, m[tmp8]
+  save tmp9, call offset/add, mark 7
+  save m-offset-7, m[tmp9]
+  save tmp10, call offset/add, mark 8
+  save m-offset-8, m[tmp10]
+  save tmp11, call offset/add, mark 9
+  save m-offset-9, m[tmp11]
+  save tmp12, call offset/add, mark 10
+  save m-offset-10, m[tmp12]
+  save tmp13, call offset/add, mark 11
+  save m-offset-11, m[tmp13]
+  save tmp14, call offset/add, mark 12
+  save m-offset-12, m[tmp14]
+  save tmp15, call offset/add, mark 13
+  save m-offset-13, m[tmp15]
+  save tmp16, call offset/add, mark 14
+  save m-offset-14, m[tmp16]
+  save tmp17, call offset/add, mark 15
+  save m-offset-15, m[tmp17]
+  save a, h[0]
+  save b, h[1]
+  save c, h[2]
+  save d, h[3]
   save a
     call ff
       read a
@@ -729,165 +655,77 @@ task process
       mark 21
       read t[63]
   save h[0]
-    call bitwise-or
-      call add
-        loan h[0]
-        loan a
-      mark 0
+    call h[0]/add, read a
+      link unite-bitwise, mark 0
   save h[1]
-    call bitwise-or
-      call add
-        loan h[1]
-        loan b
-      mark 0
+    call h[1]/add, read b
+      link unite-bitwise, mark 0
   save h[2]
-    call bitwise-or
-      call add
-        loan h[2]
-        loan c
-      mark 0
+    call h[2]/add, read c
+      link unite-bitwise, mark 0
   save h[3]
-    call bitwise-or
-      call add
-        loan h[3]
-        loan d
-      mark 0
+    call h[3]/add, read d
+      link unite-bitwise, mark 0
+
 task finalize
-  save data, loan self/data
-  save data-words, loan data/words
-  save tmp20
-    call multiply
-      loan self/ndatabytes
-      mark 8
-  save n-bits-total, loan tmp20
-  save tmp21
-    call multiply
-      loan data/sig-bytes
-      mark 8
-  save n-bits-left, loan tmp21
-  save tmp22
-    call unsigned-shift-right
-      loan n-bits-left
-      mark 5
-  save data-words[tmp22]
-    call assign-bitwise-or
-      bind data-words[tmp22]
-      call shift-left
-        mark 128
-        call subtract
-          mark 24
-          call remainder
-            loan n-bits-left
-            mark 32
-  save tmp23
-    call math/floor
-      call divide
-        loan n-bits-total
-        mark 4294967296
-  save n-bits-total-h, loan tmp23
-  save n-bits-total-l, loan n-bits-total
+  save data, self/data
+  save data-words, data/words
+  save n-bits-total, call self/ndatabytes/multiply, mark 8
+  save n-bits-left, call data/sig-bytes/multiply, mark 8
+  save tmp18, call n-bits-left/shift-head-unsigned, mark 5
+  save data-words[tmp18]
+    call unite-bitwise
+      read data-words[tmp18]
+      call 128/shift-base, call 24/subtract, call n-bits-left/remainder, mark 32
+  save n-bits-total-h, call math/floor, call n-bits-total/divide, mark 4294967296
+  save n-bits-total-l, read n-bits-total
   call data-words/set
-    call add
-      call shift-left
-        call unsigned-shift-right
-          call add
-            loan n-bits-left
-            mark 64
-          mark 9
-        mark 4
-      mark 15
-    call bitwise-or
-      call bitwise-and
-        call bitwise-or
-          call shift-left
-            loan n-bits-total-h
-            mark 8
-          call unsigned-shift-right
-            loan n-bits-total-h
-            mark 24
-        mark 16711935
-      call bitwise-and
-        call bitwise-or
-          call shift-left
-            loan n-bits-total-h
-            mark 24
-          call unsigned-shift-right
-            loan n-bits-total-h
-            mark 8
-        mark 4278255360
+    call n-bits-left/add, mark 64
+      link shift-head-unsigned, mark 9
+      link shift-base, mark 4
+      link add, mark 15
+    call n-bits-total-h/shift-base, mark 8
+      link unite-bitwise, call n-bits-total-h/shift-head-unsigned, mark 24
+      link intersect-bitwise, mark 16711935
+      link unite-bitwise
+        call n-bits-total-h/shift-base, mark 24
+          link unite-bitwise, call n-bits-total-h/shift-head-unsigned, mark 8
+          link intersect-bitwise, mark 4278255360
   call data-words/set
-    call add
-      call shift-left
-        call unsigned-shift-right
-          call add
-            loan n-bits-left
-            mark 64
-          mark 9
-        mark 4
-      mark 14
-    call bitwise-or
-      call bitwise-and
-        call bitwise-or
-          call shift-left
-            loan n-bits-total-l
-            mark 8
-          call unsigned-shift-right
-            loan n-bits-total-l
-            mark 24
-        mark 16711935
-      call bitwise-and
-        call bitwise-or
-          call shift-left
-            loan n-bits-total-l
-            mark 24
-          call unsigned-shift-right
-            loan n-bits-total-l
-            mark 8
-        mark 4278255360
+    call n-bits-left/add, mark 64
+      link shift-head-unsigned, mark 9
+      link shift-base, mark 4
+      link add, mark 14
+    call n-bits-total-l/shift-base, mark 8
+      link unite-bitwise, call n-bits-total-l/shift-head-unsigned, mark 24
+      link intersect-bitwise, mark 16711935
+      link unite-bitwise
+        call n-bits-total-l/shift-base, mark 24
+          link unite-bitwise, call n-bits-total-l/shift-head-unsigned, mark 8
+          link intersect-bitwise, mark 4278255360
   save data/sig-bytes
-    call multiply
-      call add
-        loan data-words/length
-        mark 1
-      mark 4
+    call data-words/length/add, mark 1
+      link multiply, mark 4
   call self/process
-  save hash, loan self/hash
-  save h, loan hash/words
+  save hash, self/hash
+  save h, hash/words
   save i, mark 0
-  walk test, fork fork24
+  walk test
     hook test
-      call test
-        call is-below
-          loan i
-          mark 4
-    hook true
-      save h-i, loan h[i]
+      call i/is-below, mark 4
+    hook step
+      save h-i, h[i]
       save h[i]
-        call bitwise-or
-          call bitwise-and
-            call bitwise-or
-              call shift-left
-                loan h-i
-                mark 8
-              call unsigned-shift-right
-                loan h-i
-                mark 24
-            mark 16711935
-          call bitwise-and
-            call bitwise-or
-              call shift-left
-                loan h-i
-                mark 24
-              call unsigned-shift-right
-                loan h-i
-                mark 8
-            mark 4278255360
-      save i
-        call increment
-          bind value, loan i
-    hook false
-      bust fork24
-  back seed, loan hash
+        call h-i/shift-base, mark 8
+          link unite-bitwise, call h-i/shift-head-unsigned, mark 24
+          link intersect-bitwise, mark 16711935
+          link unite-bitwise
+            call h-i/shift-base, mark 24
+              link unite-bitwise, call h-i/shift-head-unsigned, mark 8
+              link intersect-bitwise, mark 4278255360
+      save i, call increment, read i
+  back seed, read hash
+
 task ff
   take a
   take b
@@ -896,34 +734,19 @@ task ff
   take x
   take s
   take t
-  save tmp25
-    call add
-      call add
-        call add
-          loan a
-          call bitwise-or
-            call bitwise-and
-              loan b
-              loan c
-            call bitwise-and
-              call bitflip
-                bind bits, loan b
-              loan d
-        loan x
-      loan t
-  save n, loan tmp25
+  save n
+    call a/add
+      call b/intersect-bitwise, read c
+        link unite-bitwise
+          call bitflip, read b
+            link intersect-bitwise, read d
+      link add, read x
+      link add, read t
   back seed
-    call add
-      call bitwise-or
-        call shift-left
-          loan n
-          loan s
-        call unsigned-shift-right
-          loan n
-          call subtract
-            mark 32
-            loan s
-      loan b
+    call n/shift-base, read s
+      link unite-bitwise, call n/shift-head-unsigned, call 32/subtract, read s
+      link add, read b
+
 task gg
   take a
   take b
@@ -932,34 +755,17 @@ task gg
   take x
   take s
   take t
-  save tmp26
-    call add
-      call add
-        call add
-          loan a
-          call bitwise-or
-            call bitwise-and
-              loan b
-              loan d
-            call bitwise-and
-              loan c
-              call bitflip
-                bind bits, loan d
-        loan x
-      loan t
-  save n, loan tmp26
+  save n
+    call a/add
+      call b/intersect-bitwise, read d
+        link unite-bitwise, call c/intersect-bitwise, call bitflip, read d
+      link add, read x
+      link add, read t
   back seed
-    call add
-      call bitwise-or
-        call shift-left
-          loan n
-          loan s
-        call unsigned-shift-right
-          loan n
-          call subtract
-            mark 32
-            loan s
-      loan b
+    call n/shift-base, read s
+      link unite-bitwise, call n/shift-head-unsigned, call 32/subtract, read s
+      link add, read b
+
 task hh
   take a
   take b
@@ -968,31 +774,17 @@ task hh
   take x
   take s
   take t
-  save tmp27
-    call add
-      call add
-        call add
-          loan a
-          call bitwise-xor
-            call bitwise-xor
-              loan b
-              loan c
-            loan d
-        loan x
-      loan t
-  save n, loan tmp27
+  save n
+    call a/add
+      call b/oppose-bitwise, read c
+        link oppose-bitwise, read d
+      link add, read x
+      link add, read t
   back seed
-    call add
-      call bitwise-or
-        call shift-left
-          loan n
-          loan s
-        call unsigned-shift-right
-          loan n
-          call subtract
-            mark 32
-            loan s
-      loan b
+    call n/shift-base, read s
+      link unite-bitwise, call n/shift-head-unsigned, call 32/subtract, read s
+      link add, read b
+
 task ii
   take a
   take b
@@ -1001,29 +793,11 @@ task ii
   take x
   take s
   take t
-  save tmp28
-    call add
-      call add
-        call add
-          loan a
-          call bitwise-xor
-            loan c
-            call bitwise-or
-              loan b
-              call bitflip
-                bind bits, loan d
-        loan x
-      loan t
-  save n, loan tmp28
+  save n
+    call a/add, call c/oppose-bitwise, call b/unite-bitwise, call bitflip, read d
+      link add, read x
+      link add, read t
   back seed
-    call add
-      call bitwise-or
-        call shift-left
-          loan n
-          loan s
-        call unsigned-shift-right
-          loan n
-          call subtract
-            mark 32
-            loan s
-      loan b
+    call n/shift-base, read s
+      link unite-bitwise, call n/shift-head-unsigned, call 32/subtract, read s
+      link add, read b
