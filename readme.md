@@ -8,7 +8,7 @@
 <br/>
 
 <p align='center'>
-  <img src='https://github.com/drumworkteam/wolf/blob/make/view/view.svg?raw=true' height='312'>
+  <img src='https://github.com/teamdrumwork/wolf/blob/make/view/view.svg?raw=true' height='312'>
 </p>
 
 <h3 align='center'>wolf</h3>
@@ -22,16 +22,16 @@
 
 ### Welcome
 
-The `wolf` library aims to be a very low-level implementation of the abstraction over programming language primitives. It is an implementation of [`moon`](https://github.com/drumworkteam/moon).
+The `wolf` library aims to be a very low-level implementation of the abstraction over programming language primitives. It is an implementation of [`moon`](https://github.com/teamdrumwork/moon).
 
 ### Relationships
 
 | specification | implementation | description |
 |:----:|:----:|:----|
-| [`moon`](https://github.com/drumworkteam/moon) | [`wolf`](https://github.com/drumworkteam/wolf) | **Standard Library** |
-| <a href="https://github.com/drumworkteam/moon"><img src='https://github.com/drumworkteam/moon/blob/make/view/moon.svg?raw=true' height='64'></a> | <a href="https://github.com/drumworkteam/wolf"><img src='https://github.com/drumworkteam/wolf/blob/make/view/view.svg?raw=true' height='64'></a> | These are the lowest-level datatypes and standards for abstracting away architectures in a basic programming language environment. |
-| [`tree`](https://github.com/drumworkteam/tree) | [`crow`](https://github.com/drumworkteam/crow) | **Framework** |
-| <a href="https://github.com/drumworkteam/tree"><img src='https://github.com/drumworkteam/tree/blob/make/view/view.svg?raw=true' height='64'></a> | <a href="https://github.com/drumworkteam/crow"><img src='https://github.com/drumworkteam/crow/blob/make/view/view.svg?raw=true' height='64'></a> | These are high-level framework components, which is an opinionated abstraction for common web app development paradigms. |
+| [`moon`](https://github.com/teamdrumwork/moon) | [`wolf`](https://github.com/teamdrumwork/wolf) | **Standard Library** |
+| <a href="https://github.com/teamdrumwork/moon"><img src='https://github.com/teamdrumwork/moon/blob/make/view/moon.svg?raw=true' height='64'></a> | <a href="https://github.com/teamdrumwork/wolf"><img src='https://github.com/teamdrumwork/wolf/blob/make/view/view.svg?raw=true' height='64'></a> | These are the lowest-level datatypes and standards for abstracting away architectures in a basic programming language environment. |
+| [`tree`](https://github.com/teamdrumwork/tree) | [`crow`](https://github.com/teamdrumwork/crow) | **Framework** |
+| <a href="https://github.com/teamdrumwork/tree"><img src='https://github.com/teamdrumwork/tree/blob/make/view/view.svg?raw=true' height='64'></a> | <a href="https://github.com/teamdrumwork/crow"><img src='https://github.com/teamdrumwork/crow/blob/make/view/view.svg?raw=true' height='64'></a> | These are high-level framework components, which is an opinionated abstraction for common web app development paradigms. |
 
 ### License
 
@@ -51,4 +51,4 @@ limitations under the License.
 
 ### DrumWork
 
-This is being developed by the folks at [DrumWork](https://drum.work), a California-based project for helping humanity master information and computation. DrumWork started off in the winter of 2008 as a spark of an idea, to forming a company 10 years later in the winter of 2018, to a seed of a project just beginning its development phases. It is entirely bootstrapped by working full time and running [Etsy](https://etsy.com/shop/mountbuild) and [Amazon](https://www.amazon.com/s?rh=p_27%3AMount+Build) shops. Also find us on [Facebook](https://www.facebook.com/drumworkteam), [Twitter](https://twitter.com/drumworkteam), and [LinkedIn](https://www.linkedin.com/company/drumworkteam). Check out our other GitHub projects as well!
+This is being developed by the folks at [DrumWork](https://drum.work), a California-based project for helping humanity master information and computation. DrumWork started off in the winter of 2008 as a spark of an idea, to forming a company 10 years later in the winter of 2018, to a seed of a project just beginning its development phases. It is entirely bootstrapped by working full time and running [Etsy](https://etsy.com/shop/mountbuild) and [Amazon](https://www.amazon.com/s?rh=p_27%3AMount+Build) shops. Also find us on [Facebook](https://www.facebook.com/teamdrumwork), [Twitter](https://twitter.com/teamdrumwork), and [LinkedIn](https://www.linkedin.com/company/teamdrumwork). Check out our other GitHub projects as well!
