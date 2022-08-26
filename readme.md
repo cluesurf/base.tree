@@ -24,6 +24,12 @@
 
 The `wolf` library aims to be a very low-level implementation of the abstraction over programming language primitives. It is an implementation of [`moon`](https://github.com/teamdrumwork/moon).
 
+That is, it implements the abstractions over basic "datatypes" like the string, integer, boolean, etc.. And also more complex but still basic data types like the list, array, map, etc.. It tries to normalize as much as possible to create a uniform interface across programming language environments. It doesn't delve into opinionated conventions too much, that is saved for the [`crow`](https://github.com/teamdrumwork/crow) project.
+
+This project is to be validated against the moon, to make sure it adheres to the API specification. Basic type checking.
+
+You typically won't use `wolf` directly, you should use [`base`](https://github.com/teamdrumwork/base) (still much a work in progress) for writing your daily code. The `base` project is the burgeoning entrypoint for doing stuff with link text.
+
 ### Relationships
 
 | specification | implementation | description |

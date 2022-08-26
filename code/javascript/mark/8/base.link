@@ -1,8 +1,4 @@
 
-form side-8
-  fuse side
-    bind self-type, like side-8
-    bind actual-type, like side-8
-    bind unsigned-type, like side-8
-    bind bits, size 8
-    bind bits-minus-one, size 7
+form mark-8
+  fuse mark
+    bind size, mark 8
