@@ -14,6 +14,8 @@ load @drumwork/seed/code/rust/std/fs
 load @drumwork/bind/code/shared/code
   take task has-flag
 
+dock rust-file, form file
+
 task set-size
   take size, like size-32
 
@@ -89,8 +91,6 @@ task open
     loan path
 
 form file
-  dock rust-file
-
   task get-metadata
     take self, like self
     call self/dock/metadata

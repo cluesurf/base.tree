@@ -3,9 +3,9 @@ load @drumwork/moon/code/javascript/array
   take form array
     save form javascript-array
 
-form line
-  dock javascript-array
+dock javascript-array, form line
 
+form line
   head item-type, like like
 
   task get

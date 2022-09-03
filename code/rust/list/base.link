@@ -212,9 +212,9 @@ coat form
     task splice
       head r, like range-bounds, like usize
       head i, like becoming-iterable, bind item, base item
-      task self, flex true
-      task range, like r
-      task replace-with, like i
+      take self, flex true
+      take range, like r
+      take replace-with, like i
       free splice
         have time
         like i/iterator
