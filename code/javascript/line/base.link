@@ -1,24 +1,23 @@
 
 load @treesurf/nest/code/javascript/array
   take form array
-    save form javascript-array
-
-dock javascript-array, form line
+    save form native-array
 
 form line
   head item-type
 
+  link dock, like native-array
+    hide true
+
   task get
-    take self, like self
-    take position, like unsigned-integer-32
+    take position, like mark-32
     free seed, like item-type
     call javascript-dynamic-get
       loan self/dock
       loan position
 
   task set
-    take self, like self
-    take position, like unsigned-integer-32
+    take position, like mark-32
     take item, like item-type
     call javascript-dynamic-set
       loan self
@@ -26,7 +25,6 @@ form line
       loan item
 
   task walk
-    take self, like self
     take step, like task
 
     save i, size 0
@@ -54,18 +52,14 @@ form line
           loan i, lock free
 
   task reverse
-    take self, like self
     call self/dock/reverse
     loan self
 
   task find-first
-    take self, like self
 
   task filter
-    take self, like self
 
   task map
-    take self, like self
     take hook
     free seed
       like line
