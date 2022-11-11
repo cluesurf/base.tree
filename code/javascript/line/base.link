@@ -1,19 +1,19 @@
 
-load @treesurf/moon/code/javascript/array
+load @treesurf/nest/code/javascript/array
   take form array
     save form javascript-array
 
 dock javascript-array, form line
 
 form line
-  head item-type, like like
+  head item-type
 
   task get
     take self, like self
     take position, like unsigned-integer-32
     free seed, like item-type
     call javascript-dynamic-get
-      loan self
+      loan self/dock
       loan position
 
   task set
