@@ -1,4 +1,3 @@
-
 <br/>
 <br/>
 <br/>
@@ -8,10 +7,10 @@
 <br/>
 
 <p align='center'>
-  <img src='https://github.com/teamtreesurf/wolf/blob/make/view/view.svg?raw=true' height='312'>
+  <img src='https://github.com/teamtreesurf/wolf.link/blob/make/view/view.svg?raw=true' height='312'>
 </p>
 
-<h3 align='center'>wolf</h3>
+<h3 align='center'>wolf.link</h3>
 <p align='center'>
   Link Text Standard Library Implementation
 </p>
@@ -22,26 +21,26 @@
 
 ### Welcome
 
-The `wolf` library aims to be a very low-level implementation of the abstraction over programming language primitives. It is an implementation of [`moon`](https://github.com/teamtreesurf/moon).
+The `wolf.link` library aims to be a very low-level implementation of the abstraction over programming language primitives. It is an implementation of [`moon.link`](https://github.com/teamtreesurf/moon.link).
 
-That is, it implements the abstractions over basic "datatypes" like the string, integer, boolean, etc.. And also more complex but still basic data types like the list, array, map, etc.. It tries to normalize as much as possible to create a uniform interface across programming language environments. It doesn't delve into opinionated conventions too much, that is saved for the [`crow`](https://github.com/teamtreesurf/crow) project.
+That is, it implements the abstractions over basic "datatypes" like the string, integer, boolean, etc.. And also more complex but still basic data types like the list, array, map, etc.. It tries to normalize as much as possible to create a uniform interface across programming language environments. It doesn't delve into opinionated conventions too much, that is saved for the [`crow.link`](https://github.com/teamtreesurf/crow.link) project.
 
 This project is to be validated against the moon, to make sure it adheres to the API specification. Basic type checking.
 
-You typically won't use `wolf` directly, you should use [`base`](https://github.com/teamtreesurf/base) (still much a work in progress) for writing your daily code. The `base` project is the burgeoning entrypoint for doing stuff with link text.
+You typically won't use `wolf.link` directly, you should use [`base.link`](https://github.com/teamtreesurf/base.link) (still much a work in progress) for writing your daily code. The `base.link` project is the burgeoning entrypoint for doing stuff with link text.
 
 ### Relationships
 
-| specification | implementation | description |
-|:----:|:----:|:----|
-| [`moon`](https://github.com/teamtreesurf/moon) | [`wolf`](https://github.com/teamtreesurf/wolf) | **Standard Library** |
-| <a href="https://github.com/teamtreesurf/moon"><img src='https://github.com/teamtreesurf/moon/blob/make/view/moon.svg?raw=true' height='64'></a> | <a href="https://github.com/teamtreesurf/wolf"><img src='https://github.com/teamtreesurf/wolf/blob/make/view/view.svg?raw=true' height='64'></a> | These are the lowest-level datatypes and standards for abstracting away architectures in a basic programming language environment. |
-| [`tree`](https://github.com/teamtreesurf/tree) | [`crow`](https://github.com/teamtreesurf/crow) | **Framework** |
-| <a href="https://github.com/teamtreesurf/tree"><img src='https://github.com/teamtreesurf/tree/blob/make/view/view.svg?raw=true' height='64'></a> | <a href="https://github.com/teamtreesurf/crow"><img src='https://github.com/teamtreesurf/crow/blob/make/view/view.svg?raw=true' height='64'></a> | These are high-level framework components, which is an opinionated abstraction for common web app development paradigms. |
+|                                                                       specification                                                                        |                                                                       implementation                                                                       | description                                                                                                                        |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------- |
+|                                                  [`moon.link`](https://github.com/teamtreesurf/moon.link)                                                  |                                                  [`wolf.link`](https://github.com/teamtreesurf/wolf.link)                                                  | **Standard Library**                                                                                                               |
+| <a href="https://github.com/teamtreesurf/moon.link"><img src='https://github.com/teamtreesurf/moon.link/blob/make/view/moon.svg?raw=true' height='64'></a> | <a href="https://github.com/teamtreesurf/wolf.link"><img src='https://github.com/teamtreesurf/wolf.link/blob/make/view/view.svg?raw=true' height='64'></a> | These are the lowest-level datatypes and standards for abstracting away architectures in a basic programming language environment. |
+|                                                  [`tree.link`](https://github.com/teamtreesurf/tree.link)                                                  |                                                  [`crow.link`](https://github.com/teamtreesurf/crow.link)                                                  | **Framework**                                                                                                                      |
+| <a href="https://github.com/teamtreesurf/tree.link"><img src='https://github.com/teamtreesurf/tree.link/blob/make/view/view.svg?raw=true' height='64'></a> | <a href="https://github.com/teamtreesurf/crow.link"><img src='https://github.com/teamtreesurf/crow.link/blob/make/view/view.svg?raw=true' height='64'></a> | These are high-level framework components, which is an opinionated abstraction for common web app development paradigms.           |
 
 ### License
 
-Copyright 2022 <a href='https://drum.work'>TreeSurf</a>
+Copyright 2022 <a href='https://tree.surf'>TreeSurf</a>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -57,4 +56,4 @@ limitations under the License.
 
 ### TreeSurf
 
-This is being developed by the folks at [TreeSurf](https://drum.work), a California-based project for helping humanity master information and computation. TreeSurf started off in the winter of 2008 as a spark of an idea, to forming a company 10 years later in the winter of 2018, to a seed of a project just beginning its development phases. It is entirely bootstrapped by working full time and running [Etsy](https://etsy.com/shop/mountbuild) and [Amazon](https://www.amazon.com/s?rh=p_27%3AMount+Build) shops. Also find us on [Facebook](https://www.facebook.com/teamtreesurf), [Twitter](https://twitter.com/teamtreesurf), and [LinkedIn](https://www.linkedin.com/company/teamtreesurf). Check out our other GitHub projects as well!
+This is being developed by the folks at [TreeSurf](https://tree.surf), a California-based project for helping humanity master information and computation. TreeSurf started off in the winter of 2008 as a spark of an idea, to forming a company 10 years later in the winter of 2018, to a seed of a project just beginning its development phases. It is entirely bootstrapped by working full time and running [Etsy](https://etsy.com/shop/teamtreesurf) and [Amazon](https://www.amazon.com/s?rh=p_27%3AMount+Build) shops. Also find us on [Facebook](https://www.facebook.com/teamtreesurf), [Twitter](https://twitter.com/teamtreesurf), and [LinkedIn](https://www.linkedin.com/company/teamtreesurf). Check out our other GitHub projects as well!
