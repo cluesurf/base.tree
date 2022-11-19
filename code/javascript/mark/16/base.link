@@ -1,4 +1,7 @@
 
+load @treesurf/moon
+  take suit mark-16
+
 load ../n
   take tree mark
 
