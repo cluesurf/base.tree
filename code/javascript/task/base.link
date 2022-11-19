@@ -3,11 +3,11 @@ load @treesurf/moon
   take suit task
 
 load @treesurf/nest
-  take form function
-    save form native-function
+  take face function
+    save face native-function
 
 form task
   link dock, like native-function
     hide true
 
-  suit task
+  wear task

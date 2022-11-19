@@ -1,3 +1,4 @@
 
-deck @treesurf/wolf
-  bear ./code
+deck <@treesurf/wolf>
+  bear <./code>
+  test <./test>
