@@ -1,7 +1,4 @@
 
-# https://github.com/infusion/Complex.js
-# http://www-graphics.stanford.edu/~seander/bithacks.html
-
 load @treesurf/wolf/code
   load /shared/result
     take tree free-result
@@ -10,23 +7,30 @@ load @treesurf/wolf/code
   load /javascript/mark/8
     take form mark-8
 
-load @treesurf/nest/code/javascript
+load @treesurf/nest/code/javascript/native
   take form native-number
+  take task add
+  take task subtract
+  take task multiply
+  take task divide
+  take task ceiling
+  take task floor
+  take task logarithm
 
 tree mark
   take size, like mark-8
 
   hook fuse
-    form mark-{size}
+    form mark-{{size}}
       link dock, like native-number
 
       task seek-add
-        take a, like mark-{size}
-        take b, like mark-{size}
-        fuse free-result, like mark-{size}
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        fuse free-result, like mark-{{size}}
         save c
-          make mark-{size}
-            call add-js
+          make mark-{{size}}
+            call add
               read a/dock
               read b/dock
         fuse is-below-or-return-error
@@ -35,10 +39,10 @@ tree mark
         move c
 
       task seek-add-signed
-        take a, like mark-{size}
-        take b, like mark-{size}
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
         save c
-          call add-js
+          call add
             read a
             read b
         fuse is-below-or-return-error
@@ -50,71 +54,71 @@ tree mark
         move c
 
       task seek-divide-base
-        take a, like mark-{size}
-        take b, like mark-{size}
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
         fuse is-not-or-return-error
           read b
           mark 0
-        call math-floor-js
-          call divide-js
+        call floor
+          call divide
             read a
             read b
 
       task seek-divide-head
-        take a, like mark-{size}
-        take b, like mark-{size}
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
         fuse is-not-or-return-error
           read b
           mark 0
-        call math-ceiling-js
-          call divide-js
+        call ceiling
+          call divide
             read a
             read b
 
       task seek-divide-euclid
-        take a, like mark-{size}
-        take b, like mark-{size}
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
         call divide-base
           read a
           read b
 
       task seek-fall
-        take a, like mark-{size}
-        take base, like mark-{size}
+        take a, like mark-{{size}}
+        take base, like mark-{{size}}
         fuse is-minimally-or-return-error
           read base
           mark 2
         fuse is-above-or-return-error
           read a
           mark 0
-        call math-floor-js
-          call math-log-js
+        call floor
+          call logarithm
             read a
             read base
 
       task seek-fall-10
-        take a, like mark-{size}
+        take a, like mark-{{size}}
         fuse is-above-or-return-error
           read a
           mark 0
-        call math-floor-js
+        call floor
           call math-log-10-js
             read a
 
       task seek-fall-2
-        take a, like mark-{size}
+        take a, like mark-{{size}}
         fuse is-above-or-return-error
           read a
           mark 0
-        call math-floor-js
+        call floor
           call math-log-2-js
             read a
 
       task seek-multiply
-        take a, like mark-{size}
-        take b, like mark-{size}
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
         save c
-          call multiply-js
+          call multiply
             read a
             read b
         fuse is-below-or-return-error
@@ -135,36 +139,36 @@ tree mark
 
       # checked
       task checked-add
-        take a, like mark-{size}
-        take b, like mark-{size}
-        free seed, like maybe, like mark-{size}
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        free seed, like maybe, like mark-{{size}}
 
       task checked-add-signed
-        take a, like mark-{size}
-        take b, like mark-{size}
-        free seed, like maybe, like mark-{size}
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        free seed, like maybe, like mark-{{size}}
 
       task checked-divide
-        take a, like mark-{size}
-        take b, like mark-{size}
-        free seed, like maybe, like mark-{size}
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        free seed, like maybe, like mark-{{size}}
 
       task checked-divide-euclid
-        take a, like mark-{size}
-        take b, like mark-{size}
-        free seed, like maybe, like mark-{size}
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        free seed, like maybe, like mark-{{size}}
 
       task checked-fall
-        take a, like mark-{size}
-        take base, like mark-{size}
-        free seed, like maybe, like mark-{size}
+        take a, like mark-{{size}}
+        take base, like mark-{{size}}
+        free seed, like maybe, like mark-{{size}}
 
       task checked-fall-10
       task checked-fall-2
       task checked-multiply
-        take a, like mark-{size}
-        take b, like mark-{size}
-        free seed, like maybe, like mark-{size}
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        free seed, like maybe, like mark-{{size}}
 
       task checked-negate
       task checked-get-next-multiple-of
@@ -250,91 +254,85 @@ tree mark
       task is-negative
       task is-positive
 
-    suit form
-      coat mark-{size}
-        mask binary-manipulable
-          task make-big-endian-bytes
-          task make-little-endian-bytes
-          task make-native-endian-bytes
-          task make-big-endian
-          task make-little-endian
-          task rotate-base
-          task rotate-head
-          task swap-bytes
-          task reverse-bits
-          task intersect-bitwise # bit-and
-            take a, like mark-{size}
-            take b, like mark-{size}
-            call intersect-bitwise-js
-              read a
-              read b
+    wear binary-manipulable
+      task make-big-endian-bytes
+      task make-little-endian-bytes
+      task make-native-endian-bytes
+      task make-big-endian
+      task make-little-endian
+      task rotate-base
+      task rotate-head
+      task swap-bytes
+      task reverse-bits
+      task intersect-bitwise # bit-and
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        call intersect-bitwise-js
+          read a
+          read b
 
-          task unify-bitwise # bit-or
-            take a, like mark-{size}
-            take b, like mark-{size}
-            call unify-bitwise-js
-              read a
-              read b
+      task unify-bitwise # bit-or
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        call unify-bitwise-js
+          read a
+          read b
 
-          task miss-bitwise # bit-xor
-            take a, like mark-{size}
-            take b, like mark-{size}
-            call miss-bitwise-js
-              read a
-              read b
+      task miss-bitwise # bit-xor
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        call miss-bitwise-js
+          read a
+          read b
 
-          task count-ones
-            free seed, like mark-{size}
+      task count-ones
+        free seed, like mark-{{size}}
 
-          task count-zeroes
-            free seed, like mark-{size}
+      task count-zeroes
+        free seed, like mark-{{size}}
 
-          task count-leading-ones
-            free seed, like mark-{size}
+      task count-leading-ones
+        free seed, like mark-{{size}}
 
-          task count-leading-zeroes
-            free seed, like mark-{size}
+      task count-leading-zeroes
+        free seed, like mark-{{size}}
 
-          task count-trailing-ones
-            free seed, like mark-{size}
+      task count-trailing-ones
+        free seed, like mark-{{size}}
 
-          task count-trailing-zeroes
-            free seed, like mark-{size}
+      task count-trailing-zeroes
+        free seed, like mark-{{size}}
 
-    suit form
-      coat mark-{size}
-        mask incomplete-comparison
-          task is-equal
-            take a, like mark-{size}
-            take b, like mark-{size}
-            free seed, like wave
+    wear incomplete-comparison
+      task is-equal
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        free seed, like wave
 
-          task is-not-equal
-            take a, like mark-{size}
-            take b, like mark-{size}
-            free seed, like wave
+      task is-not-equal
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        free seed, like wave
 
-          task is-above
-            take a, like mark-{size}
-            take b, like mark-{size}
-            free seed, like wave
+      task is-above
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        free seed, like wave
 
-          task is-below
-            take a, like mark-{size}
-            take b, like mark-{size}
-            free seed, like wave
+      task is-below
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        free seed, like wave
 
-          task is-minimally
-            take a, like mark-{size}
-            take b, like mark-{size}
-            free seed, like wave
+      task is-minimally
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        free seed, like wave
 
-          task is-maximally
-            take a, like mark-{size}
-            take b, like mark-{size}
-            free seed, like wave
+      task is-maximally
+        take a, like mark-{{size}}
+        take b, like mark-{{size}}
+        free seed, like wave
 
-    suit form
-      coat mark-{size}
-        mask replication
-          task clone
+    wear replication
+      task clone
