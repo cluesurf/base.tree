@@ -1,8 +1,5 @@
 
-form size-16
-  fuse size
-    bind self-type, like size-16
-    bind actual-type, like size-16
-    bind unsigned-type, like side-size-16
-    bind bits, size 16
-    bind bits-minus-one, size 15
+load ../n
+  take tree mark
+
+fuse mark, size 16

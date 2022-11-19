@@ -1,4 +1,5 @@
 
-form mark-8
-  fuse mark
-    bind size, mark 8
+load ../n
+  take tree mark
+
+fuse mark, size 8

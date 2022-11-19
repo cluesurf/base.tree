@@ -1,6 +1,6 @@
 
 form list-mark-8
-  take dock, like javascript-uint-8-array
+  link dock, like native-uint-8-array
 
   task set
     take list, like list-mark-8

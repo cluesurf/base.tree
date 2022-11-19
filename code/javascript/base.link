@@ -1,0 +1,5 @@
+
+bear ./mark
+bear ./mark/8
+bear ./mark/16
+bear ./mark/32

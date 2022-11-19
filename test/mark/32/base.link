@@ -1,0 +1,12 @@
+
+load @treesurf/wolf
+  take form mark-32
+
+load ../n
+  take tree mark
+
+load ./list
+  take host list
+
+fuse mark, size 32
+  loan list

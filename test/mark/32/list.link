@@ -1,0 +1,25 @@
+
+load @treesurf/wolf
+  take form mark-32
+
+load ../n
+  take tree checked-add
+
+host list
+  host rise
+    host checked-add-middle
+      host a, 1, like mark-32
+      host b, 2, like mark-32
+      host c, 3, like mark-32
+      fuse checked-add, size 32
+    host checked-add-low
+      host a, 0, like mark-32
+      host b, 0, like mark-32
+      host c, 0, like mark-32
+      fuse checked-add, size 32
+  host fall
+    host checked-add-high
+      host a, 4294967295, like mark-32
+      host b, 1, like mark-32
+      host foul, <Too high>
+      fuse checked-add, size 32
