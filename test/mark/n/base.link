@@ -13,21 +13,21 @@ tree mark
     like host
       link rise
         like host
-          link a, like mark-{size}
-          link b, like mark-{size}
-          link c, like mark-{size}
+          link a, like mark-{{size}}
+          link b, like mark-{{size}}
+          link c, like mark-{{size}}
           task work
-            take a, like mark-{size}
-            take b, like mark-{size}
-            free seed, like mark-{size}
+            take a, like mark-{{size}}
+            take b, like mark-{{size}}
+            free seed, like mark-{{size}}
       link fall
         like host
-          link a, like mark-{size}
-          link b, like mark-{size}
+          link a, like mark-{{size}}
+          link b, like mark-{{size}}
           link foul, like text
           task work
-            take a, like mark-{size}
-            take b, like mark-{size}
+            take a, like mark-{{size}}
+            take b, like mark-{{size}}
             free foul, like foul
 
   hook fuse
@@ -35,7 +35,7 @@ tree mark
 
     walk hash, loan list/rise
       test key
-        save result, like mark-{size}
+        save result, like mark-{{size}}
           call value/work
             loan value/a
             loan value/b
