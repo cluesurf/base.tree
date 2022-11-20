@@ -4,9 +4,6 @@ load @treesurf/wolf
   take form mark-8
   take form text
 
-load ./list
-  take tree list
-
 tree mark
   take size, like mark-8
   take list

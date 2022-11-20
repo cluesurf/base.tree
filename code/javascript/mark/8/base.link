@@ -1,6 +1,6 @@
 
 load @treesurf/moon
-  load suit mark-8
+  take suit mark-8
 
 load ../n
   take tree mark
