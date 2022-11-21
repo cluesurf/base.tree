@@ -8,5 +8,5 @@ load ../n
 load ./list
   take host list
 
-fuse mark, size 32
+fuse mark, mark 32
   loan list

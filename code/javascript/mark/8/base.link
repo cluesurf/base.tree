@@ -5,4 +5,4 @@ load @treesurf/moon
 load ../n
   take tree mark
 
-fuse mark, size 8
+fuse mark, mark 8
