@@ -1,8 +1,5 @@
 
-load @treesurf/moon
-  take suit mark-32
-
 load ../n
-  take tree mark
+  find tree mark
 
 fuse mark, mark 32

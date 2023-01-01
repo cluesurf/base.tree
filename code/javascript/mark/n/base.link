@@ -21,6 +21,9 @@ tree mark
   take size, like mark-8
 
   hook fuse
+    load @treesurf/moon
+      find suit mark-{{size}}
+
     form mark-{{size}}
       link dock, like native-number
 

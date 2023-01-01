@@ -1,9 +1,9 @@
 
 load ./32
-  take form mark-32
+  find form mark-32
 
 load ./grow
-  take form mark-grow
+  find form mark-grow
 
 form mark
   link dock

@@ -1,12 +1,9 @@
 
-load @treesurf/wolf
-  take form mark-32
-
 load ../n
-  take tree mark
+  find tree mark
 
 load ./list
-  take host list
+  find host list
 
 fuse mark, mark 32
   loan list

@@ -40,7 +40,7 @@ You typically won't use `wolf.link` directly, you should use [`base.link`](https
 
 ### License
 
-Copyright 2022 <a href='https://tree.surf'>TreeSurf</a>
+Copyright 2022-2023 <a href='https://tree.surf'>TreeSurf</a>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

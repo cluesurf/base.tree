@@ -1,11 +1,12 @@
 
 load @treesurf/wolf
-  take form foul
-  take form mark-8
-  take form text
+  find form foul
+  find form mark-8
+  find form text
 
 tree mark
   take size, like mark-8
+
   take list
     like host
       link rise
@@ -28,28 +29,30 @@ tree mark
             free foul, like foul
 
   hook fuse
-    fuse list, loan size
+    slot card
 
     walk hash, loan list/rise
-      test key
-        save result, like mark-{{size}}
-          call value/work
-            loan value/a
-            loan value/b
-        hold result/is-identical
-          loan value/c
+      beam card
+        test key
+          save result, like mark-{{size}}
+            call value/work
+              loan value/a
+              loan value/b
+          hold result/is-identical
+            loan value/c
 
     walk hash, loan list/fall
-      test key
-        save foul, like foul
-          call value/work
-            loan value/a
-            loan value/b
+      beam card
+        test key
+          save foul, like foul
+            call value/work
+              loan value/a
+              loan value/b
 
-        hold foul/is-present
+          hold foul/is-present
 
-        hold foul/text/is-identical
-          loan value/foul
+          hold foul/text/is-identical
+            loan value/foul
 
 tree checked-add
   take size, like mark-8
