@@ -1,5 +1,5 @@
 
-load @treesurf/wolf/code/shared/test
+load @tunebond/wolf/code/shared/test
   take task test-suite
 
 call test-suite, read suite

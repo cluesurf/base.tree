@@ -1,5 +1,5 @@
 
-deck <@treesurf/wolf>
+deck @tunebond/wolf
   bear ./code
   test ./test
   mint <0.0.1>
