@@ -1,5 +1,0 @@
-
-load ../n
-  take tree mark-test
-
-fuse mark-test, size 32

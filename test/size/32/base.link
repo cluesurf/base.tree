@@ -1,9 +1,9 @@
 
 load ../n
-  find tree mark-test
+  find tree size-test
 
 load ./list
   find host test-list
 
-fuse mark-test, mark 32
+fuse size-test, size 32
   loan test-list

@@ -56,6 +56,7 @@ Wolf only supports these basic data types.
 | `walk` | iterator                      |
 | `form` | model / schema / class / type |
 | `suit` | trait                         |
+| `kink` | error                         |
 
 ## Extended Datatypes
 
