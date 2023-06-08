@@ -3,7 +3,7 @@ tree mark
   take self-type, like like
   take side-type, like like
 
-  hook bind
+  hook fuse
     task seek-add
       take a, like self-type
       take b, like self-type

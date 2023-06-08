@@ -1,10 +1,10 @@
 
 task hash-djb2-xor
+  like mark-32
   take text
   save size, loan text/get-size
   save hash, mark 5381
   save mark, mark 0
-  free seed, like mark-32
 
   walk test
     hook step

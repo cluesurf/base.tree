@@ -29,6 +29,8 @@ This project is to be validated against the moon, to make sure it adheres to the
 
 You typically won't use `wolf.link` directly, you should use [`base.link`](https://github.com/tunebond/base.link) (still much a work in progress) for writing your daily code. The `base.link` project is the burgeoning entrypoint for doing stuff with link text.
 
+The tests in `wolf.link` are testing our implementations of basic programming data types and functions against runtime environments like JavaScript and Rust.
+
 ### Relationships
 
 |                                                                   specification                                                                    |                                                                   implementation                                                                   | description                                                                                                                        |

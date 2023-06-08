@@ -145,10 +145,10 @@ task make-utf-8-from-utf-16
               stem and
                 call is-greater-than-or-equal-to
                   read l
-                  mark 0xDC00
+                  mark #xDC00
                 call is-less-than-or-equal-to
                   read l
-                  mark 0xDFFF
+                  mark #xDFFF
                 hook true
                   save cp
                     call add
@@ -368,7 +368,7 @@ task make-utf-16-from-utf-8
       stem test
         call is-less-than-or-equal-to
           read point
-          mark 0xffff
+          mark #xffff
         hook true
           call head-text/push
             bind read point

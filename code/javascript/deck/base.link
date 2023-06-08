@@ -1,6 +1,5 @@
 
 load @tunebond/moon
-  take suit deck
+  take mask deck
 
-form deck
-  wear deck
+form deck, wear deck

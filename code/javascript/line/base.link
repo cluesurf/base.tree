@@ -1,17 +1,16 @@
 
-load @tunebond/nest/code/javascript/array
-  take form array
-    save form native-array
+load @tunebond/bolt
+  take face array
+    save face native-array
 
 form line
   head item-type
 
-  link dock, like native-array
-    hide true
+  dock native-array
 
   task get
+    like item-type
     take position, like mark-32
-    free seed, like item-type
     call javascript-dynamic-get
       loan self/dock
       loan position
@@ -20,7 +19,7 @@ form line
     take position, like mark-32
     take item, like item-type
     call javascript-dynamic-set
-      loan self
+      loan self/dock
       loan position
       loan item
 
@@ -53,7 +52,7 @@ form line
 
   task reverse
     call self/dock/reverse
-    loan self
+    like self
 
   task find-first
 

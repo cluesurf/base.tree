@@ -2,7 +2,7 @@
 load @tunebond/moon
   take suit task
 
-load @tunebond/nest
+load @tunebond/bolt
   take face function
     save face native-function
 

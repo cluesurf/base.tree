@@ -1,9 +1,9 @@
 
 load ../n
-  find tree mark
+  find tree mark-test
 
 load ./list
-  find host list
+  find host test-list
 
-fuse mark, mark 32
-  loan list
+fuse mark-test, mark 32
+  loan test-list

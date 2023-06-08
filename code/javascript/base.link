@@ -1,6 +1,13 @@
 
 bear ./mark
-bear ./mark/8
-bear ./mark/16
-bear ./mark/32
 bear ./task
+bear ./code
+bear ./comb
+bear ./date
+bear ./deck
+bear ./free
+bear ./line
+bear ./list
+bear ./task
+bear ./text
+bear ./wave

@@ -3,9 +3,9 @@ tree call-promise-with-callback-result
   take call
   take result
 
-  hook bind
+  hook fuse
     call make-javascript-promise
-      hook evaluate
+      task evaluate
         take resolve, like task
 
         fuse call

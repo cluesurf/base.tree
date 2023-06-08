@@ -1,5 +1,5 @@
 
 load ../n
-  take tree mark
+  take tree mark-test
 
-fuse mark, size 32
+fuse mark-test, size 32

@@ -10,7 +10,7 @@ load @tunebond/moon/code/text/code/utf-16
 
 task allocate
   take size
-  free text, like text-utf-16
+  cast text, like text-utf-16
 
 form text-utf-16
   take list, list mark-16

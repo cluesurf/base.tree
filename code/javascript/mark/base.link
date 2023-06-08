@@ -10,3 +10,7 @@ form mark
     like or
       like mark-32
       like mark-grow
+
+bear ./mark/8
+bear ./mark/16
+bear ./mark/32
