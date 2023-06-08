@@ -53,6 +53,7 @@ Wolf only supports these basic data types.
 | `hash` | map                           |
 | `clue` | pointer                       |
 | `cite` | reference                     |
+| `walk` | iterator                      |
 | `form` | model / schema / class / type |
 | `suit` | trait                         |
 
