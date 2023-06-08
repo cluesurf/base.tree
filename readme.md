@@ -33,22 +33,37 @@ The tests in `wolf.link` are testing our implementations of basic programming da
 
 ## Basic Datatypes
 
-| form          | common name     |
-| :------------ | :-------------- |
-| `code`        | bit             |
-| `comb`        | float / decimal |
-| `date`        | datetime        |
-| `line`        | array           |
-| `mark`        | integer         |
-| `task`        | function        |
-| `text`        | string          |
-| `wave`        | boolean         |
-| `list`        | list            |
-| `tree`        | tree            |
-| `mesh`        | graph           |
-| `site`        | object          |
-| `hold`        | map             |
-| `b-plus-tree` | b+ tree         |
+| form   | common name     |
+| :----- | :-------------- |
+| `code` | bit             |
+| `comb` | float / decimal |
+| `date` | datetime        |
+| `line` | array           |
+| `mark` | integer         |
+| `task` | function        |
+| `text` | string          |
+| `wave` | boolean         |
+| `list` | list            |
+| `tree` | tree            |
+| `mesh` | graph           |
+| `site` | object          |
+| `hash` | map             |
+
+## Extended Datatypes
+
+| form                 | common name |
+| :------------------- | :---------- |
+| `b-plus-tree`        | b+ tree     |
+| `bloom-filter`       |             |
+| `queue`              |             |
+| `stack`              |             |
+| `unique-list`        | set         |
+| `matrix`             |             |
+| `matrix-2d`          |             |
+| `matrix-3d`          |             |
+| `matrix-4d`          |             |
+| `skip-list`          |             |
+| `binary-search-tree` |             |
 
 ## Relationships
 
