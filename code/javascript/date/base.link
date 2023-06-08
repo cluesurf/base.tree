@@ -1,6 +1,6 @@
 
 load @tunebond/moon
-  find mask date
+  find form date
 
 task read-now
   make date

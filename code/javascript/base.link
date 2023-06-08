@@ -1,13 +1,9 @@
 
-bear ./mark
-bear ./task
 bear ./code
 bear ./comb
 bear ./date
-bear ./deck
-bear ./free
 bear ./line
-bear ./list
+bear ./mark
 bear ./task
 bear ./text
 bear ./wave

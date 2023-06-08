@@ -1,0 +1,7 @@
+# https://doc.rust-lang.org/src/core/time.rs.html#86
+
+task from-milliseconds
+task from-microseconds
+
+form duration
+  link seconds, like i32

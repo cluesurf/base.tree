@@ -1,13 +1,12 @@
 
 load @tunebond/moon
-  take suit task
+  find form task
 
 load @tunebond/bolt
-  take face function
+  find face function
     save face native-function
 
 form task
-  link dock, like native-function
-    hide true
+  dock native-function
 
   wear task

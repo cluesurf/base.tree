@@ -1,8 +1,0 @@
-
-form list-mark-8
-  dock native-uint-8-array
-
-  task set
-    take list, like list-mark-8
-    call self/dock/set
-      loan list
