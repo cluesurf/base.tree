@@ -31,6 +31,25 @@ You typically won't use `wolf.link` directly, you should use [`base.link`](https
 
 The tests in `wolf.link` are testing our implementations of basic programming data types and functions against runtime environments like JavaScript, Rust, and Swift.
 
+## Basic Datatypes
+
+| form          | common name     |
+| :------------ | :-------------- |
+| `code`        | bit             |
+| `comb`        | float / decimal |
+| `date`        | datetime        |
+| `line`        | array           |
+| `mark`        | integer         |
+| `task`        | function        |
+| `text`        | string          |
+| `wave`        | boolean         |
+| `list`        | list            |
+| `tree`        | tree            |
+| `mesh`        | graph           |
+| `site`        | object          |
+| `hold`        | map             |
+| `b-plus-tree` | b+ tree         |
+
 ## Relationships
 
 |                                                                   specification                                                                    |                                                                   implementation                                                                   | description                                                                                                                        |
