@@ -33,23 +33,32 @@ The tests in `wolf.link` are testing our implementations of basic programming da
 
 ## Basic Datatypes
 
-| form   | common name     |
-| :----- | :-------------- |
-| `code` | bit             |
-| `comb` | float / decimal |
-| `date` | datetime        |
-| `line` | array           |
-| `mark` | integer         |
-| `task` | function        |
-| `text` | string          |
-| `wave` | boolean         |
-| `list` | list            |
-| `tree` | tree            |
-| `mesh` | graph           |
-| `site` | object          |
-| `hash` | map             |
+Wolf only supports these basic data types.
+
+| form   | common name                   |
+| :----- | :---------------------------- |
+| `code` | bit                           |
+| `comb` | float / decimal               |
+| `date` | datetime                      |
+| `line` | array                         |
+| `size` | integer                       |
+| `task` | function                      |
+| `text` | string                        |
+| `mark` | character / glyph             |
+| `wave` | boolean                       |
+| `list` | list                          |
+| `tree` | tree                          |
+| `mesh` | graph                         |
+| `base` | object                        |
+| `hash` | map                           |
+| `clue` | pointer                       |
+| `cite` | reference                     |
+| `form` | model / schema / class / type |
+| `suit` | trait                         |
 
 ## Extended Datatypes
+
+These are not defined in `wolf.link` but are defined in `crow.link`, which is a more extended and growable framework for standards. But we list some here to give you an idea.
 
 | form                 | common name |
 | :------------------- | :---------- |
@@ -64,6 +73,7 @@ The tests in `wolf.link` are testing our implementations of basic programming da
 | `matrix-4d`          |             |
 | `skip-list`          |             |
 | `binary-search-tree` |             |
+| ...todo...           |             |
 
 ## Relationships
 
