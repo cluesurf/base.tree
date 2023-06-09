@@ -31,6 +31,19 @@ You typically won't use `wolf.link` directly, you should use [`base.link`](https
 
 The tests in `wolf.link` are testing our implementations of basic programming data types and functions against runtime environments like JavaScript, Rust, and Swift.
 
+## Development
+
+```
+pnpm add @tunebond/base -g
+cd wolf.link
+```
+
+Then run the tests in `wolf.link`.
+
+```
+base test deck
+```
+
 ## Basic Datatypes
 
 Wolf only supports these basic data types.

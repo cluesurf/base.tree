@@ -2,7 +2,9 @@
 deck @tunebond/wolf
   bear ./code
   test ./test
-  mint <0.0.1>
+  mark <0.0.1>
   deck base
     link @tunebond/moon, mark <*>
     link @tunebond/bolt, mark <*>
+  # deck work
+  # deck meet
