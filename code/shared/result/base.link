@@ -3,7 +3,7 @@ tree is-not-or-return-error
   take a
   take b
 
-  hook bind
+  hook fuse
     stem test
       call is-not
         loan a
@@ -16,7 +16,7 @@ tree is-below-or-return-error
   take a
   take b
 
-  hook bind
+  hook fuse
     fuse is-bound-or-return-error
       term below
       loan a
@@ -26,7 +26,7 @@ tree is-above-or-return-error
   take a
   take b
 
-  hook bind
+  hook fuse
     fuse is-bound-or-return-error
       term above
       loan a
@@ -37,7 +37,7 @@ tree is-bound-or-return-error
   take a
   take b
 
-  hook bind
+  hook fuse
     stem test
       call is-{type}
         loan a
@@ -51,7 +51,7 @@ tree is-minimally-or-return-error
   take a
   take b
 
-  hook bind
+  hook fuse
     fuse is-bound-or-return-error
       term minimally
       loan a
@@ -60,7 +60,7 @@ tree is-minimally-or-return-error
 tree free-result
   take ok, like like
 
-  hook bind
+  hook fuse
     free seed
       like result
         like ok

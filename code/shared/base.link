@@ -1,0 +1,15 @@
+
+bear ./bloom-filter
+bear ./code
+bear ./comb
+bear ./date
+bear ./deck
+bear ./duration
+bear ./hash
+bear ./hash-table
+bear ./list
+bear ./mark
+bear ./result
+bear ./test
+bear ./text
+bear ./tree
