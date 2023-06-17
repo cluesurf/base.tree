@@ -1,0 +1,33 @@
+
+load @tunebond/moon/code/list
+  take form list
+
+load @tunebond/moon/code/mark/16
+  take form mark-16
+
+load @tunebond/moon/code/text/code/utf-16
+  take form text-utf-16
+
+task allocate
+  take size
+  cast text, like text-utf-16
+
+form text-utf-16
+  take list, list mark-16
+    hide true
+
+  task get-size, like mark
+
+  task transform-to-upper-case
+  task transform-to-lower-case
+  task transform-to-snake-case
+  task transform-to-kebab-case
+
+  task trim-whitespace
+  task trim-whitespace-start
+  task trim-whitespace-end
+
+  task split
+
+  task replace
+

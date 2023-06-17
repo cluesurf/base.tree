@@ -1,0 +1,240 @@
+
+task make
+  head item-type
+  take capacity
+  save length, mark 0
+  save list, make list, like item-type
+  save list/growth-factor, flex 2
+  save list/length, loan length
+  save list/capacity
+    call math/max
+      loan length
+      loan capacity
+  save list/line
+    make line, like item-type
+      loan self/capacity
+
+form list
+  head item-type
+
+  task set
+    take index
+    take item, like item-type
+    stem test
+      call is-less-than
+        loan self/length
+        loan index
+      hook true
+        back seed, make error
+    call self/line/set
+      loan item
+    back seed, loan self
+
+  task get
+    take index
+    stem test
+      call is-less-than
+        loan self/length
+        loan index
+      hook true
+        back seed, make error
+    back seed
+      call self/line/get
+        loan index
+
+  task reallocate
+    take capacity
+    stem test
+      call is-equal
+        loan capacity
+        loan self/capacity
+      hook true
+        back seed, loan self
+    save old-line, loan self/line
+    stem test
+      call is-greater-than
+        loan capacity
+        loan self/capacity
+      hook true
+        save self/line
+          make line, like item-type
+            loan capacity
+        call self/line/set
+          loan old-line
+          mark 0
+      hook false
+        save self/line
+          call old-line/slice
+            mark 0
+            loan capacity
+    stem test
+      call is-less-than
+        loan capacity
+        loan self/length
+      hook true
+        save self/length, loan capacity
+    save self/capacity, loan capacity
+    back seed, loan self
+
+  task grow
+    take capacity
+    call test
+      call is-greater-than-or-equal-to
+        loan self/capacity
+        loan capacity
+      hook true
+        back seed, loan self
+    save new-capacity, loan self/capacity
+    walk test
+      hook test
+        call is-less-than
+          loan new-capacity
+          loan capacity
+      hook true
+        save new-capacity
+          call scale
+            loan new-capacity
+            loan self/growth-factor
+    call self/reallocate
+      loan new-capacity
+    back seed, loan self
+
+  task grow
+    save new-capacity
+      call scale
+        loan self/capacity
+        loan self/growth-factor
+    call self/reallocate
+      loan new-capacity
+    back seed, loan self
+
+  task resize
+    take length
+    stem test
+      call is-equal
+        loan length
+        loan self/length
+      hook true
+        back seed, loan self
+
+    stem test
+      call is-less-than
+        loan length
+        loan self/length
+      hook true
+        save i
+          call subtract
+            loan self/length
+            mark 1
+        walk test
+          hook test
+            call is-greater-than
+              loan i
+              loan length
+          hook true
+            save self/line[i], loan void
+            save i, call decrement, loan i
+        save self/length, loan length
+        back seed, loan self
+    save self/length, loan length
+    call self/reallocate
+      loan length
+    back seed, loan self
+
+  task push
+    take value
+    stem test
+      call is-equal
+        loan self/capacity
+        loan self/length
+      hook true
+        call self/grow
+
+    call self/line/set
+      loan self/length
+      loan value
+    save self/length, call increment, loan self/length
+    back seed, loan self
+
+  task pop
+    stem test
+      call is-equal
+        loan self/length
+        mark 0
+      hook true
+        back seed, make none
+    save self/length, call decrement, loan self/length
+    back seed
+      call self/line/get
+        loan self/length
+
+  task replace
+    take pattern, like text-utf-8
+    take replacement, like text-utf-8
+    free seed, like text-utf-8
+
+  task replace
+    take pattern, like text-utf-8
+    take replacement
+      like task
+        take text
+        free seed, like text-utf-8
+    free seed, like text-utf-8
+
+  task get-every-match-position
+    take self
+    take pattern
+    free positions, like list, like mark-32
+
+  task get-first-match-position
+    take self
+    take pattern
+    free position, like mark-32
+
+  task get-first-match-binding
+
+  task get-first-match
+
+  task get-last-match-position
+    take self
+    take pattern
+    free position, like mark-32
+
+  task insert
+    take element
+  task insert
+    take elements
+
+  task append
+    take element
+  task append
+    take elements
+
+  task prepend
+    take element
+  task prepend
+    take elements
+
+  task split
+
+  task clone
+
+  task map
+
+  task filter
+
+  task reduce
+
+  task sort
+
+  task fill
+
+  task walk
+
+  task reverse
+
+  task shuffle
+
+  task trim
+  task trim-start
+  task trim-end

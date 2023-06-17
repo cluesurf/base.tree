@@ -1,0 +1,27 @@
+
+fuse addition-form, like mark-8
+fuse addition-form, like mark-16
+fuse addition-form, like mark-32
+fuse addition-form, like mark-64
+fuse addition-form, like mark-128
+fuse addition-form, like diff-8
+fuse addition-form, like diff-16
+fuse addition-form, like diff-32
+fuse addition-form, like diff-64
+fuse addition-form, like diff-128
+fuse addition-form, like comb-32
+fuse addition-form, like comb-64
+
+tree addition-form
+  take type
+
+  hook bind
+    coat form
+      suit type
+        wear addition
+          firm true
+
+          task add
+            take self, move true
+            take other, move true
+              like type

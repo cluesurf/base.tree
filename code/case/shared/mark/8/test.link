@@ -1,0 +1,6 @@
+
+load @tunebond/wolf/code/shared/test
+  take task test-suite
+
+call test-suite, read suite
+  term mark-8

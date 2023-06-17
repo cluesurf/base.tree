@@ -1,0 +1,8 @@
+
+load @tunebond/moon
+  take suit mark-16
+
+load ../n
+  take tree mark
+
+fuse mark, mark 16
