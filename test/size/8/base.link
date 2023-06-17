@@ -1,5 +1,0 @@
-
-load ../n
-  take tree size-test
-
-fuse size-test, size 32

@@ -1,9 +1,0 @@
-
-load ../n
-  find tree size-test
-
-load ./list
-  find host test-list
-
-fuse size-test, size 32
-  loan test-list
