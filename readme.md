@@ -12,7 +12,7 @@
 
 <h3 align='center'>wolf.link</h3>
 <p align='center'>
-  Base Link Standard Library Implementation
+  The Base Link Standard Library
 </p>
 
 <br/>
