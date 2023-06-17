@@ -23,7 +23,7 @@
 
 The `wolf.link` library aims to be a very low-level implementation of the abstraction over programming language primitives. It is an implementation of [`moon.link`](https://github.com/tunebond/moon.link).
 
-That is, it implements the abstractions over basic "datatypes" like the string, integer, boolean, etc.. And also more complex but still basic data types like the list, array, map, etc.. It tries to normalize as much as possible to create a uniform interface across programming language environments. It doesn't delve into opinionated conventions too much, that is saved for the [`crow.link`](https://github.com/tunebond/crow.link) project. It also doesn't do common but more complex things which have more variability like handling files, http, etc.. It literally just deals with the base data structures that are pretty hardened and don't change/evolve that often.
+That is, it implements the abstractions over basic "datatypes" like the string, integer, boolean, etc.. And also more complex but still basic data types like the list, array, map, etc.. It tries to normalize as much as possible to create a uniform interface across programming language environments. It doesn't delve into opinionated conventions too much, that is saved for the [`moon.link`](https://github.com/tunebond/moon.link) project. It also doesn't do common but more complex things which have more variability like handling files, http, etc.. It literally just deals with the base data structures that are pretty hardened and don't change/evolve that often.
 
 This project is to be validated against the moon, to make sure it adheres to the API specification. Basic type checking.
 
@@ -60,7 +60,7 @@ Wolf only supports these basic data types.
 
 ## Extended Datatypes
 
-These are not defined in `wolf.link` but are defined in `crow.link`, which is a more extended and growable framework for standards. But we list some here to give you an idea.
+These are not defined in `wolf.link` but are defined in `moon.link`, which is a more extended and growable framework for standards. But we list some here to give you an idea.
 
 | form                 | common name |
 | :------------------- | :---------- |
@@ -76,15 +76,6 @@ These are not defined in `wolf.link` but are defined in `crow.link`, which is a 
 | `skip-list`          |             |
 | `binary-search-tree` |             |
 | ...todo...           |             |
-
-## Relationships
-
-|                                                                   specification                                                                    |                                                                   implementation                                                                   | description                                                                                                                        |
-| :------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------- |
-|                                                [`moon.link`](https://github.com/tunebond/moon.link)                                                |                                                [`wolf.link`](https://github.com/tunebond/wolf.link)                                                | **Standard Library**                                                                                                               |
-| <a href="https://github.com/tunebond/moon.link"><img src='https://github.com/tunebond/moon.link/blob/make/view/moon.svg?raw=true' height='64'></a> | <a href="https://github.com/tunebond/wolf.link"><img src='https://github.com/tunebond/wolf.link/blob/make/view/view.svg?raw=true' height='64'></a> | These are the lowest-level datatypes and standards for abstracting away architectures in a basic programming language environment. |
-|                                                [`tree.link`](https://github.com/tunebond/tree.link)                                                |                                                [`crow.link`](https://github.com/tunebond/crow.link)                                                | **Framework**                                                                                                                      |
-| <a href="https://github.com/tunebond/tree.link"><img src='https://github.com/tunebond/tree.link/blob/make/view/view.svg?raw=true' height='64'></a> | <a href="https://github.com/tunebond/crow.link"><img src='https://github.com/tunebond/crow.link/blob/make/view/view.svg?raw=true' height='64'></a> | These are high-level framework components, which is an opinionated abstraction for common web app development paradigms.           |
 
 ## License
 
