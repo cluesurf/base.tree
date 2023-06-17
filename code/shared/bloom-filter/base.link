@@ -1,11 +1,12 @@
 
 form bloom-filter
-  take m
-  take k
-  take buckets
-  take locations
+  link m
+  link k
+  link buckets
+  link locations
 
   task get-locations
+    take self
     take v
     save k, loan self/k
     save m, loan self/m
