@@ -1,0 +1,8 @@
+
+form iterator
+  task get-next
+    head t
+    like t
+
+  task has-next
+    like bool

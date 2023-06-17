@@ -1,0 +1,95 @@
+
+tree diff
+  take self-type, like like
+  take mark-type, like like
+
+  hook bind
+    task add
+      take a, like self-type
+      take b, like self-type
+
+    task subtract
+      take a, like self-type
+      take b, like self-type
+
+    task multiply
+      take a, like self-type
+      take b, like self-type
+
+    task divide
+      take a, like self-type
+      take b, like self-type
+
+    task remainder
+    task exponentiate
+    task count-ones
+      free seed, like mark-type
+
+    task count-zeroes
+      free seed, like mark-type
+
+    task count-leading-ones
+      free seed, like mark-type
+
+    task count-leading-zeroes
+      free seed, like mark-type
+
+    task count-trailing-ones
+      free seed, like mark-type
+
+    task count-trailing-zeroes
+      free seed, like mark-type
+
+    task rotate-left
+    task rotate-right
+    task swap-bytes
+    task reverse-bits
+    task convert-from-big-endian
+    task convert-from-little-endian
+    task convert-to-big-endian
+    task convert-to-little-endian
+    task checked-add
+    task checked-subtract
+    task checked-multiply
+    task checked-divide
+    task checked-divide-euclid
+    task checked-remainder
+    task checked-remainder-euclid
+    task checked-shift-right
+    task checked-shift-left
+    task checked-negate
+    task checked-absolutify
+    task checked-exponentiate
+    task saturating-add
+    task saturating-subtract
+    task saturating-multiply
+    task saturating-divide
+    task saturating-remainder
+    task saturating-negate
+    task saturating-absolutify
+    task wrapping-add
+    task wrapping-subtract
+    task wrapping-multiply
+    task wrapping-divide
+    task wrapping-remainder
+    task wrapping-negate
+    task wrapping-absolutify
+    task overflowing-add
+    task overflowing-subtract
+    task overflowing-multiply
+    task overflowing-divide
+    task overflowing-remainder
+    task overflowing-negate
+    task overflowing-absolutify
+    task is-negative
+    task is-positive
+    task convert-to-big-endian-bytes
+    task convert-to-little-endian-bytes
+    task convert-to-native-endian-bytes
+    task convert-from-big-endian-bytes
+    task convert-from-little-endian-bytes
+    task convert-from-native-endian-bytes
+    task bitwise-and # bit-and
+    task bitwise-or # bit-or
+    task bitwise-exclusive-or
+    task clone

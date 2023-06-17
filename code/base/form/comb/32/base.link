@@ -1,0 +1,5 @@
+
+host max
+
+form comb-32
+  note <A "float" data type, with 7 points of decimal precision.>

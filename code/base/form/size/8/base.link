@@ -1,0 +1,5 @@
+
+load ../n
+  take tree mark
+
+fuse mark, size 8

@@ -1,0 +1,12 @@
+
+form wave
+  note <Boolean type>
+
+  case rise
+  case fall
+
+form rise, base wave
+  note <True type>
+
+form fall, base wave
+  note <False type>

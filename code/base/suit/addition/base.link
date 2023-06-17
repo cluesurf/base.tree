@@ -1,0 +1,10 @@
+
+suit addition
+  note <Add trait>
+  head output
+  head other, base self
+
+  task add
+    take self, move true
+    take other, move true
+    like output

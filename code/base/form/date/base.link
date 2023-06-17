@@ -1,0 +1,137 @@
+
+load @tunebond/moon/code/shared
+  take tree define-each
+
+# https://github.com/chronotope/chrono
+# https://moment.github.io/luxon/api-docs/index.html
+
+host interval
+  term year
+  term month
+  term week
+  term day
+  term hour
+  term minute
+  term second
+  term millisecond
+  term microsecond
+
+form date
+  fuse define-each, loan interval
+    loan define-interval
+
+tree define-interval
+  take name
+
+  hook bind
+    task get-{name}
+      free result, like unsigned-integer-32
+
+    task set-{name}
+      take value, like unsigned-integer-32
+
+    task add-{name}s
+      take value, like unsigned-integer-32
+
+    task remove-{name}s
+      take value, like unsigned-integer-32
+
+    task get-end-of-{name}
+      free result, like unsigned-integer-32
+
+    task set-to-end-of-{name}
+
+form date
+  link year, like natural-number
+  link month, like natural-number
+  link day, like natural-number
+
+  hold is-between
+    loan month
+    size 1
+    size 12
+
+  stem case, loan month
+    case 1, test is-day-within, size 31
+    case 2
+      seek call modulo-year, size 0
+        case 0
+          seek call modulo-year, size 100
+            case 0
+              seek call modulo-year, size 400
+                case 0, test is-day-within, size 29
+                fall back, test is-day-within, size 28
+            fall back, test is-day-within, size 29
+        fall back, test is-day-within, size 28
+    case 3, test is-day-within, size 31
+    case 4, test is-day-within, size 30
+    case 5, test is-day-within, size 31
+    case 6, test is-day-within, size 30
+    case 7, test is-day-within, size 31
+    case 8, test is-day-within, size 31
+    case 9, test is-day-within, size 30
+    case 10, test is-day-within, size 31
+    case 11, test is-day-within, size 30
+    case 12, test is-day-within, size 31
+
+  task modulo-year
+    hide rise
+    take size
+    call modulo
+      loan year
+      loan size
+
+  task is-day-within
+    hide rise
+    take size
+    call is-less-than-or-equal-to
+      loan day
+      loan size
+
+  task get-date
+    like int
+
+  task get-day
+    like int
+
+  task get-full-year
+    like int
+
+  task get-hours
+    like int
+
+  task get-minutes
+    like int
+
+  task get-month
+    like int
+
+  task get-seconds
+    like int
+
+  task get-time
+    like float
+
+  task get-timezone-offset
+    like int
+
+  task get-utc-date
+    like int
+
+  task get-utc-day
+    like int
+
+  task get-utc-full-year
+    like int
+
+  task get-utc-hours
+    like int
+
+  task get-utc-minutes
+    like int
+
+  task get-utc-month
+    like int
+
+  task get-utc-seconds
+    like int
