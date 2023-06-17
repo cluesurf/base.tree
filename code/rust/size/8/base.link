@@ -1,8 +1,0 @@
-
-form size-8
-  fuse size
-    bind self-type, like size-8
-    bind actual-type, like size-8
-    bind unsigned-type, like size-8
-    bind bits, size 8
-    bind bits-minus-one, size 7

@@ -1,0 +1,46 @@
+
+load ../mark
+  take form mark
+
+load ../term
+  take form term
+
+form feed
+  link read, list feed-read
+  link rule, like feed-rule
+  link sort, list feed-sort
+  link size, like mark
+    base 20
+  link base, like mark
+    base 0
+    note <Offset>
+
+form feed-read
+  note <Tree of selections to make>
+  link term, like term
+  link link, list feed-read
+
+form feed-sort
+  link term
+  link fall, like wave
+    base true
+
+form feed-rule
+  case feed-test
+  case feed-link
+  case feed-toss
+  case feed-turn
+
+form feed-test-head
+  case feed-nest
+  case bond
+
+form feed-test
+  link base, like feed-nest
+  link head, like feed-test-head
+
+form feed-test-like, base feed-test
+form feed-test-rise, base feed-test
+form feed-test-rise-like, base feed-test
+form feed-test-fall, base feed-test
+form feed-test-fall-like, base feed-test

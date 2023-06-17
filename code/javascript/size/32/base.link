@@ -1,5 +1,0 @@
-
-load ../n
-  find tree mark
-
-fuse mark, mark 32

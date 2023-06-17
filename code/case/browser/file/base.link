@@ -1,0 +1,6 @@
+
+# file handling
+# https://github.com/rails/rails/tree/main/activestorage
+form file
+  task upload
+  task download
