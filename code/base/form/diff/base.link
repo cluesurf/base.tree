@@ -3,7 +3,7 @@ tree diff
   take self-type, like like
   take mark-type, like like
 
-  hook bind
+  hook fuse
     task add
       take a, like self-type
       take b, like self-type

@@ -6,7 +6,8 @@ load @tunebond/bolt
 form line
   head item-type
 
-  dock native-array
+  link dock, like native-array
+    hide true
 
   task get
     like item-type
