@@ -1,5 +1,5 @@
 
-deck @tunebond/wolf
+deck @tunebond/nest
   bear ./code
   test ./test
   mark <0.0.1>

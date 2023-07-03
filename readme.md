@@ -7,10 +7,10 @@
 <br/>
 
 <p align='center'>
-  <img src='https://github.com/tunebond/wolf.link/blob/make/view/view.svg?raw=true' height='312'>
+  <img src='https://github.com/tunebond/nest.link/blob/make/view/nest.svg?raw=true' height='312'>
 </p>
 
-<h3 align='center'>wolf.link</h3>
+<h3 align='center'>nest.link</h3>
 <p align='center'>
   The Base Link Standard Library
 </p>
@@ -21,15 +21,11 @@
 
 ## Welcome
 
-The `wolf.link` library aims to be a very low-level implementation of the abstraction over programming language primitives. It is an implementation of [`moon.link`](https://github.com/tunebond/moon.link).
+The `nest.link` library aims to be a very low-level implementation of the abstraction over programming language primitives and other basic conventional interfaces.
 
-That is, it implements the abstractions over basic "datatypes" like the string, integer, boolean, etc.. And also more complex but still basic data types like the list, array, map, etc.. It tries to normalize as much as possible to create a uniform interface across programming language environments. It doesn't delve into opinionated conventions too much, that is saved for the [`moon.link`](https://github.com/tunebond/moon.link) project. It also doesn't do common but more complex things which have more variability like handling files, http, etc.. It literally just deals with the base data structures that are pretty hardened and don't change/evolve that often.
+That is, it implements the abstractions over basic "datatypes" like the string, integer, boolean, etc.. And also more complex but still basic data types like the list, array, map, etc.. And even more higher level types like files, servers, network, etc.. It tries to normalize as much as possible to create a uniform interface across programming language environments. It doesn't delve into opinionated conventions too much, that is saved for the [`crow.link`](https://github.com/tunebond/crow.link) project.
 
-This project is to be validated against the moon, to make sure it adheres to the API specification. Basic type checking.
-
-You typically won't use `wolf.link` directly, you should use [`base.link`](https://github.com/tunebond/base.link) (still much a work in progress) for writing your daily code. The `base.link` project is the burgeoning entrypoint for doing stuff with link text.
-
-The tests in `wolf.link` are testing our implementations of basic programming data types and functions against runtime environments like JavaScript, Rust, and Swift.
+The tests in `nest.link` are testing our implementations of basic programming data types and functions against runtime environments like JavaScript, Rust, and Swift.
 
 ## Basic Datatypes
 
@@ -59,8 +55,6 @@ Wolf only supports these basic data types.
 | `kink` | error                         |
 
 ## Extended Datatypes
-
-These are not defined in `wolf.link` but are defined in `moon.link`, which is a more extended and growable framework for standards. But we list some here to give you an idea.
 
 | form                 | common name |
 | :------------------- | :---------- |
