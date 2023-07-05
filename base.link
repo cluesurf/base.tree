@@ -1,0 +1,6 @@
+
+deck @tunebond/base
+  bear ./code
+  test ./test
+  mark <0.0.1>
+  link @tunebond/bind, mark <*>
