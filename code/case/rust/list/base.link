@@ -71,7 +71,7 @@ coat form
   head i, base slice-read, like line, like item
   head allocator, base allocator
 
-  suit list
+  form list
     head item
     head allocator
 

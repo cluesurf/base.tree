@@ -21,7 +21,7 @@ tree mark
   take size, like mark-8
 
   hook fuse
-    load @tunebond/moon
+    load @tunebond/bolt
       find suit mark-{{size}}
 
     form mark-{{size}}

@@ -1,5 +1,5 @@
 
-load @tunebond/nest
+load @tunebond/bolt
   find form kink
   find form size-8
   find form text
@@ -19,16 +19,17 @@ tree size
     link fall
       link a, like size-{{size}}
       link b, like size-{{size}}
-      link kink, like text
+      link kink, like term
       task work
         take a, like size-{{size}}
         take b, like size-{{size}}
-        like kink
+        like result
 
   hook fuse
     slot card
 
     walk hash, loan list/rise
+      take key
       beam card
         test key
           save result, like size-{{size}}
