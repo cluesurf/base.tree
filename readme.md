@@ -12,7 +12,7 @@
 
 <h3 align='center'>bolt.link</h3>
 <p align='center'>
-  The Base Link Standard Library
+  The BaseLink Standard Library
 </p>
 
 <br/>
