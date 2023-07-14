@@ -1,0 +1,3 @@
+
+bear ./shared
+bear <./{base/host/dock}>
