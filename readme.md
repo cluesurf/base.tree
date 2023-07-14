@@ -12,7 +12,7 @@
 
 <h3 align='center'>bolt.link</h3>
 <p align='center'>
-  The BaseLink Standard Library
+  The BaseLink Data Type Library
 </p>
 
 <br/>
@@ -23,13 +23,11 @@
 
 The `bolt.link` library aims to be a very low-level implementation of the abstraction over programming language primitives and other basic conventional interfaces.
 
-That is, it implements the abstractions over basic "datatypes" like the string, integer, boolean, etc.. And also more complex but still basic data types like the list, array, map, etc.. And even more higher level types like files, servers, network, etc.. It tries to normalize as much as possible to create a uniform interface across programming language environments. It doesn't delve into opinionated conventions too much, that is saved for the [`crow.link`](https://github.com/tunebond/crow.link) project.
-
-The tests in `bolt.link` are testing our implementations of basic programming data types and functions against runtime environments like JavaScript, Rust, and Swift.
+That is, it implements the abstractions over basic "datatypes" like the string, integer, boolean, etc.. And also more complex but still basic data types like the list, array, map, etc..
 
 ## Basic Datatypes
 
-Wolf only supports these basic data types.
+Bolt only supports these basic data types.
 
 | form   | common name                   |
 | :----- | :---------------------------- |
@@ -53,23 +51,6 @@ Wolf only supports these basic data types.
 | `form` | model / schema / class / type |
 | `suit` | trait                         |
 | `kink` | error                         |
-
-## Extended Datatypes
-
-| form                 | common name |
-| :------------------- | :---------- |
-| `b-plus-tree`        | b+ tree     |
-| `bloom-filter`       |             |
-| `queue`              |             |
-| `stack`              |             |
-| `unique-list`        | set         |
-| `matrix`             |             |
-| `matrix-2d`          |             |
-| `matrix-3d`          |             |
-| `matrix-4d`          |             |
-| `skip-list`          |             |
-| `binary-search-tree` |             |
-| ...todo...           |             |
 
 ## License
 
