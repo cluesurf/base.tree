@@ -1,6 +1,6 @@
 
-deck @tunebond/base
+deck @nerdbond/base
   bear ./code
   test ./test
   mark <0.0.1>
-  link @tunebond/bind, mark <*>
+  link @nerdbond/bind, mark <*>
