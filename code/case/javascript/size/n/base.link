@@ -1,13 +1,13 @@
 
-load @nerdbond/nest/code/shared/result
+load @wavebond/nest/code/shared/result
   take tree free-result
   take tree is-below-or-return-error
   take tree is-minimally-or-return-error
 
-load @nerdbond/nest/code/javascript/mark/8
+load @wavebond/nest/code/javascript/mark/8
   take form mark-8
 
-load @nerdbond/bolt/code/javascript/native
+load @wavebond/bind/code/javascript/native
   take face native-number
   take task add
   take task subtract
@@ -21,7 +21,7 @@ tree mark
   take size, like mark-8
 
   hook fuse
-    load @nerdbond/bolt
+    load @wavebond/bolt
       find suit mark-{{size}}
 
     form mark-{{size}}

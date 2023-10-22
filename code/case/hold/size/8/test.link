@@ -1,5 +1,5 @@
 
-load @nerdbond/nest/code/shared/test
+load @wavebond/nest/code/shared/test
   take task test-suite
 
 call test-suite, read suite

@@ -1,5 +1,5 @@
 
-load @nerdbond/bolt
+load @wavebond/bolt
   find form kink
   find form size-8
   find form text

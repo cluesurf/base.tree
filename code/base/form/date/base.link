@@ -1,5 +1,5 @@
 
-load @nerdbond/bolt/code/shared
+load @wavebond/bolt/code/shared
   take tree define-each
 
 # https://github.com/chronotope/chrono

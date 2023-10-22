@@ -1,6 +1,6 @@
 
-deck @nerdbond/base
+deck @wavebond/base
   bear ./code
   test ./test
   mark <0.0.1>
-  link @nerdbond/bind, mark <*>
+  link @wavebond/bind, mark <*>
