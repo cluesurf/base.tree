@@ -1,5 +1,5 @@
 
-load @wavebond/bolt
+load @textsurf/bolt
   find form kink
   find form size-8
   find form text

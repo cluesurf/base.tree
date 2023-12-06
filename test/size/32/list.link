@@ -1,5 +1,5 @@
 
-load @wavebond/bolt
+load @textsurf/bolt
   find form size-32
 
 load ../n

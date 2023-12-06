@@ -1,6 +1,6 @@
 
-deck @wavebond/base
+deck @textsurf/base
   bear ./code
   test ./test
   mark <0.0.1>
-  link @wavebond/bind, mark <*>
+  link @textsurf/bind, mark <*>
