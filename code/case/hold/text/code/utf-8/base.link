@@ -1,11 +1,11 @@
 
-load @textsurf/bolt/code/list
+load @termsurf/bolt/code/list
   take form list
 
-load @textsurf/bolt/code/mark/8
+load @termsurf/bolt/code/mark/8
   take form mark-8
 
-load @textsurf/bolt/code/text/code/utf-8
+load @termsurf/bolt/code/text/code/utf-8
   take form text-utf-8
 
 task allocate

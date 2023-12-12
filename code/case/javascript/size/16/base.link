@@ -1,5 +1,5 @@
 
-load @textsurf/bolt
+load @termsurf/bolt
   take suit mark-16
 
 load ../n

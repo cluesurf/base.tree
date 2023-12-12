@@ -1,6 +1,6 @@
 
-deck @textsurf/base
+deck @termsurf/base
   bear ./code
   test ./test
   mark <0.0.1>
-  link @textsurf/bind, mark <*>
+  link @termsurf/bind, mark <*>

@@ -1,5 +1,5 @@
 
-load @textsurf/bolt
+load @termsurf/bolt
   take mask deck
 
 form deck, wear deck

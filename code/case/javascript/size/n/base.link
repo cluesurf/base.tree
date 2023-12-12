@@ -1,13 +1,13 @@
 
-load @textsurf/nest/code/shared/result
+load @termsurf/nest/code/shared/result
   take tree free-result
   take tree is-below-or-return-error
   take tree is-minimally-or-return-error
 
-load @textsurf/nest/code/javascript/mark/8
+load @termsurf/nest/code/javascript/mark/8
   take form mark-8
 
-load @textsurf/bind/code/javascript/native
+load @termsurf/bind/code/javascript/native
   take face native-number
   take task add
   take task subtract
@@ -21,7 +21,7 @@ tree mark
   take size, like mark-8
 
   hook fuse
-    load @textsurf/bolt
+    load @termsurf/bolt
       find suit mark-{{size}}
 
     form mark-{{size}}

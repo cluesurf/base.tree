@@ -1,5 +1,5 @@
 
-load @textsurf/nest/code/shared/test
+load @termsurf/nest/code/shared/test
   take task test-suite
 
 call test-suite, read suite
