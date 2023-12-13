@@ -1,0 +1,6 @@
+
+deck @termsurf/bolt
+  bear ./code
+  test ./test
+  mark <0.0.1>
+  link @termsurf/bind, mark <*>
