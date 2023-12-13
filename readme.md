@@ -12,7 +12,7 @@
 
 <h3 align='center'>bolt.note</h3>
 <p align='center'>
-  The BaseLink Data Type Library
+  The BaseNote Data Type Library
 </p>
 
 <br/>
