@@ -7,10 +7,10 @@
 <br/>
 
 <p align='center'>
-  <img src='https://github.com/termsurf/bolt.link/blob/make/view/view.svg?raw=true' height='192'>
+  <img src='https://github.com/termsurf/bolt.note/blob/make/view/view.svg?raw=true' height='192'>
 </p>
 
-<h3 align='center'>bolt.link</h3>
+<h3 align='center'>bolt.note</h3>
 <p align='center'>
   The BaseLink Data Type Library
 </p>
@@ -21,7 +21,7 @@
 
 ## Welcome
 
-The `bolt.link` library aims to be a very low-level implementation of the abstraction over programming language primitives and other basic conventional interfaces.
+The `bolt.note` library aims to be a very low-level implementation of the abstraction over programming language primitives and other basic conventional interfaces.
 
 That is, it implements the abstractions over basic "datatypes" like the string, integer, boolean, etc.. And also more complex but still basic data types like the list, array, map, etc..
 
