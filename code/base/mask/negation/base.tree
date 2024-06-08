@@ -1,6 +1,0 @@
-
-note <Not trait.>
-
-mask negation
-  task negate
-    take self

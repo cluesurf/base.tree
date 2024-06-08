@@ -1,7 +1,0 @@
-
-wear subtract
-  note <Subtract>
-
-  task subtract
-    link self, like self
-    link self, like self

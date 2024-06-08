@@ -1,8 +1,0 @@
-
-form diff-16
-  fuse diff
-    bind self-type, like diff-16
-    bind actual-type, like diff-16
-    bind unsigned-type, like side-diff-16
-    bind bits, bond 16
-    bind bits-minus-one, bond 15

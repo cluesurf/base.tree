@@ -1,6 +1,0 @@
-
-mask mutation
-  head t, like dimension-free
-  task flex
-    take self, flex true
-    free t, flex true
