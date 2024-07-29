@@ -1,0 +1,10 @@
+
+mask transition-base
+  note <Shift left>
+
+  task transition-base
+
+mask transition-head
+  note <Shift right>
+
+  task transition-head

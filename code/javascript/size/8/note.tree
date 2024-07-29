@@ -1,0 +1,8 @@
+
+load @termsurf/base
+  find suit mark-8
+
+load ../n
+  find tree mark
+
+fuse mark, mark 8

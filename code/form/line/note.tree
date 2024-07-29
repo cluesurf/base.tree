@@ -1,0 +1,15 @@
+
+form line
+  note <An ungrowable, contiguous piece of memory divided into elements.>
+  head item-type, like like
+
+  task set
+  task sort
+  task filter
+  task map
+  task get
+  task get-size
+  task zip
+  task clone
+  task format-to-string
+  task get-default

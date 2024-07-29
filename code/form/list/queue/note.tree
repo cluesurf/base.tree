@@ -1,0 +1,14 @@
+form queue
+  head t
+
+  task enqueue
+    take item, like t
+    like void
+
+  task dequeue
+    like or
+      like t
+      like void
+
+  task get-size
+    like number

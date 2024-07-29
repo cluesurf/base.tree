@@ -1,0 +1,10 @@
+
+mask multiplication
+  note <Multiply.>
+  head other, base self
+  take output
+
+  task multiply
+    take self, move true
+    take other, like other
+    free self/output

@@ -1,0 +1,97 @@
+
+# there are no exposed properties on this
+# that would be the internals of the hash table.
+# there is only methods to access the internals.
+form hash
+  head k
+  head v
+
+  task clear
+    head imap
+      head k
+      head v
+    like void
+
+  task copy
+    head imap
+      head k
+      head v
+    like map
+      like k
+      like v
+
+  task exists
+    head imap
+      head k
+      head v
+    take key, like k
+    like bool
+
+  task get
+    head imap
+      head k
+      head v
+    take key, like k
+    like nullable, like v
+
+  task iterator
+    head imap
+      head k
+      head v
+    like iterator, like v
+
+  task key-value-iterator
+    head imap
+      head k
+      head v
+    like key-value-iterator
+      like k
+      like v
+
+  task keys
+    head imap
+      head k
+      head v
+    like iterator, like k
+
+  task remove
+    head imap
+      head k
+      head v
+    take key, like k
+    like bool
+
+  task set
+    head imap
+      head k
+      head v
+    take key, like k
+    take value, like v
+    like void
+
+  task to-string
+    head imap
+      head k
+      head v
+    like string
+
+form hash
+  note <A map or dictionary, a lookup.>
+  task get-for-mutation
+  task set
+  task clear
+  task clear-all
+  task walk-keys-and-consume
+  task walk-keys
+  task walk-values
+  task walk-values-and-consume
+  task walk
+  task get-size
+  task is-empty
+  task retain
+  task reserve
+  task try-reserve
+  task shrink-to-fit
+  task has
+  task clone
+  task format

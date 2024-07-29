@@ -1,0 +1,220 @@
+
+form comb-big
+  task abs
+    take param1, like math-context
+    like comb-big
+
+  task abs
+    like comb-big
+
+  task add
+    take param1, like comb-big
+    take param2, like math-context
+    like comb-big
+
+  task add
+    take param1, like comb-big
+    like comb-big
+
+  task byte-value-exact
+    like int-8
+
+  task compare-to
+    take param1, like dynamic
+    like int
+
+  task compare-to
+    take param1, like comb-big
+    like int
+
+  task divide
+    take param1, like comb-big
+    take param2, like math-context
+    like comb-big
+
+  task divide
+    take param1, like comb-big
+    take param2, like int
+    take param3, like int
+    like comb-big
+
+  task divide
+    take param1, like comb-big
+    take param2, like int
+    take param3, like rounding-mode
+    like comb-big
+
+  task divide
+    take param1, like comb-big
+    take param2, like int
+    like comb-big
+
+  task divide
+    take param1, like comb-big
+    take param2, like rounding-mode
+    like comb-big
+
+  task divide
+    take param1, like comb-big
+    like comb-big
+
+  task divide-and-remainder
+    take param1, like comb-big
+    take param2, like math-context
+    like native-array, like comb-big
+
+  task divide-and-remainder
+    take param1, like comb-big
+    like native-array, like comb-big
+
+  task divide-to-integral-value
+    take param1, like comb-big
+    take param2, like math-context
+    like comb-big
+
+  task divide-to-integral-value
+    take param1, like comb-big
+    like comb-big
+
+  task equals
+    take param1, like dynamic
+    like bool
+
+  task hash-code
+    like int
+
+  task int-value-exact
+    like int
+
+  task long-value-exact
+    like int-64
+
+  task max
+    take param1, like comb-big
+    like comb-big
+
+  task min
+    take param1, like comb-big
+    like comb-big
+
+  task move-point-left
+    take param1, like int
+    like comb-big
+
+  task move-point-right
+    take param1, like int
+    like comb-big
+
+  task multiply
+    take param1, like comb-big
+    take param2, like math-context
+    like comb-big
+
+  task multiply
+    take param1, like comb-big
+    like comb-big
+
+  task negate
+    take param1, like math-context
+    like comb-big
+
+  task negate
+    like comb-big
+
+  task plus
+    take param1, like math-context
+    like comb-big
+
+  task plus
+    like comb-big
+
+  task pow
+    take param1, like int
+    take param2, like math-context
+    like comb-big
+
+  task pow
+    take param1, like int
+    like comb-big
+
+  task precision
+    like int
+
+  task remainder
+    take param1, like comb-big
+    take param2, like math-context
+    like comb-big
+
+  task remainder
+    take param1, like comb-big
+    like comb-big
+
+  task round
+    take param1, like math-context
+    like comb-big
+
+  task scale
+    like int
+
+  task scale-by-power-of-ten
+    take param1, like int
+    like comb-big
+
+  task set-scale
+    take param1, like int
+    like comb-big
+
+  task set-scale
+    take param1, like int
+    take param2, like rounding-mode
+    like comb-big
+
+  task set-scale
+    take param1, like int
+    take param2, like int
+    like comb-big
+
+  task short-value-exact
+    like int-16
+
+  task signum
+    like int
+
+  task strip-trailing-zeros
+    like comb-big
+
+  task subtract
+    take param1, like comb-big
+    take param2, like math-context
+    like comb-big
+
+  task subtract
+    take param1, like comb-big
+    like comb-big
+
+  task to-big-integer
+    like biginteger
+
+  task to-big-integer-exact
+    like biginteger
+
+  task to-engineering-string
+    like string
+
+  task to-plain-string
+    like string
+
+  task to-string
+    like string
+
+  task ulp
+    like comb-big
+
+  task unscaled-value
+    like biginteger
+
+  task byte-value
+    like int-8
+
+  task short-value
+    like int-16

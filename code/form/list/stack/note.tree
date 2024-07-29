@@ -1,0 +1,19 @@
+form stack
+  head t
+
+  task push
+    take item, like t
+    like void
+
+  task pop
+    like or
+      like t
+      like void
+
+  task peek
+    like or
+      like t
+      like void
+
+  task get-size
+    like number

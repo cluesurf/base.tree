@@ -1,0 +1,8 @@
+
+form size-32
+  fuse size
+    bind self-type, like size-32
+    bind actual-type, like size-32
+    bind unsigned-type, like side-size-32
+    bind bits, size 32
+    bind bits-minus-one, size 31

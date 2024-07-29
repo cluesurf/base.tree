@@ -6,13 +6,9 @@
 <br/>
 <br/>
 
+<h3 align='center'>base.tree</h3>
 <p align='center'>
-  <img src='https://github.com/termsurf/bolt.tree/blob/make/view/view.svg?raw=true' height='192'>
-</p>
-
-<h3 align='center'>bolt.tree</h3>
-<p align='center'>
-  The Star Data Type Library
+  The NoteTree Data Type Library
 </p>
 
 <br/>
@@ -21,7 +17,7 @@
 
 ## Welcome
 
-The `bolt.tree` library aims to be a very low-level implementation of the abstraction over programming language primitives and other basic conventional interfaces.
+The `base.tree` library aims to be a very low-level implementation of the abstraction over programming language primitives and other basic conventional interfaces.
 
 That is, it implements the abstractions over basic "datatypes" like the string, integer, boolean, etc.. And also more complex but still basic data types like the list, array, map, etc..
 

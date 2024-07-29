@@ -1,0 +1,142 @@
+
+task text
+  task char-at
+    take index, like int
+    like string
+
+  task char-code-at
+    take index, like int
+    like nullable, like int
+
+  task index-of
+    take str, like string
+    take start-index, like int-nullable
+    like int
+
+  task last-index-of
+    take str, like string
+    take start-index, like int-nullable
+    like int
+
+  task split
+    take delimiter, like string
+    like array, like string
+
+  task substr
+    take pos, like int
+    take len, like int-nullable
+    like string
+
+  task substring
+    take start-index, like int
+    take end-index, like int-nullable
+    like string
+
+  task to-lower-case
+    like string
+
+  task to-string
+    like string
+
+  task to-upper-case
+    like string
+
+fuse define-each, loan encoding
+  loan define-encoding
+
+tree define-encoding
+  take name
+
+  hook bind
+    task is-{name}
+      free seed, like wave
+
+host encoding
+  term armscii-8
+  term ascii
+  term base-64
+  term big-5
+  term big-5-hkscs
+  term binary
+  term cesu-8
+  term euc-cn
+  term euc-jp
+  term euc-kr
+  term gb-18030
+  term gb-2312
+  term gbk
+  term georgian-academy
+  term georgian-ps
+  term hex
+  term hp-roman-8
+  term ibm-1046
+  term ibm-1124
+  term ibm-1125
+  term ibm-1129
+  term ibm-1133
+  term ibm-1161
+  term ibm-1162
+  term ibm-1163
+  term ibm-437
+  term ibm-720
+  term ibm-737
+  term ibm-775
+  term ibm-808
+  term ibm-850
+  term ibm-852
+  term ibm-855
+  term ibm-856
+  term ibm-857
+  term ibm-858
+  term ibm-860
+  term ibm-861
+  term ibm-862
+  term ibm-863
+  term ibm-864
+  term ibm-865
+  term ibm-866
+  term ibm-869
+  term ibm-922
+  term iso-646-cn
+  term iso-646-jp
+  term iso-8859-1
+  term iso-8859-16
+  term koi8-r
+  term koi8-ru
+  term koi8-t
+  term koi8-u
+  term ks-c-5601
+  term mac-centeuro
+  term mac-croatian
+  term mac-cyrillic
+  term mac-greek
+  term mac-iceland
+  term mac-roman
+  term mac-romania
+  term mac-thai
+  term mac-turkish
+  term mac-ukraine
+  term macintosh
+  term pt-154
+  term rk1048
+  term shift-jis
+  term tcvn
+  term tis-620
+  term utf-16
+  term utf-16-be
+  term utf-16-le
+  term utf-32
+  term utf-32-be
+  term utf-32-le
+  term utf-7
+  term utf-7-imap
+  term utf-8
+  term viscii
+  term windows-1250
+  term windows-1258
+  term windows-31-j
+  term windows-874
+  term windows-932
+  term windows-936
+  term windows-949
+  term windows-950

@@ -1,0 +1,5 @@
+
+load @termsurf/base
+  take mask deck
+
+form deck, wear deck
