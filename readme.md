@@ -8,7 +8,7 @@
 
 <h3 align='center'>base.tree</h3>
 <p align='center'>
-  The NoteTree Data Type Library
+  The NoteTree Environment Tool Library
 </p>
 
 <br/>
