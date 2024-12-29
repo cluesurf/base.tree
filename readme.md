@@ -8,7 +8,7 @@
 
 <h3 align='center'>base.tree</h3>
 <p align='center'>
-  The NoteTree Environment Tool Library
+  The TextTree Environment Tool Library
 </p>
 
 <br/>
@@ -50,7 +50,7 @@ Bolt only supports these basic data types.
 
 ## License
 
-Copyright 2022-2024 <a href='https://term.surf'>TermSurf</a>
+Copyright 2022-2024 <a href='https://clue.surf'>ClueSurf</a>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -64,6 +64,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-## TermSurf
+## ClueSurf
 
-This is being developed by the folks at [TermSurf](https://term.surf), a California-based project for helping humanity master information and computation. Find us on [Twitter](https://twitter.com/termsurf), [LinkedIn](https://www.linkedin.com/company/termsurf), and [Facebook](https://www.facebook.com/termsurf). Check out our other [GitHub projects](https://github.com/termsurf) as well!
+This is being developed by the folks at [ClueSurf](https://clue.surf), a California-based project for helping humanity master information and computation. Find us on [Twitter](https://twitter.com/cluesurf), [LinkedIn](https://www.linkedin.com/company/cluesurf), and [Facebook](https://www.facebook.com/cluesurf). Check out our other [GitHub projects](https://github.com/cluesurf) as well!
