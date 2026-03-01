@@ -1,5 +1,5 @@
 
-load @termsurf/land/code/javascript/promise
+load @cluesurf/land/code/javascript/promise
   take task make-javascript-promise
 
 task make-temporary-file

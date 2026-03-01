@@ -1,11 +1,11 @@
 
-load @termsurf/base/code/list
+load @cluesurf/base/code/list
   take form list
 
-load @termsurf/base/code/mark/16
+load @cluesurf/base/code/mark/16
   take form mark-16
 
-load @termsurf/base/code/text/code/utf-16
+load @cluesurf/base/code/text/code/utf-16
   take form text-utf-16
 
 task allocate

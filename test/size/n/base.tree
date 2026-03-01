@@ -1,5 +1,5 @@
 
-load @termsurf/base
+load @cluesurf/base
   find form kink
   find form size-8
   find form text

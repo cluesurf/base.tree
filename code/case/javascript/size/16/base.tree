@@ -1,5 +1,5 @@
 
-load @termsurf/base
+load @cluesurf/base
   take suit mark-16
 
 load ../n
