@@ -1,0 +1,8 @@
+
+load @cluesurf/base
+  find suit integer-8
+
+load ../n
+  find tree integer
+
+fuse integer, 8

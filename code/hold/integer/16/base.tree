@@ -1,6 +1,6 @@
 
 task is-bit-count-odd
-  take n, like mark-8
+  take n, like integer-8
   save n
     call oppose-bitwise
       call shift-head

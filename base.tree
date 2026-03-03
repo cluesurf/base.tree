@@ -3,4 +3,4 @@ deck @cluesurf/base
   bear ./code
   test ./test
   mark <0.0.1>
-  link @cluesurf/bind, mark <*>
+  link @cluesurf/case, mark <*>

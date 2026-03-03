@@ -2,7 +2,7 @@
 host infinity, term infinity
 host negative-infinity, term negative-infinity
 
-tree comb
+tree float
   hook fuse
     task round-up # ceil
     task round-down # floor

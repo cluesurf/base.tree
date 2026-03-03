@@ -11,7 +11,7 @@ load @cluesurf/base/code/rust/std/fs
   take form open-options
     save form rust-open-options
 
-load @cluesurf/bind/code/shared/code
+load @cluesurf/case/code/shared/code
   take task has-flag
 
 dock rust-file, form file

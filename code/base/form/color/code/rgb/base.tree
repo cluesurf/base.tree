@@ -1,9 +1,9 @@
 
-load @cluesurf/nest/code/shared
+load @cluesurf/base/code/shared
   take tree define-each
   take tree access
 
-load @cluesurf/nest/code/color
+load @cluesurf/base/code/color
   take host space
 
 form rgb

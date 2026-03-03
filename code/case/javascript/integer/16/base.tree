@@ -1,0 +1,8 @@
+
+load @cluesurf/base
+  take suit integer-16
+
+load ../n
+  take tree integer
+
+fuse integer, 16

@@ -1,0 +1,16 @@
+
+load ./32
+  find form integer-32
+
+load ./grow
+  find form integer-grow
+
+form integer
+  link dock
+    like or
+      like integer-32
+      like integer-grow
+
+bear ./integer/8
+bear ./integer/16
+bear ./integer/32

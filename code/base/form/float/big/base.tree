@@ -1,20 +1,20 @@
 
-form comb-big
+form big-float
   task abs
     take param1, like math-context
-    like comb-big
+    like big-float
 
   task abs
-    like comb-big
+    like big-float
 
   task add
-    take param1, like comb-big
+    take param1, like big-float
     take param2, like math-context
-    like comb-big
+    like big-float
 
   task add
-    take param1, like comb-big
-    like comb-big
+    take param1, like big-float
+    like big-float
 
   task byte-value-exact
     like int-8
@@ -24,57 +24,57 @@ form comb-big
     like int
 
   task compare-to
-    take param1, like comb-big
+    take param1, like big-float
     like int
 
   task divide
-    take param1, like comb-big
+    take param1, like big-float
     take param2, like math-context
-    like comb-big
+    like big-float
 
   task divide
-    take param1, like comb-big
+    take param1, like big-float
     take param2, like int
     take param3, like int
-    like comb-big
+    like big-float
 
   task divide
-    take param1, like comb-big
+    take param1, like big-float
     take param2, like int
     take param3, like rounding-mode
-    like comb-big
+    like big-float
 
   task divide
-    take param1, like comb-big
+    take param1, like big-float
     take param2, like int
-    like comb-big
+    like big-float
 
   task divide
-    take param1, like comb-big
+    take param1, like big-float
     take param2, like rounding-mode
-    like comb-big
+    like big-float
 
   task divide
-    take param1, like comb-big
-    like comb-big
+    take param1, like big-float
+    like big-float
 
   task divide-and-remainder
-    take param1, like comb-big
+    take param1, like big-float
     take param2, like math-context
-    like native-array, like comb-big
+    like native-array, like big-float
 
   task divide-and-remainder
-    take param1, like comb-big
-    like native-array, like comb-big
+    take param1, like big-float
+    like native-array, like big-float
 
   task divide-to-integral-value
-    take param1, like comb-big
+    take param1, like big-float
     take param2, like math-context
-    like comb-big
+    like big-float
 
   task divide-to-integral-value
-    take param1, like comb-big
-    like comb-big
+    take param1, like big-float
+    like big-float
 
   task equals
     take param1, like dynamic
@@ -90,89 +90,89 @@ form comb-big
     like int-64
 
   task max
-    take param1, like comb-big
-    like comb-big
+    take param1, like big-float
+    like big-float
 
   task min
-    take param1, like comb-big
-    like comb-big
+    take param1, like big-float
+    like big-float
 
   task move-point-left
     take param1, like int
-    like comb-big
+    like big-float
 
   task move-point-right
     take param1, like int
-    like comb-big
+    like big-float
 
   task multiply
-    take param1, like comb-big
+    take param1, like big-float
     take param2, like math-context
-    like comb-big
+    like big-float
 
   task multiply
-    take param1, like comb-big
-    like comb-big
+    take param1, like big-float
+    like big-float
 
   task negate
     take param1, like math-context
-    like comb-big
+    like big-float
 
   task negate
-    like comb-big
+    like big-float
 
   task plus
     take param1, like math-context
-    like comb-big
+    like big-float
 
   task plus
-    like comb-big
+    like big-float
 
   task pow
     take param1, like int
     take param2, like math-context
-    like comb-big
+    like big-float
 
   task pow
     take param1, like int
-    like comb-big
+    like big-float
 
   task precision
     like int
 
   task remainder
-    take param1, like comb-big
+    take param1, like big-float
     take param2, like math-context
-    like comb-big
+    like big-float
 
   task remainder
-    take param1, like comb-big
-    like comb-big
+    take param1, like big-float
+    like big-float
 
   task round
     take param1, like math-context
-    like comb-big
+    like big-float
 
   task scale
     like int
 
   task scale-by-power-of-ten
     take param1, like int
-    like comb-big
+    like big-float
 
   task set-scale
     take param1, like int
-    like comb-big
+    like big-float
 
   task set-scale
     take param1, like int
     take param2, like rounding-mode
-    like comb-big
+    like big-float
 
   task set-scale
     take param1, like int
     take param2, like int
-    like comb-big
+    like big-float
 
   task short-value-exact
     like int-16
@@ -181,16 +181,16 @@ form comb-big
     like int
 
   task strip-trailing-zeros
-    like comb-big
+    like big-float
 
   task subtract
-    take param1, like comb-big
+    take param1, like big-float
     take param2, like math-context
-    like comb-big
+    like big-float
 
   task subtract
-    take param1, like comb-big
-    like comb-big
+    take param1, like big-float
+    like big-float
 
   task to-big-integer
     like biginteger
@@ -208,7 +208,7 @@ form comb-big
     like string
 
   task ulp
-    like comb-big
+    like big-float
 
   task unscaled-value
     like biginteger

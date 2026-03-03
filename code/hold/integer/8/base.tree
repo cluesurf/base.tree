@@ -14,7 +14,7 @@ task reverse
         mark 4
 
 task is-bit-count-odd
-  take x, like mark-8
+  take x, like integer-8
   save x
     call oppose-bitwise
       call shift-head
@@ -37,13 +37,13 @@ task is-bit-count-odd
     read x
     mark 1
 
-task count-zeroes-in-mark-8
-  call count-ones-in-mark-8
+task count-zeroes-in-integer-8
+  call count-ones-in-integer-8
     call bitwise-negate
       read i
 
-task count-ones-in-mark-8
-  free seed, like mark-8
+task count-ones-in-integer-8
+  free seed, like integer-8
   call add
     call add
       call add

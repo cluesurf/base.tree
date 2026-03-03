@@ -5,8 +5,8 @@ note <Generic BigUint.>
 # https://github.com/brix/crypto-js/tree/develop/src
 # https://github.com/brix/crypto-js/blob/develop/src/md5.js
 
-form mark
-  take list, list mark-32
+form integer
+  take list, list integer-32
     hide true
 
 task round-down-to-power-of-two-8
