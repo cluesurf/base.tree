@@ -1,0 +1,101 @@
+
+tree gray
+  hook fuse
+    bind text-fill, term gray
+
+tree green
+  hook fuse
+    bind text-fill, term green
+
+tree red
+  hook fuse
+    bind text-fill, term red
+
+task make
+  fold make-zone
+    bind zone, loan test-case
+
+zone test-case
+  take side, like size
+    base 0
+  take case
+    like or
+      like test-band
+      like test-call
+      like test-hold
+
+  scan case/form
+    case like test-band
+      zone test-band
+        bind band, loan case
+        bind side, loan side
+    case like test-call
+      zone test-call
+        bind call, loan case
+        bind side, loan side
+    case like test-hold
+      zone test-hold
+        bind hold, loan case
+        bind side, loan side
+
+zone side
+  take size, like size
+
+  walk size, loan size
+    zone text, text <  >
+
+zone test-band
+  take band
+  take side
+  zone side, loan side
+  zone text, text band
+    fuse gray
+  zone text, text < >
+  zone text, text <\<>
+    fuse gray
+  zone text, loan band/head
+  zone text, text <\>>
+    fuse gray
+  zone text, text <\n>
+  walk list, loan band/nest
+    hook link
+      zone test-case
+        bind case, loan link
+        bind side
+          call 1/add, loan size
+
+zone test-rise
+  take call
+  take side, like size
+  zone side, loan side
+  zone text, text rise
+    fuse green
+  zone text, text < >
+  zone text, text <\<>
+    fuse gray
+  zone text, loan band/head
+    fuse green-bold
+  zone text, text <\>>
+    fuse gray
+  zone text, text <\n>
+  zone side, call 1/add, loan side
+  zone text, text time
+    fuse gray
+  zone text, text <\<>
+    fuse gray
+  fork roll
+    hook test
+      call call/time/is-less, 50
+      hook true
+        zone text, loan call/time
+          fuse green-bold
+    hook test
+      call call/time/is-less, 200
+      hook true
+        zone text, loan call/time
+          fuse yellow-bold
+    hook fall # default case
+      zone text, loan call/time
+        fuse red-bold
+  zone text, text <\>>
+    fuse gray

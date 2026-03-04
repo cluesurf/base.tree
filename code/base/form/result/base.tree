@@ -1,0 +1,10 @@
+
+form result
+  head t
+  head e
+
+  case okay
+    link value, like t
+
+  case error
+    link value, like e

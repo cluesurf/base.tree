@@ -1,0 +1,6 @@
+
+form pair
+  head a
+  head b
+  link first, like a
+  link second, like b

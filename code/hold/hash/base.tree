@@ -2,26 +2,26 @@
 task hash-djb2-xor
   like mark-32
   take text
-  save size, loan text/get-size
+  save size, read text/get-size
   save hash, mark 5381
   save mark, mark 0
 
   walk test
     hook step
       call is-less-than
-        loan mark
-        loan size
+        read mark
+        read size
     hook true
       save hash
         call bitwise-xor
           call multiply
-            loan hash
+            read hash
             mark 33
-          loan text[i]
+          read text/[i]
       save mark
         call increment
-          loan mark
+          read mark
 
   call unsigned-shift-right
-    loan hash
+    read hash
     mark 0

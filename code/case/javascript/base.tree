@@ -1,9 +1,9 @@
 
 bear ./code
-bear ./comb
+bear ./float
 bear ./date
 bear ./line
-bear ./mark
+bear ./integer
 bear ./task
 bear ./text
-bear ./wave
+bear ./boolean

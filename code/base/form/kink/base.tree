@@ -1,7 +1,5 @@
 
-note <Error type.>
-
 form kink
-  link code
-  link note
-  link hint
+  link code, like text
+  link note, like text
+  link hint, like text

@@ -17,15 +17,15 @@ host interval
   term microsecond
 
 form date
-  fuse define-each, loan interval
-    loan define-interval
+  fuse define-each, read interval
+    read define-interval
 
 tree define-interval
   take name
 
   hook bind
     task get-{name}
-      free result, like unsigned-integer-32
+      like unsigned-integer-32
 
     task set-{name}
       take value, like unsigned-integer-32
@@ -37,7 +37,7 @@ tree define-interval
       take value, like unsigned-integer-32
 
     task get-end-of-{name}
-      free result, like unsigned-integer-32
+      like unsigned-integer-32
 
     task set-to-end-of-{name}
 
@@ -47,11 +47,11 @@ form date
   link day, like natural-number
 
   hold is-between
-    loan month
+    read month
     size 1
     size 12
 
-  stem case, loan month
+  fork case, read month
     case 1, test is-day-within, size 31
     case 2
       seek call modulo-year, size 0
@@ -75,18 +75,18 @@ form date
     case 12, test is-day-within, size 31
 
   task modulo-year
-    hide rise
+    hide true
     take size
     call modulo
-      loan year
-      loan size
+      read year
+      read size
 
   task is-day-within
-    hide rise
+    hide true
     take size
-    call is-less-than-or-equal-to
-      loan day
-      loan size
+    call is-max
+      read day
+      read size
 
   task get-date
     like int

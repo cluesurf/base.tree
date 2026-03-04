@@ -1,15 +1,38 @@
 
 form line
-  note <An ungrowable, contiguous piece of memory divided into elements.>
-  head item-type, like like
+  head t
+
+  task get
+    take self
+    take index, like u64
 
   task set
-  task sort
-  task filter
-  task map
-  task get
+    take self, flex true
+    take index, like u64
+    take item, like t
+
   task get-size
-  task zip
+    take self
+    like u64
+
+  task map
+    head s
+    take self
+    like line
+
+  task filter
+    take self
+    like list
+
+  task sort
+    take self, flex true
+
   task clone
-  task format-to-string
-  task get-default
+    take self
+    like line
+
+  task slice
+    take self
+    take start, like u64
+    take end, like u64
+    like line
