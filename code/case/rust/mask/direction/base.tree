@@ -13,7 +13,7 @@ coat form
   head a, base dimension-free
   head b, base dimension-free
 
-  suit a, loan true
+  suit a, read true
     wear incomplete-direction
       task incomplete-compare
         take self

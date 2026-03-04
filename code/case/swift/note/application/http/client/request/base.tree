@@ -5,11 +5,11 @@ task send-request
   stem try
     call url-session-form/shared/data
       wait true
-      bind from, loan url
+      bind from, read url
       save data
     fuse catch-and-return-error
 
-  back seed, loan data
+  back seed, read data
 
 task upload-file
   take request
@@ -17,13 +17,13 @@ task upload-file
 
   stem try
     call url-session-form/shared/upload
-      bind for, loan request
-      bind from, loan data
+      bind for, read request
+      bind from, read data
       save response-data
       save response
     fuse catch-and-return-error
 
-  back seed, loan response
+  back seed, read response
 
 task download-file-from-url
   take url
@@ -37,19 +37,19 @@ task download-file-from-url
   stem try
     call url-session-form/shared/download
       wait true
-      bind from, loan url
+      bind from, read url
       save local-url
     fuse catch-and-return-error
 
   make ok
     make file
-      bind url, loan local-url
+      bind url, read local-url
 
 tree catch-and-return-error
   hook bind
     hook error
       take error
-      back seed, loan error
+      back seed, read error
 
 tree return-if-error-exists
   take error, like optional, like error
@@ -57,11 +57,11 @@ tree return-if-error-exists
   hook bind
     stem test
       test is-present
-        loan error
+        read error
       hook true
         back seed
           make error
-            loan error/option
+            read error/option
 
 tree return-if-value-exists
   take value, like optional
@@ -69,8 +69,8 @@ tree return-if-value-exists
   hook bind
     stem test
       test is-present
-        loan value
+        read value
       hook true
         back seed
           make ok
-            loan value/option
+            read value/option

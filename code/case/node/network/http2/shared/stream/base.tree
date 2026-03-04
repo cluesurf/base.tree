@@ -11,4 +11,4 @@ form stream
         take push-stream
         call resolve
           make push-stream
-            loan push-stream
+            read push-stream

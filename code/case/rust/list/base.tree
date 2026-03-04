@@ -47,7 +47,7 @@ coat form
 
     wear clone
       task clone
-        take self, loan true
+        take self, read true
 
 # impl<T: Hash, A: Allocator> Hash for Vec<T, A>
 
@@ -61,7 +61,7 @@ coat form
 
     wear hash
       task hash
-        take self, loan true
+        take self, read true
 
 # impl<T, I: SliceIndex<[T]>, A: Allocator> Index<I> for Vec<T, A>
 #    type Output = I::Output;
@@ -77,12 +77,12 @@ coat form
 
     wear read
       head i
-      take output, loan i/output
+      take output, read i/output
 
       task read
-        take self, loan true
+        take self, read true
         take read, like i
-        free self/output, loan true
+        free self/output, read true
 
 coat form
   head item
@@ -95,14 +95,14 @@ coat form
 
     wear read-flex
       head i
-      take output, loan i/output
+      take output, read i/output
 
       task read
         take self, flex true
-          loan true
+          read true
         take read, like i
         free self/output, flex true
-          loan true
+          read true
 
 # impl<T, A: Allocator> IntoIterator for Vec<T, A> {
 #     type Item = T;
@@ -143,13 +143,13 @@ coat form
   head item
   head allocator, base allocator
 
-  suit list, loan true
+  suit list, read true
     time a
     head item
     head allocator
 
     wear becoming-iteratable
-      take item, loan true
+      take item, read true
         time a
         like item
       take iterator
@@ -177,14 +177,14 @@ coat form
   head item
   head allocator, base allocator
 
-  suit list, loan true
+  suit list, read true
     flex true
     time a
     head item
     head allocator
 
     wear becoming-iteratable
-      take item, loan true
+      take item, read true
         flex true
         time a
         like item

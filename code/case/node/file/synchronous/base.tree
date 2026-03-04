@@ -79,16 +79,16 @@ task open
 
 task read
   take path
-  fuse try, loan read-call
+  fuse try, read read-call
 
 task write
   take path
   take content
-  fuse try, loan write-call
+  fuse try, read write-call
 
 task remove
   take path
-  fuse try, loan remove-call
+  fuse try, read remove-call
 
 task save-file
   take file, like file
@@ -97,7 +97,7 @@ task save-file
   take byte-count
   take file-start-position
   free number-of-bytes-written, like unsigned-integer
-  fuse try, loan save-file-call
+  fuse try, read save-file-call
 
 task read-file
   take file, like file
@@ -106,79 +106,79 @@ task read-file
   take byte-count
   take file-start-position
   free number-of-bytes-read, like unsigned-integer
-  fuse try, loan read-file-call
+  fuse try, read read-file-call
 
 task clear-file
   take file, like file
-  fuse try, loan clear-file-call-1
+  fuse try, read clear-file-call-1
 
 task clear-file
   take file, like file
   take leave-bytes, like unsigned-integer
-  fuse try, loan clear-file-call-2
+  fuse try, read clear-file-call-2
 
 tree open-body
   take node-flag
   hook fuse
     fuse open-result
-    save flag, loan node-flag
+    save flag, read node-flag
     fuse open-body-call
 
 tree open-body-call
   hook fuse
-    fuse try, loan open-call
+    fuse try, read open-call
 
 tree open-call
   hook fuse
     make file
-      loan path
+      read path
       call fs/open-sync
-        loan path
-        loan flag
+        read path
+        read flag
 
 tree read-call
   hook fuse
     call fs/read-file-sync
-      loan path
+      read path
 
 tree write-call
   hook fuse
     call fs/write-file-sync
-      loan path
-      loan content
+      read path
+      read content
 
 tree remove-call
   call fs/unlink-sync
-    loan path
+    read path
 
 tree file-write-call
   hook fuse
     call fs/write-sync
-      loan file/dock
-      loan buffer
-      loan buffer-start-position
-      loan byte-count
-      loan file-start-position
+      read file/dock
+      read buffer
+      read buffer-start-position
+      read byte-count
+      read file-start-position
 
 tree read-file-call
   hook fuse
     call fs/read-sync
-      loan file/dock
-      loan buffer
-      loan buffer-start-position
-      loan byte-count
-      loan file-start-position
+      read file/dock
+      read buffer
+      read buffer-start-position
+      read byte-count
+      read file-start-position
 
 tree clear-file-call-1
   hook fuse
     call fs/ftruncate
-      loan file
+      read file
 
 tree clear-file-call-2
   hook fuse
     call fs/ftruncate
-      loan file
-      loan leave-bytes
+      read file
+      read leave-bytes
 
 tree try
   take call
@@ -189,4 +189,4 @@ tree try
         fuse call
       hook fault
         take error
-        loan error
+        read error

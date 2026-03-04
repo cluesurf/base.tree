@@ -7,9 +7,9 @@ fuse server
   like nodejs-http2-server
 
 fuse make-server
-  loan http2-create-server
+  read http2-create-server
 
 tree http2-create-server
   hook bind
     call http2/create-server
-      loan handle
+      read handle

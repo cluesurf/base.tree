@@ -7,19 +7,19 @@ form browser-file
 
   task get-last-modified-timestamp
     take self
-    loan self/dock/last-modified
+    read self/dock/last-modified
 
   task get-name
     take self
-    loan self/dock/name
+    read self/dock/name
 
   task get-size
     take self
-    loan self/dock/size
+    read self/dock/size
 
   task get-mime-type
     take self
-    loan self/dock/type
+    read self/dock/type
 
   task slice
   task stream

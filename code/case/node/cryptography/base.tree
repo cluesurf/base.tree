@@ -8,18 +8,18 @@ form ecdh
     take self
     take public-key
     call self/bulb/compute-secret
-      loan public-key
+      read public-key
 
   task generate-compressed-keys
     take self
     call self/bulb/generate-keys
-      loan void
+      read void
       text <compressed>
 
   task generate-uncompressed-keys
     take self
     call self/bulb/generate-keys
-      loan void
+      read void
       text <uncompressed>
 
   task get-private-key
@@ -30,5 +30,5 @@ form ecdh
     take self
     take private-key
     call self/bulb/set-private-key
-      loan private-key
-    loan self
+      read private-key
+    read self

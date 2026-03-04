@@ -36,12 +36,12 @@ task reverse-bits-word
       call bit-reversal-table/get
         call bitwise-and
           call shift-right
-            loan n
+            read n
             mark 8
           mark 255
       call shift-left
         call bit-reversal-table/get
           call bitwise-and
-            loan n
+            read n
             mark 255
         mark 8

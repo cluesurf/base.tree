@@ -41,8 +41,8 @@ task text
   task to-upper-case
     like string
 
-fuse define-each, loan encoding
-  loan define-encoding
+fuse define-each, read encoding
+  read define-encoding
 
 tree define-encoding
   take name

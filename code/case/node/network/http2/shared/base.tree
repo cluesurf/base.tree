@@ -8,7 +8,7 @@ tree server
 
   hook bind
     form server
-      take x-server, loan server-form
+      take x-server, read server-form
         hide true
       take port, like unsigned-integer-16
         hide true
@@ -16,10 +16,10 @@ tree server
       task listen
         free seed, like self
         call self/x-server/listen
-          loan self/port
+          read self/port
 
       task get-port
-        loan self/port
+        read self/port
 
 tree make-server
   take http2-create-server
@@ -36,5 +36,5 @@ tree make-server
 
       make server
         fuse http2-create-server
-        loan port
+        read port
         save server

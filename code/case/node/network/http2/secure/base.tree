@@ -7,8 +7,8 @@ fuse server
   like nodejs-http2-server
 
 fuse make-server
-  loan http2-create-server
-  loan server-properties
+  read http2-create-server
+  read server-properties
 
 tree server-properties
   hook bind
@@ -19,6 +19,6 @@ tree http2-create-server
   hook bind
     call http2/create-secure-server
       make key-pair
-        bind key, loan private-key
-        bind cert, loan public-key
-      loan handle
+        bind key, read private-key
+        bind cert, read public-key
+      read handle

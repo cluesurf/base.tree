@@ -6,8 +6,8 @@ tree is-not-or-return-error
   hook bind
     stem test
       call is-not
-        loan a
-        loan b
+        read a
+        read b
       hook false
         back seed
           make not-error
@@ -19,8 +19,8 @@ tree is-below-or-return-error
   hook bind
     fuse is-bound-or-return-error
       term below
-      loan a
-      loan b
+      read a
+      read b
 
 tree is-above-or-return-error
   take a
@@ -29,8 +29,8 @@ tree is-above-or-return-error
   hook bind
     fuse is-bound-or-return-error
       term above
-      loan a
-      loan b
+      read a
+      read b
 
 tree is-bound-or-return-error
   take type
@@ -40,8 +40,8 @@ tree is-bound-or-return-error
   hook bind
     stem test
       call is-{type}
-        loan a
-        loan b
+        read a
+        read b
       hook false
         back seed
           make range-error
@@ -54,8 +54,8 @@ tree is-minimally-or-return-error
   hook bind
     fuse is-bound-or-return-error
       term minimally
-      loan a
-      loan b
+      read a
+      read b
 
 tree free-result
   take ok, like like

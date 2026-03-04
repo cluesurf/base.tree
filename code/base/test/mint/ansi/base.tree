@@ -16,10 +16,10 @@ mint make-ansi-text-from-zone
 
   save text-fill
     call tint-hash/read
-      loan zone/text-fill
-  fork test, call is-present, loan text-fill
+      read zone/text-fill
+  fork test, call is-present, read text-fill
     mint form, form text-fill
-  fork test, call is-present, loan zone/text-bold
+  fork test, call is-present, read zone/text-bold
     mint form, form set-bold-mode
-  mint text, loan zone/text
+  mint text, read zone/text
   mint form, form reset-all-modes

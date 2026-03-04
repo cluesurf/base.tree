@@ -4,8 +4,8 @@
 load @cluesurf/base/code/shared
   take tree define-each
 
-fuse define-each, loan space
-  loan define-space
+fuse define-each, read space
+  read define-space
 
 host space
   term a98

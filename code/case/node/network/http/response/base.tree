@@ -6,20 +6,20 @@ form response
   task set-status
     take code
     save self/x-response/status-sode
-      loan code
+      read code
 
   task set-header-by-key
 
   task write-utf-8
     take chunk
     call self/x-response/write
-      loan chunk
+      read chunk
       text <utf-8>
 
   task write-utf-16
     take chunk
     call self/x-response/write
-      loan chunk
+      read chunk
       text <utf-16>
 
   task end
@@ -28,12 +28,12 @@ form response
   task get-header
   task remove-header
   task were-headers-sent
-    loan self/x-response/headers-sent
+    read self/x-response/headers-sent
   task was-writable-stream-closed
-    loan self/x-response/writable-ended
+    read self/x-response/writable-ended
   task was-writable-stream-flushed
-    loan self/x-response/writable-finished
+    read self/x-response/writable-finished
   task get-length-of-body-ready-to-send
-    loan self/x-response/writable-length
+    read self/x-response/writable-length
   task send-continue-message
-    loan self/x-response/write-continue
+    read self/x-response/write-continue

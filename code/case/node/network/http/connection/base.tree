@@ -7,12 +7,12 @@ form connection
   task get-bytes-written
   task connect
   task is-connecting
-    loan self/x-connection/connecting
+    read self/x-connection/connecting
 
   task destroy
 
   task is-destroyed
-    loan self/x-connection/destroyed
+    read self/x-connection/destroyed
 
   task end
 

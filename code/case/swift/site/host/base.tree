@@ -3,7 +3,7 @@ task make
   take string
 
   make url
-    bind string, loan string
+    bind string, read string
 
 form url
   dock native-url

@@ -5,12 +5,12 @@ task reverse
     call shift-left
       call reversal-table/get
         call bitwise-and
-          loan n
+          read n
           mark 15
       mark 4
     call reversal-table/get
       call shift-right
-        loan n
+        read n
         mark 4
 
 task is-bit-count-odd
@@ -70,4 +70,4 @@ task reverse-bits-byte
   take n
   back seed
     call bit-reversal-table/get
-      bind loan n
+      bind read n

@@ -2,7 +2,7 @@
 task check-authorization-status
   fork case
     call av-capture-device/authorization-status
-      loan av-media-type/video
+      read av-media-type/video
     case read av-authorization-atatus/authorized
       note <The user has previously granted access to the camera.>
     case read av-authorization-atatus/not-determined
@@ -18,12 +18,12 @@ task request-access
   free granted, like boolean
 
   call av-capture-device/request-access
-    loan av-media-type/video
+    read av-media-type/video
     wait true
 
 task get-default-device
   call av-capture-device/default
-    loan av-media-type/video
+    read av-media-type/video
 
 task clear-take-photo-settings
 
@@ -35,18 +35,18 @@ form camera
     hide true
 
   task has-flash
-    loan self/native/has-flash
+    read self/native/has-flash
 
   task set-flash
     take mode
     save self/native-settings/flash-mode
       stem case
-        loan mode
+        read mode
         case auto
-          loan av-capture-device/flash-mode/auto
+          read av-capture-device/flash-mode/auto
         case on
-          loan av-capture-device/flash-mode/on
+          read av-capture-device/flash-mode/on
         case off
-          loan av-capture-device/flash-mode/off
+          read av-capture-device/flash-mode/off
 
   task clear-settings

@@ -343,7 +343,7 @@ save binary-leading-zero-table, call make-leading-zero-table
 save binary-trailing-zero-table
   call make-de-bruijn-trailing-zero-table
     mark 5
-    loan binary-trailing-zero-magic-number
+    read binary-trailing-zero-magic-number
 
 task count-trailing-zeroes-32
   take n
@@ -351,28 +351,28 @@ task count-trailing-zeroes-32
     call unsigned-shift-right
       call multiply
         call bitwise-and
-          loan n
+          read n
           call negate
-            loan n
-        loan binary-trailing-zero-magic-number
+            read n
+        read binary-trailing-zero-magic-number
       mark 27
 
 task count-trailing-zeroes-16
   take n
   call count-trailing-zeroes-32
-    loan n
+    read n
 
 task count-trailing-zeroes-8
   take n
   call count-trailing-zeroes-32
-    loan n
+    read n
 
 task count-trailing-ones-32
   take x
   call count-trailing-zeroes-32
     call unsigned-shift-right
       call negate-bitwise
-        loan x
+        read x
       mark 0
 
 task count-trailing-ones-16
@@ -380,7 +380,7 @@ task count-trailing-ones-16
   call count-trailing-zeroes-32
     call unsigned-shift-right
       call negate-bitwise
-        loan x
+        read x
       mark 0
 
 task count-trailing-ones-8
@@ -388,7 +388,7 @@ task count-trailing-ones-8
   call count-trailing-zeroes-32
     call unsigned-shift-right
       call negate-bitwise
-        loan x
+        read x
       mark 0
 
 task count-leading-zeroes-32
@@ -397,73 +397,73 @@ task count-leading-zeroes-32
   save r
     call binary-leading-zero-table/get
       call unsigned-shift-right
-        loan n
+        read n
         mark 24
 
   stem test
     call is-equal
-      loan r
+      read r
       mark 8
     hook true
       save r
         call add
-          loan r
+          read r
           call binary-leading-zero-table/get
             call unsigned-shift-right
-              loan n
+              read n
               mark 16
 
   stem test
     call is-equal
-      loan r
+      read r
       mark 16
     hook true
       save r
         call add
-          loan r
+          read r
           call binary-leading-zero-table/get
             call unsigned-shift-right
-              loan n
+              read n
               mark 8
 
   stem test
     call is-equal
-      loan r
+      read r
       mark 24
     hook true
       save r
         call add
-          loan r
+          read r
           call binary-leading-zero-table/get
-            loan n
+            read n
 
-  back seed, loan r
+  back seed, read r
 
 task count-leading-zeroes-16
   take n
   save r
     call binary-leading-zero-table/get
       call unsigned-shift-right
-        loan n
+        read n
         mark 8
 
   stem test
     call is-equal
-      loan r
+      read r
       mark 8
     hook true
       save r
         call add
           bind r
           call binary-leading-zero-table/get
-            loan n
+            read n
 
-  back seed, loan r
+  back seed, read r
 
 task count-leading-zeroes-8
   take n
   call binary-leading-zero-table/get
-    loan n
+    read n
 
 task count-leading-ones-32
   take n
@@ -471,7 +471,7 @@ task count-leading-ones-32
     call bitwise-and
       call unsigned-shift-right
         call negate-bitwise
-          loan n
+          read n
         mark 0
       mark #xffffffff
 
@@ -482,7 +482,7 @@ task count-leading-ones-16
     call bitwise-and
       call unsigned-shift-right
         call negate-bitwise
-          loan n
+          read n
         mark 0
       mark #xffff
 
@@ -493,7 +493,7 @@ task count-leading-ones-8
     call bitwise-and
       call unsigned-shift-right
         call negate-bitwise
-          loan n
+          read n
         mark 0
       mark #xff
 
@@ -503,29 +503,29 @@ task make-leading-zero-table
   walk test
     hook test
       call is-below
-        loan i
+        read i
         mark 256
     hook true
       save count, mark 8
-      save index, loan i
+      save index, read i
       walk test
         hook test
           call is-above
-            loan index
+            read index
             mark 0
         hook true
           save index
             call bitwise-or
               call divide
-                loan index
+                read index
                 mark 2
               mark 0
-          save count, call decrement, loan count
+          save count, call decrement, read count
       call table/set
-        loan i
-        loan count
-      save i, call increment, loan i
-  back seed, loan table
+        read i
+        read count
+      save i, call increment, read i
+  back seed, read table
 
 task make-de-bruijn-trailing-zero-table
   take exponent
@@ -533,27 +533,27 @@ task make-de-bruijn-trailing-zero-table
   save n
     call math/pow
       bind mark 2
-      bind loan exponent
-  save table, make array, loan n
+      bind read exponent
+  save table, make array, read n
   save i, mark 0
   walk test
     hook test
       call is-below
-        loan i
-        loan n
+        read i
+        read n
     hook true
       call table/set
         call unsigned-shift-right
           call shift-left
-            loan de-bruijn-constant
-            loan i
+            read de-bruijn-constant
+            read i
           call subtract
-            loan n
-            loan exponent
-        loan i
-      save i, call increment, loan i
+            read n
+            read exponent
+        read i
+      save i, call increment, read i
 
-  back seed, loan table
+  back seed, read table
 
 host binary-count-one-table, call make-binary-count-one-table
 
@@ -563,23 +563,23 @@ task make-binary-count-one-table
   walk test
     hook test
       call is-below
-        loan i
+        read i
         mark 256
     hook true
       call table/set
-        loan i
+        read i
         call add
           call bitwise-and
-            loan i
+            read i
             mark 1
           call table/get
             call bitwise-or
               call divide
-                loan i
+                read i
                 mark 2
               mark 0
-      save i, call increment, loan i
-  back seed, loan table
+      save i, call increment, read i
+  back seed, read table
 
 task count-one-bits-32
   take x
@@ -589,24 +589,24 @@ task count-one-bits-32
       call add
         call binary-count-one-table/get
           call bitwise-and
-            loan x
+            read x
             mark #xff
         call binary-count-one-table/get
           call bitwise-and
             call shift-right
-              loan x
+              read x
               mark 8
             mark #xff
       call binary-count-one-table/get
         call bitwise-and
           call shift-right
-            loan x
+            read x
             mark 16
           mark #xff
     call binary-count-one-table/get
       call bitwise-and
         call shift-right
-          loan x
+          read x
           mark 24
         mark #xff
 
@@ -615,12 +615,12 @@ task count-one-bits-16
   call add
     call binary-count-one-table/get
       call bitwise-and
-        loan x
+        read x
         mark #xff
     call binary-count-one-table/get
       call bitwise-and
         call shift-right
-          loan x
+          read x
           mark 8
         mark #xff
 
@@ -628,7 +628,7 @@ task count-one-bits8
   take x
   call binary-count-one-table/get
     call bitwise-and
-      loan x
+      read x
       mark #xff
 
 task count-zero-bits-32
@@ -636,7 +636,7 @@ task count-zero-bits-32
   call count-one-bits-32
     call unsigned-shift-right
       call negate-bitwise
-        loan x
+        read x
       mark 0
 
 task count-zero-bits-16
@@ -644,7 +644,7 @@ task count-zero-bits-16
   call count-one-bits-16
     call unsigned-shift-right
       call negate-bitwise
-        loan x
+        read x
       mark 0
 
 task count-zero-bits-8
@@ -652,13 +652,13 @@ task count-zero-bits-8
   call count-one-bits-8
     call unsigned-shift-right
       call negate-bitwise
-        loan x
+        read x
       mark 0
 
 task reverse-bits-8
   take n
   call bit-reversal-table/get
-    loan n
+    read n
 
 task reverse-bits-16
   take n
@@ -666,13 +666,13 @@ task reverse-bits-16
     call bit-reversal-table/get
       call bitwise-and
         call shift-right
-          loan n
+          read n
           mark 8
         mark #xff
     call shift-left
       call bit-reversal-table/get
         call bitwise-and
-          loan n
+          read n
           mark #xff
       mark 8
 
@@ -684,7 +684,7 @@ task reverse-bits-32
         call multiply
           call bit-reversal-table/get
             call bitwise-and
-              loan n
+              read n
               mark #xff
           call math/pow
             bind mark 2
@@ -693,7 +693,7 @@ task reverse-bits-32
           call bit-reversal-table/get
             call bitwise-and
               call unsigned-shift-right
-                loan n
+                read n
                 mark 8
               mark #xff
           call math/pow
@@ -703,7 +703,7 @@ task reverse-bits-32
         call bit-reversal-table/get
           call bitwise-and
             call unsigned-shift-right
-              loan n
+              read n
               mark 16
             mark #xff
         call math/pow
@@ -712,7 +712,7 @@ task reverse-bits-32
     call bit-reversal-table/get
       call bitwise-and
         call unsigned-shift-right
-          loan n
+          read n
           mark 24
         mark #xff
 
@@ -754,29 +754,29 @@ task toggle-flag
 task walk-bits
   take self
   save i, mark 0
-  save n, loan self/bit-capacity
+  save n, read self/bit-capacity
   walk test
     hook test
       call is-below
-        loan i
-        loan n
+        read i
+        read n
     hook true
       save v
         call is-bit-set
-          loan self
-          loan i
+          read self
+          read i
       kick step
-        loan v
-        loan i
-      save i, call add, loan i
+        read v
+        read i
+      save i, call add, read i
 
 task is-bit-set
   take mark
   take position
   call is-not-equal
     call bitwise-and
-      loan mark
+      read mark
       call shift-left
         mark 1
-        loan position
+        read position
     mark 0

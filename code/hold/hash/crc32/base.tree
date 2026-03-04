@@ -4,32 +4,32 @@ task calculate-crc32
   save crc
     call bitwise-xor
       call bitwise-or
-        loan initial
+        read initial
         mark 0
       call negative, mark 1
   save i, mark 0
   walk test
     hook test
       call is-less-than
-        loan i
-        loan list/length
+        read i
+        read list/length
     hook true
       save crc
         call bitwise-xor
           call crc32-table
             call bitwise-and
               call bitwise-xor
-                loan crc
-                call list/get, loan i
+                read crc
+                call list/get, read i
               mark 255
           call unsigned-shift-right
-            loan crc
+            read crc
             mark 8
-      save i, call increment, loan i
+      save i, call increment, read i
   back seed
     call unsigned-shift-right
       call bitwise-xor
-        loan crc
+        read crc
         call negative
           mark 1
       mark 0

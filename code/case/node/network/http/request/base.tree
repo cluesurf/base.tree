@@ -7,7 +7,7 @@ form request
     take self
     take key
     call self/x-request/get-header
-      loan key
+      read key
 
   task get-headers-iterator
     make object-iterator
@@ -16,18 +16,18 @@ form request
   task get-body
 
   task get-host
-    loan self/x-request/host
+    read self/x-request/host
 
   task get-http-version
-    loan self/x-request/http-version
+    read self/x-request/http-version
 
   task get-protocol
-    loan self/x-request/protocol
+    read self/x-request/protocol
 
   task get-method
-    loan self/x-request/method
+    read self/x-request/method
 
   task get-path
-    loan self/x-request/path
+    read self/x-request/path
 
   task get-ip-address

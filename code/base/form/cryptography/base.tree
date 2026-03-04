@@ -69,31 +69,31 @@ task get-random-bytes
 task get-random-bytes-synchronously
   take size
 
-fuse define-each, loan private-key
+fuse define-each, read private-key
   term define-private-key
 
-fuse define-each, loan public-key
+fuse define-each, read public-key
   term define-public-key
 
-fuse define-each, loan cipher-iv
+fuse define-each, read cipher-iv
   term define-cipher-iv
 
-fuse define-each, loan digest-algorithm
+fuse define-each, read digest-algorithm
   term define-sign
 
-fuse define-each, loan digest-algorithm
+fuse define-each, read digest-algorithm
   term define-verify
 
-fuse define-each, loan digest-algorithm
+fuse define-each, read digest-algorithm
   term define-digest-algorithm
 
-fuse define-each, loan digest-algorithm
+fuse define-each, read digest-algorithm
   term define-hkdf-key
 
-fuse define-each, loan digest-algorithm
+fuse define-each, read digest-algorithm
   term define-hmac
 
-fuse define-each, loan diffie-hellman-key-type
+fuse define-each, read diffie-hellman-key-type
   term define-diffie-hellman
 
 host diffie-hellman-key-type
@@ -346,40 +346,40 @@ tree define-asymmetric-key-pair
     task generate-asymmetric-rsa-key-pair-{{scope}}
       take modulus-length
       take public-exponent
-      wait loan wait
+      wait read wait
       free pair, like key-pair
 
     task generate-asymmetric-rsa-pss-key-pair-{{scope}}
       take hash-algorithm
       take mgf1-hash-algorithm
       take salt-length
-      wait loan wait
+      wait read wait
       free pair, like key-pair
 
     task generate-asymmetric-dsa-key-pair-{{scope}}
       take divisor-length
-      wait loan wait
+      wait read wait
       free pair, like key-pair
 
     task generate-asymmetric-ec-key-pair-{{scope}}
       take named-curve
-      wait loan wait
+      wait read wait
       free pair, like key-pair
 
     task generate-asymmetric-ed25519-key-pair-{{scope}}
-      wait loan wait
+      wait read wait
       free pair, like key-pair
 
     task generate-asymmetric-ed448-key-pair-{{scope}}
-      wait loan wait
+      wait read wait
       free pair, like key-pair
 
     task generate-asymmetric-x25519-key-pair-{{scope}}
-      wait loan wait
+      wait read wait
       free pair, like key-pair
 
     task generate-asymmetric-x448-key-pair-{{scope}}
-      wait loan wait
+      wait read wait
       free pair, like key-pair
 
     task generate-asymmetric-dh-key-pair-{{scope}}
@@ -387,7 +387,7 @@ tree define-asymmetric-key-pair
       take prime-length
       take generator
       take group-name
-      wait loan wait
+      wait read wait
       free pair, like key-pair
 
 tree define-private-key

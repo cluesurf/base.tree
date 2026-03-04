@@ -13,7 +13,7 @@ tree red
 
 task make
   fold make-zone
-    bind zone, loan test-case
+    bind zone, read test-case
 
 zone test-case
   take side, like size
@@ -27,58 +27,58 @@ zone test-case
   scan case/form
     case like test-band
       zone test-band
-        bind band, loan case
-        bind side, loan side
+        bind band, read case
+        bind side, read side
     case like test-call
       zone test-call
-        bind call, loan case
-        bind side, loan side
+        bind call, read case
+        bind side, read side
     case like test-hold
       zone test-hold
-        bind hold, loan case
-        bind side, loan side
+        bind hold, read case
+        bind side, read side
 
 zone side
   take size, like size
 
-  walk size, loan size
+  walk size, read size
     zone text, text <  >
 
 zone test-band
   take band
   take side
-  zone side, loan side
+  zone side, read side
   zone text, text band
     fuse gray
   zone text, text < >
   zone text, text <\<>
     fuse gray
-  zone text, loan band/head
+  zone text, read band/head
   zone text, text <\>>
     fuse gray
   zone text, text <\n>
-  walk list, loan band/nest
+  walk list, read band/nest
     hook link
       zone test-case
-        bind case, loan link
+        bind case, read link
         bind side
-          call 1/add, loan size
+          call 1/add, read size
 
 zone test-rise
   take call
   take side, like size
-  zone side, loan side
+  zone side, read side
   zone text, text rise
     fuse green
   zone text, text < >
   zone text, text <\<>
     fuse gray
-  zone text, loan band/head
+  zone text, read band/head
     fuse green-bold
   zone text, text <\>>
     fuse gray
   zone text, text <\n>
-  zone side, call 1/add, loan side
+  zone side, call 1/add, read side
   zone text, text time
     fuse gray
   zone text, text <\<>
@@ -87,15 +87,15 @@ zone test-rise
     hook test
       call call/time/is-less, 50
       hook true
-        zone text, loan call/time
+        zone text, read call/time
           fuse green-bold
     hook test
       call call/time/is-less, 200
       hook true
-        zone text, loan call/time
+        zone text, read call/time
           fuse yellow-bold
     hook fall # default case
-      zone text, loan call/time
+      zone text, read call/time
         fuse red-bold
   zone text, text <\>>
     fuse gray

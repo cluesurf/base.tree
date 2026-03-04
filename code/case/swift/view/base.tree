@@ -46,124 +46,124 @@ form dock
 
   task set-vertical-align-top
     call self/dock/alignment-guide
-      loan vertical-align/top
+      read vertical-align/top
 
   task set-vertical-align-center
     call self/dock/alignment-guide
-      loan vertical-align/center
+      read vertical-align/center
 
   task set-vertical-align-bottom
     call self/dock/alignment-guide
-      loan vertical-align/bottom
+      read vertical-align/bottom
 
   task set-vertical-align-first-text-baseline
     call self/dock/alignment-guide
-      loan vertical-align/first-text-baseline
+      read vertical-align/first-text-baseline
 
   task set-vertical-align-last-text-baseline
     call self/dock/alignment-guide
-      loan vertical-align/last-text-baseline
+      read vertical-align/last-text-baseline
 
   task set-horizontal-align-leading
     call self/dock/alignment-guide
-      loan horizontal-align/leading
+      read horizontal-align/leading
 
   task set-horizontal-align-center
     call self/dock/alignment-guide
-      loan horizontal-align/center
+      read horizontal-align/center
 
   task set-horizontal-align-trailing
     call self/dock/alignment-guide
-      loan horizontal-align/trailing
+      read horizontal-align/trailing
 
   task set-blend-mode-normal
     call self/dock/blend-mode
-      loan blend-mode/normal
+      read blend-mode/normal
 
   task set-blend-mode-darken
     call self/dock/blend-mode
-      loan blend-mode/darken
+      read blend-mode/darken
 
   task set-blend-mode-multiply
     call self/dock/blend-mode
-      loan blend-mode/multiply
+      read blend-mode/multiply
 
   task set-blend-mode-color-burn
     call self/dock/blend-mode
-      loan blend-mode/color-burn
+      read blend-mode/color-burn
 
   task set-blend-mode-plus-darker
     call self/dock/blend-mode
-      loan blend-mode/plus-darker
+      read blend-mode/plus-darker
 
   task set-blend-mode-lighten
     call self/dock/blend-mode
-      loan blend-mode/lighten
+      read blend-mode/lighten
 
   task set-blend-mode-screen
     call self/dock/blend-mode
-      loan blend-mode/screen
+      read blend-mode/screen
 
   task set-blend-mode-color-dodge
     call self/dock/blend-mode
-      loan blend-mode/color-dodge
+      read blend-mode/color-dodge
 
   task set-blend-mode-plus-lighter
     call self/dock/blend-mode
-      loan blend-mode/plus-lighter
+      read blend-mode/plus-lighter
 
   task set-blend-mode-overlay
     call self/dock/blend-mode
-      loan blend-mode/overlay
+      read blend-mode/overlay
 
   task set-blend-mode-soft-light
     call self/dock/blend-mode
-      loan blend-mode/soft-light
+      read blend-mode/soft-light
 
   task set-blend-mode-hard-light
     call self/dock/blend-mode
-      loan blend-mode/hard-light
+      read blend-mode/hard-light
 
   task set-blend-mode-difference
     call self/dock/blend-mode
-      loan blend-mode/difference
+      read blend-mode/difference
 
   task set-blend-mode-exclusion
     call self/dock/blend-mode
-      loan blend-mode/exclusion
+      read blend-mode/exclusion
 
   task set-blend-mode-hue
     call self/dock/blend-mode
-      loan blend-mode/hue
+      read blend-mode/hue
 
   task set-blend-mode-saturation
     call self/dock/blend-mode
-      loan blend-mode/saturation
+      read blend-mode/saturation
 
   task set-blend-mode-color
     call self/dock/blend-mode
-      loan blend-mode/color
+      read blend-mode/color
 
   task set-blend-mode-luminosity
     call self/dock/blend-mode
-      loan blend-mode/luminosity
+      read blend-mode/luminosity
 
   task set-blend-mode-source-atop
     call self/dock/blend-mode
-      loan blend-mode/source-atop
+      read blend-mode/source-atop
 
   task set-blend-mode-destination-over
     call self/dock/blend-mode
-      loan blend-mode/destination-over
+      read blend-mode/destination-over
 
   task set-blend-mode-destination-out
     call self/dock/blend-mode
-      loan blend-mode/destination-out
+      read blend-mode/destination-out
 
   task set-blur
     take radius, like decimal
     call self/dock/blur
-      bind radius, loan radius
+      bind radius, read radius
       bind opaque, term true
 
   task set-border
@@ -171,11 +171,11 @@ form dock
     take width, like decimal
     call self/dock/border
       make native-color
-        loan native-color/rgb-color-space/srgb
-        bind red, loan color/red
-        bind green, loan color/green
-        bind blue, loan color/blue
-      loan width
+        read native-color/rgb-color-space/srgb
+        bind red, read color/red
+        bind green, read color/green
+        bind blue, read color/blue
+      read width
 
   task set-brightness
     func brightness(Double)

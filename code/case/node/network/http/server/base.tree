@@ -10,10 +10,10 @@ form server
   task listen
     free seed, like self
     call self/x-server/listen
-      loan self/port
+      read self/port
 
   task get-port
-    loan self/port
+    read self/port
 
 task make-server
   take handler, like task, base response-handler
@@ -25,9 +25,9 @@ task make-server
   make server
     call http/create-server
       make http-create-server-options
-        bind max-header-size, loan max-header-size
-      loan handler
-    loan port
+        bind max-header-size, read max-header-size
+      read handler
+    read port
 
 task make-server
   take handler, like task, base response-handler
@@ -37,5 +37,5 @@ task make-server
 
   make server
     call http/create-server
-      loan handler
-    loan port
+      read handler
+    read port

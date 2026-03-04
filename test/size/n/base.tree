@@ -28,29 +28,29 @@ tree size
   hook fuse
     slot card
 
-    walk hash, loan list/rise
+    walk hash, read list/rise
       take key
       beam card
         test key
           save result, like size-{{size}}
             call value/work
-              loan value/a
-              loan value/b
+              read value/a
+              read value/b
           hold result/is-identical
-            loan value/c
+            read value/c
 
-    walk hash, loan list/fall
+    walk hash, read list/fall
       beam card
         test key
           save kink, like kink
             call value/work
-              loan value/a
-              loan value/b
+              read value/a
+              read value/b
 
           hold kink/is-present
 
           hold kink/text/is-identical
-            loan value/kink
+            read value/kink
 
 tree checked-add
   take size, like size-8

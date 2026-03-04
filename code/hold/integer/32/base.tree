@@ -97,14 +97,14 @@ task reverse-bits
           call bit-reversal-table/get
             call bitwise-and
               call shift-right
-                loan n
+                read n
                 mark 24
               mark 255
           call shift-left
             call bit-reversal-table/get
               call bitwise-and
                 call shift-right
-                  loan n
+                  read n
                   mark 16
                 mark 255
             mark 8
@@ -112,13 +112,13 @@ task reverse-bits
           call bit-reversal-table/get
             call bitwise-and
               call shift-right
-                loan n
+                read n
                 mark 8
               mark 255
           mark 16
       call shift-left
         call bit-reversal-table/get
           call bitwise-and
-            loan n
+            read n
             mark 255
         mark 24
