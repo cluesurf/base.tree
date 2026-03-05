@@ -23,7 +23,7 @@ host k-month-shift, mark 5
 task get-days-in-year
   take year
 
-  stem test
+  fork test
     call is-not-equal
       call remainder
         read year
@@ -31,14 +31,14 @@ task get-days-in-year
       mark 0
     hook true, back 365
 
-  stem and
-    stem test
+  fork and
+    fork test
       call is-equal
         call remainder
           read year
           mark 100
         mark 0
-    stem test
+    fork test
       call is-not-equal
         call remainder
           read year
@@ -226,8 +226,8 @@ function Modulo(value, remainder) {
 
 task convert-from-julian-day-to-gregorian-day
   take day
-  stem roll
-    stem and
+  fork roll
+    fork and
       call is-greater-than
         read day
         read k-day-zero-in-julian-day
@@ -325,7 +325,7 @@ task convert-from-julian-day-to-gregorian-day
     call subtract
       read je
       mark 1
-  stem test
+  fork test
     call is-greater-than
       read m
       mark 12
@@ -335,7 +335,7 @@ task convert-from-julian-day-to-gregorian-day
     call subtract
       read jc
       mark 4715
-  stem test
+  fork test
     call is-greater-than
       read m
       mark 2
@@ -458,7 +458,7 @@ task calculate-four-year-cycle-table
         hook false
           bust fork3
 
-      stem test
+      fork test
         call is-equal
           read month
           mark 1

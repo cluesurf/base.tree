@@ -1,6 +1,6 @@
 
 form context
   task get-request
-    free result, like request
+    like request
   task get-response
-    free result, like response
+    like response

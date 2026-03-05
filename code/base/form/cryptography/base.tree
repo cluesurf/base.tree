@@ -24,11 +24,11 @@ task make-hmac
 
 task make-diffie-hellman
   take group-name
-  free result, like diffie-hellman
+  like diffie-hellman
 
 task make-ecdh
   take curve-name
-  free result, like ecdh
+  like ecdh
 
 fuse define-asymmetric-key-pair
   term synchronously
@@ -423,12 +423,12 @@ tree define-cipher-iv
     task make-{{name}}-cipher-iv
       take key
       take initialization-vector
-      free result, like {{name}}-cypher
+      like {{name}}-cypher
 
     task make-{{name}}-decipher-iv
       take key
       take initialization-vector
-      free result, like {{name}}-decypher
+      like {{name}}-decypher
 
 tree define-verify
   take name

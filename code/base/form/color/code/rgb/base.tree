@@ -1,10 +1,10 @@
 
 load @cluesurf/base/code/shared
-  take tree define-each
-  take tree access
+  find define-each
+  find access
 
 load @cluesurf/base/code/color
-  take host space
+  find space
 
 form rgb
   fuse access, term r

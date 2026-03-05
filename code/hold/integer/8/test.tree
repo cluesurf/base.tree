@@ -1,6 +1,6 @@
 
 load @cluesurf/base/code/shared/test
-  take task test-suite
+  find test-suite
 
 call test-suite, read suite
   term integer-8

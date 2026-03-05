@@ -5,6 +5,6 @@ mask division
   head output
 
   task divide
-    take self, move true
+    take self
     take other, like other
     like output

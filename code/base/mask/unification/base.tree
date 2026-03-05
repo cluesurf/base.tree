@@ -5,6 +5,6 @@ mask unification
   take output
 
   task fuse
-    take self, move true
+    take self
     take other, like other
     free self/output

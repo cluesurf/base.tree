@@ -5,6 +5,6 @@ suit addition
   head other, base self
 
   task add
-    take self, move true
-    take other, move true
+    take self
+    take other
     like output

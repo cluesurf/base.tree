@@ -1,11 +1,10 @@
 
 load ../bind
-  take form bind
+  find bind
 
 load ../task
-  take form base
-  take form flow
-    save form task-flow
+  find base
+  find flow, name task-flow
 
 form call
   link name, like term

@@ -1,5 +1,5 @@
 
 load ../n
-  take tree mark
+  find mark
 
 fuse mark, size 8

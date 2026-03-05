@@ -6,6 +6,6 @@ mask precipitation
   take output
 
   task remainder
-    take self, move true
+    take self
     take other, like other
     free self/output

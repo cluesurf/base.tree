@@ -5,6 +5,6 @@ mask multiplication
   take output
 
   task multiply
-    take self, move true
+    take self
     take other, like other
     free self/output

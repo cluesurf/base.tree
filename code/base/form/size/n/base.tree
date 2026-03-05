@@ -1,6 +1,6 @@
 
 load ../8
-  take form mark-8
+  find mark-8
 
 tree mark
   take size, like mark-8

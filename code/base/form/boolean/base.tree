@@ -4,9 +4,3 @@ form boolean
 
   case true
   case false
-
-form true, base boolean
-  note <True type>
-
-form false, base boolean
-  note <False type>

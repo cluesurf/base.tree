@@ -1,6 +1,6 @@
 
 load @cluesurf/base/code/shared
-  take tree access
+  find access
 
 form hsv
   fuse access, term h
@@ -9,7 +9,7 @@ form hsv
   fuse access, term alpha
 
   task convert-to-rgb
-    free result, like rgb-color
+    like rgb-color
 
 host channel
   term h

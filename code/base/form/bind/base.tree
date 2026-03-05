@@ -1,9 +1,9 @@
 
 load ../term
-  take form term
+  find term
 
 load ../bond
-  take form bond
+  find bond
 
 form bind
   link term, like term

@@ -5,7 +5,7 @@ tree access
 
   hook fuse
     task get-{{name}}
-      free result, like type
+      like type
 
     task set-{{name}}, like type
 

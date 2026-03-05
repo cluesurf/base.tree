@@ -2,7 +2,7 @@
 # https://github.com/Evercoder/culori
 
 load @cluesurf/base/code/shared
-  take tree define-each
+  find define-each
 
 fuse define-each, read space
   read define-space
@@ -39,8 +39,8 @@ tree define-space
   hook bind
     task convert-rgb-to-{name}-space
       take value, like rgb-color
-      free result, like {name}-color
+      like {name}-color
 
     task convert-{name}-to-rgb-space
       take value, like {name}-color
-      free result, like rgb-color
+      like rgb-color

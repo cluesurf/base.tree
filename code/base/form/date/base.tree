@@ -1,6 +1,6 @@
 
 load @cluesurf/base/code/shared
-  take tree define-each
+  find define-each
 
 # https://github.com/chronotope/chrono
 # https://moment.github.io/luxon/api-docs/index.html
