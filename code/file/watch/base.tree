@@ -1,10 +1,6 @@
 
+note <Moved to file/base.tree as task watch>
+
 form watch-event
   link kind, like text
   link path, like text
-
-task start
-  wait true
-  take path, like text
-  take deep, like bool, fall false
-  like list

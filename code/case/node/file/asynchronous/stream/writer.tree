@@ -1,0 +1,44 @@
+
+dock load
+  load <node:fs>, name fs
+
+form writer
+  link dock, hide true
+  link path, like text
+
+task create
+  wait true
+  take path, like text
+  take append, like bool, fall wave false
+
+  save flags
+    fork test, name append
+      hook true, text <a>
+      hook false, text <w>
+
+  save handle
+    call fs/create-write-stream
+      read path
+      make options
+        bind flags, read flags
+
+  send back
+    make writer
+      bind dock, read handle
+      bind path, read path
+
+task write
+  wait true
+  take stream, like writer
+  take data, like text
+
+  call stream/dock/write
+    wait true
+    read data
+
+task close
+  wait true
+  take stream, like writer
+
+  call stream/dock/end
+    wait true

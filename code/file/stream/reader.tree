@@ -1,0 +1,19 @@
+
+form reader
+  link dock, hide true
+  link path, like text
+
+task create
+  wait true
+  take path, like text
+  take start, like size, fall mark 0
+  take size, like size, fall mark 0
+  like reader
+
+task read
+  wait true
+  take stream, like reader
+
+task close
+  wait true
+  take stream, like reader

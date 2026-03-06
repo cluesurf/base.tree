@@ -36,3 +36,8 @@ task test
   take path, like text
   take kind, like text, need false
   like bool
+
+task watch
+  wait true
+  take path, like text
+  take deep, like bool, fall wave false

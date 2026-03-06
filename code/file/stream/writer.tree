@@ -1,0 +1,19 @@
+
+form writer
+  link dock, hide true
+  link path, like text
+
+task create
+  wait true
+  take path, like text
+  take append, like bool, fall wave false
+  like writer
+
+task write
+  wait true
+  take stream, like writer
+  take data, like text
+
+task close
+  wait true
+  take stream, like writer

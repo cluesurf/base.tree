@@ -1,11 +1,2 @@
 
-task read
-  wait true
-  take path, like text
-  take start, like size, fall 0
-  take size, like size, fall 0
-
-task write
-  wait true
-  take path, like text
-  take append, like bool, fall false
+note <See stream/reader.tree and stream/writer.tree>

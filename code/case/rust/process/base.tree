@@ -1,3 +1,147 @@
 
-task get-args
-  env::args().collect()
+dock load
+  load <std::process>, name proc
+
+load @cluesurf/base/code/process
+  find result
+  find child
+
+task run
+  wait true
+  take command, like text
+  take arguments, like list, need false
+  take directory, like text, need false
+  take environment, like hash, need false
+  take shell, like bool, fall false
+  take timeout, like size, need false
+  take input, like text, need false
+  like result
+
+  save cmd
+    fork test, read shell
+      hook true
+        save c
+          call proc/command/new
+            text </bin/sh>
+        call c/arg
+          text <-c>
+        call c/arg
+          call concat
+            bind a, read command
+            bind b, text < >
+            bind c
+              call join
+                bind list, read arguments
+                bind separator, text < >
+        send back, read c
+      hook false
+        save c
+          call proc/command/new
+            read command
+        fork test
+          call is-some, bind value, read arguments
+          hook true
+            call c/args
+              read arguments
+        send back, read c
+
+  fork test
+    call is-some, bind value, read directory
+    hook true
+      call cmd/current-dir
+        read directory
+
+  fork test
+    call is-some, bind value, read environment
+    hook true
+      call cmd/env-clear
+      walk list, read environment, hook tick, take pair
+        call cmd/env
+          read pair/key
+          read pair/value
+
+  save output
+    call cmd/output
+      halt kink
+
+  send back
+    make result
+      bind code
+        call output/status/code
+      bind stdout
+        call string/from-utf8-lossy
+          read output/stdout
+      bind stderr
+        call string/from-utf8-lossy
+          read output/stderr
+      bind ok
+        call output/status/success
+
+task spawn
+  wait true
+  take command, like text
+  take arguments, like list, need false
+  take directory, like text, need false
+  take environment, like hash, need false
+  take shell, like bool, fall false
+  like child
+
+  save cmd
+    fork test, read shell
+      hook true
+        save c
+          call proc/command/new
+            text </bin/sh>
+        call c/arg
+          text <-c>
+        call c/arg
+          call concat
+            bind a, read command
+            bind b, text < >
+            bind c
+              call join
+                bind list, read arguments
+                bind separator, text < >
+        send back, read c
+      hook false
+        save c
+          call proc/command/new
+            read command
+        fork test
+          call is-some, bind value, read arguments
+          hook true
+            call c/args
+              read arguments
+        send back, read c
+
+  call cmd/stdin
+    call proc/stdio/piped
+  call cmd/stdout
+    call proc/stdio/piped
+  call cmd/stderr
+    call proc/stdio/piped
+
+  fork test
+    call is-some, bind value, read directory
+    hook true
+      call cmd/current-dir
+        read directory
+
+  fork test
+    call is-some, bind value, read environment
+    hook true
+      call cmd/env-clear
+      walk list, read environment, hook tick, take pair
+        call cmd/env
+          read pair/key
+          read pair/value
+
+  save handle
+    call cmd/spawn
+      halt kink
+
+  send back
+    make child
+      bind dock, read handle
+      bind id
+        call handle/id

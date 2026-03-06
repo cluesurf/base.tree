@@ -1,151 +1,141 @@
 
-load @cluesurf/base/code/node/file
-  take tree open-head
-  take tree open-result
-  take host fs
-  take form file
-
-form file
-  task read-asynchronously
-  task write-asynchronously
-  task append-asynchronously
-  task prepend-asynchronously
-
-task open
-  wait true
-  fuse open-head, text <Asynchronous open read only>
-  take can-read, like true
-  fuse open-body, text <r>
-
-task open
-  wait true
-  fuse open-head, text <Asynchronous open read and write>
-  take can-read, like true
-  take can-write, like true
-  fuse open-body, text <r+>
-
-task open
-  wait true
-  fuse open-head, text <Asynchronous open create, clear, write>
-  take can-create, like true
-  take can-clear, like true
-  take can-write, like true
-  fuse open-body, text <w>
-
-task open
-  wait true
-  fuse open-head, text <Asynchronous open create, write>
-  take can-create, like true
-  take can-write, like true
-  fuse open-body, text <wx>
-
-task open
-  wait true
-  fuse open-head, text <Asynchronous open create, clear, read, write>
-  take can-create, like true
-  take can-clear, like true
-  take can-read, like true
-  take can-write, like true
-  fuse open-body, text <w+>
-
-task open
-  wait true
-  fuse open-head, text <Asynchronous open create, read, write>
-  take can-create, like true
-  take can-read, like true
-  take can-write, like true
-  fuse open-body, text <wx+>
-
-task open
-  wait true
-  fuse open-head, text <Asynchronous open create, clear, append>
-  take can-create, like true
-  take can-clear, like true
-  take can-append, like true
-  fuse open-body, text <a>
-
-task open
-  wait true
-  fuse open-head, text <Asynchronous open create, append>
-  take can-create, like true
-  take can-append, like true
-  fuse open-body, text <ax>
-
-task open
-  wait true
-  fuse open-head, text <Asynchronous open create, clear, read, append>
-  take can-create, like true
-  take can-clear, like true
-  take can-read, like true
-  take can-append, like true
-  fuse open-body, text <a+>
-
-task open
-  wait true
-  fuse open-head, text <Asynchronous open create, clear, read, append>
-  take can-create, like true
-  take can-read, like true
-  take can-append, like true
-  fuse open-body, text <ax+>
+dock load
+  load <node:fs/promises>, name fs-promise
+  load <node:fs>, name fs
 
 task read
   wait true
-  take path
-  fuse call-promise-with-callback-result
-    read read-call
-    read read-result
+  take path, like text
+  take format, like text, fall text <text>
+
+  fork test, call is-equal, read format, text <bytes>
+    hook true
+      save result
+        call fs-promise/read-file
+          wait true
+          read path
+          halt kink
+      send back, read result
+    hook false
+      save result
+        call fs-promise/read-file
+          wait true
+          read path
+          text <utf8>
+          halt kink
+      send back, read result
 
 task write
   wait true
-  take path
-  take content
-  fuse call-promise-with-callback-result
-    read write-call
-    read write-result
+  take path, like text
+  take data, like text
 
-tree open-body
-  take node-flag
-  hook bind
-    fuse open-result
-    save flag, read node-flag
-    fuse call-promise-with-callback-result
-      read open-body-call
-      read open-body-result
+  call fs-promise/write-file
+    wait true
+    read path
+    read data
+    halt kink
 
-tree open-body-call
-  hook bind
-    call fs/open
+task append
+  wait true
+  take path, like text
+  take data, like text
+
+  call fs-promise/append-file
+    wait true
+    read path
+    read data
+    halt kink
+
+task copy
+  wait true
+  take from, like text
+  take to, like text
+  take deep, like bool, fall wave false
+
+  fork test, name deep
+    hook true
+      call fs-promise/cp
+        wait true
+        read from
+        read to
+        make options
+          bind recursive, wave true
+        halt kink
+    hook false
+      call fs-promise/copy-file
+        wait true
+        read from
+        read to
+        halt kink
+
+task move
+  wait true
+  take from, like text
+  take to, like text
+
+  call fs-promise/rename
+    wait true
+    read from
+    read to
+    halt kink
+
+task remove
+  wait true
+  take path, like text
+  take deep, like bool, fall wave false
+
+  call fs-promise/rm
+    wait true
+    read path
+    make options
+      bind recursive, read deep
+      bind force, wave true
+    halt kink
+
+task test
+  wait true
+  take path, like text
+  take kind, like text, need false
+
+  call fs-promise/access
+    wait true
+    read path
+    halt kink
+
+  fork test, call is-null, read kind
+    hook true
+      send back, wave true
+
+  save stats
+    call fs-promise/stat
+      wait true
       read path
-      read flag
-      hook callback
-        take error
-        take descriptor
+      halt kink
 
-tree open-body-result
-  hook bind
-    make file
-      bind path, read path
-      bind descriptor, read descriptor
+  fork test, call is-equal, read kind, text <file>
+    hook true
+      send back
+        call stats/is-file
 
-tree read-call
-  hook bind
-    call fs/read
-      read path
-      hook callback
-        take error
-        take buffer
+  fork test, call is-equal, read kind, text <directory>
+    hook true
+      send back
+        call stats/is-directory
 
-tree read-result
-  hook bind
-    read buffer
+  fork test, call is-equal, read kind, text <link>
+    hook true
+      send back
+        call stats/is-symbolic-link
 
-tree write-call
-  hook bind
-    call fs/write
-      read path
-      hook callback
-        take error
+  send back, wave true
 
-tree write-result
-  hook bind
-    read void
+task watch
+  wait true
+  take path, like text
+  take deep, like bool, fall wave false
+
+  call fs/watch
+    read path
+    make options
+      bind recursive, read deep

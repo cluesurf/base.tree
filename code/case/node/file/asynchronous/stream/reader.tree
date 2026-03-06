@@ -1,0 +1,62 @@
+
+dock load
+  load <node:fs>, name fs
+
+form reader
+  link dock, hide true
+  link path, like text
+
+task create
+  wait true
+  take path, like text
+  take start, like size, fall mark 0
+  take size, like size, fall mark 0
+
+  save options, make object
+
+  fork test
+    call is-above
+      bind a, read start
+      bind b, mark 0
+    hook true
+      call options/set
+        text <start>
+        read start
+
+  fork test
+    call is-above
+      bind a, read size
+      bind b, mark 0
+    hook true
+      call options/set
+        text <end>
+        call add
+          bind a, read start
+          bind b, read size
+
+  save handle
+    call fs/create-read-stream
+      read path
+      read options
+
+  send back
+    make reader
+      bind dock, read handle
+      bind path, read path
+
+task read
+  wait true
+  take stream, like reader
+
+  save chunk
+    call stream/dock/read
+      wait true
+
+  send back, read chunk
+
+task close
+  wait true
+  take stream, like reader
+
+  call stream/dock/destroy
+    wait true

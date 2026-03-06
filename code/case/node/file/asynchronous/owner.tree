@@ -1,0 +1,31 @@
+
+dock load
+  load <node:fs/promises>, name fs-promise
+
+task read
+  wait true
+  take path, like text
+
+  save stats
+    call fs-promise/stat
+      wait true
+      read path
+      halt kink
+
+  send back
+    make file-owner
+      bind user, read stats/uid
+      bind group, read stats/gid
+
+task write
+  wait true
+  take path, like text
+  take user, like size
+  take group, like size
+
+  call fs-promise/chown
+    wait true
+    read path
+    read user
+    read group
+    halt kink
