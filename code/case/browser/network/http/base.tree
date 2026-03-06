@@ -1,0 +1,61 @@
+
+load @cluesurf/base/code/network/http
+  find response
+
+task send
+  wait true
+  take url, like text
+  take method, like text, fall text <GET>
+  take headers, like hash, need false
+  take body, like text, need false
+  take timeout, like size, need false
+  take redirect, like text, fall text <follow>
+
+  save options
+    make find
+      save method, read method
+      save redirect, read redirect
+
+  fork test
+    hook test
+      call is-some, read headers
+    hook hold
+      call options/set
+        text <headers>
+        read headers
+
+  fork test
+    hook test
+      call is-some, read body
+    hook hold
+      call options/set
+        text <body>
+        read body
+
+  fork test
+    hook test
+      call is-some, read timeout
+    hook hold
+      save controller
+        call make-abort-controller
+      call options/set
+        text <signal>
+        call controller/get-signal
+      call set-timeout
+        task abort
+          call controller/abort
+        read timeout
+
+  save raw
+    call fetch
+      wait true
+      read url
+      read options
+      halt kink
+
+  send back
+    make response
+      bind status, read raw/status
+      bind headers, read raw/headers
+      bind ok, read raw/ok
+      bind url, read raw/url
