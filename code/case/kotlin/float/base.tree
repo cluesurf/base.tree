@@ -33,7 +33,7 @@ tree float
       like self-type
 
     task abs
-      take v, like self-type
+      take a, like self-type
       like self-type
 
     task round-up
@@ -45,10 +45,6 @@ tree float
       like self-type
 
     task round
-      take v, like self-type
-      like self-type
-
-    task truncate
       take v, like self-type
       like self-type
 
@@ -136,14 +132,17 @@ tree float
       take v, like self-type
       like bool
 
-    task is-integer
+    task is-infinite
       take v, like self-type
       like bool
 
-    task to-fixed
+    task to-int
       take v, like self-type
-      take digits, like i32
-      like text
+      like i32
+
+    task to-long
+      take v, like self-type
+      like i64
 
     task to-string
       take v, like self-type

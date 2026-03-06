@@ -1,45 +1,45 @@
 
 load ../8
-  find mark-8
+  find i8
 
-tree mark
-  take size, like mark-8
+tree integer
+  take size, like i8
 
   hook fuse
-    form mark-{{size}}
+    form i{{size}}
       task seek-add
-        take a, like mark-{{size}}
-        take b, like mark-{{size}}
-        fuse free-result, like mark-{{size}}
+        take a, like i{{size}}
+        take b, like i{{size}}
+        fuse free-result, like i{{size}}
 
       task seek-add-signed
-        take a, like mark-{{size}}
-        take b, like mark-{{size}}
+        take a, like i{{size}}
+        take b, like i{{size}}
 
       task seek-divide-base
-        take a, like mark-{{size}}
-        take b, like mark-{{size}}
+        take a, like i{{size}}
+        take b, like i{{size}}
 
       task seek-divide-head
-        take a, like mark-{{size}}
-        take b, like mark-{{size}}
+        take a, like i{{size}}
+        take b, like i{{size}}
 
       task seek-divide-euclid
-        take a, like mark-{{size}}
-        take b, like mark-{{size}}
+        take a, like i{{size}}
+        take b, like i{{size}}
       task seek-fall
-        take a, like mark-{{size}}
-        take base, like mark-{{size}}
+        take a, like i{{size}}
+        take base, like i{{size}}
 
       task seek-fall-10
-        take a, like mark-{{size}}
+        take a, like i{{size}}
 
       task seek-fall-2
-        take a, like mark-{{size}}
+        take a, like i{{size}}
 
       task seek-multiply
-        take a, like mark-{{size}}
-        take b, like mark-{{size}}
+        take a, like i{{size}}
+        take b, like i{{size}}
 
       task seek-get-next-multiple-of
 
@@ -54,41 +54,41 @@ tree mark
 
       # checked
       task checked-add
-        take a, like mark-{{size}}
-        take b, like mark-{{size}}
-        free seed, like maybe, like mark-{{size}}
+        take a, like i{{size}}
+        take b, like i{{size}}
+        like maybe, like i{{size}}
 
       task checked-add-signed
-        take a, like mark-{{size}}
-        take b, like mark-{{size}}
-        free seed, like maybe, like mark-{{size}}
+        take a, like i{{size}}
+        take b, like i{{size}}
+        like maybe, like i{{size}}
 
       task checked-divide
-        take a, like mark-{{size}}
-        take b, like mark-{{size}}
-        free seed, like maybe, like mark-{{size}}
+        take a, like i{{size}}
+        take b, like i{{size}}
+        like maybe, like i{{size}}
 
       task checked-divide-euclid
-        take a, like mark-{{size}}
-        take b, like mark-{{size}}
-        free seed, like maybe, like mark-{{size}}
+        take a, like i{{size}}
+        take b, like i{{size}}
+        like maybe, like i{{size}}
 
       task checked-fall
-        take a, like mark-{{size}}
-        take base, like mark-{{size}}
-        free seed, like maybe, like mark-{{size}}
+        take a, like i{{size}}
+        take base, like i{{size}}
+        like maybe, like i{{size}}
 
       task checked-fall-10
       task checked-fall-2
       task checked-multiply
-        take a, like mark-{{size}}
-        take b, like mark-{{size}}
-        free seed, like maybe, like mark-{{size}}
+        take a, like i{{size}}
+        take b, like i{{size}}
+        like maybe, like i{{size}}
 
       task checked-negate
       task checked-get-next-multiple-of
       task checked-get-next-power-of-two
-      task checked-rise # exponentiation
+      task checked-rise
       task checked-remainder
       task checked-remainder-euclid
       task checked-shift-base
@@ -108,7 +108,7 @@ tree mark
       task clamped-negate
       task clamped-get-next-multiple-of
       task clamped-get-next-power-of-two
-      task clamped-rise # exponentiation
+      task clamped-rise
       task clamped-remainder
       task clamped-remainder-euclid
       task clamped-shift-base
@@ -127,7 +127,7 @@ tree mark
       task wrapping-negate
       task wrapping-get-next-multiple-of
       task wrapping-get-next-power-of-two
-      task wrapping-rise # exponentiation
+      task wrapping-rise
       task wrapping-remainder
       task wrapping-remainder-euclid
       task wrapping-shift-base
@@ -158,7 +158,7 @@ tree mark
       task negate-test-and-roll
       task get-next-multiple-of-test-and-roll
       task get-next-power-of-two-test-and-roll
-      task rise # exponentiation-test-and-roll
+      task rise-test-and-roll
       task remainder-test-and-roll
       task remainder-euclid-test-and-roll
       task shift-base-test-and-roll

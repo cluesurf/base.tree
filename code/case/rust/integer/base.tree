@@ -1,7 +1,7 @@
 
-tree size
+tree integer
   take self-type, like like
-  take side-type, like like
+  take unsigned-type, like like
 
   hook fuse
     task seek-add
@@ -40,7 +40,6 @@ tree size
       take b, like self-type
 
     task seek-get-next-multiple-of
-
     task seek-get-next-power-of-two
     task seek-rise
     task seek-remainder
@@ -54,7 +53,7 @@ tree size
     task test-add
       take a, like self-type
       take b, like self-type
-      free seed, like maybe, like self-type
+      like maybe, like self-type
 
     task test-add-signed
     task test-divide
@@ -66,7 +65,7 @@ tree size
     task test-negate
     task test-get-next-multiple-of
     task test-get-next-power-of-two
-    task test-rise # exponentiation
+    task test-rise
     task test-remainder
     task test-remainder-euclid
     task test-shift-left
@@ -86,7 +85,7 @@ tree size
     task sink-negate
     task sink-get-next-multiple-of
     task sink-get-next-power-of-two
-    task sink-rise # exponentiation
+    task sink-rise
     task sink-remainder
     task sink-remainder-euclid
     task sink-shift-left
@@ -105,7 +104,7 @@ tree size
     task roll-negate
     task roll-get-next-multiple-of
     task roll-get-next-power-of-two
-    task roll-rise # exponentiation
+    task roll-rise
     task roll-remainder
     task roll-remainder-euclid
     task roll-shift-left
@@ -136,7 +135,7 @@ tree size
     task roll-test-negate
     task roll-test-get-next-multiple-of
     task roll-test-get-next-power-of-two
-    task roll-test-rise # exponentiation
+    task roll-test-rise
     task roll-test-remainder
     task roll-test-remainder-euclid
     task roll-test-shift-left
@@ -156,34 +155,34 @@ tree size
     task rotate-right
     task swap-bytes
     task reverse-bits
-    task bitwise-intersect # bit-and
+    task bitwise-intersect
       take a, like self-type
       take b, like self-type
 
-    task bitwise-unify # bit-or
+    task bitwise-unify
       take a, like self-type
       take b, like self-type
 
-    task bitwise-miss # bit-xor
+    task bitwise-miss
       take a, like self-type
       take b, like self-type
 
     task count-ones
-      free seed, like side-type
+      like unsigned-type
 
     task count-zeroes
-      free seed, like side-type
+      like unsigned-type
 
     task count-leading-ones
-      free seed, like side-type
+      like unsigned-type
 
     task count-leading-zeroes
-      free seed, like side-type
+      like unsigned-type
 
     task count-trailing-ones
-      free seed, like side-type
+      like unsigned-type
 
     task count-trailing-zeroes
-      free seed, like side-type
+      like unsigned-type
 
     task clone

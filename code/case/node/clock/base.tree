@@ -1,0 +1,239 @@
+
+dock load
+  load <timers/promises>, name timers
+
+load ./now
+  find get
+
+task delay
+  wait true
+  take duration, like size
+
+  call timers/set-timeout
+    wait true
+    bind ms, read duration
+
+task repeat
+  wait true
+  take duration, like size
+  take limit, like size, fall mark 0
+
+  save results
+    make list
+  save count, mark 0
+  save unlimited
+    call is-equal
+      bind a, read limit
+      bind b, mark 0
+
+  walk test
+    hook test
+      meet or
+        read unlimited
+        call is-below
+          bind a, read count
+          bind b, read limit
+    hook hold
+      call timers/set-timeout
+        wait true
+        bind ms, read duration
+      call list-push
+        bind list, read results
+        bind item, read count
+      save count
+        call add
+          bind a, read count
+          bind b, mark 1
+
+  send back, read results
+
+task cancel
+  take handle
+
+  call clear-timeout
+    bind handle, read handle
+
+task debounce
+  take work, like task
+  take wait, like size
+  take edge, like text, fall text <trailing>
+
+  save timer, wave null
+  save called, wave false
+
+  send back
+    task debounced
+      take args
+
+      fork test
+        hook test
+          meet and
+            call is-equal
+              bind a, read edge
+              bind b, text <leading>
+            call is-equal
+              bind a, read called
+              bind b, wave false
+        hook hold
+          call work
+            bind args, read args
+          save called, wave true
+
+      fork test
+        hook test
+          call is-null
+            bind value, read timer
+        hook miss
+          call clear-timeout
+            bind handle, read timer
+
+      save timer
+        call set-timeout
+          bind callback
+            task fire
+              save called, wave false
+              fork test
+                hook test
+                  call is-equal
+                    bind a, read edge
+                    bind b, text <trailing>
+                hook hold
+                  call work
+                    bind args, read args
+          bind ms, read wait
+
+task throttle
+  take work, like task
+  take wait, like size
+  take edge, like text, fall text <leading>
+
+  save last, mark 0
+  save timer, wave null
+
+  send back
+    task throttled
+      take args
+
+      save now
+        call get
+
+      fork test
+        hook test
+          meet and
+            call is-equal
+              bind a, read edge
+              bind b, text <leading>
+            call is-above
+              bind a
+                call subtract
+                  bind a, read now
+                  bind b, read last
+              bind b, read wait
+        hook hold
+          save last, read now
+          call work
+            bind args, read args
+          send back
+
+      fork test
+        hook test
+          call is-null
+            bind value, read timer
+        hook hold
+          save remaining
+            call subtract
+              bind a, read wait
+              bind b
+                call subtract
+                  bind a, read now
+                  bind b, read last
+          save timer
+            call set-timeout
+              bind callback
+                task fire
+                  save last
+                    call get
+                  save timer, wave null
+                  fork test
+                    hook test
+                      call is-equal
+                        bind a, read edge
+                        bind b, text <trailing>
+                    hook hold
+                      call work
+                        bind args, read args
+              bind ms, read remaining
+
+task limit
+  wait true
+  take work, like task
+  take duration, like size
+
+  save controller
+    make abort-controller
+
+  save signal, read controller/signal
+
+  save timer
+    call set-timeout
+      bind callback
+        task abort
+          call controller/abort
+      bind ms, read duration
+
+  save result
+    call work
+      wait true
+      halt kink
+
+  call clear-timeout
+    bind handle, read timer
+
+  send back, read result
+
+task run
+  wait true
+  take work, like task
+  take position, like text, fall text <after>
+  take time, need false
+  take duration, like size, need false
+
+  fork test
+    hook test
+      call is-equal
+        bind a, read position
+        bind b, text <after>
+    hook hold
+      call timers/set-timeout
+        wait true
+        bind ms, read duration
+      send back
+        call work
+          wait true
+
+  fork test
+    hook test
+      call is-equal
+        bind a, read position
+        bind b, text <at>
+    hook hold
+      save now
+        call get
+      save diff
+        call subtract
+          bind a, read time
+          bind b, read now
+      save wait-ms, mark 0
+      fork test
+        hook test
+          call is-above
+            bind a, read diff
+            bind b, mark 0
+        hook hold
+          save wait-ms, read diff
+      call timers/set-timeout
+        wait true
+        bind ms, read wait-ms
+      send back
+        call work
+          wait true

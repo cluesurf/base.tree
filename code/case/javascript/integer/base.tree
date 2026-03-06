@@ -1,15 +1,15 @@
 
 load ./32
-  find form integer-32
+  find i32
 
 load ./grow
-  find form integer-grow
+  find integer
 
-form integer
+form number
   link dock
     like or
-      like integer-32
-      like integer-grow
+      like i32
+      like integer
 
 bear ./integer/8
 bear ./integer/16

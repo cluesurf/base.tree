@@ -1,0 +1,6 @@
+
+bear ./8
+bear ./16
+bear ./32
+bear ./64
+bear ./128

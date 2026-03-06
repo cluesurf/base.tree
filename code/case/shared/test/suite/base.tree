@@ -1,4 +1,12 @@
 
+load ./context
+  find make
+  find set
+  find count
+
+load ./compare
+  find contains-text
+
 host test-registry
 host group-stack
 
@@ -83,7 +91,7 @@ task run
   save failures
     make list
   save start
-    call clock-now
+    call clock/now/get
 
   save size
     call list-size
@@ -136,16 +144,16 @@ task run
         call make
           bind name, read name
           bind start-time
-            call clock-now
+            call clock/now/get
 
-      call set-context
+      call set
         bind ctx, read ctx
 
       call work
         wait true
 
       save fail-count
-        call count-failures
+        call count
           bind ctx, read ctx
 
       fork test
@@ -178,7 +186,7 @@ task run
           bind b, mark 1
 
   save end
-    call clock-now
+    call clock/now/get
   save duration
     call subtract
       bind a, read end

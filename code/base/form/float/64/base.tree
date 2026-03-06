@@ -2,5 +2,5 @@
 host max
 host min
 
-form float-64
-  note <A "double" data type, with 15 points of decimal precision.>
+form f64
+  note <A 64-bit floating point type with 15 digits of decimal precision.>

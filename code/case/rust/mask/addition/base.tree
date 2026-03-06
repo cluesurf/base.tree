@@ -1,16 +1,16 @@
 
-fuse addition-form, like mark-8
-fuse addition-form, like mark-16
-fuse addition-form, like mark-32
-fuse addition-form, like mark-64
-fuse addition-form, like mark-128
-fuse addition-form, like diff-8
-fuse addition-form, like diff-16
-fuse addition-form, like diff-32
-fuse addition-form, like diff-64
-fuse addition-form, like diff-128
-fuse addition-form, like comb-32
-fuse addition-form, like comb-64
+fuse addition-form, like i8
+fuse addition-form, like i16
+fuse addition-form, like i32
+fuse addition-form, like i64
+fuse addition-form, like i128
+fuse addition-form, like u8
+fuse addition-form, like u16
+fuse addition-form, like u32
+fuse addition-form, like u64
+fuse addition-form, like u128
+fuse addition-form, like f32
+fuse addition-form, like f64
 
 tree addition-form
   take type

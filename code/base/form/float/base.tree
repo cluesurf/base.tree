@@ -4,17 +4,17 @@ host negative-infinity, term negative-infinity
 
 tree float
   hook fuse
-    task round-up # ceil
-    task round-down # floor
+    task round-up
+    task round-down
     task round
-    task truncate-start # return fractional part
-    task truncate-end # return integer part
+    task truncate-start
+    task truncate-end
     task get-sign-as-number
 
     task square-root
-    task compute-sine # sine
-    task compute-cosine # cosine
-    task compute-tangent # tangent
+    task compute-sine
+    task compute-cosine
+    task compute-tangent
     task compute-inverse-sine
     task compute-inverse-cosine
     task compute-inverse-tangent
@@ -26,96 +26,96 @@ tree float
     task compute-inverse-hyperbolic-tangent
 
 task abs
-  take v, like float
-  like float
+  take v, like f64
+  like f64
 
 task acos
-  take v, like float
-  like float
+  take v, like f64
+  like f64
 
 task asin
-  take v, like float
-  like float
+  take v, like f64
+  like f64
 
 task atan
-  take v, like float
-  like float
+  take v, like f64
+  like f64
 
 task atan2
-  take y, like float
-  take x, like float
-  like float
+  take y, like f64
+  take x, like f64
+  like f64
 
 task ceil
-  take v, like float
-  like int
+  take v, like f64
+  like i32
 
 task cos
-  take v, like float
-  like float
+  take v, like f64
+  like f64
 
 task exp
-  take v, like float
-  like float
+  take v, like f64
+  like f64
 
 task fceil
-  take v, like float
-  like float
+  take v, like f64
+  like f64
 
 task ffloor
-  take v, like float
-  like float
+  take v, like f64
+  like f64
 
 task floor
-  take v, like float
-  like int
+  take v, like f64
+  like i32
 
 task fround
-  take v, like float
-  like float
+  take v, like f64
+  like f64
 
 task is-finite
-  take f, like float
+  take f, like f64
   like bool
 
 task is-nan
-  take f, like float
+  take f, like f64
   like bool
 
 task log
-  take v, like float
-  like float
+  take v, like f64
+  like f64
 
 task max
-  take a, like float
-  take b, like float
-  like float
+  take a, like f64
+  take b, like f64
+  like f64
 
 task min
-  take a, like float
-  take b, like float
-  like float
+  take a, like f64
+  take b, like f64
+  like f64
 
 task pow
-  take v, like float
-  take exp, like float
-  like float
+  take v, like f64
+  take exp, like f64
+  like f64
 
 task random
-  like float
+  like f64
 
 task round
-  take v, like float
-  like int
+  take v, like f64
+  like i32
 
 task sin
-  take v, like float
-  like float
+  take v, like f64
+  like f64
 
 task sqrt
-  take v, like float
-  like float
+  take v, like f64
+  like f64
 
 task tan
-  take v, like float
-  like float
+  take v, like f64
+  like f64

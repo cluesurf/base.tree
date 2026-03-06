@@ -2,4 +2,4 @@
 load ../n
   find integer
 
-fuse integer, 32
+fuse integer, size 8

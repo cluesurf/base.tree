@@ -1,133 +1,130 @@
 
 load @cluesurf/base/code/shared/result
-  take tree free-result
-  take tree is-below-or-return-error
-  take tree is-minimally-or-return-error
+  find free-result
+  find is-below-or-return-error
+  find is-minimally-or-return-error
 
 load @cluesurf/base/code/javascript/integer/8
-  take form integer-8
+  find i8
 
 load @cluesurf/case/code/javascript/native
-  take face native-number
-  take task add
-  take task subtract
-  take task multiply
-  take task divide
-  take task ceiling
-  take task floor
-  take task logarithm
+  find native-number
+  find add
+  find subtract
+  find multiply
+  find divide
+  find ceiling
+  find floor
+  find logarithm
 
 tree integer
-  take size, like integer-8
+  take size, like i8
 
   hook fuse
-    load @cluesurf/base
-      find suit integer-{{size}}
-
-    form integer-{{size}}
+    form i{{size}}
       link dock, like native-number
 
-      wear integer-{{size}}
+      wear i{{size}}
         task seek-add
-          take a, like integer-{{size}}
-          take b, like integer-{{size}}
-          fuse free-result, like integer-{{size}}
+          take a, like i{{size}}
+          take b, like i{{size}}
+          fuse free-result, like i{{size}}
           save c
-            make integer-{{size}}
+            make i{{size}}
               call add
                 read a/dock
                 read b/dock
           fuse is-below-or-return-error
             read c
-            integer 256
+            mark 256
           move c
 
         task seek-add-signed
-          take a, like integer-{{size}}
-          take b, like integer-{{size}}
+          take a, like i{{size}}
+          take b, like i{{size}}
           save c
             call add
               read a
               read b
           fuse is-below-or-return-error
             read c
-            integer 256
+            mark 256
           fuse is-minimally-or-return-error
             read c
-            integer 0
+            mark 0
           move c
 
         task seek-divide-base
-          take a, like integer-{{size}}
-          take b, like integer-{{size}}
+          take a, like i{{size}}
+          take b, like i{{size}}
           fuse is-not-or-return-error
             read b
-            integer 0
+            mark 0
           call floor
             call divide
               read a
               read b
 
         task seek-divide-head
-          take a, like integer-{{size}}
-          take b, like integer-{{size}}
+          take a, like i{{size}}
+          take b, like i{{size}}
           fuse is-not-or-return-error
             read b
-            integer 0
+            mark 0
           call ceiling
             call divide
               read a
               read b
 
         task seek-divide-euclid
-          take a, like integer-{{size}}
-          take b, like integer-{{size}}
+          take a, like i{{size}}
+          take b, like i{{size}}
           call divide-base
             read a
             read b
 
         task seek-fall
-          take a, like integer-{{size}}
-          take base, like integer-{{size}}
+          take a, like i{{size}}
+          take base, like i{{size}}
           fuse is-minimally-or-return-error
             read base
-            integer 2
+            mark 2
           fuse is-above-or-return-error
             read a
-            integer 0
+            mark 0
           call floor
             call logarithm
               read a
               read base
 
         task seek-fall-10
-          take a, like integer-{{size}}
+          take a, like i{{size}}
           fuse is-above-or-return-error
             read a
-            integer 0
+            mark 0
           call floor
             call math-log-10-js
               read a
 
         task seek-fall-2
-          take a, like integer-{{size}}
+          take a, like i{{size}}
           fuse is-above-or-return-error
             read a
-            integer 0
+            mark 0
           call floor
             call math-log-2-js
               read a
 
         task seek-multiply
-          take a, like integer-{{size}}
-          take b, like integer-{{size}}
+          take a, like i{{size}}
+          take b, like i{{size}}
           save c
             call multiply
               read a
               read b
           fuse is-below-or-return-error
             read c
-            integer 256
+            mark 256
           move c
 
         task seek-get-next-multiple-of
@@ -143,41 +140,41 @@ tree integer
 
         # checked
         task checked-add
-          take a, like integer-{{size}}
-          take b, like integer-{{size}}
-          free seed, like maybe, like integer-{{size}}
+          take a, like i{{size}}
+          take b, like i{{size}}
+          like maybe, like i{{size}}
 
         task checked-add-signed
-          take a, like integer-{{size}}
-          take b, like integer-{{size}}
-          free seed, like maybe, like integer-{{size}}
+          take a, like i{{size}}
+          take b, like i{{size}}
+          like maybe, like i{{size}}
 
         task checked-divide
-          take a, like integer-{{size}}
-          take b, like integer-{{size}}
-          free seed, like maybe, like integer-{{size}}
+          take a, like i{{size}}
+          take b, like i{{size}}
+          like maybe, like i{{size}}
 
         task checked-divide-euclid
-          take a, like integer-{{size}}
-          take b, like integer-{{size}}
-          free seed, like maybe, like integer-{{size}}
+          take a, like i{{size}}
+          take b, like i{{size}}
+          like maybe, like i{{size}}
 
         task checked-fall
-          take a, like integer-{{size}}
-          take base, like integer-{{size}}
-          free seed, like maybe, like integer-{{size}}
+          take a, like i{{size}}
+          take base, like i{{size}}
+          like maybe, like i{{size}}
 
         task checked-fall-10
         task checked-fall-2
         task checked-multiply
-          take a, like integer-{{size}}
-          take b, like integer-{{size}}
-          free seed, like maybe, like integer-{{size}}
+          take a, like i{{size}}
+          take b, like i{{size}}
+          like maybe, like i{{size}}
 
         task checked-negate
         task checked-get-next-multiple-of
         task checked-get-next-power-of-two
-        task checked-rise # exponentiation
+        task checked-rise
         task checked-remainder
         task checked-remainder-euclid
         task checked-shift-base
@@ -197,7 +194,7 @@ tree integer
         task clamped-negate
         task clamped-get-next-multiple-of
         task clamped-get-next-power-of-two
-        task clamped-rise # exponentiation
+        task clamped-rise
         task clamped-remainder
         task clamped-remainder-euclid
         task clamped-shift-base
@@ -216,7 +213,7 @@ tree integer
         task wrapping-negate
         task wrapping-get-next-multiple-of
         task wrapping-get-next-power-of-two
-        task wrapping-rise # exponentiation
+        task wrapping-rise
         task wrapping-remainder
         task wrapping-remainder-euclid
         task wrapping-shift-base
@@ -247,7 +244,7 @@ tree integer
         task negate-test-and-roll
         task get-next-multiple-of-test-and-roll
         task get-next-power-of-two-test-and-roll
-        task rise # exponentiation-test-and-roll
+        task rise-test-and-roll
         task remainder-test-and-roll
         task remainder-euclid-test-and-roll
         task shift-base-test-and-roll
@@ -268,75 +265,75 @@ tree integer
       task rotate-head
       task swap-bytes
       task reverse-bits
-      task intersect-bitwise # bit-and
-        take a, like integer-{{size}}
-        take b, like integer-{{size}}
+      task intersect-bitwise
+        take a, like i{{size}}
+        take b, like i{{size}}
         call intersect-bitwise-js
           read a
           read b
 
-      task unify-bitwise # bit-or
-        take a, like integer-{{size}}
-        take b, like integer-{{size}}
+      task unify-bitwise
+        take a, like i{{size}}
+        take b, like i{{size}}
         call unify-bitwise-js
           read a
           read b
 
-      task miss-bitwise # bit-xor
-        take a, like integer-{{size}}
-        take b, like integer-{{size}}
+      task miss-bitwise
+        take a, like i{{size}}
+        take b, like i{{size}}
         call miss-bitwise-js
           read a
           read b
 
       task count-ones
-        free seed, like integer-{{size}}
+        like i{{size}}
 
       task count-zeroes
-        free seed, like integer-{{size}}
+        like i{{size}}
 
       task count-leading-ones
-        free seed, like integer-{{size}}
+        like i{{size}}
 
       task count-leading-zeroes
-        free seed, like integer-{{size}}
+        like i{{size}}
 
       task count-trailing-ones
-        free seed, like integer-{{size}}
+        like i{{size}}
 
       task count-trailing-zeroes
-        free seed, like integer-{{size}}
+        like i{{size}}
 
     wear incomplete-comparison
       task is-equal
-        take a, like integer-{{size}}
-        take b, like integer-{{size}}
-        free seed, like wave
+        take a, like i{{size}}
+        take b, like i{{size}}
+        like bool
 
       task is-not-equal
-        take a, like integer-{{size}}
-        take b, like integer-{{size}}
-        free seed, like wave
+        take a, like i{{size}}
+        take b, like i{{size}}
+        like bool
 
       task is-above
-        take a, like integer-{{size}}
-        take b, like integer-{{size}}
-        free seed, like wave
+        take a, like i{{size}}
+        take b, like i{{size}}
+        like bool
 
       task is-below
-        take a, like integer-{{size}}
-        take b, like integer-{{size}}
-        free seed, like wave
+        take a, like i{{size}}
+        take b, like i{{size}}
+        like bool
 
       task is-minimally
-        take a, like integer-{{size}}
-        take b, like integer-{{size}}
-        free seed, like wave
+        take a, like i{{size}}
+        take b, like i{{size}}
+        like bool
 
       task is-maximally
-        take a, like integer-{{size}}
-        take b, like integer-{{size}}
-        free seed, like wave
+        take a, like i{{size}}
+        take b, like i{{size}}
+        like bool
 
     wear replication
       task clone

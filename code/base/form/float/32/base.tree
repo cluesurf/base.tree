@@ -1,5 +1,6 @@
 
 host max
+host min
 
-form float-32
-  note <A "float" data type, with 7 points of decimal precision.>
+form f32
+  note <A 32-bit floating point type with 7 digits of decimal precision.>

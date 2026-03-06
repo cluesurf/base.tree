@@ -3,35 +3,6 @@ tree float
   take self-type, like like
 
   hook fuse
-    task add
-      take a, like self-type
-      take b, like self-type
-      like self-type
-
-    task subtract
-      take a, like self-type
-      take b, like self-type
-      like self-type
-
-    task multiply
-      take a, like self-type
-      take b, like self-type
-      like self-type
-
-    task divide
-      take a, like self-type
-      take b, like self-type
-      like self-type
-
-    task remainder
-      take a, like self-type
-      take b, like self-type
-      like self-type
-
-    task negate
-      take a, like self-type
-      like self-type
-
     task abs
       take v, like self-type
       like self-type
@@ -49,6 +20,10 @@ tree float
       like self-type
 
     task truncate
+      take v, like self-type
+      like self-type
+
+    task get-sign
       take v, like self-type
       like self-type
 
@@ -97,6 +72,18 @@ tree float
       take v, like self-type
       like self-type
 
+    task compute-inverse-hyperbolic-sine
+      take v, like self-type
+      like self-type
+
+    task compute-inverse-hyperbolic-cosine
+      take v, like self-type
+      like self-type
+
+    task compute-inverse-hyperbolic-tangent
+      take v, like self-type
+      like self-type
+
     task exponential
       take v, like self-type
       like self-type
@@ -136,18 +123,21 @@ tree float
       take v, like self-type
       like bool
 
-    task is-integer
+    task is-infinite
       take v, like self-type
       like bool
 
-    task to-fixed
+    task is-normal
       take v, like self-type
-      take digits, like i32
-      like text
+      like bool
 
-    task to-string
+    task is-sign-positive
       take v, like self-type
-      like text
+      like bool
+
+    task is-sign-negative
+      take v, like self-type
+      like bool
 
     task clone
 

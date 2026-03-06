@@ -1,6 +1,7 @@
 
 load ./context
   find get
+  find fail
 
 load ./compare
   find deep-equal
@@ -110,7 +111,7 @@ task match
     hook miss
       save ctx
         call get
-      call context/fail
+      call fail
         bind ctx, read ctx
         bind failure
           call make-failure
