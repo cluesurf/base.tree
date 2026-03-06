@@ -1,9 +1,0 @@
-
-bear ./code
-bear ./float
-bear ./date
-bear ./line
-bear ./integer
-bear ./task
-bear ./text
-bear ./boolean

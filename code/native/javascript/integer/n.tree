@@ -7,7 +7,7 @@ load @cluesurf/base/code/shared/result
 load @cluesurf/base/code/javascript/integer/8
   find i8
 
-load @cluesurf/case/code/javascript/native
+load @cluesurf/native/code/javascript/native
   find native-number
   find add
   find subtract

@@ -1,8 +1,8 @@
 
-load @cluesurf/base/code/base/form/result
+load @cluesurf/base/code/base/result
   find result
 
-load @cluesurf/base/code/base/form/kink
+load @cluesurf/base/code/base/kink
   find kink
 
 task make
