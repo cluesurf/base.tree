@@ -6,48 +6,60 @@ dock load
 
 task make-temp-dir
   wait true
+  take x, like text
+
+  save tmp
+    call os/tmpdir
+
+  save prefix
+    call path/join
+      bind a, read tmp
+      bind b, text <seed-test->
 
   send back
     call fs-promise/mkdtemp
       wait true
-      call path/join
-        call os/tmpdir
-        text <seed-test->
-      halt kink
+      bind path, read prefix
 
 task run-tests
   wait true
+  take x, like text
 
   save dir
     call make-temp-dir
       wait true
+      bind x, text <x>
 
-  save file-path
+  save fp
     call path/join
-      read dir
-      text <meta-test.txt>
+      bind a, read dir
+      bind b, text <meta-test.txt>
 
   call fs-promise/write-file
     wait true
-    read file-path
-    text <metadata test content>
-    halt kink
+    bind path, read fp
+    bind data, text <metadata test content>
 
   note <Test stat on file>
   save stats
     call fs-promise/stat
       wait true
-      read file-path
-      halt kink
+      bind path, read fp
+
+  save is-file
+    call stats/is-file
+      wait true
 
   fork test
-    call stats/is-file
+    call is-equal
+      bind a, read is-file
+      bind b, term true
     hook true
       call console/log
-        text <pass: stat-is-file>
+        bind msg, text <pass: stat-is-file>
     hook false
       call console/log
-        text <fail: stat-is-file>
+        bind msg, text <fail: stat-is-file>
 
   fork test
     call is-above
@@ -55,88 +67,102 @@ task run-tests
       bind b, mark 0
     hook true
       call console/log
-        text <pass: stat-size>
+        bind msg, text <pass: stat-size>
     hook false
       call console/log
-        text <fail: stat-size>
+        bind msg, text <fail: stat-size>
 
   note <Test stat on directory>
   save dir-stats
     call fs-promise/stat
       wait true
-      read dir
-      halt kink
+      bind path, read dir
+
+  save is-dir
+    call dir-stats/is-directory
+      wait true
 
   fork test
-    call dir-stats/is-directory
+    call is-equal
+      bind a, read is-dir
+      bind b, term true
     hook true
       call console/log
-        text <pass: stat-is-directory>
+        bind msg, text <pass: stat-is-directory>
     hook false
       call console/log
-        text <fail: stat-is-directory>
+        bind msg, text <fail: stat-is-directory>
 
   note <Test lstat on symlink>
   save sym
     call path/join
-      read dir
-      text <sym.txt>
+      bind a, read dir
+      bind b, text <sym.txt>
 
   call fs-promise/symlink
     wait true
-    read file-path
-    read sym
-    halt kink
+    bind target, read fp
+    bind path, read sym
 
   save lstat
     call fs-promise/lstat
       wait true
-      read sym
-      halt kink
+      bind path, read sym
+
+  save is-link
+    call lstat/is-symbolic-link
+      wait true
 
   fork test
-    call lstat/is-symbolic-link
+    call is-equal
+      bind a, read is-link
+      bind b, term true
     hook true
       call console/log
-        text <pass: lstat-is-link>
+        bind msg, text <pass: lstat-is-link>
     hook false
       call console/log
-        text <fail: lstat-is-link>
+        bind msg, text <fail: lstat-is-link>
 
   note <Test chmod>
   call fs-promise/chmod
     wait true
-    read file-path
-    mark 0o644
-    halt kink
+    bind path, read fp
+    bind mode, mark 420
 
-  save after-chmod
+  save after-stats
     call fs-promise/stat
       wait true
-      read file-path
-      halt kink
+      bind path, read fp
 
   save mode
     call bit-and
-      bind a, read after-chmod/mode
-      bind b, mark 0o777
+      bind a, read after-stats/mode
+      bind b, mark 511
 
-  fork test, call is-equal, read mode, mark 0o644
+  fork test
+    call is-equal
+      bind a, read mode
+      bind b, mark 420
     hook true
       call console/log
-        text <pass: chmod>
+        bind msg, text <pass: chmod>
     hook false
       call console/log
-        text <fail: chmod>
+        bind msg, text <fail: chmod>
 
   note <Cleanup>
   call fs-promise/rm
     wait true
-    read dir
-    make options
-      bind recursive, wave true
-      bind force, wave true
-    halt kink
+    bind path, read sym
+
+  call fs-promise/rm
+    wait true
+    bind path, read fp
+
+  call fs-promise/rmdir
+    wait true
+    bind path, read dir
 
   call console/log
-    text <done>
+    bind msg, text <done>

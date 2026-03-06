@@ -229,11 +229,11 @@ task run-tests
   call console/log
     bind msg, text <pass: make-dir>
 
-  call fs-promise/rm
+  call fs-promise/rmdir
     wait true
     bind path, read subdir
 
-  call fs-promise/rm
+  call fs-promise/rmdir
     wait true
     bind path, read dir
 

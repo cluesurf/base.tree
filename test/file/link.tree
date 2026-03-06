@@ -1,116 +1,134 @@
 
 dock load
   load <node:fs/promises>, name fs-promise
-  load <node:fs>, name fs
   load <node:path>, name path
   load <node:os>, name os
 
 task make-temp-dir
   wait true
+  take x, like text
+
+  save tmp
+    call os/tmpdir
+
+  save prefix
+    call path/join
+      bind a, read tmp
+      bind b, text <seed-test->
 
   send back
     call fs-promise/mkdtemp
       wait true
-      call path/join
-        call os/tmpdir
-        text <seed-test->
-      halt kink
+      bind path, read prefix
 
 task run-tests
   wait true
+  take x, like text
 
   save dir
     call make-temp-dir
       wait true
+      bind x, text <x>
 
   save source
     call path/join
-      read dir
-      text <source.txt>
+      bind a, read dir
+      bind b, text <source.txt>
 
   call fs-promise/write-file
     wait true
-    read source
-    text <link content>
-    halt kink
+    bind path, read source
+    bind data, text <link content>
 
   note <Test symlink>
   save sym
     call path/join
-      read dir
-      text <sym.txt>
+      bind a, read dir
+      bind b, text <sym.txt>
 
   call fs-promise/symlink
     wait true
-    read source
-    read sym
-    halt kink
+    bind target, read source
+    bind path, read sym
 
   save sym-content
     call fs-promise/read-file
       wait true
-      read sym
-      text <utf8>
-      halt kink
+      bind path, read sym
+      bind encoding, text <utf8>
 
-  fork test, call is-equal, read sym-content, text <link content>
+  fork test
+    call is-equal
+      bind a, read sym-content
+      bind b, text <link content>
     hook true
       call console/log
-        text <pass: symlink-read>
+        bind msg, text <pass: symlink-read>
     hook false
       call console/log
-        text <fail: symlink-read>
+        bind msg, text <fail: symlink-read>
 
   note <Test readlink>
   save target
     call fs-promise/readlink
       wait true
-      read sym
-      halt kink
+      bind path, read sym
 
-  fork test, call is-equal, read target, read source
+  fork test
+    call is-equal
+      bind a, read target
+      bind b, read source
     hook true
       call console/log
-        text <pass: readlink>
+        bind msg, text <pass: readlink>
     hook false
       call console/log
-        text <fail: readlink>
+        bind msg, text <fail: readlink>
 
   note <Test hard link>
   save hard
     call path/join
-      read dir
-      text <hard.txt>
+      bind a, read dir
+      bind b, text <hard.txt>
 
   call fs-promise/link
     wait true
-    read source
-    read hard
-    halt kink
+    bind existingPath, read source
+    bind newPath, read hard
 
   save hard-content
     call fs-promise/read-file
       wait true
-      read hard
-      text <utf8>
-      halt kink
+      bind path, read hard
+      bind encoding, text <utf8>
 
-  fork test, call is-equal, read hard-content, text <link content>
+  fork test
+    call is-equal
+      bind a, read hard-content
+      bind b, text <link content>
     hook true
       call console/log
-        text <pass: hard-link-read>
+        bind msg, text <pass: hard-link-read>
     hook false
       call console/log
-        text <fail: hard-link-read>
+        bind msg, text <fail: hard-link-read>
 
   note <Cleanup>
   call fs-promise/rm
     wait true
-    read dir
-    make options
-      bind recursive, wave true
-      bind force, wave true
-    halt kink
+    bind path, read sym
+
+  call fs-promise/rm
+    wait true
+    bind path, read hard
+
+  call fs-promise/rm
+    wait true
+    bind path, read source
+
+  call fs-promise/rmdir
+    wait true
+    bind path, read dir
 
   call console/log
-    text <done>
+    bind msg, text <done>

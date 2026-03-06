@@ -22,7 +22,10 @@ task stop
   take child, like child
   take form, like text, fall text <gentle>
 
-  fork test, call is-equal, read form, text <force>
+  fork test
+    call is-equal
+      bind a, read form
+      bind b, text <force>
     hook true
       call child/dock/kill
         text <SIGKILL>
@@ -52,7 +55,10 @@ task read
   like text
 
   save stream
-    fork test, call is-equal, read kind, text <stderr>
+    fork test
+      call is-equal
+        bind a, read kind
+        bind b, text <stderr>
       hook true
         send back, read child/dock/stderr
       hook false
@@ -77,7 +83,10 @@ task read
           call buffer/concat
             read chunks
 
-  fork test, call is-equal, read format, text <text>
+  fork test
+    call is-equal
+      bind a, read format
+      bind b, text <text>
     hook true
       send back
         call output/to-string
@@ -93,7 +102,10 @@ task stream
   like list
 
   save source
-    fork test, call is-equal, read kind, text <stderr>
+    fork test
+      call is-equal
+        bind a, read kind
+        bind b, text <stderr>
       hook true
         send back, read child/dock/stderr
       hook false

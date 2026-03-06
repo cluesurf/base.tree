@@ -35,13 +35,19 @@ task listen
   save signal-id
     fork roll
       hook test
-        call is-equal, bind a, read signal, bind b, text <terminate>
+        call is-equal
+          bind a, read signal
+          bind b, text <terminate>
         send back, mark 15
       hook test
-        call is-equal, bind a, read signal, bind b, text <interrupt>
+        call is-equal
+          bind a, read signal
+          bind b, text <interrupt>
         send back, mark 2
       hook test
-        call is-equal, bind a, read signal, bind b, text <hangup>
+        call is-equal
+          bind a, read signal
+          bind b, text <hangup>
         send back, mark 1
       hook fall
         halt text <unknown signal>

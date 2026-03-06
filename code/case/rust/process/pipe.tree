@@ -27,7 +27,9 @@ task connect
           read buf
           halt kink
       fork test
-        call is-equal, bind a, read n, bind b, mark 0
+        call is-equal
+          bind a, read n
+          bind b, mark 0
         hook true
           halt
       call stdin/write-all

@@ -2,6 +2,8 @@
 dock load
   load <std::process>, name proc
   load <std::env>, name env
+  load <libc>
+  load <signal_hook>, name signal-hook
 
 load @cluesurf/base/code/process/current
   find process-info
@@ -40,13 +42,19 @@ task listen
   save signal-id
     fork roll
       hook test
-        call is-equal, bind a, read signal, bind b, text <terminate>
+        call is-equal
+          bind a, read signal
+          bind b, text <terminate>
         send back, read libc/sigterm
       hook test
-        call is-equal, bind a, read signal, bind b, text <interrupt>
+        call is-equal
+          bind a, read signal
+          bind b, text <interrupt>
         send back, read libc/sigint
       hook test
-        call is-equal, bind a, read signal, bind b, text <hangup>
+        call is-equal
+          bind a, read signal
+          bind b, text <hangup>
         send back, read libc/sighup
       hook fall
         halt text <unknown signal>
