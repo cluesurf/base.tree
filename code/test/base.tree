@@ -1,0 +1,19 @@
+
+task assert
+  take value
+  take form, like text, fall text <truthy>
+  take expected, need false
+  take message, like text, need false
+  take tolerance, need false
+
+task deny
+  take value
+  take form, like text, fall text <truthy>
+  take expected, need false
+  take message, like text, need false
+
+task skip
+  take reason, like text, need false
+
+task fail
+  take message, like text

@@ -1,0 +1,67 @@
+
+load @cluesurf/base/code/node/os
+  find platform
+  find arch
+  find cpus
+  find totalmem
+  find homedir
+  find tmpdir
+
+load @cluesurf/base/code/node/process
+  find process
+
+form environment-info
+  link system, like text
+  link architecture, like text
+  link cores, like size
+  link memory, like size
+
+form locale-info
+  link language, like text
+  link region, like text
+  link tag, like text
+
+task environment-read
+  save system
+    call platform
+  save architecture
+    call arch
+  save cores
+    call cpus
+  save memory
+    call totalmem
+  send back
+    make environment-info
+      bind system, read system
+      bind architecture, read architecture
+      bind cores, read cores
+      bind memory, read memory
+
+task environment-path-get
+  take kind, like text
+  fork case, read kind
+    hook home
+      send back
+        call homedir
+    hook temporary
+      send back
+        call tmpdir
+
+task environment-variable-get
+  take name, like text
+  send back, read process/env/{name}
+
+task environment-variable-set
+  take name, like text
+  take value, like text
+  save process/env/{name}, read value
+
+task environment-variable-remove
+  take name, like text
+  save process/env/{name}, read void
+
+task environment-variable-check
+  take name, like text
+  call is-not-equal
+    read process/env/{name}
+    read void

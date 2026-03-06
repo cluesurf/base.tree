@@ -1,0 +1,15 @@
+
+task write
+  take message, like text
+  take level, like text, fall text <info>
+  take fields, like hash, need false
+  take error, need false
+
+task configure
+  take level, like text, fall text <info>
+  take sinks, like list, need false
+  take format, like text, fall text <text>
+  take timestamp, like bool, fall true
+
+task flush
+  wait true

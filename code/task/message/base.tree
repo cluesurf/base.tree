@@ -1,0 +1,16 @@
+
+load @cluesurf/base/code/task
+  find handle
+
+task send
+  take handle, like handle
+  take data
+
+task receive
+  wait true
+  take handle, like handle
+
+task stream
+  wait true
+  take handle, like handle
+  like list

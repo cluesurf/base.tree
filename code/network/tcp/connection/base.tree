@@ -1,0 +1,24 @@
+
+load @cluesurf/base/code/network/tcp
+  find connection
+
+task read
+  wait true
+  take connection, like connection
+  take size, like size, need false
+  like text
+
+task write
+  wait true
+  take connection, like connection
+  take data, like text
+  like size
+
+task close
+  wait true
+  take connection, like connection
+
+task stream
+  wait true
+  take connection, like connection
+  like list

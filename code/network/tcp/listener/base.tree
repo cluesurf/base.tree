@@ -1,0 +1,18 @@
+
+load @cluesurf/base/code/network/tcp
+  find listener
+  find connection
+
+task accept
+  wait true
+  take listener, like listener
+  like connection
+
+task close
+  wait true
+  take listener, like listener
+
+task stream
+  wait true
+  take listener, like listener
+  like list

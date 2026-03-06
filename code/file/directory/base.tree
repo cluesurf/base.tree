@@ -1,0 +1,21 @@
+
+form walk-entry
+  link path, like text
+  link kind, like text
+  link depth, like size
+
+task list
+  wait true
+  take path, like text
+  take deep, like bool, fall false
+  like list
+
+task make
+  wait true
+  take path, like text
+
+task walk
+  wait true
+  take path, like text
+  take depth, like size, fall 0
+  like list

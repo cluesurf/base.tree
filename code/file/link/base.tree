@@ -1,0 +1,11 @@
+
+task make
+  wait true
+  take from, like text
+  take to, like text
+  take hard, like bool, fall false
+
+task read
+  wait true
+  take path, like text
+  like text

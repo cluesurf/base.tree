@@ -1,0 +1,45 @@
+
+form file
+  link dock, hide true
+  link path, like text
+
+task open
+  wait true
+  take path, like text
+  take read, like bool, fall true
+  take write, like bool, fall false
+  take create, like bool, fall false
+  take append, like bool, fall false
+  take clear, like bool, fall false
+  like file
+
+task close
+  wait true
+  take file, like file
+
+task read
+  wait true
+  take file, like file
+  take size, like size
+  like text
+
+task write
+  wait true
+  take file, like file
+  take data
+  like size
+
+task seek
+  wait true
+  take file, like file
+  take offset, like size
+  take frame, like text, fall text <start>
+
+task flush
+  wait true
+  take file, like file
+
+task clear
+  wait true
+  take file, like file
+  take size, like size, fall 0

@@ -1,0 +1,38 @@
+
+task read
+  wait true
+  take path, like text
+  take format, like text, fall text <text>
+  like text
+
+task write
+  wait true
+  take path, like text
+  take data, like text
+
+task append
+  wait true
+  take path, like text
+  take data, like text
+
+task copy
+  wait true
+  take from, like text
+  take to, like text
+  take deep, like bool, fall false
+
+task move
+  wait true
+  take from, like text
+  take to, like text
+
+task remove
+  wait true
+  take path, like text
+  take deep, like bool, fall false
+
+task test
+  wait true
+  take path, like text
+  take kind, like text, need false
+  like bool

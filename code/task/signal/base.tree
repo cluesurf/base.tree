@@ -1,0 +1,13 @@
+
+form signal
+  link dock, hide true
+
+task make
+  like signal
+
+task wait
+  wait true
+  take signal, like signal
+
+task trigger
+  take signal, like signal

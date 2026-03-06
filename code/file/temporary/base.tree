@@ -1,0 +1,7 @@
+
+task make
+  wait true
+  take kind, like text, fall text <file>
+  take prefix, like text, fall text <tmp->
+  take suffix, like text, fall text <>
+  like text

@@ -1,0 +1,17 @@
+
+form lock
+  link dock, hide true
+
+form guard
+  link dock, hide true
+
+task make
+  like lock
+
+task acquire
+  wait true
+  take lock, like lock
+  like guard
+
+task release
+  take guard, like guard

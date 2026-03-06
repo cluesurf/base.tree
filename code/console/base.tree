@@ -1,0 +1,19 @@
+
+task start
+  wait true
+  take prompt, like text, fall text <> >
+  take evaluate, like task, need false
+  take complete, like task, need false
+  take history, like size, fall 1000
+
+task evaluate
+  wait true
+  take code, like text
+  take context, like hash, need false
+
+task inspect
+  take value
+  take depth, like size, fall 4
+  take color, like bool, fall true
+  take truncate, like size, fall 1000
+  like text

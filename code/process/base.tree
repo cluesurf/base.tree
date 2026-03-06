@@ -1,0 +1,30 @@
+
+form result
+  link code, like size
+  link stdout, like text
+  link stderr, like text
+  link ok, like bool
+
+form child
+  link dock, hide true
+  link id, like size
+
+task run
+  wait true
+  take command, like text
+  take arguments, like list, need false
+  take directory, like text, need false
+  take environment, like hash, need false
+  take shell, like bool, fall false
+  take timeout, like size, need false
+  take input, like text, need false
+  like result
+
+task spawn
+  wait true
+  take command, like text
+  take arguments, like list, need false
+  take directory, like text, need false
+  take environment, like hash, need false
+  take shell, like bool, fall false
+  like child

@@ -1,0 +1,12 @@
+
+form info
+  link system, like text
+  link architecture, like text
+  link name, like text
+  link version, like text
+  link endian, like text
+  link cores, like size
+  link memory, like size
+
+task read
+  like info

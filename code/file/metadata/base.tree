@@ -1,0 +1,15 @@
+
+form file-metadata
+  link size, like size
+  link kind, like text
+  link made, like size
+  link changed, like size
+  link opened, like size
+  link mode, like size
+  link link, like bool
+
+task read
+  wait true
+  take path, like text
+  take follow, like bool, fall true
+  like file-metadata

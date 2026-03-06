@@ -1,0 +1,16 @@
+
+form response
+  link status, like size
+  link headers, like hash
+  link ok, like bool
+  link url, like text
+
+task send
+  wait true
+  take url, like text
+  take method, like text, fall text <GET>
+  take headers, like hash, need false
+  take body, like text, need false
+  take timeout, like size, need false
+  take redirect, like text, fall text <follow>
+  like response

@@ -1,0 +1,25 @@
+
+form channel
+  link sender
+  link receiver
+
+task make
+  take capacity, like size, fall 0
+  like channel
+
+task send
+  wait true
+  take sender
+  take data
+
+task receive
+  wait true
+  take receiver
+
+task stream
+  wait true
+  take receiver
+  like list
+
+task close
+  take sender

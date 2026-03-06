@@ -1,0 +1,19 @@
+
+form handle
+  link dock, hide true
+  link name, like text
+  link alive, like bool
+
+task spawn
+  wait true
+  take work, like task
+  take name, like text, need false
+  like handle
+
+task wait
+  wait true
+  take handle, like handle
+
+task cancel
+  wait true
+  take handle, like handle

@@ -1,0 +1,35 @@
+
+load @cluesurf/base/code/rust/std/env
+  find var
+  find set-var
+  find remove-var
+  find vars
+  find consts
+
+form environment-info
+  link system, like text
+  link architecture, like text
+
+task environment-read
+  send back
+    make environment-info
+      bind system, read consts/OS
+      bind architecture, read consts/ARCH
+
+task environment-variable-get
+  take name, like text
+  send back
+    call var
+      read name
+
+task environment-variable-set
+  take name, like text
+  take value, like text
+  call set-var
+    read name
+    read value
+
+task environment-variable-remove
+  take name, like text
+  call remove-var
+    read name

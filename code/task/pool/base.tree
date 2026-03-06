@@ -1,0 +1,24 @@
+
+form pool
+  link dock, hide true
+  link size, like size
+
+task make
+  take size, like size, need false
+  like pool
+
+task run
+  wait true
+  take pool, like pool
+  take work, like task
+
+task map
+  wait true
+  take pool, like pool
+  take list, like list
+  take work, like task
+  like list
+
+task close
+  wait true
+  take pool, like pool

@@ -1,0 +1,37 @@
+
+task delay
+  wait true
+  take duration, like size
+
+task repeat
+  wait true
+  take duration, like size
+  take limit, like size, fall 0
+  like list
+
+task cancel
+  take handle
+
+task debounce
+  take work, like task
+  take wait, like size
+  take edge, like text, fall text <trailing>
+  like task
+
+task throttle
+  take work, like task
+  take wait, like size
+  take edge, like text, fall text <leading>
+  like task
+
+task limit
+  wait true
+  take work, like task
+  take duration, like size
+
+task run
+  wait true
+  take work, like task
+  take position, like text, fall text <after>
+  take time, need false
+  take duration, like size, need false
