@@ -1,0 +1,166 @@
+
+dock load
+  load <node:fs/promises>, name fs-promise
+  load <node:path>, name path
+  load <node:os>, name os
+
+task make-temp-dir
+  wait true
+
+  send back
+    call fs-promise/mkdtemp
+      wait true
+      call path/join
+        call os/tmpdir
+        text <seed-test->
+      halt kink
+
+task run-tests
+  wait true
+
+  save dir
+    call make-temp-dir
+      wait true
+
+  save file-path
+    call path/join
+      read dir
+      text <handle-test.txt>
+
+  note <Test open and write via handle>
+  save handle
+    call fs-promise/open
+      wait true
+      read file-path
+      text <w>
+      halt kink
+
+  call handle/write
+    wait true
+    text <hello handle>
+    halt kink
+
+  call handle/close
+    wait true
+    halt kink
+
+  note <Test read via handle>
+  save handle2
+    call fs-promise/open
+      wait true
+      read file-path
+      text <r>
+      halt kink
+
+  save stats
+    call handle2/stat
+      wait true
+      halt kink
+
+  save buf
+    call buffer/alloc
+      read stats/size
+
+  save result
+    call handle2/read
+      wait true
+      read buf
+      mark 0
+      read stats/size
+      halt kink
+
+  save content
+    call result/buffer/to-string
+      text <utf8>
+
+  call handle2/close
+    wait true
+    halt kink
+
+  fork test, call is-equal, read content, text <hello handle>
+    hook true
+      call console/log
+        text <pass: handle-write-read>
+    hook false
+      call console/log
+        text <fail: handle-write-read>
+
+  note <Test truncate via handle>
+  save handle3
+    call fs-promise/open
+      wait true
+      read file-path
+      text <r+>
+      halt kink
+
+  call handle3/truncate
+    wait true
+    mark 5
+    halt kink
+
+  call handle3/close
+    wait true
+    halt kink
+
+  save truncated
+    call fs-promise/read-file
+      wait true
+      read file-path
+      text <utf8>
+      halt kink
+
+  fork test, call is-equal, read truncated, text <hello>
+    hook true
+      call console/log
+        text <pass: handle-truncate>
+    hook false
+      call console/log
+        text <fail: handle-truncate>
+
+  note <Test datasync (flush)>
+  save handle4
+    call fs-promise/open
+      wait true
+      read file-path
+      text <w>
+      halt kink
+
+  call handle4/write
+    wait true
+    text <flushed>
+    halt kink
+
+  call handle4/datasync
+    wait true
+    halt kink
+
+  call handle4/close
+    wait true
+    halt kink
+
+  save flushed
+    call fs-promise/read-file
+      wait true
+      read file-path
+      text <utf8>
+      halt kink
+
+  fork test, call is-equal, read flushed, text <flushed>
+    hook true
+      call console/log
+        text <pass: handle-flush>
+    hook false
+      call console/log
+        text <fail: handle-flush>
+
+  note <Cleanup>
+  call fs-promise/rm
+    wait true
+    read dir
+    make options
+      bind recursive, wave true
+      bind force, wave true
+    halt kink
+
+  call console/log
+    text <done>

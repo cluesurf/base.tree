@@ -1,0 +1,32 @@
+
+task read
+  save info
+    call process-info-process-info
+  save cores, read info/active-processor-count
+  save memory, read info/physical-memory
+  send back
+    make info
+      bind system, text <darwin>
+      bind architecture
+        call swift-arch
+      bind name, read info/operating-system-version-string
+      bind version, read info/operating-system-version-string
+      bind endian, text <LE>
+      bind cores, read cores
+      bind memory, read memory
+
+task process-info-process-info
+  hide true
+  dock call <ProcessInfo.processInfo>
+
+task swift-arch
+  hide true
+  dock call <{
+    #if arch(arm64)
+    return "arm64"
+    #elseif arch(x86_64)
+    return "x64"
+    #else
+    return "unknown"
+    #endif
+  }>

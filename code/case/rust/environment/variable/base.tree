@@ -1,0 +1,39 @@
+
+load @cluesurf/bind/code/rust/std/env
+  find var
+  find set-var
+  find remove-var
+  find vars
+
+task get
+  take name, like text
+  send back
+    call var
+      read name
+
+task set
+  take name, like text
+  take value, like text
+  call set-var
+    read name
+    read value
+
+task remove
+  take name, like text
+  call remove-var
+    read name
+
+task list
+  send back
+    call vars
+
+task check
+  take name, like text
+  save result
+    call var
+      read name
+  fork case, read result
+    hook ok
+      send back, wave true
+    hook err
+      send back, wave false

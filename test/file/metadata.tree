@@ -1,0 +1,142 @@
+
+dock load
+  load <node:fs/promises>, name fs-promise
+  load <node:path>, name path
+  load <node:os>, name os
+
+task make-temp-dir
+  wait true
+
+  send back
+    call fs-promise/mkdtemp
+      wait true
+      call path/join
+        call os/tmpdir
+        text <seed-test->
+      halt kink
+
+task run-tests
+  wait true
+
+  save dir
+    call make-temp-dir
+      wait true
+
+  save file-path
+    call path/join
+      read dir
+      text <meta-test.txt>
+
+  call fs-promise/write-file
+    wait true
+    read file-path
+    text <metadata test content>
+    halt kink
+
+  note <Test stat on file>
+  save stats
+    call fs-promise/stat
+      wait true
+      read file-path
+      halt kink
+
+  fork test
+    call stats/is-file
+    hook true
+      call console/log
+        text <pass: stat-is-file>
+    hook false
+      call console/log
+        text <fail: stat-is-file>
+
+  fork test
+    call is-above
+      bind a, read stats/size
+      bind b, mark 0
+    hook true
+      call console/log
+        text <pass: stat-size>
+    hook false
+      call console/log
+        text <fail: stat-size>
+
+  note <Test stat on directory>
+  save dir-stats
+    call fs-promise/stat
+      wait true
+      read dir
+      halt kink
+
+  fork test
+    call dir-stats/is-directory
+    hook true
+      call console/log
+        text <pass: stat-is-directory>
+    hook false
+      call console/log
+        text <fail: stat-is-directory>
+
+  note <Test lstat on symlink>
+  save sym
+    call path/join
+      read dir
+      text <sym.txt>
+
+  call fs-promise/symlink
+    wait true
+    read file-path
+    read sym
+    halt kink
+
+  save lstat
+    call fs-promise/lstat
+      wait true
+      read sym
+      halt kink
+
+  fork test
+    call lstat/is-symbolic-link
+    hook true
+      call console/log
+        text <pass: lstat-is-link>
+    hook false
+      call console/log
+        text <fail: lstat-is-link>
+
+  note <Test chmod>
+  call fs-promise/chmod
+    wait true
+    read file-path
+    mark 0o644
+    halt kink
+
+  save after-chmod
+    call fs-promise/stat
+      wait true
+      read file-path
+      halt kink
+
+  save mode
+    call bit-and
+      bind a, read after-chmod/mode
+      bind b, mark 0o777
+
+  fork test, call is-equal, read mode, mark 0o644
+    hook true
+      call console/log
+        text <pass: chmod>
+    hook false
+      call console/log
+        text <fail: chmod>
+
+  note <Cleanup>
+  call fs-promise/rm
+    wait true
+    read dir
+    make options
+      bind recursive, wave true
+      bind force, wave true
+    halt kink
+
+  call console/log
+    text <done>

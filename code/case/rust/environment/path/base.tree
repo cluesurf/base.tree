@@ -1,0 +1,39 @@
+
+task get
+  take kind, like text
+  fork roll
+    hook test, call is-equal, read kind, text <home>
+      send back
+        call dirs-home-dir
+    hook test, call is-equal, read kind, text <temporary>
+      send back
+        call std-env-temp-dir
+    hook test, call is-equal, read kind, text <data>
+      send back
+        call dirs-data-dir
+    hook test, call is-equal, read kind, text <configuration>
+      send back
+        call dirs-config-dir
+    hook test, call is-equal, read kind, text <cache>
+      send back
+        call dirs-cache-dir
+
+task dirs-home-dir
+  hide true
+  dock call <dirs::home_dir().map(|p| p.to_string_lossy().into_owned()).unwrap_or_default()>
+
+task dirs-data-dir
+  hide true
+  dock call <dirs::data_dir().map(|p| p.to_string_lossy().into_owned()).unwrap_or_default()>
+
+task dirs-config-dir
+  hide true
+  dock call <dirs::config_dir().map(|p| p.to_string_lossy().into_owned()).unwrap_or_default()>
+
+task dirs-cache-dir
+  hide true
+  dock call <dirs::cache_dir().map(|p| p.to_string_lossy().into_owned()).unwrap_or_default()>
+
+task std-env-temp-dir
+  hide true
+  dock call <std::env::temp_dir().to_string_lossy().into_owned()>

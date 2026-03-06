@@ -1,0 +1,31 @@
+
+task read
+  save current
+    call swift-locale-current
+  save tag, read current/identifier
+  save language, read current/language-code
+  save region, read current/region-code
+  save timezone
+    call swift-timezone-identifier
+  send back
+    make locale
+      bind language, read language
+      bind region, read region
+      bind tag, read tag
+      bind timezone, read timezone
+
+task list
+  send back
+    call swift-preferred-languages
+
+task swift-locale-current
+  hide true
+  dock call <Locale.current>
+
+task swift-timezone-identifier
+  hide true
+  dock call <TimeZone.current.identifier>
+
+task swift-preferred-languages
+  hide true
+  dock call <Locale.preferredLanguages>

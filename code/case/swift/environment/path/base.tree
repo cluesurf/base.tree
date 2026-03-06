@@ -1,0 +1,39 @@
+
+task get
+  take kind, like text
+  fork roll
+    hook test, call is-equal, read kind, text <home>
+      send back
+        call swift-home-dir
+    hook test, call is-equal, read kind, text <temporary>
+      send back
+        call swift-temp-dir
+    hook test, call is-equal, read kind, text <data>
+      send back
+        call swift-search-path
+          text <applicationSupportDirectory>
+    hook test, call is-equal, read kind, text <configuration>
+      save lib
+        call swift-search-path
+          text <libraryDirectory>
+      send back
+        call concat
+          read lib
+          text </Preferences>
+    hook test, call is-equal, read kind, text <cache>
+      send back
+        call swift-search-path
+          text <cachesDirectory>
+
+task swift-home-dir
+  hide true
+  dock call <FileManager.default.homeDirectoryForCurrentUser.path>
+
+task swift-temp-dir
+  hide true
+  dock call <NSTemporaryDirectory()>
+
+task swift-search-path
+  hide true
+  take directory, like text
+  dock call <FileManager.default.urls(for: .init(rawValue: directory)!, in: .userDomainMask).first?.path ?? "">
