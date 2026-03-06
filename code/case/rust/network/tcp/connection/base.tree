@@ -1,0 +1,63 @@
+
+load @cluesurf/base/code/network/tcp
+  find connection
+
+task read
+  wait true
+  take connection, like connection
+  take size, like size, need false
+
+  save raw, read connection/dock
+
+  save buf-size
+    fork test
+      hook test
+        call is-some, read size
+      hook hold
+        read size
+      hook miss
+        mark 4096
+
+  save buf
+    call vec/with-capacity, read buf-size
+
+  save n
+    call raw/read-buf
+      wait true
+      read buf
+      halt kink
+
+  call buf/truncate, read n
+  send back, read buf
+
+task write
+  wait true
+  take connection, like connection
+  take data, like text
+
+  save raw, read connection/dock
+
+  save n
+    call raw/write-all
+      wait true
+      call data/as-bytes
+      halt kink
+
+  send back
+    call data/len
+
+task close
+  wait true
+  take connection, like connection
+
+  save raw, read connection/dock
+  call raw/shutdown
+    wait true
+    halt kink
+
+task stream
+  wait true
+  take connection, like connection
+
+  save raw, read connection/dock
+  send back, read raw

@@ -1,0 +1,58 @@
+
+load @cluesurf/base/code/network/http
+  find response
+
+task send
+  wait true
+  take url, like text
+  take method, like text, fall text <GET>
+  take headers, like hash, need false
+  take body, like text, need false
+  take timeout, like size, need false
+  take redirect, like text, fall text <follow>
+
+  save client
+    call reqwest/client/new
+
+  save builder
+    call client/request
+      call reqwest/method/from-bytes
+        read method
+      read url
+
+  fork test
+    hook test
+      call is-some, read headers
+    hook hold
+      save builder
+        call builder/headers
+          read headers
+
+  fork test
+    hook test
+      call is-some, read body
+    hook hold
+      save builder
+        call builder/body
+          read body
+
+  fork test
+    hook test
+      call is-some, read timeout
+    hook hold
+      save builder
+        call builder/timeout
+          call duration/from-millis
+            read timeout
+
+  save raw
+    call builder/send
+      wait true
+      halt kink
+
+  send back
+    make response
+      bind status, call raw/status/as-u16
+      bind headers, call raw/headers/clone
+      bind ok, call raw/status/is-success
+      bind url, call raw/url/to-string

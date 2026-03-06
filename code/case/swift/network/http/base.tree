@@ -1,0 +1,89 @@
+
+load @cluesurf/base/code/network/http
+  find response
+
+task send
+  wait true
+  take url, like text
+  take method, like text, fall text <GET>
+  take headers, like hash, need false
+  take body, like text, need false
+  take timeout, like size, need false
+  take redirect, like text, fall text <follow>
+
+  save url-obj
+    call url
+      read url
+      halt kink
+
+  save request
+    call url-request
+      read url-obj
+
+  call request/set-http-method, read method
+
+  fork test
+    hook test
+      call is-some, read headers
+    hook hold
+      walk list, read headers
+        hook next
+          take site, name entry
+          call request/set-value
+            read entry/1
+            text <forHTTPHeaderField>
+            read entry/0
+
+  fork test
+    hook test
+      call is-some, read body
+    hook hold
+      call request/set-http-body
+        call body/data
+          text <using>
+          text <.utf8>
+
+  fork test
+    hook test
+      call is-some, read timeout
+    hook hold
+      call request/set-timeout-interval
+        call double
+          read timeout
+          call divide, mark 1000
+
+  save config
+    call url-session-configuration/default
+
+  fork case, read redirect
+    case error
+      save config/http-should-set-cookies, wave false
+    case manual
+      save config/http-should-set-cookies, wave false
+
+  save session
+    call url-session
+      read config
+
+  save result
+    call session/data
+      text <for>
+      read request
+      wait true
+      halt kink
+
+  save data, read result/0
+  save raw, read result/1
+
+  save http-response
+    call raw/as-http-url-response
+
+  send back
+    make response
+      bind status, call http-response/status-code
+      bind headers, call http-response/all-header-fields
+      bind ok
+        call and
+          call gte, call http-response/status-code, mark 200
+          call lt, call http-response/status-code, mark 300
+      bind url, call raw/url/absolute-string
