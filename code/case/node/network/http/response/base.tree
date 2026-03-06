@@ -1,39 +1,30 @@
 
-form response
-  take x-response
-    hide true
+load @cluesurf/base/code/network/http
+  find response
 
-  task set-status
-    take code
-    save self/x-response/status-sode
-      read code
+task read
+  wait true
+  take response, like response
+  take format, like text, fall text <text>
 
-  task set-header-by-key
+  save raw, read response/dock
 
-  task write-utf-8
-    take chunk
-    call self/x-response/write
-      read chunk
-      text <utf-8>
-
-  task write-utf-16
-    take chunk
-    call self/x-response/write
-      read chunk
-      text <utf-16>
-
-  task end
-  task redirect
-  task has-header
-  task get-header
-  task remove-header
-  task were-headers-sent
-    read self/x-response/headers-sent
-  task was-writable-stream-closed
-    read self/x-response/writable-ended
-  task was-writable-stream-flushed
-    read self/x-response/writable-finished
-  task get-length-of-body-ready-to-send
-    read self/x-response/writable-length
-  task send-continue-message
-    read self/x-response/write-continue
+  fork case, read format
+    case text
+      send back
+        call raw/text
+          wait true
+          halt kink
+    case bytes
+      send back
+        call raw/array-buffer
+          wait true
+          halt kink
+    case json
+      send back
+        call raw/json
+          wait true
+          halt kink
+    case stream
+      send back
+        read raw/body
