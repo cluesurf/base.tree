@@ -41,6 +41,47 @@ task text
   task to-upper-case
     like string
 
+  task starts-with
+    take prefix, like text
+    like boolean
+
+  task ends-with
+    take suffix, like text
+    like boolean
+
+  task trim
+    like text
+
+  task trim-start
+    like text
+
+  task trim-end
+    like text
+
+  task pad-left
+    take length, like u64
+    take fill, like text
+    like text
+
+  task pad-right
+    take length, like u64
+    take fill, like text
+    like text
+
+  task replace
+    take search, like text
+    take replacement, like text
+    like text
+
+  task replace-all
+    take search, like text
+    take replacement, like text
+    like text
+
+  task contains
+    take search, like text
+    like boolean
+
 fuse define-each, read encoding
   read define-encoding
 

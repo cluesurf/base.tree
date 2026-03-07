@@ -80,3 +80,172 @@ form list
     take start, like u64
     take end, like u64
     like list
+
+  task find
+    take self
+    take test
+      like task
+        take item, like t
+        like boolean
+    like maybe
+
+  task find-index
+    take self
+    take test
+      like task
+        take item, like t
+        like boolean
+    like maybe
+
+  task any
+    take self
+    take test
+      like task
+        take item, like t
+        like boolean
+    like boolean
+
+  task all
+    take self
+    take test
+      like task
+        take item, like t
+        like boolean
+    like boolean
+
+  task take
+    take self
+    take count, like u64
+    like list
+
+  task drop
+    take self
+    take count, like u64
+    like list
+
+  task take-while
+    take self
+    take test
+      like task
+        take item, like t
+        like boolean
+    like list
+
+  task drop-while
+    take self
+    take test
+      like task
+        take item, like t
+        like boolean
+    like list
+
+  task flatten
+    take self
+    like list
+
+  task flat-map
+    head s
+    take self
+    take call
+      like task
+        take item, like t
+        like list
+    like list
+
+  task zip
+    head s
+    take self
+    take other, like list
+    like list
+
+  task zip-with
+    head s
+    head r
+    take self
+    take other, like list
+    take call
+      like task
+        take a, like t
+        take b, like s
+        like r
+    like list
+
+  task unzip
+    take self
+    like pair
+
+  task enumerate
+    take self
+    like list
+
+  task chunks
+    take self
+    take size, like u64
+    like list
+
+  task dedup
+    take self
+    like list
+
+  task intersperse
+    take self
+    take separator, like t
+    like list
+
+  task swap
+    take self, flex true
+    take a, like u64
+    take b, like u64
+
+  task split-at
+    take self
+    take index, like u64
+    like pair
+
+  task starts-with
+    take self
+    take prefix, like list
+    like boolean
+
+  task ends-with
+    take self
+    take suffix, like list
+    like boolean
+
+  task min
+    take self
+    take compare
+      like task
+        take a, like t
+        take b, like t
+        like boolean
+    like maybe
+
+  task max
+    take self
+    take compare
+      like task
+        take a, like t
+        take b, like t
+        like boolean
+    like maybe
+
+  task sum
+    take self
+    take add
+      like task
+        take a, like t
+        take b, like t
+        like t
+    take zero, like t
+    like t
+
+  task product
+    take self
+    take multiply
+      like task
+        take a, like t
+        take b, like t
+        like t
+    take one, like t
+    like t

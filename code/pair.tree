@@ -4,3 +4,43 @@ form pair
   head b
   link first, like a
   link second, like b
+
+  task map-first
+    head c
+    take self
+    take call
+      like task
+        take value, like a
+        like c
+    like pair
+
+  task map-second
+    head c
+    take self
+    take call
+      like task
+        take value, like b
+        like c
+    like pair
+
+  task swap
+    take self
+    like pair
+
+  task to-list
+    take self
+    like list
+
+  task map-both
+    head c
+    head d
+    take self
+    take call-first
+      like task
+        take value, like a
+        like c
+    take call-second
+      like task
+        take value, like b
+        like d
+    like pair

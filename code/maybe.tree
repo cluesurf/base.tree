@@ -4,3 +4,72 @@ form maybe
   case some
     link value, like t
   case none
+
+  task map
+    head s
+    take self
+    take call
+      like task
+        take value, like t
+        like s
+    like maybe
+
+  task bind
+    head s
+    take self
+    take call
+      like task
+        take value, like t
+        like maybe
+    like maybe
+
+  task unwrap
+    take self
+    like t
+
+  task unwrap-or
+    take self
+    take fallback, like t
+    like t
+
+  task unwrap-or-else
+    take self
+    take call
+      like task
+        like t
+    like t
+
+  task is-some
+    take self
+    like boolean
+
+  task is-none
+    take self
+    like boolean
+
+  task filter
+    take self
+    take test
+      like task
+        take value, like t
+        like boolean
+    like maybe
+
+  task flatten
+    take self
+    like maybe
+
+  task to-list
+    take self
+    like list
+
+  task to-result
+    head e
+    take self
+    take error, like e
+    like result
+
+  task or
+    take self
+    take other, like maybe
+    like maybe

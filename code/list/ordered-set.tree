@@ -1,0 +1,74 @@
+
+form ordered-set
+  head t
+
+  task make
+    like ordered-set
+
+  task insert
+    take self, flex true
+    take item, like t
+
+  task remove
+    take self, flex true
+    take item, like t
+    like boolean
+
+  task contains
+    take self
+    take item, like t
+    like boolean
+
+  task get-size
+    take self
+    like u64
+
+  task is-empty
+    take self
+    like boolean
+
+  task union
+    take self
+    take other, like ordered-set
+    like ordered-set
+
+  task intersect
+    take self
+    take other, like ordered-set
+    like ordered-set
+
+  task difference
+    take self
+    take other, like ordered-set
+    like ordered-set
+
+  task to-list
+    take self
+    like list
+
+  task min
+    take self
+    like maybe
+
+  task max
+    take self
+    like maybe
+
+  task filter
+    take self
+    take test
+      like task
+        take item, like t
+        like boolean
+    like ordered-set
+
+  task fold
+    head s
+    take self
+    take initial, like s
+    take call
+      like task
+        take accumulator, like s
+        take item, like t
+        like s
+    like s

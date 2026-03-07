@@ -4,3 +4,31 @@ form boolean
 
   case true
   case false
+
+  task and
+    take self
+    take other, like boolean
+    like boolean
+
+  task or
+    take self
+    take other, like boolean
+    like boolean
+
+  task not
+    take self
+    like boolean
+
+  task xor
+    take self
+    take other, like boolean
+    like boolean
+
+  task nand
+    take self
+    take other, like boolean
+    like boolean
+
+  task to-text
+    take self
+    like text
