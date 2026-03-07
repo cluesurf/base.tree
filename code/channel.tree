@@ -1,0 +1,30 @@
+
+note <Typed message-passing channel for concurrent tasks.>
+
+form channel
+  head item
+  case sender
+    link id, like text
+  case receiver
+    link id, like text
+
+task make
+  head item
+  send back
+    like channel
+      fuse item, read item
+
+task send
+  head item
+  take target
+    like channel
+      fuse item, read item
+  take value, like item
+
+task receive
+  head item
+  take source
+    like channel
+      fuse item, read item
+  send back
+    like item
