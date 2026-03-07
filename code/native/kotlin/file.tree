@@ -1,0 +1,202 @@
+
+task read
+  take path, like text
+  take format, like text, fall text <text>
+
+  fork test, call is-equal, read format, text <bytes>
+    hook true
+      send back
+        call kotlin-read-bytes
+          read path
+    hook false
+      send back
+        call kotlin-read-text
+          read path
+
+task write
+  take path, like text
+  take data, like text
+
+  call kotlin-write-text
+    read path
+    read data
+
+task append
+  take path, like text
+  take data, like text
+
+  call kotlin-append-text
+    read path
+    read data
+
+task copy
+  take from, like text
+  take to, like text
+  take deep, like bool, fall wave false
+
+  fork test, name deep
+    hook true
+      call kotlin-copy-directory
+        read from
+        read to
+    hook false
+      call kotlin-copy-file
+        read from
+        read to
+
+task move
+  take from, like text
+  take to, like text
+
+  call kotlin-move
+    read from
+    read to
+
+task remove
+  take path, like text
+  take deep, like bool, fall wave false
+
+  fork test, name deep
+    hook true
+      call kotlin-remove-directory
+        read path
+    hook false
+      call kotlin-remove-file
+        read path
+
+task test
+  take path, like text
+  take kind, like text, need false
+
+  fork test, call is-null, read kind
+    hook true
+      send back
+        call kotlin-file-exists
+          read path
+
+  fork test, call is-equal, read kind, text <file>
+    hook true
+      send back
+        call kotlin-is-file
+          read path
+
+  fork test, call is-equal, read kind, text <directory>
+    hook true
+      send back
+        call kotlin-is-directory
+          read path
+
+  fork test, call is-equal, read kind, text <link>
+    hook true
+      send back
+        call kotlin-is-link
+          read path
+
+  send back, wave false
+
+task make-directory
+  take path, like text
+
+  call kotlin-make-dirs
+    read path
+
+task list-directory
+  take path, like text
+
+  send back
+    call kotlin-list-directory
+      read path
+
+task kotlin-read-text
+  hide true
+  take path, like text
+  dock call <java.io.File(path).readText(Charsets.UTF_8)>
+
+task kotlin-read-bytes
+  hide true
+  take path, like text
+  dock call <java.io.File(path).readBytes()>
+
+task kotlin-write-text
+  hide true
+  take path, like text
+  take data, like text
+  dock call <java.io.File(path).writeText(data, Charsets.UTF_8)>
+
+task kotlin-append-text
+  hide true
+  take path, like text
+  take data, like text
+  dock call <java.io.File(path).appendText(data, Charsets.UTF_8)>
+
+task kotlin-copy-file
+  hide true
+  take from, like text
+  take to, like text
+  dock call <java.nio.file.Files.copy(java.nio.file.Paths.get(from), java.nio.file.Paths.get(to), java.nio.file.StandardCopyOption.REPLACE_EXISTING)>
+
+task kotlin-copy-directory
+  hide true
+  take from, like text
+  take to, like text
+  dock call <run {
+    val source = java.nio.file.Paths.get(from)
+    val target = java.nio.file.Paths.get(to)
+    java.nio.file.Files.walk(source).forEach { path ->
+      val dest = target.resolve(source.relativize(path))
+      if (java.nio.file.Files.isDirectory(path)) {
+        java.nio.file.Files.createDirectories(dest)
+      } else {
+        java.nio.file.Files.copy(path, dest, java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+      }
+    }
+  }>
+
+task kotlin-move
+  hide true
+  take from, like text
+  take to, like text
+  dock call <java.nio.file.Files.move(java.nio.file.Paths.get(from), java.nio.file.Paths.get(to), java.nio.file.StandardCopyOption.REPLACE_EXISTING)>
+
+task kotlin-remove-file
+  hide true
+  take path, like text
+  dock call <java.nio.file.Files.deleteIfExists(java.nio.file.Paths.get(path))>
+
+task kotlin-remove-directory
+  hide true
+  take path, like text
+  dock call <run {
+    val dir = java.nio.file.Paths.get(path)
+    java.nio.file.Files.walk(dir).sorted(Comparator.reverseOrder()).forEach { java.nio.file.Files.deleteIfExists(it) }
+  }>
+
+task kotlin-file-exists
+  hide true
+  take path, like text
+  dock call <java.nio.file.Files.exists(java.nio.file.Paths.get(path))>
+
+task kotlin-is-file
+  hide true
+  take path, like text
+  dock call <java.nio.file.Files.isRegularFile(java.nio.file.Paths.get(path))>
+
+task kotlin-is-directory
+  hide true
+  take path, like text
+  dock call <java.nio.file.Files.isDirectory(java.nio.file.Paths.get(path))>
+
+task kotlin-is-link
+  hide true
+  take path, like text
+  dock call <java.nio.file.Files.isSymbolicLink(java.nio.file.Paths.get(path))>
+
+task kotlin-make-dirs
+  hide true
+  take path, like text
+  dock call <java.nio.file.Files.createDirectories(java.nio.file.Paths.get(path))>
+
+task kotlin-list-directory
+  hide true
+  take path, like text
+  dock call <java.io.File(path).list()?.toList() ?: emptyList<String>()>

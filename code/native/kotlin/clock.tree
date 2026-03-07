@@ -1,0 +1,18 @@
+
+load ./clock/now
+  find get
+
+task delay
+  take duration, like size
+
+  call kotlin-thread-sleep
+    read duration
+
+task now
+  send back
+    call get
+
+task kotlin-thread-sleep
+  hide true
+  take duration, like size
+  dock call <Thread.sleep(duration.toLong())>

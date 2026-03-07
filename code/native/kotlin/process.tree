@@ -1,0 +1,95 @@
+
+load @cluesurf/base/code/process
+  find result
+  find child
+
+task run
+  take command, like text
+  take arguments, like list, need false
+  take directory, like text, need false
+  take environment, like hash, need false
+  take shell, like bool, fall false
+  take timeout, like size, need false
+  take input, like text, need false
+  like result
+
+  send back
+    call kotlin-run-process
+      read command
+      read arguments
+      read directory
+      read environment
+      read shell
+      read timeout
+      read input
+
+task spawn
+  take command, like text
+  take arguments, like list, need false
+  take directory, like text, need false
+  take environment, like hash, need false
+  take shell, like bool, fall false
+  like child
+
+  send back
+    call kotlin-spawn-process
+      read command
+      read arguments
+      read directory
+      read environment
+      read shell
+
+task kotlin-run-process
+  hide true
+  take command, like text
+  take arguments, like list
+  take directory, like text
+  take environment, like hash
+  take shell, like bool
+  take timeout, like size
+  take input, like text
+  dock call <run {
+    val cmd = if (shell == true) {
+      listOf("/bin/sh", "-c", command + " " + (arguments?.joinToString(" ") ?: ""))
+    } else {
+      listOf(command) + (arguments ?: emptyList())
+    }
+    val pb = ProcessBuilder(cmd)
+    if (directory != null) pb.directory(java.io.File(directory))
+    if (environment != null) pb.environment().putAll(environment)
+    pb.redirectErrorStream(false)
+    val proc = pb.start()
+    if (input != null) {
+      proc.outputStream.write(input.toByteArray())
+      proc.outputStream.close()
+    }
+    val stdout = proc.inputStream.bufferedReader().readText()
+    val stderr = proc.errorStream.bufferedReader().readText()
+    if (timeout != null) {
+      proc.waitFor(timeout.toLong(), java.util.concurrent.TimeUnit.MILLISECONDS)
+    } else {
+      proc.waitFor()
+    }
+    val code = proc.exitValue()
+    mapOf("code" to code, "stdout" to stdout, "stderr" to stderr, "ok" to (code == 0))
+  }>
+
+task kotlin-spawn-process
+  hide true
+  take command, like text
+  take arguments, like list
+  take directory, like text
+  take environment, like hash
+  take shell, like bool
+  dock call <run {
+    val cmd = if (shell == true) {
+      listOf("/bin/sh", "-c", command + " " + (arguments?.joinToString(" ") ?: ""))
+    } else {
+      listOf(command) + (arguments ?: emptyList())
+    }
+    val pb = ProcessBuilder(cmd)
+    if (directory != null) pb.directory(java.io.File(directory))
+    if (environment != null) pb.environment().putAll(environment)
+    pb.redirectErrorStream(false)
+    pb.start()
+  }>

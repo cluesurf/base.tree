@@ -1,0 +1,19 @@
+
+task get
+  take precise, like bool, fall wave false
+
+  fork test, read precise
+    hook true
+      send back
+        call kotlin-nano-time
+    hook false
+      send back
+        call kotlin-current-millis
+
+task kotlin-current-millis
+  hide true
+  dock call <System.currentTimeMillis()>
+
+task kotlin-nano-time
+  hide true
+  dock call <System.nanoTime()>

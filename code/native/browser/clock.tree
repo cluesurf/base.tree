@@ -1,0 +1,21 @@
+
+load ./clock/now
+  find get
+
+task delay
+  wait true
+  take duration, like size
+
+  call browser-set-timeout-promise
+    wait true
+    read duration
+
+task now
+  send back
+    call get
+
+task browser-set-timeout-promise
+  hide true
+  wait true
+  take duration, like size
+  dock call <new Promise(resolve => setTimeout(resolve, duration))>

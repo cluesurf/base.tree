@@ -1,0 +1,34 @@
+
+task read
+  send back
+    make info
+      bind user-agent
+        call browser-user-agent
+      bind language
+        call browser-language
+      bind platform
+        call browser-platform
+      bind url
+        call browser-url
+      bind online
+        call browser-online
+
+task browser-user-agent
+  hide true
+  dock call <navigator.userAgent>
+
+task browser-language
+  hide true
+  dock call <navigator.language>
+
+task browser-platform
+  hide true
+  dock call <navigator.platform>
+
+task browser-url
+  hide true
+  dock call <location.href>
+
+task browser-online
+  hide true
+  dock call <navigator.onLine>

@@ -1,0 +1,47 @@
+
+load @cluesurf/base/code/network/http
+  find response
+
+task send
+  take url, like text
+  take method, like text, fall text <GET>
+  take headers, like hash, need false
+  take body, like text, need false
+  take timeout, like size, need false
+  take redirect, like text, fall text <follow>
+
+  send back
+    call kotlin-http-send
+      read url
+      read method
+      read headers
+      read body
+      read timeout
+      read redirect
+
+task kotlin-http-send
+  hide true
+  take url, like text
+  take method, like text
+  take headers, like hash
+  take body, like text
+  take timeout, like size
+  take redirect, like text
+  dock call <run {
+    val client = java.net.http.HttpClient.newBuilder().apply {
+      if (redirect == "follow") followRedirects(java.net.http.HttpClient.Redirect.ALWAYS)
+      else followRedirects(java.net.http.HttpClient.Redirect.NEVER)
+      if (timeout != null) connectTimeout(java.time.Duration.ofMillis(timeout.toLong()))
+    }.build()
+    val builder = java.net.http.HttpRequest.newBuilder()
+      .uri(java.net.URI.create(url))
+      .method(method, if (body != null) java.net.http.HttpRequest.BodyPublishers.ofString(body) else java.net.http.HttpRequest.BodyPublishers.noBody())
+    if (headers != null) {
+      for ((k, v) in headers) {
+        builder.header(k, v.toString())
+      }
+    }
+    if (timeout != null) builder.timeout(java.time.Duration.ofMillis(timeout.toLong()))
+    val response = client.send(builder.build(), java.net.http.HttpResponse.BodyHandlers.ofString())
+    mapOf("status" to response.statusCode(), "body" to response.body(), "ok" to (response.statusCode() in 200..299), "url" to response.uri().toString())
+  }>
