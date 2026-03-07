@@ -11,7 +11,20 @@ task send
   take data, like text
 
   save raw, read socket/dock
-  call raw/send, read data
+
+  call make-promise
+    task resolve
+      take ok
+      take fail
+      save on-error
+        task handle-error
+          take error
+          call fail, read error
+      save raw/onerror, read on-error
+      call raw/send, read data
+      call ok
+    wait true
+    halt kink
 
 task close
   wait true
@@ -36,4 +49,29 @@ task stream
   take socket, like socket
 
   save raw, read socket/dock
-  send back, read raw
+  save queue, make list
+  save done, wave false
+
+  save on-message
+    task handle-message
+      take event
+      save msg
+        make message
+          bind kind, text <text>
+          bind data, read event/data
+      call queue/push, read msg
+
+  save on-error
+    task handle-error
+      take error
+      save done, wave true
+
+  save on-close
+    task handle-close
+      save done, wave true
+
+  save raw/onmessage, read on-message
+  save raw/onerror, read on-error
+  save raw/onclose, read on-close
+
+  send back, read queue

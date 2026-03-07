@@ -1,66 +1,22 @@
 
-load ./context
+dock load
+  load <std::fs>, name fs
+  load <std::path::Path>, name path
+
+load @cluesurf/base/code/native/shared/test/snapshot
+  find resolve
+  find serialize
+  find deserialize
+
+load @cluesurf/base/code/native/shared/test/context
   find get
   find fail
-
-load ./compare
-  find deep-equal
 
 load @cluesurf/base/code/native/shared/test
   find make-failure
 
-task resolve
-  take name, like text
-  take format, like text
-  hide true
-  save ext, text <.json>
-  fork test
-    hook test
-      call is-equal
-        bind a, read format
-        bind b, text <text>
-    hook hold
-      save ext, text <.txt>
-  send back
-    call text-concat
-      bind a
-        call text-concat
-          bind a, text <.seed/snapshot/>
-          bind b, read name
-      bind b, read ext
-
-task serialize
-  take value
-  take format, like text
-  hide true
-  like text
-  fork test
-    hook test
-      call is-equal
-        bind a, read format
-        bind b, text <json>
-    hook hold
-      send back
-        call json-serialize
-          bind value, read value
-  send back
-    call to-text
-      bind value, read value
-
-task deserialize
-  take raw, like text
-  take format, like text
-  hide true
-  fork test
-    hook test
-      call is-equal
-        bind a, read format
-        bind b, text <json>
-    hook hold
-      send back
-        call json-parse
-          bind text, read raw
-  send back, read raw
+load @cluesurf/base/code/native/shared/test/compare
+  find deep-equal
 
 task match
   wait true
@@ -74,26 +30,25 @@ task match
       bind format, read format
 
   save exists
-    call file/test
-      wait true
+    call path/exists
       bind path, read path
 
   fork test
     hook test, read exists
     hook miss
+      call fs/create-dir-all
+        bind path, text <.seed/snapshot>
       save data
         call serialize
           bind value, read value
           bind format, read format
-      call file/write
-        wait true
+      call fs/write
         bind path, read path
-        bind data, read data
+        bind contents, read data
       send back
 
   save raw
-    call file/read
-      wait true
+    call fs/read-to-string
       bind path, read path
 
   save stored
@@ -131,12 +86,14 @@ task update
       bind name, read name
       bind format, read format
 
+  call fs/create-dir-all
+    bind path, text <.seed/snapshot>
+
   save data
     call serialize
       bind value, read value
       bind format, read format
 
-  call file/write
-    wait true
+  call fs/write
     bind path, read path
-    bind data, read data
+    bind contents, read data

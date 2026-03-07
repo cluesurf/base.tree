@@ -24,24 +24,31 @@ task listen
   take handler, like task
 
   save signal-name
-    fork roll
+    fork test
       hook test
         call is-equal
           bind a, read signal
           bind b, text <terminate>
+      hook hold
         send back, text <SIGTERM>
-      hook test
-        call is-equal
-          bind a, read signal
-          bind b, text <interrupt>
-        send back, text <SIGINT>
-      hook test
-        call is-equal
-          bind a, read signal
-          bind b, text <hangup>
-        send back, text <SIGHUP>
-      hook fall
-        send back, read signal
+      hook miss
+        fork test
+          hook test
+            call is-equal
+              bind a, read signal
+              bind b, text <interrupt>
+          hook hold
+            send back, text <SIGINT>
+          hook miss
+            fork test
+              hook test
+                call is-equal
+                  bind a, read signal
+                  bind b, text <hangup>
+              hook hold
+                send back, text <SIGHUP>
+              hook miss
+                send back, read signal
 
   call process/on
     read signal-name

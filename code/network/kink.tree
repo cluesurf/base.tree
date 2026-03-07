@@ -13,3 +13,23 @@ host kink-code
   term tls-error
   term websocket-error
   term body-too-large
+
+task make
+  take code, like text
+  take note, like text
+  take hint, like text, need false
+  send back
+    make network-kink
+      bind code, read code
+      bind note, read note
+      bind hint, read hint
+
+task throw
+  take code, like text
+  take note, like text
+  take hint, like text, need false
+  halt kink
+    call make
+      bind code, read code
+      bind note, read note
+      bind hint, read hint

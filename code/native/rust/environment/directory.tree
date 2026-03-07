@@ -1,0 +1,16 @@
+
+dock load
+  load <std::env>, name env
+
+task get
+  send back
+    call env/current-dir
+      halt kink
+      call to-string-lossy
+        call to-string
+
+task set
+  take path, like text
+  call env/set-current-dir
+    read path
+    halt kink

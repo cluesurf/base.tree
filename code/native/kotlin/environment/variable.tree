@@ -1,0 +1,52 @@
+
+task get
+  take name, like text
+  send back
+    call kotlin-getenv
+      read name
+
+task set
+  take name, like text
+  take value, like text
+  call kotlin-setenv
+    read name
+    read value
+
+task remove
+  take name, like text
+  call kotlin-unsetenv
+    read name
+
+task list
+  send back
+    call kotlin-getenv-all
+
+task check
+  take name, like text
+  save value
+    call kotlin-getenv
+      read name
+  send back
+    call is-not-equal
+      read value
+      read void
+
+task kotlin-getenv
+  hide true
+  take name, like text
+  dock call <System.getenv(name) ?: "">
+
+task kotlin-setenv
+  hide true
+  take name, like text
+  take value, like text
+  dock call <ProcessBuilder().environment().put(name, value)>
+
+task kotlin-unsetenv
+  hide true
+  take name, like text
+  dock call <ProcessBuilder().environment().remove(name)>
+
+task kotlin-getenv-all
+  hide true
+  dock call <System.getenv()>

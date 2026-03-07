@@ -1,66 +1,21 @@
 
-load ./context
+dock load
+  load <node:fs/promises>, name fs
+
+load @cluesurf/base/code/native/shared/test/snapshot
+  find resolve
+  find serialize
+  find deserialize
+
+load @cluesurf/base/code/native/shared/test/context
   find get
   find fail
-
-load ./compare
-  find deep-equal
 
 load @cluesurf/base/code/native/shared/test
   find make-failure
 
-task resolve
-  take name, like text
-  take format, like text
-  hide true
-  save ext, text <.json>
-  fork test
-    hook test
-      call is-equal
-        bind a, read format
-        bind b, text <text>
-    hook hold
-      save ext, text <.txt>
-  send back
-    call text-concat
-      bind a
-        call text-concat
-          bind a, text <.seed/snapshot/>
-          bind b, read name
-      bind b, read ext
-
-task serialize
-  take value
-  take format, like text
-  hide true
-  like text
-  fork test
-    hook test
-      call is-equal
-        bind a, read format
-        bind b, text <json>
-    hook hold
-      send back
-        call json-serialize
-          bind value, read value
-  send back
-    call to-text
-      bind value, read value
-
-task deserialize
-  take raw, like text
-  take format, like text
-  hide true
-  fork test
-    hook test
-      call is-equal
-        bind a, read format
-        bind b, text <json>
-    hook hold
-      send back
-        call json-parse
-          bind text, read raw
-  send back, read raw
+load @cluesurf/base/code/native/shared/test/compare
+  find deep-equal
 
 task match
   wait true
@@ -73,28 +28,44 @@ task match
       bind name, read name
       bind format, read format
 
-  save exists
-    call file/test
-      wait true
-      bind path, read path
+  save exists, wave true
+  save raw, text <>
+  call fs/access
+    wait true
+    bind path, read path
+    halt kink
+      save exists, wave false
 
   fork test
     hook test, read exists
     hook miss
+      save dir
+        call resolve
+          bind name, text <>
+          bind format, read format
+      call fs/mkdir
+        wait true
+        bind path, text <.seed/snapshot>
+        bind options
+          make object
+            bind recursive, wave true
+        halt kink
       save data
         call serialize
           bind value, read value
           bind format, read format
-      call file/write
+      call fs/write-file
         wait true
         bind path, read path
         bind data, read data
+        bind encoding, text <utf8>
       send back
 
   save raw
-    call file/read
+    call fs/read-file
       wait true
       bind path, read path
+      bind encoding, text <utf8>
 
   save stored
     call deserialize
@@ -131,12 +102,21 @@ task update
       bind name, read name
       bind format, read format
 
+  call fs/mkdir
+    wait true
+    bind path, text <.seed/snapshot>
+    bind options
+      make object
+        bind recursive, wave true
+    halt kink
+
   save data
     call serialize
       bind value, read value
       bind format, read format
 
-  call file/write
+  call fs/write-file
     wait true
     bind path, read path
     bind data, read data
+    bind encoding, text <utf8>

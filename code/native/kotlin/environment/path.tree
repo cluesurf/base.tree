@@ -1,0 +1,59 @@
+
+task get
+  take kind, like text
+  fork roll
+    hook test, call is-equal, read kind, text <home>
+      send back
+        call kotlin-system-property
+          text <user.home>
+    hook test, call is-equal, read kind, text <temporary>
+      send back
+        call kotlin-system-property
+          text <java.io.tmpdir>
+    hook test, call is-equal, read kind, text <data>
+      send back
+        call kotlin-data-dir
+    hook test, call is-equal, read kind, text <configuration>
+      send back
+        call kotlin-config-dir
+    hook test, call is-equal, read kind, text <cache>
+      send back
+        call kotlin-cache-dir
+
+task kotlin-system-property
+  hide true
+  take name, like text
+  dock call <System.getProperty(name) ?: "">
+
+task kotlin-data-dir
+  hide true
+  dock call <run {
+    val os = System.getProperty("os.name")?.lowercase() ?: ""
+    when {
+      "mac" in os -> System.getProperty("user.home") + "/Library/Application Support"
+      "win" in os -> System.getenv("APPDATA") ?: ""
+      else -> System.getenv("XDG_DATA_HOME") ?: (System.getProperty("user.home") + "/.local/share")
+    }
+  }>
+
+task kotlin-config-dir
+  hide true
+  dock call <run {
+    val os = System.getProperty("os.name")?.lowercase() ?: ""
+    when {
+      "mac" in os -> System.getProperty("user.home") + "/Library/Preferences"
+      "win" in os -> System.getenv("APPDATA") ?: ""
+      else -> System.getenv("XDG_CONFIG_HOME") ?: (System.getProperty("user.home") + "/.config")
+    }
+  }>
+
+task kotlin-cache-dir
+  hide true
+  dock call <run {
+    val os = System.getProperty("os.name")?.lowercase() ?: ""
+    when {
+      "mac" in os -> System.getProperty("user.home") + "/Library/Caches"
+      "win" in os -> (System.getenv("LOCALAPPDATA") ?: "") + "\\Temp"
+      else -> System.getenv("XDG_CACHE_HOME") ?: (System.getProperty("user.home") + "/.cache")
+    }
+  }>

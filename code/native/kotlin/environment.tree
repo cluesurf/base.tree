@@ -1,0 +1,40 @@
+
+task read
+  save system
+    call kotlin-system-property
+      text <os.name>
+  save architecture
+    call kotlin-system-property
+      text <os.arch>
+  save version
+    call kotlin-system-property
+      text <os.version>
+  send back
+    make info
+      bind system, read system
+      bind architecture, read architecture
+      bind name, read system
+      bind version, read version
+      bind endian
+        call kotlin-byte-order
+      bind cores
+        call kotlin-available-processors
+      bind memory
+        call kotlin-total-memory
+
+task kotlin-system-property
+  hide true
+  take name, like text
+  dock call <System.getProperty(name) ?: "">
+
+task kotlin-byte-order
+  hide true
+  dock call <if (java.nio.ByteOrder.nativeOrder() == java.nio.ByteOrder.LITTLE_ENDIAN) "LE" else "BE">
+
+task kotlin-available-processors
+  hide true
+  dock call <Runtime.getRuntime().availableProcessors()>
+
+task kotlin-total-memory
+  hide true
+  dock call <Runtime.getRuntime().totalMemory()>

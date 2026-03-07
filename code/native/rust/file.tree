@@ -1,123 +1,199 @@
 
-load @cluesurf/base/code/rust/std/fs
-  take task read-to-string
-    save task rust-read-to-string
-  take host file
-    save host rust-file-form
-  take form file
-    save form rust-file
-  take host open-options
-    save host rust-open-options-form
-  take form open-options
-    save form rust-open-options
-
-load @cluesurf/native/code/shared/code
-  take task has-flag
-
-dock rust-file, form file
-
-task set-size
-  take size, like size-32
+dock load
+  load <std:fs>, name fs
+  load <std:path>, name path-mod
 
 task read
   take path, like text
+  take format, like text, fall text <text>
 
-  call rust-read-to-string
+  fork test, call is-equal, read format, text <bytes>
+    hook true
+      send back
+        call fs/read
+          read path
+          halt kink
+    hook false
+      send back
+        call fs/read-to-string
+          read path
+          halt kink
+
+task write
+  take path, like text
+  take data, like text
+
+  call fs/write
     read path
+    read data
+    halt kink
 
-task open
-  take path
-  take flags, like size-8
+task append
+  take path, like text
+  take data, like text
 
-  save has-read-flag
-    call has-flag
-      read flags
-      read can-read-flag
+  save handle
+    call fs/open-options/new
+      call append, wave true
+      call open, read path
+      halt kink
+  call handle/write-all
+    read data
+    halt kink
 
-  save has-write-flag
-    call has-flag
-      read flags
-      read can-write-flag
+task copy
+  take from, like text
+  take to, like text
+  take deep, like bool, fall wave false
 
-  save has-create-flag
-    call has-flag
-      read flags
-      read can-create-flag
-
-  save has-append-flag
-    call has-flag
-      read flags
-      read can-append-flag
-
-  save has-clear-flag
-    call has-flag
-      read flags
-      read can-clear-flag
-
-  call rust-open-options-form/new
-    save options
-
-  test is-true, read has-read-flag
+  fork test, name deep
     hook true
-      call options/read
-        save options
-        term true
+      call copy-dir-recursive
+        read from
+        read to
+    hook false
+      call fs/copy
+        read from
+        read to
+        halt kink
 
-  test is-true, read has-write-flag
+task move
+  take from, like text
+  take to, like text
+
+  call fs/rename
+    read from
+    read to
+    halt kink
+
+task remove
+  take path, like text
+  take deep, like bool, fall wave false
+
+  fork test, name deep
     hook true
-      call options/write
-        save options
-        term true
+      call fs/remove-dir-all
+        read path
+        halt kink
+    hook false
+      save meta
+        call fs/metadata
+          read path
+          halt kink
+      fork test, call meta/is-dir
+        hook true
+          call fs/remove-dir
+            read path
+            halt kink
+        hook false
+          call fs/remove-file
+            read path
+            halt kink
 
-  test is-true, read has-create-flag
+task test
+  take path, like text
+  take kind, like text, need false
+
+  save exists-result
+    call fs/metadata
+      read path
+  fork test
+    hook test
+      call exists-result/is-err
+    hook hold
+      send back, wave false
+
+  fork test, call is-null, read kind
     hook true
-      call options/create
-        save options
-        term true
+      send back, wave true
 
-  test is-true, read has-append-flag
+  save meta
+    call exists-result/unwrap
+
+  fork test, call is-equal, read kind, text <file>
     hook true
-      call options/append
-        save options
-        term true
+      send back, call meta/is-file
 
-  test is-true, read has-clear-flag
+  fork test, call is-equal, read kind, text <directory>
     hook true
-      call options/truncate
-        save options
-        term true
+      send back, call meta/is-dir
 
-  call options/open
-    read path
+  fork test, call is-equal, read kind, text <link>
+    hook true
+      save link-meta
+        call fs/symlink-metadata
+          read path
+          halt kink
+      send back
+        call link-meta/file-type
+          save ft
+        call ft/is-symlink
 
-form file
-  task get-metadata
-    take self, like self
-    call self/dock/metadata
-      halt take
+  send back, wave true
 
-  task get-permissions
-    take self, like self
-    call self/get-metadata
-      halt take
-      save metadata
-    call metadata/permissions
+task make-directory
+  take path, like text
+  take deep, like bool, fall wave false
 
-  task set-permissions
-    take self, like self
-    take flags, like size-16
+  fork test, name deep
+    hook true
+      call fs/create-dir-all
+        read path
+        halt kink
+    hook false
+      call fs/create-dir
+        read path
+        halt kink
 
-    call self/get-permissions
-      halt take
-      save permissions
-    call permissions/set_mode
-      read flags
-    read self
+task list-directory
+  take path, like text
 
-  task load-as-string
-  task load-as-bytes
-  task seek
-  task rewind
-  task write-at
-  task read-at
-  task flush
+  save entries
+    call fs/read-dir
+      read path
+      halt kink
+  send back, read entries
+
+task copy-dir-recursive
+  take from, like text
+  take to, like text
+
+  call fs/create-dir-all
+    read to
+    halt kink
+
+  save entries
+    call fs/read-dir
+      read from
+      halt kink
+
+  walk list, read entries
+    hook next
+      take site, name entry
+      save entry-val
+        call entry/unwrap
+      save entry-path
+        call entry-val/path
+      save file-name
+        call entry-path/file-name
+          save name
+        call name/to-str
+          save name-str
+      save dest
+        call path-mod/path/new
+          read to
+        call dest/join
+          read name-str
+      save file-type
+        call entry-val/file-type
+          halt kink
+      fork test, call file-type/is-dir
+        hook true
+          call copy-dir-recursive
+            read entry-path
+            read dest
+        hook false
+          call fs/copy
+            read entry-path
+            read dest
+            halt kink

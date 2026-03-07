@@ -1,60 +1,255 @@
 
 # https://developer.apple.com/documentation/foundation/filemanager
 
-task read-user-home-link
-  move file-manager/home-directory-for-current-user
+dock load
+  load <Foundation>, name foundation
 
-task read-user-name
-  move file-manager/ns-user-name
+task read
+  wait true
+  take path, like text
+  take format, like text, fall text <text>
+
+  fork test, call is-equal, read format, text <bytes>
+    hook true
+      save url
+        call foundation/url
+          bind file-url-with-path, read path
+      save data
+        call foundation/data
+          bind contents-of, read url
+          halt kink
+      send back, read data
+    hook false
+      save contents
+        call foundation/string
+          bind contents-of-file, read path
+          bind encoding, text <utf8>
+          halt kink
+      send back, read contents
+
+task write
+  wait true
+  take path, like text
+  take data, like text
+
+  call data/write
+    bind to-file, read path
+    bind atomically, wave true
+    bind encoding, text <utf8>
+    halt kink
+
+task append
+  wait true
+  take path, like text
+  take data, like text
+
+  save handle
+    call foundation/file-handle
+      bind for-writing-at-path, read path
+      halt kink
+  call handle/seek-to-end-of-file
+  call handle/write
+    read data
+    halt kink
+  call handle/close-file
+
+task copy
+  wait true
+  take from, like text
+  take to, like text
+  take deep, like bool, fall wave false
+
+  save manager
+    call foundation/file-manager/default
+  call manager/copy-item
+    bind at-path, read from
+    bind to-path, read to
+    halt kink
+
+task move
+  wait true
+  take from, like text
+  take to, like text
+
+  save manager
+    call foundation/file-manager/default
+  call manager/move-item
+    bind at-path, read from
+    bind to-path, read to
+    halt kink
+
+task remove
+  wait true
+  take path, like text
+  take deep, like bool, fall wave false
+
+  save manager
+    call foundation/file-manager/default
+  call manager/remove-item
+    bind at-path, read path
+    halt kink
+
+task test
+  wait true
+  take path, like text
+  take kind, like text, need false
+
+  save manager
+    call foundation/file-manager/default
+
+  fork test, call is-null, read kind
+    hook true
+      send back
+        call manager/file-exists
+          bind at-path, read path
+
+  fork test, call is-equal, read kind, text <file>
+    hook true
+      save is-dir, wave false
+      save exists
+        call manager/file-exists
+          bind at-path, read path
+          bind is-directory, read is-dir
+      fork test, read exists
+        hook true
+          send back
+            call is-not, read is-dir
+      send back, wave false
+
+  fork test, call is-equal, read kind, text <directory>
+    hook true
+      save is-dir, wave false
+      save exists
+        call manager/file-exists
+          bind at-path, read path
+          bind is-directory, read is-dir
+      fork test, read exists
+        hook true
+          send back, read is-dir
+      send back, wave false
+
+  fork test, call is-equal, read kind, text <link>
+    hook true
+      save attrs
+        call manager/attributes-of-item
+          bind at-path, read path
+          halt kink
+      save file-type
+        call attrs/get
+          text <NSFileType>
+      send back
+        call is-equal, read file-type, text <NSFileTypeSymbolicLink>
+
+  send back, wave false
+
+task make-directory
+  wait true
+  take path, like text
+  take deep, like bool, fall wave false
+
+  save manager
+    call foundation/file-manager/default
+  call manager/create-directory
+    bind at-path, read path
+    bind with-intermediate-directories, read deep
+    halt kink
+
+task list-directory
+  wait true
+  take path, like text
+
+  save manager
+    call foundation/file-manager/default
+  send back
+    call manager/contents-of-directory
+      bind at-path, read path
+      halt kink
+
+task read-user-home-link
+  save manager
+    call foundation/file-manager/default
+  send back
+    call manager/home-directory-for-current-user
 
 task read-temporary-directory
-  move file-manager/temporary-directory
-
-task read-folder
-  note <List folder items>
-
-task trash-folder
-
-task trash-file
-
-task replace-file
-
-task replace-folder
-
-task copy-file
-
-task copy-folder
-
-task move-file
-
-task move-folder
-
-task make-soft-file-link
-
-task make-hard-file-link
-
-task make-soft-folder-link
-
-task make-hard-folder-link
-
-task test-file-exists
-
-task test-folder-exists
-
-task test-file-is-readable
-
-task test-file-is-writable
-
-task test-file-is-executable
-
-task read-file-metadata
-
-task read-directory-metadata
-
-task test-file-content-is-equal
-  take base
-  take head
+  save manager
+    call foundation/file-manager/default
+  send back
+    call manager/temporary-directory
 
 task read-current-folder-link
+  save manager
+    call foundation/file-manager/default
+  send back
+    call manager/current-directory-path
 
 task change-current-folder-link
+  take path, like text
+  save manager
+    call foundation/file-manager/default
+  call manager/change-current-directory-path
+    read path
+
+task make-soft-file-link
+  take from, like text
+  take to, like text
+  save manager
+    call foundation/file-manager/default
+  call manager/create-symbolic-link
+    bind at-path, read to
+    bind with-destination-path, read from
+    halt kink
+
+task make-hard-file-link
+  take from, like text
+  take to, like text
+  save manager
+    call foundation/file-manager/default
+  call manager/link-item
+    bind at-path, read from
+    bind to-path, read to
+    halt kink
+
+task test-file-is-readable
+  take path, like text
+  save manager
+    call foundation/file-manager/default
+  send back
+    call manager/is-readable-file
+      bind at-path, read path
+
+task test-file-is-writable
+  take path, like text
+  save manager
+    call foundation/file-manager/default
+  send back
+    call manager/is-writable-file
+      bind at-path, read path
+
+task test-file-is-executable
+  take path, like text
+  save manager
+    call foundation/file-manager/default
+  send back
+    call manager/is-executable-file
+      bind at-path, read path
+
+task read-file-metadata
+  take path, like text
+  save manager
+    call foundation/file-manager/default
+  send back
+    call manager/attributes-of-item
+      bind at-path, read path
+      halt kink
+
+task trash-file
+  take path, like text
+  save manager
+    call foundation/file-manager/default
+  save url
+    call foundation/url
+      bind file-url-with-path, read path
+  call manager/trash-item
+    bind at, read url
+    halt kink

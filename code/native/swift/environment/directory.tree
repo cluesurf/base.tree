@@ -1,0 +1,18 @@
+
+task get
+  send back
+    call swift-current-directory-path
+
+task set
+  take path, like text
+  call swift-change-current-directory-path
+    read path
+
+task swift-current-directory-path
+  hide true
+  dock call <FileManager.default.currentDirectoryPath>
+
+task swift-change-current-directory-path
+  hide true
+  take path, like text
+  dock call <FileManager.default.changeCurrentDirectoryPath(path)>

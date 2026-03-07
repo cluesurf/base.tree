@@ -40,24 +40,31 @@ task listen
   take handler, like task
 
   save signal-id
-    fork roll
+    fork test
       hook test
         call is-equal
           bind a, read signal
           bind b, text <terminate>
+      hook hold
         send back, read libc/sigterm
-      hook test
-        call is-equal
-          bind a, read signal
-          bind b, text <interrupt>
-        send back, read libc/sigint
-      hook test
-        call is-equal
-          bind a, read signal
-          bind b, text <hangup>
-        send back, read libc/sighup
-      hook fall
-        halt text <unknown signal>
+      hook miss
+        fork test
+          hook test
+            call is-equal
+              bind a, read signal
+              bind b, text <interrupt>
+          hook hold
+            send back, read libc/sigint
+          hook miss
+            fork test
+              hook test
+                call is-equal
+                  bind a, read signal
+                  bind b, text <hangup>
+              hook hold
+                send back, read libc/sighup
+              hook miss
+                halt text <unknown signal>
 
   call signal-hook/flag/register
     read signal-id
