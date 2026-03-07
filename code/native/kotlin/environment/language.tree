@@ -1,12 +1,27 @@
 
+load @cluesurf/base/code/environment/language
+  find locale
+
 task read
-  save current
-    call kotlin-locale-default
-  save tag, read current/to-language-tag
-  save language, read current/language
-  save region, read current/country
+  like locale
+
+  save tag
+    call kotlin-get-locale-tag
+  save parts
+    call split
+      read tag
+      text <->
+  save language
+    read parts/0
+  save region
+    fork test, call is-above, read parts/length, mark 1
+      hook true
+        read parts/1
+      hook false
+        text <>
   save timezone
-    call kotlin-timezone-id
+    call kotlin-get-timezone
+
   send back
     make locale
       bind language, read language
@@ -15,17 +30,18 @@ task read
       bind timezone, read timezone
 
 task list
+  like list
+
+  save tag
+    call kotlin-get-locale-tag
   send back
-    call kotlin-available-locales
+    make list
+      read tag
 
-task kotlin-locale-default
+task kotlin-get-locale-tag
   hide true
-  dock call <java.util.Locale.getDefault()>
+  dock call <java.util.Locale.getDefault().toLanguageTag()>
 
-task kotlin-timezone-id
+task kotlin-get-timezone
   hide true
   dock call <java.util.TimeZone.getDefault().id>
-
-task kotlin-available-locales
-  hide true
-  dock call <java.util.Locale.getAvailableLocales().map { it.toLanguageTag() }>

@@ -1,39 +1,92 @@
 
 task get
   take kind, like text
-  fork roll
-    hook test, call is-equal, read kind, text <home>
-      send back
-        call dirs-home-dir
-    hook test, call is-equal, read kind, text <temporary>
-      send back
-        call std-env-temp-dir
-    hook test, call is-equal, read kind, text <data>
-      send back
-        call dirs-data-dir
-    hook test, call is-equal, read kind, text <configuration>
-      send back
-        call dirs-config-dir
-    hook test, call is-equal, read kind, text <cache>
-      send back
-        call dirs-cache-dir
+  like text
 
-task dirs-home-dir
-  hide true
-  dock call <dirs::home_dir().map(|p| p.to_string_lossy().into_owned()).unwrap_or_default()>
+  fork case, read kind
+    case home
+      send back
+        call rust-home-dir
+    case temporary
+      send back
+        call rust-temp-dir
+    case data
+      send back
+        call rust-data-dir
+    case configuration
+      send back
+        call rust-config-dir
+    case cache
+      send back
+        call rust-cache-dir
 
-task dirs-data-dir
+task rust-home-dir
   hide true
-  dock call <dirs::data_dir().map(|p| p.to_string_lossy().into_owned()).unwrap_or_default()>
+  dock call <run {
+    match std::env::var("HOME") {
+      Ok(h) => h,
+      Err(_) => String::new(),
+    }
+  }>
 
-task dirs-config-dir
+task rust-temp-dir
   hide true
-  dock call <dirs::config_dir().map(|p| p.to_string_lossy().into_owned()).unwrap_or_default()>
+  dock call <std::env::temp_dir().to_string_lossy().to_string()>
 
-task dirs-cache-dir
+task rust-data-dir
   hide true
-  dock call <dirs::cache_dir().map(|p| p.to_string_lossy().into_owned()).unwrap_or_default()>
+  dock call <run {
+    if cfg!(target_os = "macos") {
+      let home = std::env::var("HOME").unwrap_or_default();
+      format!("{}/Library/Application Support", home)
+    } else if cfg!(target_os = "windows") {
+      std::env::var("APPDATA").unwrap_or_default()
+    } else {
+      match std::env::var("XDG_DATA_HOME") {
+        Ok(d) => d,
+        Err(_) => {
+          let home = std::env::var("HOME").unwrap_or_default();
+          format!("{}/.local/share", home)
+        }
+      }
+    }
+  }>
 
-task std-env-temp-dir
+task rust-config-dir
   hide true
-  dock call <std::env::temp_dir().to_string_lossy().into_owned()>
+  dock call <run {
+    if cfg!(target_os = "macos") {
+      let home = std::env::var("HOME").unwrap_or_default();
+      format!("{}/Library/Preferences", home)
+    } else if cfg!(target_os = "windows") {
+      std::env::var("APPDATA").unwrap_or_default()
+    } else {
+      match std::env::var("XDG_CONFIG_HOME") {
+        Ok(d) => d,
+        Err(_) => {
+          let home = std::env::var("HOME").unwrap_or_default();
+          format!("{}/.config", home)
+        }
+      }
+    }
+  }>
+
+task rust-cache-dir
+  hide true
+  dock call <run {
+    if cfg!(target_os = "macos") {
+      let home = std::env::var("HOME").unwrap_or_default();
+      format!("{}/Library/Caches", home)
+    } else if cfg!(target_os = "windows") {
+      let local = std::env::var("LOCALAPPDATA").unwrap_or_default();
+      format!("{}\\Temp", local)
+    } else {
+      match std::env::var("XDG_CACHE_HOME") {
+        Ok(d) => d,
+        Err(_) => {
+          let home = std::env::var("HOME").unwrap_or_default();
+          format!("{}/.cache", home)
+        }
+      }
+    }
+  }>

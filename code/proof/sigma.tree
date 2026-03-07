@@ -1,0 +1,13 @@
+
+form sigma
+  head A
+  head B
+    like task
+      take value, like A
+  note <Dependent pair. Existential quantification: there exists an A such that B holds.>
+
+  case pair
+    take first, like A
+    take second
+      call B
+        bind value, read first

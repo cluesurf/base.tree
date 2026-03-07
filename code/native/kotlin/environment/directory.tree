@@ -1,10 +1,13 @@
 
 task get
+  like text
+
   send back
     call kotlin-current-dir
 
 task set
   take path, like text
+
   call kotlin-set-current-dir
     read path
 

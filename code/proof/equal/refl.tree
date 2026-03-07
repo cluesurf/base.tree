@@ -1,0 +1,10 @@
+
+load @cluesurf/base/code/proof/equal
+  find equal
+
+task make
+  firm true
+  head A
+  take x, like A
+  send back
+    make equal/refl

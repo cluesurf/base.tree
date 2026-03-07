@@ -1,39 +1,50 @@
 
 task get
   take kind, like text
-  fork roll
-    hook test, call is-equal, read kind, text <home>
+  like text
+
+  fork case, read kind
+    case home
       send back
         call swift-home-dir
-    hook test, call is-equal, read kind, text <temporary>
+    case temporary
       send back
         call swift-temp-dir
-    hook test, call is-equal, read kind, text <data>
+    case data
       send back
-        call swift-search-path
-          text <applicationSupportDirectory>
-    hook test, call is-equal, read kind, text <configuration>
-      save lib
-        call swift-search-path
-          text <libraryDirectory>
+        call swift-data-dir
+    case configuration
       send back
-        call concat
-          read lib
-          text </Preferences>
-    hook test, call is-equal, read kind, text <cache>
+        call swift-config-dir
+    case cache
       send back
-        call swift-search-path
-          text <cachesDirectory>
+        call swift-cache-dir
 
 task swift-home-dir
   hide true
-  dock call <FileManager.default.homeDirectoryForCurrentUser.path>
+  dock call <NSHomeDirectory()>
 
 task swift-temp-dir
   hide true
   dock call <NSTemporaryDirectory()>
 
-task swift-search-path
+task swift-data-dir
   hide true
-  take directory, like text
-  dock call <FileManager.default.urls(for: .init(rawValue: directory)!, in: .userDomainMask).first?.path ?? "">
+  dock call <run {
+    let paths = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+    return paths.first?.path ?? ""
+  }>
+
+task swift-config-dir
+  hide true
+  dock call <run {
+    let home = NSHomeDirectory()
+    return "\(home)/Library/Preferences"
+  }>
+
+task swift-cache-dir
+  hide true
+  dock call <run {
+    let paths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+    return paths.first?.path ?? ""
+  }>

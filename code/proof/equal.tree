@@ -1,0 +1,9 @@
+
+form equal
+  head A
+  take x, like A
+  take y, like A
+  note <Leibniz equality. The only constructor is refl, which requires x = y.>
+
+  case refl
+    hold same, like equal A x x

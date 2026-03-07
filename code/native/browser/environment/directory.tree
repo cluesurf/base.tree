@@ -1,0 +1,21 @@
+
+task get
+  like text
+
+  send back
+    call browser-get-pathname
+
+task set
+  take path, like text
+
+  call browser-set-pathname
+    read path
+
+task browser-get-pathname
+  hide true
+  dock call <location.pathname>
+
+task browser-set-pathname
+  hide true
+  take path
+  dock call <history.pushState(null, "", path)>

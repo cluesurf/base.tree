@@ -2,33 +2,25 @@
 task read
   send back
     make info
-      bind user-agent
+      bind system, text <browser>
+      bind architecture, text <wasm>
+      bind name
         call browser-user-agent
-      bind language
-        call browser-language
-      bind platform
-        call browser-platform
-      bind url
-        call browser-url
-      bind online
-        call browser-online
+      bind version, text <>
+      bind endian, text <LE>
+      bind cores
+        call browser-cores
+      bind memory
+        call browser-memory
 
 task browser-user-agent
   hide true
   dock call <navigator.userAgent>
 
-task browser-language
+task browser-cores
   hide true
-  dock call <navigator.language>
+  dock call <navigator.hardwareConcurrency || 1>
 
-task browser-platform
+task browser-memory
   hide true
-  dock call <navigator.platform>
-
-task browser-url
-  hide true
-  dock call <location.href>
-
-task browser-online
-  hide true
-  dock call <navigator.onLine>
+  dock call <(navigator.deviceMemory || 0) * 1073741824>

@@ -1,18 +1,25 @@
 
+load @cluesurf/base/code/environment/language
+  find locale
+
 task read
+  like locale
+
   save tag
-    call sys-locale-get-locale
+    call rust-get-locale
   save parts
     call split
       read tag
       text <->
-  save language, read parts/0
+  save language
+    read parts/0
   save region
     fork test, call is-above, read parts/length, mark 1
       hook true
         read parts/1
       hook false
         text <>
+
   send back
     make locale
       bind language, read language
@@ -21,12 +28,22 @@ task read
       bind timezone, text <>
 
 task list
+  like list
+
   save tag
-    call sys-locale-get-locale
+    call rust-get-locale
   send back
     make list
       read tag
 
-task sys-locale-get-locale
+task rust-get-locale
   hide true
-  dock call <sys_locale::get_locale().unwrap_or_else(|| String::from("en-US"))>
+  dock call <run {
+    match std::env::var("LANG") {
+      Ok(lang) => {
+        let l = lang.split('.').next().unwrap_or("en");
+        l.replace('_', "-").to_string()
+      }
+      Err(_) => String::from("en"),
+    }
+  }>

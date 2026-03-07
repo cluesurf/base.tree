@@ -1,0 +1,18 @@
+
+load @cluesurf/base/code/proof/equal
+  find equal
+
+task make
+  firm true
+  head A
+  take x, like A
+  take y, like A
+  take z, like A
+  take left, like equal A x y
+  take right, like equal A y z
+  fork case, read left
+    case refl
+      fork case, read right
+        case refl
+          send back
+            make equal/refl

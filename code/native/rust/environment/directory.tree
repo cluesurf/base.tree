@@ -1,16 +1,21 @@
 
-dock load
-  load <std::env>, name env
-
 task get
+  like text
+
   send back
-    call env/current-dir
-      halt kink
-      call to-string-lossy
-        call to-string
+    call rust-current-dir
 
 task set
   take path, like text
-  call env/set-current-dir
+
+  call rust-set-current-dir
     read path
-    halt kink
+
+task rust-current-dir
+  hide true
+  dock call <std::env::current_dir().unwrap().to_string_lossy().to_string()>
+
+task rust-set-current-dir
+  hide true
+  take path, like text
+  dock call <std::env::set_current_dir(&path).unwrap()>
