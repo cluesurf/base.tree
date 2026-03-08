@@ -1,13 +1,6 @@
 
-load ../case
-  hook mine base
-  hook mine head
-
-load ../form
-  hook mine rein
-
 mine task
-  mine name, name task
+  mine term, term task
     mine term
       take name
     mine list
@@ -24,7 +17,7 @@ mine task
         take task
 
 mine flow
-  mine head
+  mine case
     mine form, form call
       take call
     mine form, form make
@@ -52,9 +45,9 @@ mine halt
 
 mine save
   mine term, term save
-    mine road
-      take base
-    make head
+    mine term
+      take name
+    mine maybe
       mine form, form sift
         take sift
 
@@ -62,10 +55,9 @@ mine turn
   mine term, term turn
     mine term
       take name
-    mine room
-      mine head
-        mine form, form sift
-          take sift
-    mine room
+    mine maybe
+      mine form, form sift
+        take sift
+    mine maybe
       mine form, form line
         take line

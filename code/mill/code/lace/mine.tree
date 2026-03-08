@@ -1,13 +1,4 @@
 
-load <../case>
-  hook mine base
-
-load <../call>
-  hook mine call
-
-load <../task>
-  hook mine task
-
 mine lace
   mine term, term lace
     mine term
@@ -20,13 +11,19 @@ mine lace
         take flow
 
 mine flow
-  mine head
+  mine case
     mine form, form text
+      take text
     mine form, form walk
+      take walk
     mine form, form test
+      take test
     mine form, form form
+      take form
     mine form, form call
+      take call
     mine form, form task
+      take task
 
 mine text
   mine term, term lace
@@ -37,7 +34,7 @@ mine text
 
 mine walk
   mine term, term walk
-    mine road
+    mine term
       take road
     mine list
       mine form, form base
@@ -48,7 +45,7 @@ mine walk
 
 mine test
   mine term, term test
-    mine road
+    mine term
       take road
     mine list
       mine form, form bind

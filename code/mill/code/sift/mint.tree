@@ -1,50 +1,48 @@
 
-load <../call>
-  hook mint call
-
-load <../make>
-  hook mint make
-
 mint sift
-  mint text
-    turn seed
-  mint link, form link
-    turn seed
-  mint move, form move
-    turn seed
-  mint read, form read
-    turn seed
-  mint loan, form loan
-    turn seed
-  mint make, form make
-    turn seed
-  mint call, form call
-    turn seed
+  case text
+    slot value
+  case link, mint link
+    slot value
+  case move, mint move
+    slot value
+  case read, mint read
+    slot value
+  case loan, mint loan
+    slot value
+  case make, mint make
+    slot value
+  case call, mint call
+    slot value
+  case task, mint task
+    slot value
+  case form, mint form
+    slot value
 
 mint link
-  mint road
-    save road
-  make link
-    bind road, link road
-    turn seed
+  case road
+    slot road
+  hook make
+    make link
+      bind road, read road
 
 mint move
-  mint road
-    save road
-  make move
-    bind road, link road
-    turn seed
+  case road
+    slot road
+  hook make
+    make move
+      bind road, read road
 
 mint read
-  mint road
-    save road
-  make read
-    bind road, link road
-    turn seed
+  case road
+    slot road
+  hook make
+    make read
+      bind road, read road
 
 mint loan
-  mint road
-    save road
-  make loan
-    bind road, link road
-    turn seed
+  case road
+    slot road
+  hook make
+    make loan
+      bind road, read road

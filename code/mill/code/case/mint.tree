@@ -1,47 +1,65 @@
 
 mint head
-  mint name
-    save name
-  mint list, form list
-    save form
-  mint knit, form knit
-    save form
-  mint form, form form
-    save form
-  mint free, form free
-    save free
-  mint fall, form fall
-    save fall
-  make head
-    bind name, link name
-    bind make, link form
-    bind free, link free
-    bind fall, link fall
-    turn seed
+  case name
+    slot name
+  case list, mint list
+    slot form
+  case draw, mint draw
+    slot form
+  case form, mint form
+    slot form
+  case take, mint take
+    slot form
+  case free
+    slot free
+  case fall
+    slot fall
+  hook make
+    make head
+      bind name, read name
+      bind form, read form
+      bind free, read free
+      bind fall, read fall
 
 mint base
-  mint name
-    save name
-  mint list, form list
-    save form
-  mint knit, form knit
-    save form
-  mint form, form form
-    save form
-  mint free, form free
-    save free
-  mint fall, form fall
-    save fall
-  make base
-    bind name, link name
-    bind make, link form
-    bind free, link free
-    bind fall, link fall
-    turn seed
+  case name
+    slot name
+  case list, mint list
+    slot form
+  case draw, mint draw
+    slot form
+  case form, mint form
+    slot form
+  case take, mint take
+    slot form
+  case free
+    slot free
+  case fall
+    slot fall
+  hook make
+    make base
+      bind name, read name
+      bind form, read form
+      bind free, read free
+      bind fall, read fall
+
+mint list
+  case form
+    slot form
+  hook make
+    make list
+      bind form, read form
+
+mint draw
+  case form
+    slot form
+  hook make
+    make draw
+      bind form, read form
 
 mint free
-  mint sink
-    save sink
-  call mint-sink
-    bind seed, link sink
-    turn seed
+  case term
+    slot term
+  hook make
+    make free
+      bind term, read term

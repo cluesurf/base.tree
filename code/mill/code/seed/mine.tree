@@ -2,8 +2,8 @@
 mine seed
   mine term, term seed
     mine term
-      take term
-    mine head
+      take name
+    mine case
       mine form, form seed
         take seed
       mine form, form task

@@ -1,33 +1,35 @@
 
-load <../case>
-  find head
-  find base
-
-load <../task>
-  find task
-
 mint form
-  mint name
-    save name
-  mint form
-    line form
-  mint form, form seed
-    line seed
-  mint form, form head
-    line head
-  mint form, form base
-    line base
-  mint form, form bond
-    line bond
-  mint form, form task
-    line task
-  make form
-    bind name, link name
-    bind form, link form
-    bind head, link head
-    bind base, link base
-    bind bond, link bond
-    bind task, link task
+  case name
+    slot name
+  case head, mint head
+    slot head
+  case link, mint link
+    slot link
+  case bond, mint bond
+    slot bond
+  case rein
+    slot rein
+  case task, mint task
+    slot task
+  hook make
+    make form
+      bind name, read name
+      bind head, read head
+      bind link, read link
+      bind bond, read bond
+      bind rein, read rein
+      bind task, read task
 
-mint seed
 mint bond
+  case name
+    slot name
+  case line
+    slot line
+  case call, mint call
+    slot call
+  hook make
+    make bond
+      bind name, read name
+      bind line, read line
+      bind call, read call

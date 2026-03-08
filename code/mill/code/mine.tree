@@ -1,50 +1,26 @@
 
-load @cluesurf/crow/code/text/link/form
-  find mine form
-
-load @cluesurf/crow/code/text/link/task
-  find mine task
-
-load @cluesurf/crow/code/text/link/call
-  find mine call
-
-load @cluesurf/crow/code/text/link/hook
-  find mine hook
-
-load @cluesurf/crow/code/text/link/host
-  find mine host
-
-load @cluesurf/crow/code/text/link/load
-  find mine load
-
-load @cluesurf/crow/code/text/link/dock
-  find mine dock
-
-load @cluesurf/crow/code/text/link/test
-  find mine test
-
-load @cluesurf/crow/code/text/link/hold
-  find mine hold
-
-load @cluesurf/crow/code/text/link/suit
-  find mine suit
-
-load @cluesurf/crow/code/text/link/tree
-  find mine tree
-
 mine code
   mine list
     mine case
       mine form, form form
         take form
-      mine task, form task
+      mine form, form task
         take task
-      mine call, form call
-      mine hook, form hook
-      mine host, form host
-      mine load, form load
-      mine dock, form dock
-      mine test, form test
-      mine hold, form hold
-      mine suit, form suit
-      mine tree, form tree
+      mine form, form call
+        take call
+      mine form, form hook
+        take hook
+      mine form, form host
+        take host
+      mine form, form load
+        take load
+      mine form, form dock
+        take dock
+      mine form, form test
+        take test
+      mine form, form hold
+        take hold
+      mine form, form suit
+        take suit
+      mine form, form tree
+        take tree

@@ -1,33 +1,35 @@
 
-load @cluesurf/drive/hatch/latch
-  catch mine latch
-load @cluesurf/drive/hatch/mount
-  catch mine mount
-
 mine view
   mine term, term view
     mine term
-      take term
+      take name
     mine list
       mine form, form latch
-    mine tree, tree mine-view
+        take latch
+    mine list
+      mine form, form child
+        take child
 
 mine check
   mine term, term check
     mine term
-      take term
-    mine tree, tree mine-view
+      take name
+    mine list
+      mine form, form child
+        take child
 
 mine list
   mine term, term list
-    mine trace
+    mine term
       take trace
     mine list
-      mine form, form list-start
+      mine form, form start
         take start
-      mine tree, tree mine-view
+    mine list
+      mine form, form child
+        take child
 
-mine list-start
+mine start
   mine term, term start
     mine term
       take term
@@ -35,15 +37,19 @@ mine list-start
       mine term
         take start
 
-mine mine-view
+mine child
   mine term, term view
     mine term
-      take term
+      take name
     mine list
       mine form, form mount
+        take mount
     mine list
       mine form, form watch
-    mine tree, tree mine-view
+        take watch
+    mine list
+      mine form, form child
+        take child
 
 mine watch
   mine term, term watch

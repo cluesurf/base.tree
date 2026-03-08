@@ -1,18 +1,6 @@
 
-load <../make>
-  hook mine make
-
-load <../call>
-  hook mine call
-
-load <../task>
-  hook mine task
-
-load <../form>
-  hook mine form
-
 mine sift
-  mine head
+  mine case
     mine text
       take text
     mine term, term text

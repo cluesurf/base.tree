@@ -1,96 +1,102 @@
 
-load ../sift
-  hook mint sift
+load @cluesurf/base/code/task
+  find task
+  find head
 
-load ../call
-  hook mint call
+mint task, like task
+  case name
+    slot name
+  case head, mint head
+    slot head
+  case base, mint base
+    slot base
+  case flow, mint flow
+    slot flow
+  case task, mint task
+    slot task
+  hook make
+    make task
+      bind name, read name
+      bind head, read head
+      bind base, read base
+      bind flow, read flow
+      bind task, read task
 
-load ../make
-  hook mint make
+mint head, like head
+  case name
+    slot name
+  case form, mint form
+    slot form
+  case fall
+    slot fall
+  hook make
+    make head
+      bind name, read name
+      bind head-form, read form
+      bind fall, read fall
 
-mint task
-  mint name, save name
-  mint head, form head
-    line head
-  mint base, form base
-    line base
-  mint flow, form flow
-    line flow
-  mint task, form task
-    line task
-  make task
-    bind name, link name
-    bind bind, link bind
-    bind flow, link flow
-    bind task, link task
-    turn seed
+mint base
+  case name
+    slot name
+  case form, mint form
+    slot form
+  case fall
+    slot fall
+  hook make
+    make base
+      bind name, read name
+      bind link-form, read form
+      bind fall, read fall
 
 mint flow
-  mint call, form call
-    turn seed
-  mint make, form make
-    turn seed
-  mint save, form save
-    turn seed
-  mint turn, form turn
-    turn seed
-  mint rein, form rein
-    turn seed
-  mint show, form show
-    turn seed
-  mint halt, form halt
-    turn seed
-
-mint form
-  mint form
-    save name
-  turn seed
-    link form, link name
-
-mint list
-  mint form
-    save name
-  turn seed
-    form list
-      bind seat
-        link form, link name
-
-mint knit
-  mint form
-    save name
-  mint site
-    save site
-  turn seed
-    form knit
-      bind site, link site
-      bind seat, link form, link name
-
-mint save
-  mint base
-    save base
-  mint sift, form sift
-    save sift
-  make call
-    base task, task save
-    base bind
-      make bind
-        base name, term base
-        base sift, link base
-    base bind
-      make bind
-        base name, term head
-        base sift, link sift
-    turn seed
+  case call, mint call
+    slot call
+  case make, mint make
+    slot make
+  case save, mint save
+    slot save
+  case turn, mint turn
+    slot turn
+  case rein
+    slot rein
+  case show, mint show
+    slot show
+  case halt, mint halt
+    slot halt
 
 mint show
-  mint sift, form sift
-    save sift
-  make show
-    base seed, link sift
-    turn seed
+  case sift, mint sift
+    slot sift
+  hook make
+    make show
+      bind sift, read sift
 
 mint halt
-  mint term
-    turn seed
+  case term
+    slot term
+  hook make
+    make halt
+      bind term, read term
 
-mint rein
+mint save
+  case name
+    slot name
+  case sift, mint sift
+    slot sift
+  hook make
+    make save
+      bind name, read name
+      bind sift, read sift
+
+mint turn
+  case name
+    slot name
+  case sift, mint sift
+    slot sift
+  case line
+    slot line
+  hook make
+    make turn
+      bind name, read name
+      bind sift, read sift
+      bind line, read line

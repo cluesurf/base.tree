@@ -1,6 +1,13 @@
 
 mint tune
-  mint name
-    save name
-  mint head, form head
-    line head
+  case name
+    slot name
+  case head, mint head
+    slot head
+  case host
+    slot host
+  hook make
+    make tune
+      bind name, read name
+      bind head, read head
+      bind host, read host

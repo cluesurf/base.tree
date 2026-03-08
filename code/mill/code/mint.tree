@@ -1,0 +1,24 @@
+
+mint code
+  case form, mint form
+    slot form
+  case task, mint task
+    slot task
+  case call, mint call
+    slot call
+  case hook, mint hook
+    slot hook
+  case host, mint host
+    slot host
+  case load, mint load
+    slot load
+  case dock, mint dock
+    slot dock
+  case test, mint test
+    slot test
+  case hold, mint hold
+    slot hold
+  case suit, mint suit
+    slot suit
+  case tree, mint tree
+    slot tree

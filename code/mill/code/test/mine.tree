@@ -3,8 +3,9 @@ mine test
   mine term, term test
     mine term
       take name
-    mine form, form zone
-      take zone
+    mine list
+      mine form, form zone
+        take zone
 
 mine zone
   mine case
@@ -14,5 +15,15 @@ mine zone
       take find
 
 mine find
-  mine form, form call
-    bind term, term find
+  mine term, term find
+    mine term
+      take name
+    mine list
+      mine form, form bind
+        take bind
+    mine list
+      mine form, form flow
+        take flow
+    mine list
+      mine form, form hook
+        take hook

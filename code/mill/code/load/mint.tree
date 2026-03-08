@@ -1,23 +1,25 @@
 
-mint load
-  mint road
-    save road
-  mint load, form load
-    line load
-  mint hook, form hook
-    line hook
-  make load
-    bind road, link road
-    bind load, link load
-    bind hook, link hook
-    turn seed
+load @cluesurf/base/code/import
+  find import
+  find import-reference
 
-mint hook
-  mint name
-    save name
-  mint save
-    line save
-  make hook
-    bind name, link name
-    bind save, link save
-    turn seed
+# `like load` references the import form
+mint load, like import
+  case path
+    slot path
+  case find, mint reference
+    slot reference
+  hook make
+    make import
+      bind path, read path
+      bind reference, read reference
+
+mint reference, like import-reference
+  case text
+    slot name
+  case name
+    slot alias
+  hook make
+    make import-reference
+      bind name, read name
+      bind alias, read alias

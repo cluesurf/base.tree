@@ -1,11 +1,4 @@
 
-load ../bind
-  take mine bind
-
-load ../task
-  take mine task
-  take mine flow
-
 mine call
   mine term, term call
     mine term
@@ -13,7 +6,7 @@ mine call
     mine list
       mine form, form bind
         take bind
-    mine room
+    mine maybe
       mine case
         mine form, form save
           take save
@@ -23,21 +16,11 @@ mine call
       mine form, form hook
         take hook
 
-mine save
-  mine term, term save
-    mine road
-      take road
-
-mine turn
-  mine term, term turn
-    mine term
-      take term
-
 mine hook
   mine term, term hook
     mine term
       take name
-    mine room
+    mine maybe
       mine form, form line
         take line
     mine list
