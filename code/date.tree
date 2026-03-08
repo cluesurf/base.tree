@@ -1,5 +1,5 @@
 
-load @cluesurf/base/code/shared
+load @cluesurf/base/code/mixin/each
   find define-each
 
 # https://github.com/chronotope/chrono

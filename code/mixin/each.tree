@@ -1,14 +1,4 @@
 
-tree access
-  take name
-  take type
-
-  hook fuse
-    task get-{{name}}
-      like type
-
-    task set-{{name}}, like type
-
 tree define-each
   take list
   take tree-name

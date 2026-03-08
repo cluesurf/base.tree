@@ -1,6 +1,8 @@
 
-load @cluesurf/base/code/shared
+load @cluesurf/base/code/mixin/each
   find define-each
+
+load @cluesurf/base/code/mixin/access
   find access
 
 load @cluesurf/base/code/color

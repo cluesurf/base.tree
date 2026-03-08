@@ -1,6 +1,6 @@
 
-form etch
-  note <Character.>
+form rune
+  note <A character of a number of bytes.>
   link code
     like or
       like size-8
