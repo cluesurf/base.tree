@@ -1,8 +1,0 @@
-
-mine bind
-  mine term, term bind
-    mine term
-      take name
-    mine maybe
-      mine form, form sift
-        take sift

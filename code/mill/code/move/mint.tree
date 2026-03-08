@@ -1,7 +1,0 @@
-
-mint move
-  case name
-    slot name
-  hook make
-    make move
-      bind name, read name
