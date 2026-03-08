@@ -16,7 +16,7 @@ task random-bytes
       read size
 
 task kotlin-digest
-  hide true
+  mark private
   take algorithm, like text
   take data, like text
   dock call <run {
@@ -34,7 +34,7 @@ task kotlin-digest
   }>
 
 task kotlin-random-bytes
-  hide true
+  mark private
   take size, like size
   dock call <run {
     val bytes = ByteArray(size.toInt())

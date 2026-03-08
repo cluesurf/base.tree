@@ -14,13 +14,13 @@ task read
         call browser-memory
 
 task browser-user-agent
-  hide true
+  mark private
   dock call <navigator.userAgent>
 
 task browser-cores
-  hide true
+  mark private
   dock call <navigator.hardwareConcurrency || 1>
 
 task browser-memory
-  hide true
+  mark private
   dock call <(navigator.deviceMemory || 0) * 1073741824>

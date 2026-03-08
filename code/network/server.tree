@@ -1,11 +1,11 @@
 
 form server
-  link dock, hide true
+  link dock, mark private
   link host, like text
   link port, like size
 
 task start
-  wait true
+  mark async
   take port, like size
   take host, like text, fall text <0.0.0.0>
   take handler, like task
@@ -15,5 +15,5 @@ task start
   like server
 
 task stop
-  wait true
+  mark async
   take server, like server

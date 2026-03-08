@@ -3,11 +3,11 @@ dock load
   load <node:fs>, name fs
 
 form writer
-  link dock, hide true
+  link dock, mark private
   link path, like text
 
 task create
-  wait true
+  mark async
   take path, like text
   take append, like bool, fall wave false
 
@@ -28,17 +28,17 @@ task create
       bind path, read path
 
 task write
-  wait true
+  mark async
   take stream, like writer
   take data, like text
 
   call stream/dock/write
-    wait true
+    mark async
     read data
 
 task close
-  wait true
+  mark async
   take stream, like writer
 
   call stream/dock/end
-    wait true
+    mark async

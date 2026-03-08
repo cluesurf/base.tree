@@ -6,7 +6,7 @@ form response
   link url, like text
 
 task send
-  wait true
+  mark async
   take url, like text
   take method, like text, fall text <GET>
   take headers, like hash, need false

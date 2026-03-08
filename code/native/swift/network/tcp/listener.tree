@@ -4,14 +4,14 @@ load @cluesurf/base/code/network/tcp
   find connection
 
 task accept
-  wait true
+  mark async
   take listener, like listener
 
   save raw, read listener/dock
 
   save nw-conn
     call make-continuation
-      wait true
+      mark async
       task resolve
         take ok
         take fail
@@ -43,14 +43,14 @@ task accept
       bind secure, wave false
 
 task close
-  wait true
+  mark async
   take listener, like listener
 
   save raw, read listener/dock
   call raw/cancel
 
 task stream
-  wait true
+  mark async
   take listener, like listener
 
   save raw, read listener/dock

@@ -4,7 +4,7 @@ load ../../view/tint
     save make-zone
 
 task make-mint
-  hide true
+  mark private
 
   save zone, call make-zone
 

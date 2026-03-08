@@ -16,11 +16,11 @@ task read
       bind memory, read memory
 
 task process-info-process-info
-  hide true
+  mark private
   dock call <ProcessInfo.processInfo>
 
 task swift-arch
-  hide true
+  mark private
   dock call <{
     #if arch(arm64)
     return "arm64"

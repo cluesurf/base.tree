@@ -3,7 +3,7 @@ form response
   link status, like size
   link headers, like hash
   link body, like text
-  link dock, hide true
+  link dock, mark private
 
 task make
   take status, like size, fall 200

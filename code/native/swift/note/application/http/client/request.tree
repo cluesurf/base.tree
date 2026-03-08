@@ -1,10 +1,10 @@
 
 task send-request
-  wait true
+  mark async
 
   stem try
     call url-session-form/shared/data
-      wait true
+      mark async
       bind from, read url
       save data
     fuse catch-and-return-error
@@ -36,7 +36,7 @@ task download-file-from-url
 
   stem try
     call url-session-form/shared/download
-      wait true
+      mark async
       bind from, read url
       save local-url
     fuse catch-and-return-error

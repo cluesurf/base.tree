@@ -1,19 +1,19 @@
 
 form writer
-  link dock, hide true
+  link dock, mark private
   link path, like text
 
 task create
-  wait true
+  mark async
   take path, like text
   take append, like bool, fall wave false
   like writer
 
 task write
-  wait true
+  mark async
   take stream, like writer
   take data, like text
 
 task close
-  wait true
+  mark async
   take stream, like writer

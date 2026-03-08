@@ -22,5 +22,5 @@ task read
       bind memory, mark 0
 
 task std-thread-available-parallelism
-  hide true
+  mark private
   dock call <std::thread::available_parallelism().map(|n| n.get()).unwrap_or(1)>

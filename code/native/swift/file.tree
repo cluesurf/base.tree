@@ -5,7 +5,7 @@ dock load
   load <Foundation>, name foundation
 
 task read
-  wait true
+  mark async
   take path, like text
   take format, like text, fall text <text>
 
@@ -28,7 +28,7 @@ task read
       send back, read contents
 
 task write
-  wait true
+  mark async
   take path, like text
   take data, like text
 
@@ -39,7 +39,7 @@ task write
     halt kink
 
 task append
-  wait true
+  mark async
   take path, like text
   take data, like text
 
@@ -54,7 +54,7 @@ task append
   call handle/close-file
 
 task copy
-  wait true
+  mark async
   take from, like text
   take to, like text
   take deep, like bool, fall wave false
@@ -67,7 +67,7 @@ task copy
     halt kink
 
 task move
-  wait true
+  mark async
   take from, like text
   take to, like text
 
@@ -79,7 +79,7 @@ task move
     halt kink
 
 task remove
-  wait true
+  mark async
   take path, like text
   take deep, like bool, fall wave false
 
@@ -90,7 +90,7 @@ task remove
     halt kink
 
 task test
-  wait true
+  mark async
   take path, like text
   take kind, like text, need false
 
@@ -143,7 +143,7 @@ task test
   send back, wave false
 
 task make-directory
-  wait true
+  mark async
   take path, like text
   take deep, like bool, fall wave false
 
@@ -155,7 +155,7 @@ task make-directory
     halt kink
 
 task list-directory
-  wait true
+  mark async
   take path, like text
 
   save manager

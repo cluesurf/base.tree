@@ -6,7 +6,7 @@ load @cluesurf/base/code/network/udp
   find socket
 
 task open
-  wait true
+  mark async
   take port, like size, need false
   take host, like text, fall text <0.0.0.0>
 
@@ -36,7 +36,7 @@ task open
     call dispatch-queue/main
 
   call wait-for-listener-ready
-    wait true
+    mark async
     read raw
     halt kink
 

@@ -8,7 +8,7 @@ load @cluesurf/base/code/process
   find child
 
 task connect
-  wait true
+  mark async
   take from, like child
   take to, like child
 

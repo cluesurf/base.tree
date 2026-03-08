@@ -6,7 +6,7 @@ load @cluesurf/base/code/network/udp/socket
   find datagram
 
 task send
-  wait true
+  mark async
   take socket, like socket
   take data, like text
   take host, like text
@@ -22,7 +22,7 @@ task send
 
   save n
     call raw/send-to
-      wait true
+      mark async
       call data/as-bytes
       read addr
       halt kink
@@ -30,7 +30,7 @@ task send
   send back, read n
 
 task receive
-  wait true
+  mark async
   take socket, like socket
 
   save raw, read socket/dock
@@ -40,7 +40,7 @@ task receive
 
   save result
     call raw/recv-from
-      wait true
+      mark async
       read buf
       halt kink
 
@@ -56,14 +56,14 @@ task receive
       bind port, call addr/port
 
 task stream
-  wait true
+  mark async
   take socket, like socket
 
   save raw, read socket/dock
   send back, read raw
 
 task close
-  wait true
+  mark async
   take socket, like socket
 
   save raw, read socket/dock

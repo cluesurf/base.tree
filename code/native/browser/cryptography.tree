@@ -1,6 +1,6 @@
 
 task digest
-  wait true
+  mark async
   take algorithm, like text
   take data, like text
 
@@ -14,7 +14,7 @@ task digest
 
   save hash
     call crypto/subtle/digest
-      wait true
+      mark async
       read name
       read encoded
       halt kink
@@ -36,7 +36,7 @@ task random-bytes
   send back, read array
 
 task browser-digest-name
-  hide true
+  mark private
   take algorithm, like text
   dock call <run {
     const map = { sha256: "SHA-256", sha384: "SHA-384", sha512: "SHA-512", sha1: "SHA-1" };
@@ -44,12 +44,12 @@ task browser-digest-name
   }>
 
 task browser-text-encode
-  hide true
+  mark private
   take data, like text
   dock call <new TextEncoder().encode(data)>
 
 task browser-bytes-to-hex
-  hide true
+  mark private
   take buffer
   dock call <run {
     const bytes = new Uint8Array(buffer);

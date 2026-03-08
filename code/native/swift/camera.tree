@@ -13,13 +13,13 @@ task check-authorization-status
       note <The user can't grant access due to restrictions.>
 
 task request-access
-  wait true
+  mark async
 
   free granted, like boolean
 
   call av-capture-device/request-access
     read av-media-type/video
-    wait true
+    mark async
 
 task get-default-device
   call av-capture-device/default
@@ -32,7 +32,7 @@ task is-auto-red-eye-reduction-enabled
 
 form camera
   take native
-    hide true
+    mark private
 
   task has-flash
     read self/native/has-flash

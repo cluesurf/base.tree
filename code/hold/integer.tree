@@ -7,7 +7,7 @@ note <Generic BigUint.>
 
 form integer
   take list, list integer-32
-    hide true
+    mark private
 
 task round-down-to-power-of-two-8
   take x
@@ -162,7 +162,7 @@ task round-up-to-power-of-two-32
 task mix-for-power-rounding
   take a
   take b
-  hide true
+  mark private
   call bitwise-or
     read a
     call shift-right
@@ -338,7 +338,7 @@ task make-reversal-table
       save i, call add, read i
   back seed, read table
 
-save binary-trailing-zero-magic-number, mark #x077cb531
+save binary-trailing-zero-magic-number, mark 0x077cb531
 save binary-leading-zero-table, call make-leading-zero-table
 save binary-trailing-zero-table
   call make-de-bruijn-trailing-zero-table
@@ -473,7 +473,7 @@ task count-leading-ones-32
         call negate-bitwise
           read n
         mark 0
-      mark #xffffffff
+      mark 0xffffffff
 
 task count-leading-ones-16
   take n
@@ -484,7 +484,7 @@ task count-leading-ones-16
         call negate-bitwise
           read n
         mark 0
-      mark #xffff
+      mark 0xffff
 
 task count-leading-ones-8
   take n
@@ -495,7 +495,7 @@ task count-leading-ones-8
         call negate-bitwise
           read n
         mark 0
-      mark #xff
+      mark 0xff
 
 task make-leading-zero-table
   save i, mark 0
@@ -590,25 +590,25 @@ task count-one-bits-32
         call binary-count-one-table/get
           call bitwise-and
             read x
-            mark #xff
+            mark 0xff
         call binary-count-one-table/get
           call bitwise-and
             call shift-right
               read x
               mark 8
-            mark #xff
+            mark 0xff
       call binary-count-one-table/get
         call bitwise-and
           call shift-right
             read x
             mark 16
-          mark #xff
+          mark 0xff
     call binary-count-one-table/get
       call bitwise-and
         call shift-right
           read x
           mark 24
-        mark #xff
+        mark 0xff
 
 task count-one-bits-16
   take x
@@ -616,20 +616,20 @@ task count-one-bits-16
     call binary-count-one-table/get
       call bitwise-and
         read x
-        mark #xff
+        mark 0xff
     call binary-count-one-table/get
       call bitwise-and
         call shift-right
           read x
           mark 8
-        mark #xff
+        mark 0xff
 
 task count-one-bits8
   take x
   call binary-count-one-table/get
     call bitwise-and
       read x
-      mark #xff
+      mark 0xff
 
 task count-zero-bits-32
   take x
@@ -668,12 +668,12 @@ task reverse-bits-16
         call shift-right
           read n
           mark 8
-        mark #xff
+        mark 0xff
     call shift-left
       call bit-reversal-table/get
         call bitwise-and
           read n
-          mark #xff
+          mark 0xff
       mark 8
 
 task reverse-bits-32
@@ -685,7 +685,7 @@ task reverse-bits-32
           call bit-reversal-table/get
             call bitwise-and
               read n
-              mark #xff
+              mark 0xff
           call math/pow
             bind mark 2
             bind mark 24
@@ -695,7 +695,7 @@ task reverse-bits-32
               call unsigned-shift-right
                 read n
                 mark 8
-              mark #xff
+              mark 0xff
           call math/pow
             bind mark 2
             bind mark 16
@@ -705,7 +705,7 @@ task reverse-bits-32
             call unsigned-shift-right
               read n
               mark 16
-            mark #xff
+            mark 0xff
         call math/pow
           bind mark 2
           bind mark 8
@@ -714,7 +714,7 @@ task reverse-bits-32
         call unsigned-shift-right
           read n
           mark 24
-        mark #xff
+        mark 0xff
 
 task has-flag
   take flags

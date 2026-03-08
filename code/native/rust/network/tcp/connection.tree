@@ -3,7 +3,7 @@ load @cluesurf/base/code/network/tcp
   find connection
 
 task read
-  wait true
+  mark async
   take connection, like connection
   take size, like size, need false
 
@@ -23,7 +23,7 @@ task read
 
   save n
     call raw/read-buf
-      wait true
+      mark async
       read buf
       halt kink
 
@@ -31,7 +31,7 @@ task read
   send back, read buf
 
 task write
-  wait true
+  mark async
   take connection, like connection
   take data, like text
 
@@ -39,7 +39,7 @@ task write
 
   save n
     call raw/write-all
-      wait true
+      mark async
       call data/as-bytes
       halt kink
 
@@ -47,16 +47,16 @@ task write
     call data/len
 
 task close
-  wait true
+  mark async
   take connection, like connection
 
   save raw, read connection/dock
   call raw/shutdown
-    wait true
+    mark async
     halt kink
 
 task stream
-  wait true
+  mark async
   take connection, like connection
 
   save raw, read connection/dock

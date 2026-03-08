@@ -1,6 +1,6 @@
 
 task make
-  wait true
+  mark async
   take kind, like text, fall text <file>
   take prefix, like text, fall text <tmp->
   take suffix, like text, fall text <>

@@ -4,7 +4,7 @@ load @cluesurf/base/code/test/coverage
   find file-coverage
 
 task read
-  wait true
+  mark async
   like coverage
 
   send back

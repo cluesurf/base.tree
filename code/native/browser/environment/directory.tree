@@ -12,10 +12,10 @@ task set
     read path
 
 task browser-get-pathname
-  hide true
+  mark private
   dock call <location.pathname>
 
 task browser-set-pathname
-  hide true
+  mark private
   take path
   dock call <history.pushState(null, "", path)>

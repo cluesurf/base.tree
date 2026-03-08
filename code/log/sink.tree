@@ -1,6 +1,6 @@
 
 form sink
-  link dock, hide true
+  link dock, mark private
 
 task console
   take format, like text, fall text <text>

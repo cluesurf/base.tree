@@ -36,26 +36,26 @@ task check
       read name
 
 task kotlin-get-env
-  hide true
+  mark private
   take name, like text
   dock call <System.getenv(name) ?: "">
 
 task kotlin-set-property
-  hide true
+  mark private
   take name, like text
   take value, like text
   dock call <System.setProperty(name, value)>
 
 task kotlin-clear-property
-  hide true
+  mark private
   take name, like text
   dock call <System.clearProperty(name)>
 
 task kotlin-list-env
-  hide true
+  mark private
   dock call <System.getenv()>
 
 task kotlin-check-env
-  hide true
+  mark private
   take name, like text
   dock call <System.getenv(name) != null>

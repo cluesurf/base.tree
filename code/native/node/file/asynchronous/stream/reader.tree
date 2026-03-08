@@ -3,11 +3,11 @@ dock load
   load <node:fs>, name fs
 
 form reader
-  link dock, hide true
+  link dock, mark private
   link path, like text
 
 task create
-  wait true
+  mark async
   take path, like text
   take start, like size, fall mark 0
   take size, like size, fall mark 0
@@ -45,18 +45,18 @@ task create
       bind path, read path
 
 task read
-  wait true
+  mark async
   take stream, like reader
 
   save chunk
     call stream/dock/read
-      wait true
+      mark async
 
   send back, read chunk
 
 task close
-  wait true
+  mark async
   take stream, like reader
 
   call stream/dock/destroy
-    wait true
+    mark async

@@ -3,7 +3,7 @@ load @cluesurf/base/code/network/http
   find response
 
 task send
-  wait true
+  mark async
   take url, like text
   take method, like text, fall text <GET>
   take headers, like hash, need false
@@ -69,7 +69,7 @@ task send
     call session/data
       text <for>
       read request
-      wait true
+      mark async
       halt kink
 
   save data, read result/0

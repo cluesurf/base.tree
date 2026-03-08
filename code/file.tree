@@ -1,43 +1,43 @@
 
 task read
-  wait true
+  mark async
   take path, like text
   take format, like text, fall text <text>
   like text
 
 task write
-  wait true
+  mark async
   take path, like text
   take data, like text
 
 task append
-  wait true
+  mark async
   take path, like text
   take data, like text
 
 task copy
-  wait true
+  mark async
   take from, like text
   take to, like text
   take deep, like bool, fall false
 
 task move
-  wait true
+  mark async
   take from, like text
   take to, like text
 
 task remove
-  wait true
+  mark async
   take path, like text
   take deep, like bool, fall false
 
 task test
-  wait true
+  mark async
   take path, like text
   take kind, like text, need false
   like bool
 
 task watch
-  wait true
+  mark async
   take path, like text
   take deep, like bool, fall wave false

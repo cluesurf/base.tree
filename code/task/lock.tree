@@ -1,15 +1,15 @@
 
 form lock
-  link dock, hide true
+  link dock, mark private
 
 form guard
-  link dock, hide true
+  link dock, mark private
 
 task make
   like lock
 
 task acquire
-  wait true
+  mark async
   take lock, like lock
   like guard
 

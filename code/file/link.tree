@@ -1,11 +1,11 @@
 
 task make
-  wait true
+  mark async
   take from, like text
   take to, like text
   take hard, like bool, fall false
 
 task read
-  wait true
+  mark async
   take path, like text
   like text

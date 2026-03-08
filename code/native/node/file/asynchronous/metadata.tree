@@ -3,7 +3,7 @@ dock load
   load <node:fs/promises>, name fs-promise
 
 task read
-  wait true
+  mark async
   take path, like text
   take follow, like bool, fall wave true
 
@@ -11,12 +11,12 @@ task read
     fork test, name follow
       hook true
         call fs-promise/stat
-          wait true
+          mark async
           read path
           halt kink
       hook false
         call fs-promise/lstat
-          wait true
+          mark async
           read path
           halt kink
 

@@ -75,14 +75,14 @@ form date
     case 12, test is-day-within, size 31
 
   task modulo-year
-    hide true
+    mark private
     take size
     call modulo
       read year
       read size
 
   task is-day-within
-    hide true
+    mark private
     take size
     call is-max
       read day

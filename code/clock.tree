@@ -1,10 +1,10 @@
 
 task delay
-  wait true
+  mark async
   take duration, like size
 
 task repeat
-  wait true
+  mark async
   take duration, like size
   take limit, like size, fall 0
   like list
@@ -25,12 +25,12 @@ task throttle
   like task
 
 task limit
-  wait true
+  mark async
   take work, like task
   take duration, like size
 
 task run
-  wait true
+  mark async
   take work, like task
   take position, like text, fall text <after>
   take time, need false

@@ -27,7 +27,7 @@ task throw
 task catch
   take work, like task
   like result
-  risk true
+  mark unsafe
     save value
       call work
     send back

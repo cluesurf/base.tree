@@ -11,7 +11,7 @@ load @cluesurf/base/code/network/server/request
   find request
 
 task start
-  wait true
+  mark async
   take port, like size
   take host, like text, fall text <0.0.0.0>
   take handler, like task
@@ -40,7 +40,7 @@ task start
 
       save res
         call handler
-          wait true
+          mark async
           read req
           halt kink
 
@@ -56,12 +56,12 @@ task start
     hook hold
       save cert-data
         call fs-promise/read-file
-          wait true
+          mark async
           read certificate
           halt kink
       save key-data
         call fs-promise/read-file
-          wait true
+          mark async
           read key
           halt kink
       save raw
@@ -78,7 +78,7 @@ task start
             read host
             task on-listen
               call ok
-        wait true
+        mark async
         halt kink
       send back
         make server
@@ -97,7 +97,7 @@ task start
             read host
             task on-listen
               call ok
-        wait true
+        mark async
         halt kink
       send back
         make server
@@ -106,7 +106,7 @@ task start
           bind port, read port
 
 task stop
-  wait true
+  mark async
   take server, like server
 
   save raw, read server/dock
@@ -125,5 +125,5 @@ task stop
               call fail, read error
             hook miss
               call ok
-    wait true
+    mark async
     halt kink

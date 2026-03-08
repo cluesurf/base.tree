@@ -3,13 +3,13 @@ load @cluesurf/base/code/process
   find child
 
 task wait
-  wait true
+  mark async
   take child, like child
   like size
 
   save code
     call promise/make
-      wait true
+      mark async
       take resolve, like task
       call child/dock/on
         text <exit>
@@ -34,7 +34,7 @@ task stop
         text <SIGTERM>
 
 task write
-  wait true
+  mark async
   take child, like child
   take data, like text
 
@@ -42,13 +42,13 @@ task write
     read data
 
 task close
-  wait true
+  mark async
   take child, like child
 
   call child/dock/stdin/end
 
 task read
-  wait true
+  mark async
   take child, like child
   take kind, like text, fall text <stdout>
   take format, like text, fall text <text>
@@ -68,7 +68,7 @@ task read
 
   save output
     call promise/make
-      wait true
+      mark async
       take resolve, like task
 
       call stream/on
@@ -95,7 +95,7 @@ task read
       send back, read output
 
 task stream
-  wait true
+  mark async
   take child, like child
   take kind, like text, fall text <stdout>
   take format, like text, fall text <bytes>

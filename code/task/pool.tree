@@ -1,6 +1,6 @@
 
 form pool
-  link dock, hide true
+  link dock, mark private
   link size, like size
 
 task make
@@ -8,17 +8,17 @@ task make
   like pool
 
 task run
-  wait true
+  mark async
   take pool, like pool
   take work, like task
 
 task map
-  wait true
+  mark async
   take pool, like pool
   take list, like list
   take work, like task
   like list
 
 task close
-  wait true
+  mark async
   take pool, like pool

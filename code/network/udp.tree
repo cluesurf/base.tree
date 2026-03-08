@@ -1,11 +1,11 @@
 
 form socket
-  link dock, hide true
+  link dock, mark private
   link host, like text
   link port, like size
 
 task open
-  wait true
+  mark async
   take port, like size, need false
   take host, like text, fall text <0.0.0.0>
   like socket

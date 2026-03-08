@@ -37,13 +37,13 @@ task list
     call browser-get-languages
 
 task browser-get-language
-  hide true
+  mark private
   dock call <navigator.language>
 
 task browser-get-languages
-  hide true
+  mark private
   dock call <Array.from(navigator.languages)>
 
 task browser-intl-resolved-options
-  hide true
+  mark private
   dock call <Intl.DateTimeFormat().resolvedOptions()>

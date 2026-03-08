@@ -3,7 +3,7 @@ load @cluesurf/base/code/network/tcp
   find connection
 
 task read
-  wait true
+  mark async
   take connection, like connection
   take size, like size, need false
 
@@ -21,7 +21,7 @@ task read
 
   save result
     call make-continuation
-      wait true
+      mark async
       task resolve
         take ok
         take fail
@@ -46,7 +46,7 @@ task read
   send back, read result
 
 task write
-  wait true
+  mark async
   take connection, like connection
   take data, like text
 
@@ -58,7 +58,7 @@ task write
       text <.utf8>
 
   call make-continuation
-    wait true
+    mark async
     task resolve
       take ok
       take fail
@@ -84,14 +84,14 @@ task write
   send back, call data/count
 
 task close
-  wait true
+  mark async
   take connection, like connection
 
   save raw, read connection/dock
   call raw/cancel
 
 task stream
-  wait true
+  mark async
   take connection, like connection
 
   save raw, read connection/dock

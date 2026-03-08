@@ -6,15 +6,15 @@ load ./now
   find get
 
 task delay
-  wait true
+  mark async
   take duration, like size
 
   call timers/set-timeout
-    wait true
+    mark async
     bind ms, read duration
 
 task repeat
-  wait true
+  mark async
   take duration, like size
   take limit, like size, fall mark 0
 
@@ -35,7 +35,7 @@ task repeat
           bind b, read limit
     hook hold
       call timers/set-timeout
-        wait true
+        mark async
         bind ms, read duration
       call list-push
         bind list, read results
@@ -165,7 +165,7 @@ task throttle
               bind ms, read remaining
 
 task limit
-  wait true
+  mark async
   take work, like task
   take duration, like size
 
@@ -183,7 +183,7 @@ task limit
 
   save result
     call work
-      wait true
+      mark async
       halt kink
 
   call clear-timeout
@@ -192,7 +192,7 @@ task limit
   send back, read result
 
 task run
-  wait true
+  mark async
   take work, like task
   take position, like text, fall text <after>
   take time, need false
@@ -205,11 +205,11 @@ task run
         bind b, text <after>
     hook hold
       call timers/set-timeout
-        wait true
+        mark async
         bind ms, read duration
       send back
         call work
-          wait true
+          mark async
 
   fork test
     hook test
@@ -232,8 +232,8 @@ task run
         hook hold
           save wait-ms, read diff
       call timers/set-timeout
-        wait true
+        mark async
         bind ms, read wait-ms
       send back
         call work
-          wait true
+          mark async

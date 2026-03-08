@@ -23,18 +23,18 @@ task read
         call kotlin-total-memory
 
 task kotlin-system-property
-  hide true
+  mark private
   take name, like text
   dock call <System.getProperty(name) ?: "">
 
 task kotlin-byte-order
-  hide true
+  mark private
   dock call <if (java.nio.ByteOrder.nativeOrder() == java.nio.ByteOrder.LITTLE_ENDIAN) "LE" else "BE">
 
 task kotlin-available-processors
-  hide true
+  mark private
   dock call <Runtime.getRuntime().availableProcessors()>
 
 task kotlin-total-memory
-  hide true
+  mark private
   dock call <Runtime.getRuntime().totalMemory()>

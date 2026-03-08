@@ -5,17 +5,17 @@ form walk-entry
   link depth, like size
 
 task list
-  wait true
+  mark async
   take path, like text
   take deep, like bool, fall false
   like list
 
 task make
-  wait true
+  mark async
   take path, like text
 
 task walk
-  wait true
+  mark async
   take path, like text
   take depth, like size, fall 0
   like list

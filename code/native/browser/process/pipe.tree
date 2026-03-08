@@ -3,7 +3,7 @@ load @cluesurf/base/code/process
   find child
 
 task connect
-  wait true
+  mark async
   take from, like child
   take to, like child
 
@@ -12,7 +12,7 @@ task connect
     read to/dock
 
 task browser-pipe-workers
-  hide true
+  mark private
   take from-worker
   take to-worker
   dock call <run {

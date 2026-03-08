@@ -12,7 +12,7 @@ load @cluesurf/base/code/native/shared/test
 task resolve
   take name, like text
   take format, like text
-  hide true
+  mark private
   save ext, text <.json>
   fork test
     hook test
@@ -32,7 +32,7 @@ task resolve
 task serialize
   take value
   take format, like text
-  hide true
+  mark private
   like text
   fork test
     hook test
@@ -50,7 +50,7 @@ task serialize
 task deserialize
   take raw, like text
   take format, like text
-  hide true
+  mark private
   fork test
     hook test
       call is-equal
@@ -63,7 +63,7 @@ task deserialize
   send back, read raw
 
 task match
-  wait true
+  mark async
   take value
   take name, like text
   take format, like text, fall text <json>
@@ -75,7 +75,7 @@ task match
 
   save exists
     call file/test
-      wait true
+      mark async
       bind path, read path
 
   fork test
@@ -86,14 +86,14 @@ task match
           bind value, read value
           bind format, read format
       call file/write
-        wait true
+        mark async
         bind path, read path
         bind data, read data
       send back
 
   save raw
     call file/read
-      wait true
+      mark async
       bind path, read path
 
   save stored
@@ -121,7 +121,7 @@ task match
             bind actual, read value
 
 task update
-  wait true
+  mark async
   take value
   take name, like text
   take format, like text, fall text <json>
@@ -137,6 +137,6 @@ task update
       bind format, read format
 
   call file/write
-    wait true
+    mark async
     bind path, read path
     bind data, read data

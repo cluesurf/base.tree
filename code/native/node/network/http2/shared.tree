@@ -9,9 +9,9 @@ tree server
   hook bind
     form server
       take x-server, read server-form
-        hide true
+        mark private
       take port, like unsigned-integer-16
-        hide true
+        mark private
 
       task listen
         free seed, like self

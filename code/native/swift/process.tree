@@ -7,7 +7,7 @@ load @cluesurf/base/code/process
   find child
 
 task run
-  wait true
+  mark async
   take command, like text
   take arguments, like list, need false
   take directory, like text, need false
@@ -101,7 +101,7 @@ task run
           bind b, mark 0
 
 task spawn
-  wait true
+  mark async
   take command, like text
   take arguments, like list, need false
   take directory, like text, need false

@@ -12,10 +12,10 @@ task set
     read path
 
 task swift-current-dir
-  hide true
+  mark private
   dock call <FileManager.default.currentDirectoryPath>
 
 task swift-set-current-dir
-  hide true
+  mark private
   take path, like text
   dock call <FileManager.default.changeCurrentDirectoryPath(path)>

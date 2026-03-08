@@ -1,21 +1,21 @@
 
 form handle
-  link dock, hide true
+  link dock, mark private
   link name, like text
   link alive, like bool
 
 task spawn
-  wait true
+  mark async
   take work, like task
   take name, like text, need false
   like handle
 
 task wait
-  wait true
+  mark async
   take handle, like handle
 
 task cancel
-  wait true
+  mark async
   take handle, like handle
 
 

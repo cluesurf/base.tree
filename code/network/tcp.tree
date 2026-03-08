@@ -1,6 +1,6 @@
 
 form connection
-  link dock, hide true
+  link dock, mark private
   link host, like text
   link port, like size
   link local-host, like text
@@ -8,19 +8,19 @@ form connection
   link secure, like bool
 
 form listener
-  link dock, hide true
+  link dock, mark private
   link host, like text
   link port, like size
 
 task connect
-  wait true
+  mark async
   take host, like text
   take port, like size
   take secure, like bool, fall false
   like connection
 
 task listen
-  wait true
+  mark async
   take port, like size
   take host, like text, fall text <0.0.0.0>
   take secure, like bool, fall false

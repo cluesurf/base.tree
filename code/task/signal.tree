@@ -1,12 +1,12 @@
 
 form signal
-  link dock, hide true
+  link dock, mark private
 
 task make
   like signal
 
 task wait
-  wait true
+  mark async
   take signal, like signal
 
 task trigger

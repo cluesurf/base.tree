@@ -8,7 +8,7 @@ form datagram
   link port, like size
 
 task send
-  wait true
+  mark async
   take socket, like socket
   take data, like text
   take host, like text
@@ -16,15 +16,15 @@ task send
   like size
 
 task receive
-  wait true
+  mark async
   take socket, like socket
   like datagram
 
 task stream
-  wait true
+  mark async
   take socket, like socket
   like list
 
 task close
-  wait true
+  mark async
   take socket, like socket

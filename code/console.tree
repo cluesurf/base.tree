@@ -1,13 +1,13 @@
 
 task start
-  wait true
+  mark async
   take prompt, like text, fall text <> >
   take evaluate, like task, need false
   take complete, like task, need false
   take history, like size, fall 1000
 
 task evaluate
-  wait true
+  mark async
   take code, like text
   take context, like hash, need false
 

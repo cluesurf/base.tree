@@ -1,5 +1,5 @@
 
 task request-access
   call query-permissions
-    wait true
+    mark async
     text <accelerometer>

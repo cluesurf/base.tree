@@ -12,10 +12,10 @@ task set
     read path
 
 task kotlin-current-dir
-  hide true
+  mark private
   dock call <System.getProperty("user.dir") ?: "">
 
 task kotlin-set-current-dir
-  hide true
+  mark private
   take path, like text
   dock call <System.setProperty("user.dir", path)>

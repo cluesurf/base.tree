@@ -6,11 +6,11 @@ form result
   link ok, like bool
 
 form child
-  link dock, hide true
+  link dock, mark private
   link id, like size
 
 task run
-  wait true
+  mark async
   take command, like text
   take arguments, like list, need false
   take directory, like text, need false
@@ -21,7 +21,7 @@ task run
   like result
 
 task spawn
-  wait true
+  mark async
   take command, like text
   take arguments, like list, need false
   take directory, like text, need false

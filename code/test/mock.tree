@@ -1,6 +1,6 @@
 
 form mock
-  link dock, hide true
+  link dock, mark private
 
 task make
   take returns, need false

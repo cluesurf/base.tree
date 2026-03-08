@@ -5,7 +5,7 @@ dock load
   load <node:os>, name os
 
 task make
-  wait true
+  mark async
   take kind, like text, fall text <file>
   take prefix, like text, fall text <tmp->
   take suffix, like text, fall text <>
@@ -19,13 +19,13 @@ task make
     hook true
       send back
         call fs-promise/mkdtemp
-          wait true
+          mark async
           read base
           halt kink
 
   save dir
     call fs-promise/mkdtemp
-      wait true
+      mark async
       read base
       halt kink
 
@@ -37,7 +37,7 @@ task make
         read suffix
 
   call fs-promise/write-file
-    wait true
+    mark async
     read file-path
     text <>
     halt kink

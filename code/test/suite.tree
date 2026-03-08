@@ -17,7 +17,7 @@ task describe
   take work, like task
 
 task run
-  wait true
+  mark async
   take filter, like text, need false
   take timeout, like size, fall 5000
   take parallel, like bool, fall false

@@ -7,10 +7,10 @@ task send
   take data
 
 task receive
-  wait true
+  mark async
   take handle, like handle
 
 task stream
-  wait true
+  mark async
   take handle, like handle
   like list

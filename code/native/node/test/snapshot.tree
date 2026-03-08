@@ -18,7 +18,7 @@ load @cluesurf/base/code/native/shared/test/compare
   find deep-equal
 
 task match
-  wait true
+  mark async
   take value
   take name, like text
   take format, like text, fall text <json>
@@ -31,7 +31,7 @@ task match
   save exists, wave true
   save raw, text <>
   call fs/access
-    wait true
+    mark async
     bind path, read path
     halt kink
       save exists, wave false
@@ -44,7 +44,7 @@ task match
           bind name, text <>
           bind format, read format
       call fs/mkdir
-        wait true
+        mark async
         bind path, text <.seed/snapshot>
         bind options
           make object
@@ -55,7 +55,7 @@ task match
           bind value, read value
           bind format, read format
       call fs/write-file
-        wait true
+        mark async
         bind path, read path
         bind data, read data
         bind encoding, text <utf8>
@@ -63,7 +63,7 @@ task match
 
   save raw
     call fs/read-file
-      wait true
+      mark async
       bind path, read path
       bind encoding, text <utf8>
 
@@ -92,7 +92,7 @@ task match
             bind actual, read value
 
 task update
-  wait true
+  mark async
   take value
   take name, like text
   take format, like text, fall text <json>
@@ -103,7 +103,7 @@ task update
       bind format, read format
 
   call fs/mkdir
-    wait true
+    mark async
     bind path, text <.seed/snapshot>
     bind options
       make object
@@ -116,7 +116,7 @@ task update
       bind format, read format
 
   call fs/write-file
-    wait true
+    mark async
     bind path, read path
     bind data, read data
     bind encoding, text <utf8>

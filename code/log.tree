@@ -12,4 +12,4 @@ task configure
   take timestamp, like bool, fall true
 
 task flush
-  wait true
+  mark async

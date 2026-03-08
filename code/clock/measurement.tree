@@ -1,6 +1,6 @@
 
 form mark
-  link dock, hide true
+  link dock, mark private
 
 task start
   like mark

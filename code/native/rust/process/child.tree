@@ -8,7 +8,7 @@ load @cluesurf/base/code/process
   find child
 
 task wait
-  wait true
+  mark async
   take child, like child
   like size
 
@@ -35,7 +35,7 @@ task stop
         read libc/sigterm
 
 task write
-  wait true
+  mark async
   take child, like child
   take data, like text
 
@@ -47,14 +47,14 @@ task write
     halt kink
 
 task close
-  wait true
+  mark async
   take child, like child
 
   call drop
     call child/dock/stdin/take
 
 task read
-  wait true
+  mark async
   take child, like child
   take kind, like text, fall text <stdout>
   take format, like text, fall text <text>
@@ -79,7 +79,7 @@ task read
   send back, read buf
 
 task stream
-  wait true
+  mark async
   take child, like child
   take kind, like text, fall text <stdout>
   take format, like text, fall text <bytes>

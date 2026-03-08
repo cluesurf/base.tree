@@ -3,7 +3,7 @@ load @cluesurf/base/code/network/server/request
   find request
 
 task read
-  wait true
+  mark async
   take request, like request
   take format, like text, fall text <text>
 
@@ -11,7 +11,7 @@ task read
 
   save result
     call make-continuation
-      wait true
+      mark async
       task resolve
         take ok
         take fail

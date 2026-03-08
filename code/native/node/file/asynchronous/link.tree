@@ -3,7 +3,7 @@ dock load
   load <node:fs/promises>, name fs-promise
 
 task make
-  wait true
+  mark async
   take from, like text
   take to, like text
   take hard, like bool, fall wave false
@@ -11,23 +11,23 @@ task make
   fork test, name hard
     hook true
       call fs-promise/link
-        wait true
+        mark async
         read from
         read to
         halt kink
     hook false
       call fs-promise/symlink
-        wait true
+        mark async
         read from
         read to
         halt kink
 
 task read
-  wait true
+  mark async
   take path, like text
 
   send back
     call fs-promise/readlink
-      wait true
+      mark async
       read path
       halt kink

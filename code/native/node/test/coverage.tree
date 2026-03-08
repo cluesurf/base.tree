@@ -7,12 +7,12 @@ load @cluesurf/base/code/test/coverage
   find file-coverage
 
 task read
-  wait true
+  mark async
   like coverage
 
   save raw
     call v8/take-coverage
-      wait true
+      mark async
 
   save files
     make list

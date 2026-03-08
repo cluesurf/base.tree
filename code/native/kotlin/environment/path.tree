@@ -21,15 +21,15 @@ task get
         call kotlin-cache-dir
 
 task kotlin-home-dir
-  hide true
+  mark private
   dock call <System.getProperty("user.home") ?: "">
 
 task kotlin-temp-dir
-  hide true
+  mark private
   dock call <System.getProperty("java.io.tmpdir") ?: "">
 
 task kotlin-data-dir
-  hide true
+  mark private
   dock call <run {
     val os = System.getProperty("os.name")?.lowercase() ?: ""
     val home = System.getProperty("user.home") ?: ""
@@ -41,7 +41,7 @@ task kotlin-data-dir
   }>
 
 task kotlin-config-dir
-  hide true
+  mark private
   dock call <run {
     val os = System.getProperty("os.name")?.lowercase() ?: ""
     val home = System.getProperty("user.home") ?: ""
@@ -53,7 +53,7 @@ task kotlin-config-dir
   }>
 
 task kotlin-cache-dir
-  hide true
+  mark private
   dock call <run {
     val os = System.getProperty("os.name")?.lowercase() ?: ""
     val home = System.getProperty("user.home") ?: ""

@@ -9,7 +9,7 @@ form file-metadata
   link link, like bool
 
 task read
-  wait true
+  mark async
   take path, like text
   take follow, like bool, fall true
   like file-metadata

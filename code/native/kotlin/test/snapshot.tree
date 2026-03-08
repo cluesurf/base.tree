@@ -20,7 +20,7 @@ load @cluesurf/base/code/native/shared/test/compare
   find deep-equal
 
 task match
-  wait true
+  mark async
   take value
   take name, like text
   take format, like text, fall text <json>
@@ -83,7 +83,7 @@ task match
             bind actual, read value
 
 task update
-  wait true
+  mark async
   take value
   take name, like text
   take format, like text, fall text <json>

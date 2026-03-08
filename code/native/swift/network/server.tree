@@ -9,7 +9,7 @@ load @cluesurf/base/code/network/server/request
   find request
 
 task start
-  wait true
+  mark async
   take port, like size
   take host, like text, fall text <0.0.0.0>
   take handler, like task
@@ -48,7 +48,7 @@ task start
         text <maximumLength>
         mark 65536
         task on-receive
-          wait true
+          mark async
           take content
           take context
           take is-complete
@@ -91,7 +91,7 @@ task start
 
           save res
             call handler
-              wait true
+              mark async
               read req
               halt kink
 
@@ -124,7 +124,7 @@ task start
     call dispatch-queue/main
 
   call wait-for-listener-ready
-    wait true
+    mark async
     read raw
     halt kink
 
@@ -135,7 +135,7 @@ task start
       bind port, read port
 
 task stop
-  wait true
+  mark async
   take server, like server
 
   save raw, read server/dock

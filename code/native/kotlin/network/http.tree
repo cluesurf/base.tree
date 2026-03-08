@@ -20,7 +20,7 @@ task send
       read redirect
 
 task kotlin-http-send
-  hide true
+  mark private
   take url, like text
   take method, like text
   take headers, like hash

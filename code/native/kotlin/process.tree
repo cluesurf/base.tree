@@ -40,7 +40,7 @@ task spawn
       read shell
 
 task kotlin-run-process
-  hide true
+  mark private
   take command, like text
   take arguments, like list
   take directory, like text
@@ -75,7 +75,7 @@ task kotlin-run-process
   }>
 
 task kotlin-spawn-process
-  hide true
+  mark private
   take command, like text
   take arguments, like list
   take directory, like text

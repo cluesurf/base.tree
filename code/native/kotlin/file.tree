@@ -108,35 +108,35 @@ task list-directory
       read path
 
 task kotlin-read-text
-  hide true
+  mark private
   take path, like text
   dock call <java.io.File(path).readText(Charsets.UTF_8)>
 
 task kotlin-read-bytes
-  hide true
+  mark private
   take path, like text
   dock call <java.io.File(path).readBytes()>
 
 task kotlin-write-text
-  hide true
+  mark private
   take path, like text
   take data, like text
   dock call <java.io.File(path).writeText(data, Charsets.UTF_8)>
 
 task kotlin-append-text
-  hide true
+  mark private
   take path, like text
   take data, like text
   dock call <java.io.File(path).appendText(data, Charsets.UTF_8)>
 
 task kotlin-copy-file
-  hide true
+  mark private
   take from, like text
   take to, like text
   dock call <java.nio.file.Files.copy(java.nio.file.Paths.get(from), java.nio.file.Paths.get(to), java.nio.file.StandardCopyOption.REPLACE_EXISTING)>
 
 task kotlin-copy-directory
-  hide true
+  mark private
   take from, like text
   take to, like text
   dock call <run {
@@ -153,18 +153,18 @@ task kotlin-copy-directory
   }>
 
 task kotlin-move
-  hide true
+  mark private
   take from, like text
   take to, like text
   dock call <java.nio.file.Files.move(java.nio.file.Paths.get(from), java.nio.file.Paths.get(to), java.nio.file.StandardCopyOption.REPLACE_EXISTING)>
 
 task kotlin-remove-file
-  hide true
+  mark private
   take path, like text
   dock call <java.nio.file.Files.deleteIfExists(java.nio.file.Paths.get(path))>
 
 task kotlin-remove-directory
-  hide true
+  mark private
   take path, like text
   dock call <run {
     val dir = java.nio.file.Paths.get(path)
@@ -172,31 +172,31 @@ task kotlin-remove-directory
   }>
 
 task kotlin-file-exists
-  hide true
+  mark private
   take path, like text
   dock call <java.nio.file.Files.exists(java.nio.file.Paths.get(path))>
 
 task kotlin-is-file
-  hide true
+  mark private
   take path, like text
   dock call <java.nio.file.Files.isRegularFile(java.nio.file.Paths.get(path))>
 
 task kotlin-is-directory
-  hide true
+  mark private
   take path, like text
   dock call <java.nio.file.Files.isDirectory(java.nio.file.Paths.get(path))>
 
 task kotlin-is-link
-  hide true
+  mark private
   take path, like text
   dock call <java.nio.file.Files.isSymbolicLink(java.nio.file.Paths.get(path))>
 
 task kotlin-make-dirs
-  hide true
+  mark private
   take path, like text
   dock call <java.nio.file.Files.createDirectories(java.nio.file.Paths.get(path))>
 
 task kotlin-list-directory
-  hide true
+  mark private
   take path, like text
   dock call <java.io.File(path).list()?.toList() ?: emptyList<String>()>

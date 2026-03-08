@@ -124,85 +124,85 @@ task length
       read value
 
 task kotlin-substring
-  hide true
+  mark private
   take value, like text
   take start, like size
   take end, like size
   dock call <value.substring(start.toInt(), end.toInt())>
 
 task kotlin-substring-from
-  hide true
+  mark private
   take value, like text
   take start, like size
   dock call <value.substring(start.toInt())>
 
 task kotlin-index-of
-  hide true
+  mark private
   take value, like text
   take search, like text
   take start, like size
   dock call <value.indexOf(search, start.toInt())>
 
 task kotlin-replace-all
-  hide true
+  mark private
   take value, like text
   take search, like text
   take replacement, like text
   dock call <value.replace(search, replacement)>
 
 task kotlin-replace-first
-  hide true
+  mark private
   take value, like text
   take search, like text
   take replacement, like text
   dock call <value.replaceFirst(search, replacement)>
 
 task kotlin-split
-  hide true
+  mark private
   take value, like text
   take separator, like text
   dock call <value.split(separator)>
 
 task kotlin-join
-  hide true
+  mark private
   take list, like list
   take separator, like text
   dock call <list.joinToString(separator)>
 
 task kotlin-trim
-  hide true
+  mark private
   take value, like text
   dock call <value.trim()>
 
 task kotlin-to-upper
-  hide true
+  mark private
   take value, like text
   dock call <value.uppercase()>
 
 task kotlin-to-lower
-  hide true
+  mark private
   take value, like text
   dock call <value.lowercase()>
 
 task kotlin-starts-with
-  hide true
+  mark private
   take value, like text
   take search, like text
   dock call <value.startsWith(search)>
 
 task kotlin-ends-with
-  hide true
+  mark private
   take value, like text
   take search, like text
   dock call <value.endsWith(search)>
 
 task kotlin-contains
-  hide true
+  mark private
   take value, like text
   take search, like text
   dock call <value.contains(search)>
 
 task kotlin-length
-  hide true
+  mark private
   take value, like text
   dock call <value.length>

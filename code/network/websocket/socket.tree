@@ -7,17 +7,17 @@ form message
   link data, like text
 
 task send
-  wait true
+  mark async
   take socket, like socket
   take data, like text
 
 task close
-  wait true
+  mark async
   take socket, like socket
   take code, like size, fall 1000
   take reason, like text, need false
 
 task stream
-  wait true
+  mark async
   take socket, like socket
   like list

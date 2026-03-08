@@ -14,7 +14,7 @@ task allocate
 
 form text-utf-16
   take list, list mark-16
-    hide true
+    mark private
 
   task get-size, like mark
 

@@ -1,6 +1,6 @@
 
 form router
-  link dock, hide true
+  link dock, mark private
 
 task make
   like router

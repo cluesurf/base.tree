@@ -1,10 +1,10 @@
 
 task read
-  wait true
+  mark async
   take path, like text
   like size
 
 task write
-  wait true
+  mark async
   take path, like text
   take mode, like size

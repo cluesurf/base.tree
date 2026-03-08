@@ -223,15 +223,15 @@ tree integer
 
         # unchecked
         task unchecked-add
-          risk true
+          mark unsafe
         task unchecked-multiply
-          risk true
+          mark unsafe
         task unchecked-shift-base
-          risk true
+          mark unsafe
         task unchecked-shift-head
-          risk true
+          mark unsafe
         task unchecked-subtract
-          risk true
+          mark unsafe
 
         task add-test-and-roll
         task add-signed-test-and-roll

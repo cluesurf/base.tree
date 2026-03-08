@@ -8,16 +8,16 @@ task make
   like channel
 
 task send
-  wait true
+  mark async
   take sender
   take data
 
 task receive
-  wait true
+  mark async
   take receiver
 
 task stream
-  wait true
+  mark async
   take receiver
   like list
 

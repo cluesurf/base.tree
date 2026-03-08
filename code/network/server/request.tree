@@ -5,10 +5,10 @@ form request
   link path, like text
   link query, like text
   link headers, like hash
-  link dock, hide true
+  link dock, mark private
 
 task read
-  wait true
+  mark async
   take request, like request
   take format, like text, fall text <text>
   like text

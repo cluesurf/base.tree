@@ -9,7 +9,7 @@ load @cluesurf/base/code/network/udp/socket
   find datagram
 
 task send
-  wait true
+  mark async
   take socket, like socket
   take data, like text
   take host, like text
@@ -36,7 +36,7 @@ task send
       text <.utf8>
 
   call make-continuation
-    wait true
+    mark async
     task resolve
       take ok
       take fail
@@ -62,14 +62,14 @@ task send
   send back, call data/count
 
 task receive
-  wait true
+  mark async
   take socket, like socket
 
   save raw, read socket/dock
 
   save nw-conn
     call make-continuation
-      wait true
+      mark async
       task resolve
         take ok
         take fail
@@ -124,14 +124,14 @@ task receive
   send back, read nw-conn
 
 task stream
-  wait true
+  mark async
   take socket, like socket
 
   save raw, read socket/dock
   send back, read raw
 
 task close
-  wait true
+  mark async
   take socket, like socket
 
   save raw, read socket/dock

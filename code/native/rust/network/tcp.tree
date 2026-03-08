@@ -4,7 +4,7 @@ load @cluesurf/base/code/network/tcp
   find listener
 
 task connect
-  wait true
+  mark async
   take host, like text
   take port, like size
   take secure, like bool, fall wave false
@@ -21,7 +21,7 @@ task connect
     hook hold
       save tcp-stream
         call tokio/net/tcp-stream/connect
-          wait true
+          mark async
           read addr
           halt kink
       save connector
@@ -30,7 +30,7 @@ task connect
             call build
       save tls-stream
         call connector/connect
-          wait true
+          mark async
           call rustls/server-name/try-from
             read host
             halt kink
@@ -50,7 +50,7 @@ task connect
     hook miss
       save raw
         call tokio/net/tcp-stream/connect
-          wait true
+          mark async
           read addr
           halt kink
       save local-addr
@@ -66,7 +66,7 @@ task connect
           bind secure, wave false
 
 task listen
-  wait true
+  mark async
   take port, like size
   take host, like text, fall text <0.0.0.0>
   take secure, like bool, fall wave false
@@ -85,12 +85,12 @@ task listen
     hook hold
       save cert-data
         call tokio/fs/read
-          wait true
+          mark async
           read certificate
           halt kink
       save key-data
         call tokio/fs/read
-          wait true
+          mark async
           read key
           halt kink
       save certs
@@ -110,7 +110,7 @@ task listen
             halt kink
       save raw
         call tokio/net/tcp-listener/bind
-          wait true
+          mark async
           read addr
           halt kink
       send back
@@ -121,7 +121,7 @@ task listen
     hook miss
       save raw
         call tokio/net/tcp-listener/bind
-          wait true
+          mark async
           read addr
           halt kink
       send back

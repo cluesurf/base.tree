@@ -3,7 +3,7 @@ load @cluesurf/base/code/network/websocket
   find socket
 
 task connect
-  wait true
+  mark async
   take url, like text
   take headers, like hash, need false
   take protocols, like list, need false
@@ -26,7 +26,7 @@ task connect
           call fail, read error
       save raw/onopen, read on-open
       save raw/onerror, read on-error
-    wait true
+    mark async
     halt kink
 
   send back

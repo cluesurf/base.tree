@@ -19,7 +19,7 @@ tree addition-form
     coat form
       suit type
         wear addition
-          firm true
+          fold well
 
           task add
             take self, move true

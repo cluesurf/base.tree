@@ -13,6 +13,6 @@ task now
     call get
 
 task kotlin-thread-sleep
-  hide true
+  mark private
   take duration, like size
   dock call <Thread.sleep(duration.toLong())>
