@@ -2,12 +2,19 @@
 load @cluesurf/base/code/proof/equal
   find equal
 
-task make
-  firm true
-  head A
-  take x, like A
-  take y, like A
-  take proof, like equal A x y
+rule symmetry
+  head a
+  take x, like a
+  take y, like a
+  take proof
+    like equal a x y
+  like equal a y x
+
+test symmetry
+  take x, like a
+  take y, like a
+  take proof
+    like equal a x y
   fork case, read proof
     case refl
       send back

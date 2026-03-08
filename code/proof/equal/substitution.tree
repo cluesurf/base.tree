@@ -2,18 +2,32 @@
 load @cluesurf/base/code/proof/equal
   find equal
 
-task make
-  firm true
-  head A
-  take P
+rule substitution
+  head a
+  take p
     like task
-      take value, like A
-  take x, like A
-  take y, like A
-  take proof, like equal A x y
-  take base
-    call P
+      take value, like a
+  take x, like a
+  take y, like a
+  take proof
+    like equal a x y
+  take px
+    call p
+      bind value, read x
+  like call p
+    bind value, read y
+
+test substitution
+  take p
+    like task
+      take value, like a
+  take x, like a
+  take y, like a
+  take proof
+    like equal a x y
+  take px
+    call p
       bind value, read x
   fork case, read proof
     case refl
-      send back, read base
+      send back, read px

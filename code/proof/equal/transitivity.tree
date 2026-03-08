@@ -2,14 +2,25 @@
 load @cluesurf/base/code/proof/equal
   find equal
 
-task make
-  firm true
-  head A
-  take x, like A
-  take y, like A
-  take z, like A
-  take left, like equal A x y
-  take right, like equal A y z
+rule transitivity
+  head a
+  take x, like a
+  take y, like a
+  take z, like a
+  take left
+    like equal a x y
+  take right
+    like equal a y z
+  like equal a x z
+
+test transitivity
+  take x, like a
+  take y, like a
+  take z, like a
+  take left
+    like equal a x y
+  take right
+    like equal a y z
   fork case, read left
     case refl
       fork case, read right

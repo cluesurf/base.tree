@@ -1,13 +1,12 @@
 
 form sigma
-  head A
-  head B
+  head a
+  head b
     like task
-      take value, like A
-  note <Dependent pair. Existential quantification: there exists an A such that B holds.>
+      take value, like a
 
   case pair
-    take first, like A
-    take second
-      call B
+    link first, like a
+    link second
+      call b
         bind value, read first

@@ -2,9 +2,12 @@
 load @cluesurf/base/code/proof/equal
   find equal
 
-task make
-  firm true
-  head A
-  take x, like A
+rule refl
+  head a
+  take x, like a
+  like equal a x x
+
+test refl
+  take x, like a
   send back
     make equal/refl
