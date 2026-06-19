@@ -1,93 +1,45 @@
 
 form list
+  note <List: the stdlib source of truth for the list type. The compiler uses the native array representation, so a list value is built with `make list`. Each method delegates to the native array operation.>
+
   head t
 
-  task push
-    take self, flex true
-    take item, like t
-
-  task pop
-    take self, flex true
-
-  task get
+  task size
     take self
-    take index, like u64
-
-  task set
-    take self, flex true
-    take index, like u64
-    take item, like t
-
-  task get-size
-    take self
-    like u64
+    like number
+    send back, read self/length
 
   task is-empty
     take self
     like boolean
+    send back
+      call is-equal
+        read self/length
+        mark 0
 
-  task map
-    head s
+  task push
     take self
-    like list
+    take item, like t
+    like number
+    send back
+      call self/push
+        read item
 
-  task filter
+  task get
     take self
-    like list
+    take index, like number
+    like t
+    send back
+      call self/at
+        read index
 
-  task reduce
-    take self
-
-  task reverse
-    take self
-    like list
-
-  task sort
-    take self, flex true
-
-  task concat
-    take self
-    take other, like list
-    like list
-
-  task has
+  task contains
     take self
     take item, like t
     like boolean
-
-  task get-first
-    take self
-
-  task get-last
-    take self
-
-  task insert
-    take self, flex true
-    take index, like u64
-    take item, like t
-
-  task remove
-    take self, flex true
-    take index, like u64
-
-  task join
-    take self
-    take separator, like text
-    like text
-
-  task slice
-    take self
-    take start, like u64
-    take end, like u64
-    like list
-
-  task find
-    take self
-    take test
-      like task
-        take item, like t
-        like boolean
-    like maybe
+    send back
+      call self/includes
+        read item
 
   task find-index
     take self
@@ -95,7 +47,65 @@ form list
       like task
         take item, like t
         like boolean
-    like maybe
+    like number
+    send back
+      call self/findIndex
+        read test
+
+  task join
+    take self
+    take separator, like text
+    like text
+    send back
+      call self/join
+        read separator
+
+  task reverse
+    take self
+    like list
+    send back
+      call self/toReversed
+
+  task concat
+    take self
+    take other, like list
+    like list
+    send back
+      call self/concat
+        read other
+
+  task slice
+    take self
+    take start, like number
+    take end, like number
+    like list
+    send back
+      call self/slice
+        read start
+        read end
+
+  task map
+    head s
+    take self
+    take call
+      like task
+        take item, like t
+        like s
+    like list
+    send back
+      call self/map
+        read call
+
+  task filter
+    take self
+    take test
+      like task
+        take item, like t
+        like boolean
+    like list
+    send back
+      call self/filter
+        read test
 
   task any
     take self
@@ -104,6 +114,9 @@ form list
         take item, like t
         like boolean
     like boolean
+    send back
+      call self/some
+        read test
 
   task all
     take self
@@ -112,140 +125,21 @@ form list
         take item, like t
         like boolean
     like boolean
+    send back
+      call self/every
+        read test
 
-  task take
-    take self
-    take count, like u64
-    like list
-
-  task drop
-    take self
-    take count, like u64
-    like list
-
-  task take-while
-    take self
-    take test
-      like task
-        take item, like t
-        like boolean
-    like list
-
-  task drop-while
-    take self
-    take test
-      like task
-        take item, like t
-        like boolean
-    like list
-
-  task flatten
-    take self
-    like list
-
-  task flat-map
+  task reduce
     head s
     take self
     take call
       like task
+        take total, like s
         take item, like t
-        like list
-    like list
-
-  task zip
-    head s
-    take self
-    take other, like list
-    like list
-
-  task zip-with
-    head s
-    head r
-    take self
-    take other, like list
-    take call
-      like task
-        take a, like t
-        take b, like s
-        like r
-    like list
-
-  task unzip
-    take self
-    like pair
-
-  task enumerate
-    take self
-    like list
-
-  task chunks
-    take self
-    take size, like u64
-    like list
-
-  task dedup
-    take self
-    like list
-
-  task intersperse
-    take self
-    take separator, like t
-    like list
-
-  task swap
-    take self, flex true
-    take a, like u64
-    take b, like u64
-
-  task split-at
-    take self
-    take index, like u64
-    like pair
-
-  task starts-with
-    take self
-    take prefix, like list
-    like boolean
-
-  task ends-with
-    take self
-    take suffix, like list
-    like boolean
-
-  task min
-    take self
-    take compare
-      like task
-        take a, like t
-        take b, like t
-        like boolean
-    like maybe
-
-  task max
-    take self
-    take compare
-      like task
-        take a, like t
-        take b, like t
-        like boolean
-    like maybe
-
-  task sum
-    take self
-    take add
-      like task
-        take a, like t
-        take b, like t
-        like t
-    take zero, like t
-    like t
-
-  task product
-    take self
-    take multiply
-      like task
-        take a, like t
-        take b, like t
-        like t
-    take one, like t
-    like t
+        like s
+    take initial, like s
+    like s
+    send back
+      call self/reduce
+        read call
+        read initial

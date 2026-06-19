@@ -2,12 +2,38 @@
 form result
   head t
   head e
-
   case okay
     link value, like t
-
   case error
     link value, like e
+
+  task is-okay
+    take self
+    like boolean
+    fork case, read self
+      case okay
+        send back, wave true
+      case error
+        send back, wave false
+
+  task is-error
+    take self
+    like boolean
+    fork case, read self
+      case okay
+        send back, wave false
+      case error
+        send back, wave true
+
+  task unwrap-or
+    take self
+    take fallback, like t
+    like t
+    fork case, read self
+      case okay
+        send back, read self/value
+      case error
+        send back, read fallback
 
   task map
     head s
@@ -17,50 +43,14 @@ form result
         take value, like t
         like s
     like result
-
-  task map-error
-    head f
-    take self
-    take call
-      like task
-        take value, like e
-        like f
-    like result
-
-  task bind
-    head s
-    take self
-    take call
-      like task
-        take value, like t
-        like result
-    like result
-
-  task unwrap
-    take self
-    like t
-
-  task unwrap-or
-    take self
-    take fallback, like t
-    like t
-
-  task unwrap-error
-    take self
-    like e
-
-  task is-okay
-    take self
-    like boolean
-
-  task is-error
-    take self
-    like boolean
-
-  task to-maybe
-    take self
-    like maybe
-
-  task flatten
-    take self
-    like result
+    fork case, read self
+      case okay
+        send back
+          make okay
+            bind value
+              call call
+                read self/value
+      case error
+        send back
+          make error
+            bind value, read self/value

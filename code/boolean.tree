@@ -1,6 +1,6 @@
 
 form boolean
-  note <Boolean type>
+  note <Boolean: the stdlib source of truth for the boolean type. The compiler uses its native representation.>
 
   case true
   case false
@@ -9,26 +9,33 @@ form boolean
     take self
     take other, like boolean
     like boolean
+    fork test
+      hook test
+        read self
+      hook hold
+        send back, read other
+      hook miss
+        send back, wave false
 
   task or
     take self
     take other, like boolean
     like boolean
+    fork test
+      hook test
+        read self
+      hook hold
+        send back, wave true
+      hook miss
+        send back, read other
 
   task not
     take self
     like boolean
-
-  task xor
-    take self
-    take other, like boolean
-    like boolean
-
-  task nand
-    take self
-    take other, like boolean
-    like boolean
-
-  task to-text
-    take self
-    like text
+    fork test
+      hook test
+        read self
+      hook hold
+        send back, wave false
+      hook miss
+        send back, wave true
