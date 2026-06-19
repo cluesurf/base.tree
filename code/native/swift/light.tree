@@ -43,4 +43,4 @@ task set-light-mode
             read av-capture-device/torch-mode/off
 
       call device/native/unlock-for-configuration
-      back true
+      send back true

@@ -28,3 +28,23 @@ form range
         call is-below
           read value
           read self/end
+
+  task to-list
+    take self
+    like list
+    save out
+      make list
+    save at, read self/start
+    walk test
+      hook test
+        call is-below
+          read at
+          read self/end
+      hook step
+        call out/push
+          read at
+        save at
+          call add
+            read at
+            read self/step
+    send back, read out

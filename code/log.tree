@@ -8,20 +8,24 @@ load @cluesurf/base/code/native/log
 
 task info
   take message, like text
+  like void
   call write-info
     read message
 
 task warn
   take message, like text
+  like void
   call write-warn
     read message
 
 task error
   take message, like text
+  like void
   call write-error
     read message
 
 task debug
   take message, like text
+  like void
   call write-debug
     read message

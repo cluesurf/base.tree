@@ -1,26 +1,9 @@
+note <rust environment implementation. Forwards to the linked environment runtime shim. Internal: reached only through the public environment API.>
 
-load @cluesurf/bind/code/rust/std/env
-  find consts
+dock load
+  load <global:environment>, name environment
 
-task read
-  save system, read consts/OS
-  save architecture, read consts/ARCH
+task current-directory
+  like text
   send back
-    make info
-      bind system, read system
-      bind architecture, read architecture
-      bind name, read system
-      bind version, text <>
-      bind endian
-        fork test, call is-equal, read consts/ENDIAN, text <little>
-          hook true
-            text <LE>
-          hook false
-            text <BE>
-      bind cores
-        call std-thread-available-parallelism
-      bind memory, mark 0
-
-task std-thread-available-parallelism
-  mark private
-  dock call <std::thread::available_parallelism().map(|n| n.get()).unwrap_or(1)>
+    call environment/current-directory

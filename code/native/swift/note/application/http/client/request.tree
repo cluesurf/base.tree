@@ -9,7 +9,7 @@ task send-request
       save data
     fuse catch-and-return-error
 
-  back seed, read data
+  send back seed, read data
 
 task upload-file
   take request
@@ -23,7 +23,7 @@ task upload-file
       save response
     fuse catch-and-return-error
 
-  back seed, read response
+  send back seed, read response
 
 task download-file-from-url
   take url
@@ -49,7 +49,7 @@ tree catch-and-return-error
   hook bind
     hook error
       take error
-      back seed, read error
+      send back seed, read error
 
 tree return-if-error-exists
   take error, like optional, like error
@@ -59,7 +59,7 @@ tree return-if-error-exists
       test is-present
         read error
       hook true
-        back seed
+        send back seed
           make error
             read error/option
 
@@ -71,6 +71,6 @@ tree return-if-value-exists
       test is-present
         read value
       hook true
-        back seed
+        send back seed
           make ok
             read value/option

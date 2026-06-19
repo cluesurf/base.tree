@@ -24,7 +24,7 @@ task compute-rho-offset-constants
       save x, read new-x
       save y, read new-y
       save t, call increment, read t
-  back seed, read table
+  send back seed, read table
 
 task compute-pi-index-constants
   save table, make list
@@ -47,7 +47,7 @@ task compute-pi-index-constants
                 link multiply, mark 5
           save y, call increment, read y
       save x, call increment, read x
-  back seed, read table
+  send back seed, read table
 
 task compute-round-constants
   save table, make list
@@ -96,7 +96,7 @@ task compute-round-constants
           read round-constant-msw
           read round-constant-lsw
       save i, call increment, read i
-  back seed, read table
+  send back seed, read table
 
 save t, call create-variable-table
 task create-variable-table
@@ -108,7 +108,7 @@ task create-variable-table
     hook step
       save table[i], call x64-word/create
       save i, call increment, read i
-  back seed, read table
+  send back seed, read table
 
 save output-length, mark 512
 task do-reset
@@ -372,7 +372,7 @@ task do-finalize
       call hash-words/push, read lane-lsw
       call hash-words/push, read lane-msw
       save i, call increment, read i
-  back seed
+  send back seed
     make word-array/init
       read hash-words
       read output-length-bytes

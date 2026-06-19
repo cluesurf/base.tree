@@ -195,7 +195,7 @@ task gcd
             read b
           mark 0
         hook true
-          back seed
+          send back seed
             call math/abs
               bind read b
       save b
@@ -206,7 +206,7 @@ task gcd
 task lcm
   take a
   take b
-  back seed
+  send back seed
     call math/abs
       call multiply
         call divide
@@ -336,7 +336,7 @@ task make-reversal-table
             read s
           mark 255
       save i, call add, read i
-  back seed, read table
+  send back seed, read table
 
 save binary-trailing-zero-magic-number, mark 0x077cb531
 save binary-leading-zero-table, call make-leading-zero-table
@@ -437,7 +437,7 @@ task count-leading-zeroes-32
           call binary-leading-zero-table/get
             read n
 
-  back seed, read r
+  send back seed, read r
 
 task count-leading-zeroes-16
   take n
@@ -458,7 +458,7 @@ task count-leading-zeroes-16
           call binary-leading-zero-table/get
             read n
 
-  back seed, read r
+  send back seed, read r
 
 task count-leading-zeroes-8
   take n
@@ -525,7 +525,7 @@ task make-leading-zero-table
         read i
         read count
       save i, call increment, read i
-  back seed, read table
+  send back seed, read table
 
 task make-de-bruijn-trailing-zero-table
   take exponent
@@ -553,7 +553,7 @@ task make-de-bruijn-trailing-zero-table
         read i
       save i, call increment, read i
 
-  back seed, read table
+  send back seed, read table
 
 host binary-count-one-table, call make-binary-count-one-table
 
@@ -579,7 +579,7 @@ task make-binary-count-one-table
                 mark 2
               mark 0
       save i, call increment, read i
-  back seed, read table
+  send back seed, read table
 
 task count-one-bits-32
   take x

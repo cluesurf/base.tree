@@ -41,7 +41,7 @@ task get-next-power-of-two
       read n
       mark 0
     hook true
-      back seed, read 1
+      send back seed, read 1
   save n, call decrement, read n
   save n
     call bitwise-or
@@ -83,14 +83,14 @@ task get-next-power-of-two
     call shift-right
       read n
       mark 16
-  back seed
+  send back seed
     call add
       read n
       mark 1
 
 task reverse-bits
   take n
-  back seed
+  send back seed
     call bitwise-or
       call bitwise-or
         call bitwise-or

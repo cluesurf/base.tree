@@ -40,7 +40,7 @@ task fnv-hash-32-1a
               read c
               mark 0xff
       save i, call increment, read i
-  back seed, call fnv-hash-32-mixer, read a
+  send back seed, call fnv-hash-32-mixer, read a
 
 task fnv-hash-32-mixer
   take a
@@ -74,7 +74,7 @@ task fnv-hash-32-mixer
       call shift-left
         read a
         mark 5
-  back seed
+  send back seed
     call bitwise-and
       read a
       mark 0xffffffff
@@ -82,7 +82,7 @@ task fnv-hash-32-mixer
 task fnv-hash-32-multiply
   note <a * 16777619 mod 2**32.>
   take a
-  back seed
+  send back seed
     call add
       call add
         call add

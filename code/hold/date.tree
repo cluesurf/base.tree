@@ -46,7 +46,7 @@ task get-days-in-year
         mark 0
     hook true, back 365
 
-  back 366
+  send back 366
 
 # https://en.wikipedia.org/wiki/Date_format_by_country
 
@@ -259,7 +259,7 @@ task convert-from-julian-day-to-gregorian-day
             mark 1461
             read after-1968
         save four-year-cycle, read four-year-cycle-table[jsimple]
-        back seed
+        send back seed
           make day-triplet
             call add
               read y
@@ -351,7 +351,7 @@ task convert-from-julian-day-to-gregorian-day
         call multiply
           mark 30.6001
           read je
-  back seed
+  send back seed
     make day-triplet
       read y
       read m
@@ -482,4 +482,4 @@ task calculate-four-year-cycle-table
     hook false
       bust fork5
 
-  back seed, read four-year-cycle-table
+  send back seed, read four-year-cycle-table

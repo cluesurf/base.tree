@@ -12,5 +12,6 @@ task platform
 
 task exit
   take code, like number
+  like void
   call exit-with
     read code

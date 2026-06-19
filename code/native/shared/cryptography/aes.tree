@@ -104,7 +104,7 @@ task do-reset
   save t
   stem test, call self/n-rounds/intersect, call self/key-prior-reset/is-strictly-equal, read self/key
     hook true
-      back seed
+      send back seed
   save key, save self/key-prior-reset, read self/key
   save key-words, key/words
   save key-size, call key/sig-bytes/divide, mark 4

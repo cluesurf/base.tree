@@ -1,40 +1,9 @@
+note <kotlin environment implementation. Forwards to the linked environment runtime shim. Internal: reached only through the public environment API.>
 
-task read
-  save system
-    call kotlin-system-property
-      text <os.name>
-  save architecture
-    call kotlin-system-property
-      text <os.arch>
-  save version
-    call kotlin-system-property
-      text <os.version>
+dock load
+  load <global:environment>, name environment
+
+task current-directory
+  like text
   send back
-    make info
-      bind system, read system
-      bind architecture, read architecture
-      bind name, read system
-      bind version, read version
-      bind endian
-        call kotlin-byte-order
-      bind cores
-        call kotlin-available-processors
-      bind memory
-        call kotlin-total-memory
-
-task kotlin-system-property
-  mark private
-  take name, like text
-  dock call <System.getProperty(name) ?: "">
-
-task kotlin-byte-order
-  mark private
-  dock call <if (java.nio.ByteOrder.nativeOrder() == java.nio.ByteOrder.LITTLE_ENDIAN) "LE" else "BE">
-
-task kotlin-available-processors
-  mark private
-  dock call <Runtime.getRuntime().availableProcessors()>
-
-task kotlin-total-memory
-  mark private
-  dock call <Runtime.getRuntime().totalMemory()>
+    call environment/current-directory

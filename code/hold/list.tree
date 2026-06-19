@@ -25,10 +25,10 @@ form list
         read self/length
         read index
       hook true
-        back seed, make error
+        send back seed, make error
     call self/line/set
       read item
-    back seed, read self
+    send back seed, read self
 
   task get
     take index
@@ -37,8 +37,8 @@ form list
         read self/length
         read index
       hook true
-        back seed, make error
-    back seed
+        send back seed, make error
+    send back seed
       call self/line/get
         read index
 
@@ -49,7 +49,7 @@ form list
         read capacity
         read self/capacity
       hook true
-        back seed, read self
+        send back seed, read self
     save old-line, read self/line
     stem test
       call is-greater-than
@@ -74,7 +74,7 @@ form list
       hook true
         save self/length, read capacity
     save self/capacity, read capacity
-    back seed, read self
+    send back seed, read self
 
   task grow
     take capacity
@@ -83,7 +83,7 @@ form list
         read self/capacity
         read capacity
       hook true
-        back seed, read self
+        send back seed, read self
     save new-capacity, read self/capacity
     walk test
       hook test
@@ -97,7 +97,7 @@ form list
             read self/growth-factor
     call self/reallocate
       read new-capacity
-    back seed, read self
+    send back seed, read self
 
   task grow
     save new-capacity
@@ -106,7 +106,7 @@ form list
         read self/growth-factor
     call self/reallocate
       read new-capacity
-    back seed, read self
+    send back seed, read self
 
   task resize
     take length
@@ -115,7 +115,7 @@ form list
         read length
         read self/length
       hook true
-        back seed, read self
+        send back seed, read self
 
     stem test
       call is-less-than
@@ -135,11 +135,11 @@ form list
             save self/line[i], read void
             save i, call decrement, read i
         save self/length, read length
-        back seed, read self
+        send back seed, read self
     save self/length, read length
     call self/reallocate
       read length
-    back seed, read self
+    send back seed, read self
 
   task push
     take value
@@ -154,7 +154,7 @@ form list
       read self/length
       read value
     save self/length, call increment, read self/length
-    back seed, read self
+    send back seed, read self
 
   task pop
     stem test
@@ -162,9 +162,9 @@ form list
         read self/length
         mark 0
       hook true
-        back seed, make none
+        send back seed, make none
     save self/length, call decrement, read self/length
-    back seed
+    send back seed
       call self/line/get
         read self/length
 

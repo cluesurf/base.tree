@@ -235,6 +235,40 @@ form list
             read value
     send back, read total
 
+  task product
+    take self
+    like number
+    save total, mark 1
+    walk list, read self
+      hook next
+        take item, name value
+        save total
+          call multiply
+            read total
+            read value
+    send back, read total
+
+  task unique
+    take self
+    like list
+    save out
+      make list
+    walk list, read self
+      hook next
+        take item, name value
+        save seen
+          call out/includes
+            read value
+        fork test
+          hook test
+            call is-equal
+              read seen
+              wave false
+          hook hold
+            call out/push
+              read value
+    send back, read out
+
   task find
     take self
     take test

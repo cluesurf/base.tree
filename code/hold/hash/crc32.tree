@@ -26,7 +26,7 @@ task calculate-crc32
             read crc
             mark 8
       save i, call increment, read i
-  back seed
+  send back seed
     call unsigned-shift-right
       call bitwise-xor
         read crc

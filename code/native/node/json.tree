@@ -1,0 +1,47 @@
+note <node JSON implementation. Forwards to the linked json runtime shim, which wraps the host JSON and the json-value ADT conversion. Internal: reached only through the public json API.>
+
+load @cluesurf/base/code/json/value
+  find json-value
+
+dock load
+  load <global:json>, name json
+
+task do-parse
+  take text, like text
+  like json-value
+  send back
+    call json/parse
+      read text
+
+task do-stringify
+  head t
+  take value, like t
+  like text
+  send back
+    call json/stringify
+      read value
+
+task do-stringify-value
+  take value, like json-value
+  like text
+  send back
+    call json/stringify-value
+      read value
+
+task do-get-field
+  take self, like json-value
+  take key, like text
+  like json-value
+  send back
+    call json/get-field
+      read self
+      read key
+
+task do-get-item
+  take self, like json-value
+  take index, like number
+  like json-value
+  send back
+    call json/get-item
+      read self
+      read index

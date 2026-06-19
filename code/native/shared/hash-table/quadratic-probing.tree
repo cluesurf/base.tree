@@ -58,7 +58,7 @@ form hash-table
               read self/list[i]/key
               read key
             hook true
-              back seed, read self/list[i]/value
+              send back seed, read self/list[i]/value
           stem fall
             fuse update-hash
         fuse increment-step

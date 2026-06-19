@@ -68,6 +68,6 @@ task count-ones-in-integer-8
 
 task reverse-bits-byte
   take n
-  back seed
+  send back seed
     call bit-reversal-table/get
       bind read n

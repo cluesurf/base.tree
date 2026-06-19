@@ -9,7 +9,7 @@ tree is-not-or-return-error
         read a
         read b
       hook false
-        back seed
+        send back seed
           make not-error
 
 tree is-below-or-return-error
@@ -43,7 +43,7 @@ tree is-bound-or-return-error
         read a
         read b
       hook false
-        back seed
+        send back seed
           make range-error
             term type
 

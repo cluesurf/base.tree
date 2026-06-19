@@ -55,7 +55,7 @@ form bloom-filter
             bind value, read i
       hook false
         bust fork9
-    back seed, read r
+    send back seed, read r
   task add
     take v
     save tmp10
@@ -123,13 +123,13 @@ form bloom-filter
                   mark 32
             mark 0
           hook true
-            back seed, read false
+            send back seed, read false
         save i
           call increment
             bind value, read i
       hook false
         bust fork15
-    back seed, read true
+    send back seed, read true
   task get-size
     save buckets, read self/buckets
     save bits, mark 0
@@ -152,7 +152,7 @@ form bloom-filter
             bind value, read i
       hook false
         bust fork16
-    back seed
+    send back seed
       call divide
         call multiply
           call negative

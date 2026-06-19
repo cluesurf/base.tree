@@ -288,7 +288,7 @@ task make-utf-8-from-utf-16
                   call increment
                     read size
                     mark 3
-  back seed, read head-text
+  send back seed, read head-text
 
 task make-utf-16-from-utf-8
   take text
@@ -328,7 +328,7 @@ task make-utf-16-from-utf-8
               read state
               mark 16
           read type
-    back seed, read state
+    send back seed, read state
   save i, mark 0
   walk test, fork decode-byte-walk
     hook test
@@ -388,7 +388,7 @@ task make-utf-16-from-utf-8
       save point, mark 0
       save i, call increment, read i
 
-  back seed, read head-text
+  send back seed, read head-text
 
 host utf-8-decoding-table
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
