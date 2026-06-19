@@ -10,21 +10,16 @@ form channel
 
 task make
   head item
-  send back
-    like channel
-      fuse item, read item
+  like channel
 
 task send
   head item
-  take target
-    like channel
-      fuse item, read item
+  mark async
+  take target, like channel
   take value, like item
 
 task receive
   head item
-  take source
-    like channel
-      fuse item, read item
-  send back
-    like item
+  mark async
+  take source, like channel
+  like item

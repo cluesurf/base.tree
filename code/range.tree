@@ -1,2 +1,30 @@
 
-note <Range.>
+note <Numeric range: from start (inclusive) to end (exclusive) by step.>
+
+form range
+  link start, like number
+  link end, like number
+  link step, like number
+
+  task length
+    take self
+    like number
+    send back
+      call divide
+        call subtract
+          read self/end
+          read self/start
+        read self/step
+
+  task contains
+    take self
+    take value, like number
+    like boolean
+    send back
+      call and
+        call is-minimum
+          read value
+          read self/start
+        call is-below
+          read value
+          read self/end

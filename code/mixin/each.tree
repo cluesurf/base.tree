@@ -1,13 +1,13 @@
 
+note <Compile-time mixin: map a template over an enumeration, generating its body for each item.>
+
 tree define-each
   take list
   take tree-name
 
   hook fuse
-    slot file
     walk list, read list
       hook step
         take item
-        beam file
-          fuse read tree-name
-            read item
+        fuse read tree-name
+          read item

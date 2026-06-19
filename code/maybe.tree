@@ -51,3 +51,75 @@ form maybe
       case none
         send back
           make none
+
+  task and-then
+    head s
+    take self
+    take call
+      like task
+        take value, like t
+        like maybe
+    like maybe
+    fork case, read self
+      case some
+        send back
+          call call
+            read self/value
+      case none
+        send back
+          make none
+
+  task or-else
+    take self
+    take fallback, like maybe
+    like maybe
+    fork case, read self
+      case some
+        send back, read self
+      case none
+        send back, read fallback
+
+  task filter
+    take self
+    take test
+      like task
+        take value, like t
+        like boolean
+    like maybe
+    fork case, read self
+      case some
+        fork test
+          hook test
+            call test
+              read self/value
+          hook hold
+            send back, read self
+          hook miss
+            send back
+              make none
+      case none
+        send back
+          make none
+
+  task get-or-else
+    take self
+    take fallback
+      like task
+        like t
+    like t
+    fork case, read self
+      case some
+        send back, read self/value
+      case none
+        send back
+          call fallback
+
+  task unwrap
+    take self
+    like t
+    fork case, read self
+      case some
+        send back, read self/value
+      case none
+        bust
+          text <unwrap of none>

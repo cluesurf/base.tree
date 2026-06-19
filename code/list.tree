@@ -1,4 +1,7 @@
 
+load @cluesurf/base/code/maybe
+  find maybe
+
 form list
   note <List: the stdlib source of truth for the list type. The compiler uses the native array representation, so a list value is built with `make list`. Each method delegates to the native array operation.>
 
@@ -24,6 +27,12 @@ form list
     send back
       call self/push
         read item
+
+  task pop
+    take self
+    like t
+    send back
+      call self/pop
 
   task get
     take self
@@ -143,3 +152,68 @@ form list
       call self/reduce
         read call
         read initial
+
+  task first
+    take self
+    like maybe
+    fork test
+      hook test
+        call is-above
+          read self/length
+          mark 0
+      hook hold
+        send back
+          make some
+            bind value
+              call self/at
+                mark 0
+      hook miss
+        send back
+          make none
+
+  task last
+    take self
+    like maybe
+    fork test
+      hook test
+        call is-above
+          read self/length
+          mark 0
+      hook hold
+        send back
+          make some
+            bind value
+              call self/at
+                call subtract
+                  read self/length
+                  mark 1
+      hook miss
+        send back
+          make none
+
+  task find
+    take self
+    take test
+      like task
+        take item, like t
+        like boolean
+    like maybe
+    save index
+      call find-index
+        read self
+        read test
+    fork test
+      hook test
+        call is-minimum
+          read index
+          mark 0
+      hook hold
+        send back
+          make some
+            bind value
+              call get
+                read self
+                read index
+      hook miss
+        send back
+          make none

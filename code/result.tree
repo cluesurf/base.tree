@@ -54,3 +54,56 @@ form result
         send back
           make error
             bind value, read self/value
+
+  task map-error
+    head f
+    take self
+    take call
+      like task
+        take value, like e
+        like f
+    like result
+    fork case, read self
+      case okay
+        send back
+          make okay
+            bind value, read self/value
+      case error
+        send back
+          make error
+            bind value
+              call call
+                read self/value
+
+  task and-then
+    head s
+    take self
+    take call
+      like task
+        take value, like t
+        like result
+    like result
+    fork case, read self
+      case okay
+        send back
+          call call
+            read self/value
+      case error
+        send back
+          make error
+            bind value, read self/value
+
+  task unwrap-or-else
+    take self
+    take call
+      like task
+        take value, like e
+        like t
+    like t
+    fork case, read self
+      case okay
+        send back, read self/value
+      case error
+        send back
+          call call
+            read self/value

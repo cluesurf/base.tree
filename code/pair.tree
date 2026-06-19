@@ -37,3 +37,18 @@ form pair
           call call
             read self/first
         bind second, read self/second
+
+  task map-second
+    head c
+    take self
+    take call
+      like task
+        take value, like b
+        like c
+    like pair
+    send back
+      make pair
+        bind first, read self/first
+        bind second
+          call call
+            read self/second
