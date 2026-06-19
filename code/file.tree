@@ -1,43 +1,69 @@
 
+note <File system operations. The platform implementation is selected at build time and hidden behind this API.>
+
+load @cluesurf/base/code/native/file
+  find read-file
+  find write-file
+  find append-file
+  find remove-file
+  find copy-file
+  find move-file
+  find file-exists
+
 task read
   mark async
   take path, like text
-  take format, like text, fall text <text>
   like text
+  send back
+    call read-file
+      read path
 
 task write
   mark async
   take path, like text
   take data, like text
+  send back
+    call write-file
+      read path
+      read data
 
 task append
   mark async
   take path, like text
   take data, like text
+  send back
+    call append-file
+      read path
+      read data
+
+task remove
+  mark async
+  take path, like text
+  send back
+    call remove-file
+      read path
 
 task copy
   mark async
   take from, like text
   take to, like text
-  take deep, like bool, fall false
+  send back
+    call copy-file
+      read from
+      read to
 
 task move
   mark async
   take from, like text
   take to, like text
-
-task remove
-  mark async
-  take path, like text
-  take deep, like bool, fall false
+  send back
+    call move-file
+      read from
+      read to
 
 task test
-  mark async
   take path, like text
-  take kind, like text, need false
-  like bool
-
-task watch
-  mark async
-  take path, like text
-  take deep, like bool, fall wave false
+  like boolean
+  send back
+    call file-exists
+      read path

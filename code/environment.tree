@@ -1,12 +1,10 @@
 
-form info
-  link system, like text
-  link architecture, like text
-  link name, like text
-  link version, like text
-  link endian, like text
-  link cores, like size
-  link memory, like size
+note <Environment: working directory and platform info. Implementation selected at build time, hidden behind this API.>
 
-task read
-  like info
+load @cluesurf/base/code/native/environment
+  find current-directory
+
+task directory
+  like text
+  send back
+    call current-directory

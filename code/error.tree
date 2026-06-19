@@ -10,15 +10,13 @@ form error
 task make
   take code, like text
   take message, like text
-  take fields, like hash, need false
-  take cause, like error, need false
-  take trace, like bool, fall false
+  take hint, like text, need false
   like error
   send back
     make error
       bind code, read code
       bind note, read message
-      bind hint, read fields
+      bind hint, read hint
 
 task throw
   take error, like error

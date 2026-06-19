@@ -1,19 +1,16 @@
 
-task start
-  mark async
-  take prompt, like text, fall text <> >
-  take evaluate, like task, need false
-  take complete, like task, need false
-  take history, like size, fall 1000
+note <Console output. Platform implementation is selected at build time and hidden behind this API.>
 
-task evaluate
-  mark async
-  take code, like text
-  take context, like hash, need false
+load @cluesurf/base/code/native/console
+  find write-line
+  find write-error
 
-task inspect
-  take value
-  take depth, like size, fall 4
-  take color, like bool, fall true
-  take truncate, like size, fall 1000
-  like text
+task log
+  take message, like text
+  call write-line
+    read message
+
+task error
+  take message, like text
+  call write-error
+    read message

@@ -1,0 +1,53 @@
+
+note <Set: a collection of unique values, backed by the native map for O(1) membership.>
+
+load @cluesurf/base/code/hash
+  find hash
+
+form set
+  head t
+  link items, like hash
+
+  task insert
+    take self
+    take item, like t
+    like set
+    call set
+      read self/items
+      read item
+      wave true
+    send back, read self
+
+  task has
+    take self
+    take item, like t
+    like boolean
+    send back
+      call has
+        read self/items
+        read item
+
+  task remove
+    take self
+    take item, like t
+    like boolean
+    send back
+      call remove
+        read self/items
+        read item
+
+  task size
+    take self
+    like number
+    send back
+      call size
+        read self/items
+
+  task is-empty
+    take self
+    like boolean
+    send back
+      call is-equal
+        call size
+          read self/items
+        mark 0

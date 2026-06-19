@@ -1,36 +1,10 @@
 
-load @cluesurf/bind/code/node/os
-  find platform
-  find arch
-  find type
-  find release
-  find endianness
-  find cpus
-  find totalmem
+note <Node.js environment implementation. Internal: reached only through the public environment API.>
 
-task read
-  save system
-    call platform
-  save architecture
-    call arch
-  save os-name
-    call type
-  save os-version
-    call release
-  save endian
-    call endianness
-  save cpu-list
-    call cpus
-  save core-count
-    read cpu-list/length
-  save memory
-    call totalmem
+dock load
+  load <global:process>, name process
+
+task current-directory
+  like text
   send back
-    make info
-      bind system, read system
-      bind architecture, read architecture
-      bind name, read os-name
-      bind version, read os-version
-      bind endian, read endian
-      bind cores, read core-count
-      bind memory, read memory
+    call process/cwd

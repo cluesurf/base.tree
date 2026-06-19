@@ -1,16 +1,65 @@
 
-load @cluesurf/land/code/javascript/promise
-  take task make-javascript-promise
+note <Node.js file system implementation. Internal: reached only through the public file API.>
 
-task make-temporary-file
+dock load
+  load <node:fs/promises>, name fs
+  load <node:fs>, name fssync
 
-task make-temporary-directory
+task read-file
+  mark async
+  take path, like text
+  like text
+  send back
+    call fs/read-file
+      read path
+      text <utf8>
 
-task make-directory
+task write-file
+  mark async
+  take path, like text
+  take data, like text
+  send back
+    call fs/write-file
+      read path
+      read data
 
-task find-asynchronous
+task append-file
+  mark async
+  take path, like text
+  take data, like text
+  send back
+    call fs/append-file
+      read path
+      read data
 
-task find-synchronous
+task remove-file
+  mark async
+  take path, like text
+  send back
+    call fs/rm
+      read path
 
-task find, base find-asynchronous
-  note <Glob find>
+task copy-file
+  mark async
+  take from, like text
+  take to, like text
+  send back
+    call fs/copy-file
+      read from
+      read to
+
+task move-file
+  mark async
+  take from, like text
+  take to, like text
+  send back
+    call fs/rename
+      read from
+      read to
+
+task file-exists
+  take path, like text
+  like boolean
+  send back
+    call fssync/exists-sync
+      read path

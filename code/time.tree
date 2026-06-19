@@ -1,16 +1,10 @@
 
-task get-current-timestamp # get now
+note <Time: the current epoch time. Implementation selected at build time, hidden behind this API.>
 
-form time
-  note <Data type for storing times.>
-  link seconds, like signed-integer-32
-  link microseconds, like signed-integer-32
+load @cluesurf/base/code/native/time
+  find epoch-millis
 
-  task get-duration-since
-    take earlier, like time
-    like result
-      like duration
-      like system-time-error
-  task get-elapsed
-  task checked-add
-  task checked-subtract
+task now
+  like number
+  send back
+    call epoch-millis

@@ -1,0 +1,15 @@
+
+note <Node.js console implementation. Internal: reached only through the public console API.>
+
+dock load
+  load <global:console>, name console
+
+task write-line
+  take message, like text
+  call console/log
+    read message
+
+task write-error
+  take message, like text
+  call console/error
+    read message
