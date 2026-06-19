@@ -1,0 +1,27 @@
+note <Keyed-hash message authentication (HMAC). The clean uniform interface; the per-env native implementation is selected at build time and hidden. The interface is async to stay uniform with the rest of cryptography (some platforms only expose crypto asynchronously).>
+
+load @cluesurf/base/code/native/cryptography/hmac
+  find hmac-sha256
+  find hmac-sha512
+
+task sha256
+  mark async
+  take key, like text
+  take data, like text
+  like text
+  send back
+    call hmac-sha256
+      read key
+      read data
+      wait true
+
+task sha512
+  mark async
+  take key, like text
+  take data, like text
+  like text
+  send back
+    call hmac-sha512
+      read key
+      read data
+      wait true

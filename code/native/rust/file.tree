@@ -1,199 +1,61 @@
+note <Rust file system implementation. Forwards to the linked `io` runtime (code/compile/io-runtime SEED_IO_RUNTIME_RUST), which wraps std::fs and absorbs its Result type so the public file API stays total. Internal: reached only through the public file API.>
 
 dock load
-  load <std:fs>, name fs
-  load <std:path>, name path-mod
+  load <global:io>, name io
 
-task read
+task read-file
   take path, like text
-  take format, like text, fall text <text>
+  like text
+  send back
+    call io/file-read
+      read path
 
-  fork test, call is-equal, read format, text <bytes>
-    hook true
-      send back
-        call fs/read
-          read path
-          halt kink
-    hook false
-      send back
-        call fs/read-to-string
-          read path
-          halt kink
-
-task write
+task write-file
   take path, like text
   take data, like text
+  like void
+  send back
+    call io/file-write
+      read path
+      read data
 
-  call fs/write
-    read path
-    read data
-    halt kink
-
-task append
+task append-file
   take path, like text
   take data, like text
-
-  save handle
-    call fs/open-options/new
-      call append, wave true
-      call open, read path
-      halt kink
-  call handle/write-all
-    read data
-    halt kink
-
-task copy
-  take from, like text
-  take to, like text
-  take deep, like bool, fall wave false
-
-  fork test, name deep
-    hook true
-      call copy-dir-recursive
-        read from
-        read to
-    hook false
-      call fs/copy
-        read from
-        read to
-        halt kink
-
-task move
-  take from, like text
-  take to, like text
-
-  call fs/rename
-    read from
-    read to
-    halt kink
-
-task remove
-  take path, like text
-  take deep, like bool, fall wave false
-
-  fork test, name deep
-    hook true
-      call fs/remove-dir-all
-        read path
-        halt kink
-    hook false
-      save meta
-        call fs/metadata
-          read path
-          halt kink
-      fork test, call meta/is-dir
-        hook true
-          call fs/remove-dir
-            read path
-            halt kink
-        hook false
-          call fs/remove-file
-            read path
-            halt kink
-
-task test
-  take path, like text
-  take kind, like text, need false
-
-  save exists-result
-    call fs/metadata
+  like void
+  send back
+    call io/file-append
       read path
-  fork test
-    hook test
-      call exists-result/is-err
-    hook hold
-      send back, wave false
+      read data
 
-  fork test, call is-null, read kind
-    hook true
-      send back, wave true
-
-  save meta
-    call exists-result/unwrap
-
-  fork test, call is-equal, read kind, text <file>
-    hook true
-      send back, call meta/is-file
-
-  fork test, call is-equal, read kind, text <directory>
-    hook true
-      send back, call meta/is-dir
-
-  fork test, call is-equal, read kind, text <link>
-    hook true
-      save link-meta
-        call fs/symlink-metadata
-          read path
-          halt kink
-      send back
-        call link-meta/file-type
-          save ft
-        call ft/is-symlink
-
-  send back, wave true
-
-task make-directory
+task remove-file
   take path, like text
-  take deep, like bool, fall wave false
-
-  fork test, name deep
-    hook true
-      call fs/create-dir-all
-        read path
-        halt kink
-    hook false
-      call fs/create-dir
-        read path
-        halt kink
-
-task list-directory
-  take path, like text
-
-  save entries
-    call fs/read-dir
+  like void
+  send back
+    call io/file-remove
       read path
-      halt kink
-  send back, read entries
 
-task copy-dir-recursive
+task copy-file
   take from, like text
   take to, like text
-
-  call fs/create-dir-all
-    read to
-    halt kink
-
-  save entries
-    call fs/read-dir
+  like void
+  send back
+    call io/file-copy
       read from
-      halt kink
+      read to
 
-  walk list, read entries
-    hook next
-      take site, name entry
-      save entry-val
-        call entry/unwrap
-      save entry-path
-        call entry-val/path
-      save file-name
-        call entry-path/file-name
-          save name
-        call name/to-str
-          save name-str
-      save dest
-        call path-mod/path/new
-          read to
-        call dest/join
-          read name-str
-      save file-type
-        call entry-val/file-type
-          halt kink
-      fork test, call file-type/is-dir
-        hook true
-          call copy-dir-recursive
-            read entry-path
-            read dest
-        hook false
-          call fs/copy
-            read entry-path
-            read dest
-            halt kink
+task move-file
+  take from, like text
+  take to, like text
+  like void
+  send back
+    call io/file-move
+      read from
+      read to
+
+task file-exists
+  take path, like text
+  like boolean
+  send back
+    call io/file-exists
+      read path

@@ -1,202 +1,61 @@
+note <Kotlin/JVM file system implementation. Forwards to the linked `io` runtime (code/compile/io-runtime SEED_IO_RUNTIME_KOTLIN), which wraps java.io.File and absorbs its checked exceptions so the public file API stays total. Internal: reached only through the public file API.>
 
-task read
+dock load
+  load <global:io>, name io
+
+task read-file
   take path, like text
-  take format, like text, fall text <text>
-
-  fork test, call is-equal, read format, text <bytes>
-    hook true
-      send back
-        call kotlin-read-bytes
-          read path
-    hook false
-      send back
-        call kotlin-read-text
-          read path
-
-task write
-  take path, like text
-  take data, like text
-
-  call kotlin-write-text
-    read path
-    read data
-
-task append
-  take path, like text
-  take data, like text
-
-  call kotlin-append-text
-    read path
-    read data
-
-task copy
-  take from, like text
-  take to, like text
-  take deep, like bool, fall wave false
-
-  fork test, name deep
-    hook true
-      call kotlin-copy-directory
-        read from
-        read to
-    hook false
-      call kotlin-copy-file
-        read from
-        read to
-
-task move
-  take from, like text
-  take to, like text
-
-  call kotlin-move
-    read from
-    read to
-
-task remove
-  take path, like text
-  take deep, like bool, fall wave false
-
-  fork test, name deep
-    hook true
-      call kotlin-remove-directory
-        read path
-    hook false
-      call kotlin-remove-file
-        read path
-
-task test
-  take path, like text
-  take kind, like text, need false
-
-  fork test, call is-null, read kind
-    hook true
-      send back
-        call kotlin-file-exists
-          read path
-
-  fork test, call is-equal, read kind, text <file>
-    hook true
-      send back
-        call kotlin-is-file
-          read path
-
-  fork test, call is-equal, read kind, text <directory>
-    hook true
-      send back
-        call kotlin-is-directory
-          read path
-
-  fork test, call is-equal, read kind, text <link>
-    hook true
-      send back
-        call kotlin-is-link
-          read path
-
-  send back, wave false
-
-task make-directory
-  take path, like text
-
-  call kotlin-make-dirs
-    read path
-
-task list-directory
-  take path, like text
-
+  like text
   send back
-    call kotlin-list-directory
+    call io/file-read
       read path
 
-task kotlin-read-text
-  mark private
-  take path, like text
-  dock call <java.io.File(path).readText(Charsets.UTF_8)>
-
-task kotlin-read-bytes
-  mark private
-  take path, like text
-  dock call <java.io.File(path).readBytes()>
-
-task kotlin-write-text
-  mark private
+task write-file
   take path, like text
   take data, like text
-  dock call <java.io.File(path).writeText(data, Charsets.UTF_8)>
+  like void
+  send back
+    call io/file-write
+      read path
+      read data
 
-task kotlin-append-text
-  mark private
+task append-file
   take path, like text
   take data, like text
-  dock call <java.io.File(path).appendText(data, Charsets.UTF_8)>
+  like void
+  send back
+    call io/file-append
+      read path
+      read data
 
-task kotlin-copy-file
-  mark private
+task remove-file
+  take path, like text
+  like void
+  send back
+    call io/file-remove
+      read path
+
+task copy-file
   take from, like text
   take to, like text
-  dock call <java.nio.file.Files.copy(java.nio.file.Paths.get(from), java.nio.file.Paths.get(to), java.nio.file.StandardCopyOption.REPLACE_EXISTING)>
+  like void
+  send back
+    call io/file-copy
+      read from
+      read to
 
-task kotlin-copy-directory
-  mark private
+task move-file
   take from, like text
   take to, like text
-  dock call <run {
-    val source = java.nio.file.Paths.get(from)
-    val target = java.nio.file.Paths.get(to)
-    java.nio.file.Files.walk(source).forEach { path ->
-      val dest = target.resolve(source.relativize(path))
-      if (java.nio.file.Files.isDirectory(path)) {
-        java.nio.file.Files.createDirectories(dest)
-      } else {
-        java.nio.file.Files.copy(path, dest, java.nio.file.StandardCopyOption.REPLACE_EXISTING)
-      }
-    }
-  }>
+  like void
+  send back
+    call io/file-move
+      read from
+      read to
 
-task kotlin-move
-  mark private
-  take from, like text
-  take to, like text
-  dock call <java.nio.file.Files.move(java.nio.file.Paths.get(from), java.nio.file.Paths.get(to), java.nio.file.StandardCopyOption.REPLACE_EXISTING)>
-
-task kotlin-remove-file
-  mark private
+task file-exists
   take path, like text
-  dock call <java.nio.file.Files.deleteIfExists(java.nio.file.Paths.get(path))>
-
-task kotlin-remove-directory
-  mark private
-  take path, like text
-  dock call <run {
-    val dir = java.nio.file.Paths.get(path)
-    java.nio.file.Files.walk(dir).sorted(Comparator.reverseOrder()).forEach { java.nio.file.Files.deleteIfExists(it) }
-  }>
-
-task kotlin-file-exists
-  mark private
-  take path, like text
-  dock call <java.nio.file.Files.exists(java.nio.file.Paths.get(path))>
-
-task kotlin-is-file
-  mark private
-  take path, like text
-  dock call <java.nio.file.Files.isRegularFile(java.nio.file.Paths.get(path))>
-
-task kotlin-is-directory
-  mark private
-  take path, like text
-  dock call <java.nio.file.Files.isDirectory(java.nio.file.Paths.get(path))>
-
-task kotlin-is-link
-  mark private
-  take path, like text
-  dock call <java.nio.file.Files.isSymbolicLink(java.nio.file.Paths.get(path))>
-
-task kotlin-make-dirs
-  mark private
-  take path, like text
-  dock call <java.nio.file.Files.createDirectories(java.nio.file.Paths.get(path))>
-
-task kotlin-list-directory
-  mark private
-  take path, like text
-  dock call <java.io.File(path).list()?.toList() ?: emptyList<String>()>
+  like boolean
+  send back
+    call io/file-exists
+      read path

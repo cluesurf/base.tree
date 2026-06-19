@@ -191,6 +191,50 @@ form list
         send back
           make none
 
+  task index-of
+    take self
+    take item, like t
+    like number
+    send back
+      call self/indexOf
+        read item
+
+  task take-first
+    take self
+    take count, like number
+    like list
+    send back
+      call self/slice
+        mark 0
+        read count
+
+  task drop-first
+    take self
+    take count, like number
+    like list
+    send back
+      call self/slice
+        read count
+
+  task flatten
+    take self
+    like list
+    send back
+      call self/flat
+
+  task sum
+    take self
+    like number
+    save total, mark 0
+    walk list, read self
+      hook next
+        take item, name value
+        save total
+          call add
+            read total
+            read value
+    send back, read total
+
   task find
     take self
     take test

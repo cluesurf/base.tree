@@ -1,0 +1,134 @@
+note <Math: the clean uniform interface. Operations with a host equivalent delegate to the per-env native math library (hidden, selected at build time). Operations with no host primitive (clamp, gcd, factorial) compose from the interface.>
+
+load @cluesurf/base/code/native/math
+  find abs
+  find min
+  find max
+  find pow
+  find signum
+  find sqrt
+  find floor
+  find ceil
+  find round-nearest
+
+task absolute
+  take value, like number
+  like number
+  send back
+    call abs
+      read value
+
+task minimum
+  take a, like number
+  take b, like number
+  like number
+  send back
+    call min
+      read a
+      read b
+
+task maximum
+  take a, like number
+  take b, like number
+  like number
+  send back
+    call max
+      read a
+      read b
+
+task power
+  take base, like number
+  take exponent, like number
+  like number
+  send back
+    call pow
+      read base
+      read exponent
+
+task sign
+  take value, like number
+  like number
+  send back
+    call signum
+      read value
+
+task square-root
+  take value, like number
+  like number
+  send back
+    call sqrt
+      read value
+
+task round-down
+  take value, like number
+  like number
+  send back
+    call floor
+      read value
+
+task round-up
+  take value, like number
+  like number
+  send back
+    call ceil
+      read value
+
+task round
+  take value, like number
+  like number
+  send back
+    call round-nearest
+      read value
+
+task clamp
+  take value, like number
+  take low, like number
+  take high, like number
+  like number
+  send back
+    call minimum
+      call maximum
+        read value
+        read low
+      read high
+
+task greatest-common-divisor
+  take a, like number
+  take b, like number
+  like number
+  save x, read a
+  save y, read b
+  walk test
+    hook test
+      call is-above
+        read y
+        mark 0
+    hook step
+      save temp, read y
+      save y
+        call modulo
+          read x
+          read y
+      save x, read temp
+  send back, read x
+
+task factorial
+  take n, like number
+  like number
+  save result, mark 1
+  save count, mark 1
+  walk test
+    hook test
+      call is-maximum
+        read count
+        read n
+    hook step
+      save result
+        call multiply
+          read result
+          read count
+      save count
+        call add
+          read count
+          mark 1
+  send back, read result

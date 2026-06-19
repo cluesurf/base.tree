@@ -1,0 +1,36 @@
+note <Node.js HMAC implementation (the host node:crypto module). Internal: reached only through the public hmac API.>
+
+dock load
+  load <node:crypto>, name crypto
+
+task hmac-sha256
+  mark async
+  take key, like text
+  take data, like text
+  like text
+  save mac
+    call crypto/create-hmac
+      text <sha256>
+      read key
+  save updated
+    call mac/update
+      read data
+  send back
+    call updated/digest
+      text <hex>
+
+task hmac-sha512
+  mark async
+  take key, like text
+  take data, like text
+  like text
+  save mac
+    call crypto/create-hmac
+      text <sha512>
+      read key
+  save updated
+    call mac/update
+      read data
+  send back
+    call updated/digest
+      text <hex>

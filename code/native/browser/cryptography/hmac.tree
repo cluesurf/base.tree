@@ -1,0 +1,24 @@
+note <Browser HMAC implementation. Forwards to the linked crypto runtime shim, which wraps the Web Crypto API (globalThis.crypto.subtle). Internal: reached only through the public hmac API.>
+
+dock load
+  load <global:crypto>, name crypto
+
+task hmac-sha256
+  mark async
+  take key, like text
+  take data, like text
+  like text
+  send back
+    call crypto/hmac-sha256
+      read key
+      read data
+
+task hmac-sha512
+  mark async
+  take key, like text
+  take data, like text
+  like text
+  send back
+    call crypto/hmac-sha512
+      read key
+      read data

@@ -1,0 +1,33 @@
+note <Cryptographic digests (one-way hashes). The clean uniform interface; the per-env native implementation is selected at build time and hidden. The interface is async because some platforms (the browser Web Crypto API) only expose crypto asynchronously, and the interface stays uniform across every target.>
+
+load @cluesurf/base/code/native/cryptography/digest
+  find digest-sha256
+  find digest-sha512
+  find digest-md5
+
+task sha256
+  mark async
+  take input, like text
+  like text
+  send back
+    call digest-sha256
+      read input
+      wait true
+
+task sha512
+  mark async
+  take input, like text
+  like text
+  send back
+    call digest-sha512
+      read input
+      wait true
+
+task md5
+  mark async
+  take input, like text
+  like text
+  send back
+    call digest-md5
+      read input
+      wait true

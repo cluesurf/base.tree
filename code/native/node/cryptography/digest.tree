@@ -1,0 +1,46 @@
+note <Node.js digest implementation (the host node:crypto module). Internal: reached only through the public digest API.>
+
+dock load
+  load <node:crypto>, name crypto
+
+task digest-sha256
+  mark async
+  take input, like text
+  like text
+  save hasher
+    call crypto/create-hash
+      text <sha256>
+  save updated
+    call hasher/update
+      read input
+  send back
+    call updated/digest
+      text <hex>
+
+task digest-sha512
+  mark async
+  take input, like text
+  like text
+  save hasher
+    call crypto/create-hash
+      text <sha512>
+  save updated
+    call hasher/update
+      read input
+  send back
+    call updated/digest
+      text <hex>
+
+task digest-md5
+  mark async
+  take input, like text
+  like text
+  save hasher
+    call crypto/create-hash
+      text <md5>
+  save updated
+    call hasher/update
+      read input
+  send back
+    call updated/digest
+      text <hex>
