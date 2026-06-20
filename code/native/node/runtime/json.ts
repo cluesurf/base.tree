@@ -8,4 +8,12 @@ const json = {
   asText: (value: any): string => typeof value === 'string' ? value : '',
   asBoolean: (value: any): boolean => typeof value === 'boolean' ? value : false,
   isNull: (value: any): boolean => value === null || value === undefined,
+  makeObject: (): any => ({}),
+  setField: (value: any, key: string, field: any): any => { value[key] = field; return value },
+  makeArray: (): any => [],
+  pushItem: (value: any, item: any): any => { value.push(item); return value },
+  fromText: (value: string): any => value,
+  fromNumber: (value: number): any => value,
+  fromBoolean: (value: boolean): any => value,
+  makeNull: (): any => null,
 }

@@ -62,3 +62,59 @@ task do-is-null
   send back
     call json/is-null
       read value
+
+task do-make-object
+  like dynamic
+  send back
+    call json/make-object
+
+task do-set-field
+  take value, like dynamic
+  take key, like text
+  take field, like dynamic
+  like dynamic
+  send back
+    call json/set-field
+      read value
+      read key
+      read field
+
+task do-make-array
+  like dynamic
+  send back
+    call json/make-array
+
+task do-push-item
+  take value, like dynamic
+  take item, like dynamic
+  like dynamic
+  send back
+    call json/push-item
+      read value
+      read item
+
+task do-from-text
+  take value, like text
+  like dynamic
+  send back
+    call json/from-text
+      read value
+
+task do-from-number
+  take value, like decimal
+  like dynamic
+  send back
+    call json/from-number
+      read value
+
+task do-from-boolean
+  take value, like boolean
+  like dynamic
+  send back
+    call json/from-boolean
+      read value
+
+task do-make-null
+  like dynamic
+  send back
+    call json/make-null

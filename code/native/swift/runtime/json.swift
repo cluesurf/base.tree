@@ -19,4 +19,20 @@ enum json {
     static func asText(_ value: Any) -> String { return value as? String ?? "" }
     static func asBoolean(_ value: Any) -> Bool { return (value as? NSNumber)?.boolValue ?? false }
     static func isNull(_ value: Any) -> Bool { return value is NSNull }
+    static func makeObject() -> Any { return [String: Any]() }
+    static func setField(_ value: Any, _ key: String, _ field: Any) -> Any {
+        var dict = (value as? [String: Any]) ?? [:]
+        dict[key] = field
+        return dict
+    }
+    static func makeArray() -> Any { return [Any]() }
+    static func pushItem(_ value: Any, _ item: Any) -> Any {
+        var items = (value as? [Any]) ?? []
+        items.append(item)
+        return items
+    }
+    static func fromText(_ value: String) -> Any { return value }
+    static func fromNumber(_ value: Double) -> Any { return value }
+    static func fromBoolean(_ value: Bool) -> Any { return value }
+    static func makeNull() -> Any { return NSNull() }
 }

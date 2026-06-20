@@ -12,6 +12,7 @@ form hash
     take self
     take key, like k
     like maybe
+      like v
     fork test
       hook test
         call self/has

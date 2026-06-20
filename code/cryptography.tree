@@ -40,12 +40,7 @@ fuse define-asymmetric-key-pair
 
 task check-prime
   take candidate
-
-  fuse check-prime-result
-
-task check-prime
-  take candidate
-  take number-of-checks
+  take number-of-checks, need false
 
   fuse check-prime-result
 
