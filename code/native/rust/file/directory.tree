@@ -31,3 +31,11 @@ task directory-list
   send back
     call io/dir-list
       read path
+
+task directory-walk
+  take path, like text
+  like list
+    like text
+  send back
+    call io/dir-walk
+      read path

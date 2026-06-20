@@ -47,4 +47,13 @@ const io = {
       return []
     }
   },
+  dirWalk: (path: string): Array<string> => {
+    try {
+      return (readdirSync(path, { recursive: true }) as Array<string>).map(
+        entry => `${path}/${entry}`,
+      )
+    } catch {
+      return []
+    }
+  },
 }

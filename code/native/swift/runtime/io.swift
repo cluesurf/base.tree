@@ -52,4 +52,10 @@ enum io {
     static func dirList(_ path: String) -> [String] {
         return (try? FileManager.default.contentsOfDirectory(atPath: path)) ?? []
     }
+    static func dirWalk(_ path: String) -> [String] {
+        guard let enumerator = FileManager.default.enumerator(atPath: path) else { return [] }
+        var out: [String] = []
+        while let entry = enumerator.nextObject() as? String { out.append(path + "/" + entry) }
+        return out
+    }
 }

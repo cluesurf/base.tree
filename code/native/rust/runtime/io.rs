@@ -52,4 +52,20 @@ mod io {
             Err(_) => Vec::new(),
         }
     }
+    pub fn dir_walk(path: String) -> Vec<String> {
+        fn collect(dir: &std::path::Path, out: &mut Vec<String>) {
+            if let Ok(entries) = std::fs::read_dir(dir) {
+                for entry in entries.flatten() {
+                    let child = entry.path();
+                    out.push(child.to_string_lossy().to_string());
+                    if child.is_dir() {
+                        collect(&child, out);
+                    }
+                }
+            }
+        }
+        let mut out = Vec::new();
+        collect(std::path::Path::new(&path), &mut out);
+        out
+    }
 }

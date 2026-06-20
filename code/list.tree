@@ -72,13 +72,17 @@ form list
   task reverse
     take self
     like list
+      like t
     send back
       call self/toReversed
 
   task concat
     take self
-    take other, like list
+    take other
+      like list
+        like t
     like list
+      like t
     send back
       call self/concat
         read other
@@ -88,6 +92,7 @@ form list
     take start, like number
     take end, like number
     like list
+      like t
     send back
       call self/slice
         read start
@@ -101,6 +106,7 @@ form list
         take item, like t
         like s
     like list
+      like s
     send back
       call self/map
         read call
@@ -112,6 +118,7 @@ form list
         take item, like t
         like boolean
     like list
+      like t
     send back
       call self/filter
         read test
@@ -203,6 +210,7 @@ form list
     take self
     take count, like number
     like list
+      like t
     send back
       call self/slice
         mark 0
@@ -212,6 +220,7 @@ form list
     take self
     take count, like number
     like list
+      like t
     send back
       call self/slice
         read count
@@ -219,6 +228,7 @@ form list
   task flatten
     take self
     like list
+      like t
     send back
       call self/flat
 
@@ -251,6 +261,7 @@ form list
   task unique
     take self
     like list
+      like t
     save out
       make list
     walk list, read self

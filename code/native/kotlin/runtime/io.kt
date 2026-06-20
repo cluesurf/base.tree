@@ -16,4 +16,5 @@ object io {
     fun dirMake(path: String) { try { File(path).mkdirs() } catch (e: Exception) {} }
     fun dirRemove(path: String) { try { File(path).deleteRecursively() } catch (e: Exception) {} }
     fun dirList(path: String): MutableList<String> = try { File(path).list()?.toMutableList() ?: mutableListOf() } catch (e: Exception) { mutableListOf() }
+    fun dirWalk(path: String): MutableList<String> = try { File(path).walkTopDown().drop(1).map { it.path }.toMutableList() } catch (e: Exception) { mutableListOf() }
 }

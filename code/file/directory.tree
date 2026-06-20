@@ -6,6 +6,7 @@ load @cluesurf/base/code/native/file/directory
   find directory-remove
   find directory-exists
   find directory-list
+  find directory-walk
 
 task make
   take path, like text
@@ -34,4 +35,14 @@ task list
     like text
   send back
     call directory-list
+      read path
+
+note <walk lists every path beneath the directory, recursively, through the platform's own recursive enumerator.>
+
+task walk
+  take path, like text
+  like list
+    like text
+  send back
+    call directory-walk
       read path
