@@ -19,6 +19,22 @@ task write-file
       read path
       read data
 
+task read-file-bytes
+  take path, like text
+  like bytes
+  send back
+    call io/file-read-bytes
+      read path
+
+task write-file-bytes
+  take path, like text
+  take data, like bytes
+  like void
+  send back
+    call io/file-write-bytes
+      read path
+      read data
+
 task append-file
   take path, like text
   take data, like text

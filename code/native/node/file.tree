@@ -23,6 +23,23 @@ task write-file
       read path
       read data
 
+task read-file-bytes
+  mark async
+  take path, like text
+  like bytes
+  send back
+    call fs/read-file
+      read path
+
+task write-file-bytes
+  mark async
+  take path, like text
+  take data, like bytes
+  send back
+    call fs/write-file
+      read path
+      read data
+
 task append-file
   mark async
   take path, like text

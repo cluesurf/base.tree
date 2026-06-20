@@ -1,0 +1,81 @@
+note <Raw byte buffers: the `bytes` currency type, backed by the platform's native octet buffer (a JS Uint8Array, a rust byte vector, a swift Data, a kotlin ByteArray). This is the zero-copy currency for cryptography, encoding, file IO, and the network. Text (utf8), hex, and base64 are explicit codecs at the edges, not a tax paid on every call. The per-env native implementation is selected at build time and hidden.>
+
+load @cluesurf/base/code/native/bytes
+  find do-from-text
+  find do-to-text
+  find do-to-hex
+  find do-from-hex
+  find do-to-base64
+  find do-from-base64
+  find do-length
+  find do-concat
+  find do-slice
+
+task from-text
+  take text, like text
+  like bytes
+  send back
+    call do-from-text
+      read text
+
+task to-text
+  take value, like bytes
+  like text
+  send back
+    call do-to-text
+      read value
+
+task to-hex
+  take value, like bytes
+  like text
+  send back
+    call do-to-hex
+      read value
+
+task from-hex
+  take text, like text
+  like bytes
+  send back
+    call do-from-hex
+      read text
+
+task to-base64
+  take value, like bytes
+  like text
+  send back
+    call do-to-base64
+      read value
+
+task from-base64
+  take text, like text
+  like bytes
+  send back
+    call do-from-base64
+      read text
+
+task length
+  take value, like bytes
+  like number
+  send back
+    call do-length
+      read value
+
+task concat
+  take left, like bytes
+  take right, like bytes
+  like bytes
+  send back
+    call do-concat
+      read left
+      read right
+
+task slice
+  take value, like bytes
+  take start, like number
+  take end, like number
+  like bytes
+  send back
+    call do-slice
+      read value
+      read start
+      read end

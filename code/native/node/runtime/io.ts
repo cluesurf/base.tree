@@ -2,7 +2,7 @@
 // as a <global:io> and forwards uniformly, matching the rust, swift, and kotlin io shims. Every call absorbs the host
 // error and returns a safe default, so the public file API stays total. The plain file read and write path stays on
 // node:fs/promises in native/node/file.tree. This shim covers the synchronous metadata and directory surface.
-import { statSync, mkdirSync, rmSync } from 'node:fs'
+import { statSync, mkdirSync, rmSync, readdirSync } from 'node:fs'
 
 const io = {
   fileSize: (path: string): number => {
@@ -38,6 +38,13 @@ const io = {
       rmSync(path, { recursive: true, force: true })
     } catch {
       // best effort
+    }
+  },
+  dirList: (path: string): Array<string> => {
+    try {
+      return readdirSync(path)
+    } catch {
+      return []
     }
   },
 }

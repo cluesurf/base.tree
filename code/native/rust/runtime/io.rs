@@ -5,6 +5,12 @@ mod io {
     pub fn file_write(path: String, data: String) {
         let _ = std::fs::write(&path, data);
     }
+    pub fn file_read_bytes(path: String) -> Vec<u8> {
+        std::fs::read(&path).unwrap_or_default()
+    }
+    pub fn file_write_bytes(path: String, data: Vec<u8>) {
+        let _ = std::fs::write(&path, data);
+    }
     pub fn file_append(path: String, data: String) {
         use std::io::Write;
         if let Ok(mut f) = std::fs::OpenOptions::new().create(true).append(true).open(&path) {
@@ -37,5 +43,13 @@ mod io {
     }
     pub fn dir_remove(path: String) {
         let _ = std::fs::remove_dir_all(&path);
+    }
+    pub fn dir_list(path: String) -> Vec<String> {
+        match std::fs::read_dir(&path) {
+            Ok(entries) => entries
+                .filter_map(|entry| entry.ok().map(|e| e.file_name().to_string_lossy().to_string()))
+                .collect(),
+            Err(_) => Vec::new(),
+        }
     }
 }

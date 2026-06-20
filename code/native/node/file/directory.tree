@@ -23,3 +23,11 @@ task directory-exists
   send back
     call io/is-directory
       read path
+
+task directory-list
+  take path, like text
+  like list
+    like text
+  send back
+    call io/dir-list
+      read path

@@ -6,7 +6,10 @@ load @cluesurf/base/code/hash
 
 form set
   head t
-  link items, like hash
+  link items
+    like hash
+      like t
+      like boolean
 
   task insert
     take self
@@ -62,8 +65,11 @@ form set
 
   task union
     take self
-    take other, like set
+    take other
+      like set
+        like t
     like set
+      like t
     save result
       make set
         bind items
@@ -88,8 +94,11 @@ form set
 
   task intersect
     take self
-    take other, like set
+    take other
+      like set
+        like t
     like set
+      like t
     save result
       make set
         bind items
@@ -112,8 +121,11 @@ form set
 
   task difference
     take self
-    take other, like set
+    take other
+      like set
+        like t
     like set
+      like t
     save result
       make set
         bind items

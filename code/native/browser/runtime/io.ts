@@ -35,9 +35,23 @@ const io = (() => {
     await writable.write(data)
     await writable.close()
   }
+  const readBytes = async (path: string): Promise<Uint8Array> => {
+    const { directory, name } = await locate(path, false)
+    const handle = await directory.getFileHandle(name)
+    return new Uint8Array(await (await handle.getFile()).arrayBuffer())
+  }
+  const writeBytes = async (path: string, data: Uint8Array): Promise<void> => {
+    const { directory, name } = await locate(path, true)
+    const handle = await directory.getFileHandle(name, { create: true })
+    const writable = await handle.createWritable()
+    await writable.write(data)
+    await writable.close()
+  }
   return {
     fileRead: read,
     fileWrite: write,
+    fileReadBytes: readBytes,
+    fileWriteBytes: writeBytes,
     fileAppend: async (path: string, data: string): Promise<void> => {
       const current = (await exists(path)) ? await read(path) : ''
       await write(path, current + data)

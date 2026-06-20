@@ -5,6 +5,7 @@ load @cluesurf/base/code/native/file/directory
   find directory-make
   find directory-remove
   find directory-exists
+  find directory-list
 
 task make
   take path, like text
@@ -25,4 +26,12 @@ task exists
   like boolean
   send back
     call directory-exists
+      read path
+
+task list
+  take path, like text
+  like list
+    like text
+  send back
+    call directory-list
       read path

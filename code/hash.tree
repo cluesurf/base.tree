@@ -32,6 +32,8 @@ form hash
     take key, like k
     take value, like v
     like hash
+      like k
+      like v
     send back
       call self/set
         read key

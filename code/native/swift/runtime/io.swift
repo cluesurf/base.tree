@@ -7,6 +7,12 @@ enum io {
     static func fileWrite(_ path: String, _ data: String) {
         try? data.write(toFile: path, atomically: true, encoding: .utf8)
     }
+    static func fileReadBytes(_ path: String) -> Data {
+        return (try? Data(contentsOf: URL(fileURLWithPath: path))) ?? Data()
+    }
+    static func fileWriteBytes(_ path: String, _ data: Data) {
+        try? data.write(to: URL(fileURLWithPath: path))
+    }
     static func fileAppend(_ path: String, _ data: String) {
         let existing = (try? String(contentsOfFile: path, encoding: .utf8)) ?? ""
         try? (existing + data).write(toFile: path, atomically: true, encoding: .utf8)
@@ -42,5 +48,8 @@ enum io {
     }
     static func dirRemove(_ path: String) {
         try? FileManager.default.removeItem(atPath: path)
+    }
+    static func dirList(_ path: String) -> [String] {
+        return (try? FileManager.default.contentsOfDirectory(atPath: path)) ?? []
     }
 }
