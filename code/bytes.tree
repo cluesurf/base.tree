@@ -11,6 +11,7 @@ load @cluesurf/base/code/native/bytes
   find do-concat
   find do-slice
 
+# convert utf8 text to and from raw bytes
 task from-text
   take text, like text
   like bytes
@@ -21,6 +22,40 @@ task to-text
   like text
   send back, call do-to-text, read value
 
+# encode bytes to a text representation in the given base (16 = hex, 64 = base64). The named `to-hex` / `to-base64`
+# forms below are the readable default; this verb is for a base chosen at runtime. A constant base specializes to the
+# one native codec, so both spellings emit the same call.
+task encode
+  take value, like bytes
+  take base, like number
+  like text
+  fork test
+    hook test
+      call is-equal
+        read base
+        mark 64
+    hook hold
+      send back, call do-to-base64, read value
+    hook miss
+      send back, call do-to-hex, read value
+
+# decode a text representation in the given base back to bytes
+task decode
+  take text, like text
+  take base, like number
+  like bytes
+  fork test
+    hook test
+      call is-equal
+        read base
+        mark 64
+    hook hold
+      send back, call do-from-base64, read text
+    hook miss
+      send back, call do-from-hex, read text
+
+# named codec forms: the readable, primary surface. Each calls the native codec directly, so it is optimal with no
+# dependence on the specialization pass.
 task to-hex
   take value, like bytes
   like text
@@ -41,6 +76,13 @@ task from-base64
   like bytes
   send back, call do-from-base64, read text
 
+# the number of bytes
+task count
+  take value, like bytes
+  like number
+  send back, call do-length, read value
+
+# `length` is kept as a familiar alias for `count`
 task length
   take value, like bytes
   like number

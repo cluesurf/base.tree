@@ -2,6 +2,9 @@
 load @cluesurf/base/code/maybe
   find maybe
 
+load @cluesurf/base/code/side
+  find side
+
 form list
   note <List: the stdlib source of truth for the list type. The compiler uses the native array representation, so a list value is built with `make list`. Each method delegates to the native array operation.>
 
@@ -226,6 +229,95 @@ form list
     send back
       call self/slice
         read count
+
+  # the canonical length verb (alias of size)
+  task count
+    take self
+    like number
+    send back, read self/length
+
+  # take `count` items from the chosen side. The named take-first / take-last forms are the readable default; this verb
+  # is for a side chosen at runtime. A constant side specializes to the one native slice.
+  task take
+    take self
+    take count, like number
+    take side, like side
+    like list
+      like t
+    fork case, read side
+      case end
+        send back
+          call self/slice
+            call subtract
+              read self/length
+              read count
+      case start
+        send back
+          call self/slice
+            mark 0
+            read count
+      case both
+        send back
+          call self/slice
+            mark 0
+            read count
+
+  # drop `count` items from the chosen side
+  task drop
+    take self
+    take count, like number
+    take side, like side
+    like list
+      like t
+    fork case, read side
+      case end
+        send back
+          call self/slice
+            mark 0
+            call subtract
+              read self/length
+              read count
+      case start
+        send back
+          call self/slice
+            read count
+      case both
+        send back
+          call self/slice
+            read count
+
+  # take / drop from the end: readable sugar over the verb
+  task take-last
+    take self
+    take count, like number
+    like list
+      like t
+    send back
+      call self/slice
+        call subtract
+          read self/length
+          read count
+
+  task drop-last
+    take self
+    take count, like number
+    like list
+      like t
+    send back
+      call self/slice
+        mark 0
+        call subtract
+          read self/length
+          read count
+
+  # locate the last occurrence of a value (the `end` side of index-of)
+  task last-index-of
+    take self
+    take item, like t
+    like number
+    send back
+      call self/lastIndexOf
+        read item
 
   task flatten
     take self
