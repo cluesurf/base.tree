@@ -1,5 +1,5 @@
 
-note <Singly linked list: a recursive immutable list (empty | node value next).>
+# Singly linked list: a recursive immutable list (empty | node value next).
 
 load @cluesurf/base/code/maybe
   find maybe
@@ -46,10 +46,10 @@ form linked-list
     like number
     fork case, read self
       case empty
-        send back, mark 0
+        send back, code 0
       case node
         send back
           call add
-            mark 1
+            code 1
             call length
               read self/next

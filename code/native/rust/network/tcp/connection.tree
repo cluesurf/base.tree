@@ -16,7 +16,7 @@ task read
       hook hold
         read size
       hook miss
-        mark 4096
+        code 4096
 
   save buf
     call vec/with-capacity, read buf-size

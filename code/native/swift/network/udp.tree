@@ -20,7 +20,7 @@ task open
       hook hold
         read port
       hook miss
-        mark 0
+        code 0
 
   save raw
     call nw-listener

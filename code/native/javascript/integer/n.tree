@@ -36,7 +36,7 @@ tree integer
                 read b/dock
           fuse is-below-or-return-error
             read c
-            mark 256
+            code 256
           move c
 
         task seek-add-signed
@@ -48,10 +48,10 @@ tree integer
               read b
           fuse is-below-or-return-error
             read c
-            mark 256
+            code 256
           fuse is-minimally-or-return-error
             read c
-            mark 0
+            code 0
           move c
 
         task seek-divide-base
@@ -59,7 +59,7 @@ tree integer
           take b, like i{{size}}
           fuse is-not-or-return-error
             read b
-            mark 0
+            code 0
           call floor
             call divide
               read a
@@ -70,7 +70,7 @@ tree integer
           take b, like i{{size}}
           fuse is-not-or-return-error
             read b
-            mark 0
+            code 0
           call ceiling
             call divide
               read a
@@ -88,10 +88,10 @@ tree integer
           take base, like i{{size}}
           fuse is-minimally-or-return-error
             read base
-            mark 2
+            code 2
           fuse is-above-or-return-error
             read a
-            mark 0
+            code 0
           call floor
             call logarithm
               read a
@@ -101,7 +101,7 @@ tree integer
           take a, like i{{size}}
           fuse is-above-or-return-error
             read a
-            mark 0
+            code 0
           call floor
             call math-log-10-js
               read a
@@ -110,7 +110,7 @@ tree integer
           take a, like i{{size}}
           fuse is-above-or-return-error
             read a
-            mark 0
+            code 0
           call floor
             call math-log-2-js
               read a
@@ -124,7 +124,7 @@ tree integer
               read b
           fuse is-below-or-return-error
             read c
-            mark 256
+            code 256
           move c
 
         task seek-get-next-multiple-of

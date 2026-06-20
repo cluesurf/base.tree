@@ -81,14 +81,14 @@ task make
 task walk
   mark async
   take path, like text
-  take depth, like size, fall mark 0
+  take depth, like size, fall code 0
 
   save result, make list
 
   call walk-step
     read path
     read path
-    mark 0
+    code 0
     read depth
     read result
 
@@ -142,7 +142,7 @@ task walk-step
           fork test
             call is-above
               bind a, read max-depth
-              bind b, mark 0
+              bind b, code 0
             hook true
               fork test
                 call is-below
@@ -154,7 +154,7 @@ task walk-step
                     read full-path
                     call add
                       bind a, read level
-                      bind b, mark 1
+                      bind b, code 1
                     read max-depth
                     read result
             hook false
@@ -163,6 +163,6 @@ task walk-step
                 read full-path
                 call add
                   bind a, read level
-                  bind b, mark 1
+                  bind b, code 1
                 read max-depth
                 read result

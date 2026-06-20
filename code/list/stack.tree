@@ -1,5 +1,5 @@
 
-note <Stack (LIFO), backed by the native array.>
+# Stack (LIFO), backed by the native array.
 
 load @cluesurf/base/code/list
   find list
@@ -27,7 +27,7 @@ form stack
       hook test
         call is-above
           read self/items/length
-          mark 0
+          code 0
       hook hold
         send back
           make some

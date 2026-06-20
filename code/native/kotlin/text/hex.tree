@@ -1,4 +1,4 @@
-note <kotlin hex implementation. Forwards to the linked hex runtime shim. Internal: reached only through the public hex API.>
+# kotlin hex implementation. Forwards to the linked hex runtime shim. Internal: reached only through the public hex API.
 
 dock load
   load <global:hex>, name hex

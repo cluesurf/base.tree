@@ -1,4 +1,4 @@
-note <Base64 text encoding. The clean uniform interface; the per-env native implementation is selected at build time and hidden behind the API.>
+# Base64 text encoding. The clean uniform interface; the per-env native implementation is selected at build time and hidden behind the API.
 
 load @cluesurf/base/code/native/text/base64
   find to-base64

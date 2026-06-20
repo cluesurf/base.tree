@@ -1,5 +1,5 @@
 
-note <Moved to file/base.tree as task watch>
+# Moved to file/base.tree as task watch
 
 form watch-event
   link kind, like text

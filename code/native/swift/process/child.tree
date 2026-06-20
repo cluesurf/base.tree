@@ -23,7 +23,7 @@ task stop
     hook true
       call kill
         call child/dock/process-identifier
-        mark 9
+        code 9
     hook false
       call child/dock/terminate
 

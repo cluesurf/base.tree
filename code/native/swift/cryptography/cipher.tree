@@ -1,4 +1,4 @@
-note <swift AES-256-GCM implementation. Forwards to the linked cipher runtime shim (CryptoKit AES.GCM). Internal: reached only through the public cipher API.>
+# swift AES-256-GCM implementation. Forwards to the linked cipher runtime shim (CryptoKit AES.GCM). Internal: reached only through the public cipher API.
 
 dock load
   load <global:cipher>, name cipher

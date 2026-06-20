@@ -93,12 +93,12 @@ fuse define-each, read diffie-hellman-key-type
 
 host diffie-hellman-key-type
   term dh
-    note <Diffie-Hellman>
+    # Diffie-Hellman
   term ec
-    note <ECDH>
+    # ECDH
   term x448
   term x25519
-    note <ECDH-ES>
+    # ECDH-ES
 
 host cipher-mode
   term cbc

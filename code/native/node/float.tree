@@ -1,4 +1,4 @@
-note <Node.js float math (the host Math global). Internal: reached only through the public float API.>
+# Node.js float math (the host Math global). Internal: reached only through the public float API.
 
 dock load
   load <global:Math>, name math

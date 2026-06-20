@@ -1,4 +1,4 @@
-note <kotlin DNS implementation. Forwards to the linked dns runtime shim (java.net.InetAddress). Internal: reached only through the public dns API.>
+# kotlin DNS implementation. Forwards to the linked dns runtime shim (java.net.InetAddress). Internal: reached only through the public dns API.
 
 dock load
   load <global:dns>, name dns

@@ -1,5 +1,5 @@
 
-note <Node.js process implementation. Internal: reached only through the public process API.>
+# Node.js process implementation. Internal: reached only through the public process API.
 
 dock load
   load <global:process>, name process

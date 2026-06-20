@@ -1,4 +1,4 @@
-note <kotlin base64 implementation. Forwards to the linked base64 runtime shim. Internal: reached only through the public base64 API.>
+# kotlin base64 implementation. Forwards to the linked base64 runtime shim. Internal: reached only through the public base64 API.
 
 dock load
   load <global:base64>, name base64

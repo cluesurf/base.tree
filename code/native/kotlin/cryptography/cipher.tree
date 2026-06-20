@@ -1,4 +1,4 @@
-note <kotlin AES-256-GCM implementation. Forwards to the linked cipher runtime shim (javax.crypto). Internal: reached only through the public cipher API.>
+# kotlin AES-256-GCM implementation. Forwards to the linked cipher runtime shim (javax.crypto). Internal: reached only through the public cipher API.
 
 dock load
   load <global:cipher>, name cipher

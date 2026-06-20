@@ -6,8 +6,8 @@ form reader
 task create
   mark async
   take path, like text
-  take start, like size, fall mark 0
-  take size, like size, fall mark 0
+  take start, like size, fall code 0
+  take size, like size, fall code 0
   like reader
 
 task read

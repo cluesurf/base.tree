@@ -1,4 +1,4 @@
-note <HTTP client. The clean uniform interface; the per-env native implementation wraps the platform's HTTP library (fetch on node/browser, reqwest/URLSession/ktor elsewhere) and is selected at build time, hidden behind the API. Async on every target (network is async everywhere).>
+# HTTP client. The clean uniform interface; the per-env native implementation wraps the platform's HTTP library (fetch on node/browser, reqwest/URLSession/ktor elsewhere) and is selected at build time, hidden behind the API. Async on every target (network is async everywhere).
 
 load @cluesurf/base/code/native/network/http
   find do-request

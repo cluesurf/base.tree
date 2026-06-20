@@ -1,4 +1,4 @@
-note <node DNS implementation. Forwards to the linked dns runtime shim (node:dns lookup). Internal: reached only through the public dns API.>
+# node DNS implementation. Forwards to the linked dns runtime shim (node:dns lookup). Internal: reached only through the public dns API.
 
 dock load
   load <global:dns>, name dns

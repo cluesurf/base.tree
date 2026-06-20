@@ -1,4 +1,4 @@
-note <swift HTTP client. Forwards to the linked http runtime shim, which wraps the platform's HTTP library. Internal: reached only through the public http API.>
+# swift HTTP client. Forwards to the linked http runtime shim, which wraps the platform's HTTP library. Internal: reached only through the public http API.
 
 load @cluesurf/base/code/network/response
   find http-response

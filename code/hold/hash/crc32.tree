@@ -5,9 +5,9 @@ task calculate-crc32
     call bitwise-xor
       call bitwise-or
         read initial
-        mark 0
-      call negative, mark 1
-  save i, mark 0
+        code 0
+      call negative, code 1
+  save i, code 0
   walk test
     hook test
       call is-less-than
@@ -21,18 +21,18 @@ task calculate-crc32
               call bitwise-xor
                 read crc
                 call list/get, read i
-              mark 255
+              code 255
           call unsigned-shift-right
             read crc
-            mark 8
+            code 8
       save i, call increment, read i
   send back seed
     call unsigned-shift-right
       call bitwise-xor
         read crc
         call negative
-          mark 1
-      mark 0
+          code 1
+      code 0
 
 host crc32-table
   0x00000000, 0xf26b8303, 0xe13b70f7, 0x1350f3f4,

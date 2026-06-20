@@ -1,4 +1,4 @@
-note <Node.js digest implementation (the host node:crypto module). Input and output are raw bytes (a Uint8Array / Buffer): `update` accepts the buffer and `digest` with no encoding returns one. Internal: reached only through the public digest API.>
+# Node.js digest implementation (the host node:crypto module). Input and output are raw bytes (a Uint8Array / Buffer): `update` accepts the buffer and `digest` with no encoding returns one. Internal: reached only through the public digest API.
 
 dock load
   load <node:crypto>, name crypto

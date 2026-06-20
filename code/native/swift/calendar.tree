@@ -1,4 +1,4 @@
-note <swift calendar implementation. Forwards to the linked calendar runtime shim (Foundation Calendar / ISO8601DateFormatter). All operations are UTC. Internal: reached only through the public calendar API.>
+# swift calendar implementation. Forwards to the linked calendar runtime shim (Foundation Calendar / ISO8601DateFormatter). All operations are UTC. Internal: reached only through the public calendar API.
 
 dock load
   load <global:calendar>, name calendar

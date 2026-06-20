@@ -9,7 +9,7 @@ task read
 
   save raw, read connection/dock
 
-  save min-size, mark 1
+  save min-size, code 1
   save max-size
     fork test
       hook test
@@ -17,7 +17,7 @@ task read
       hook hold
         read size
       hook miss
-        mark 4096
+        code 4096
 
   save result
     call make-continuation

@@ -1,4 +1,4 @@
-note <rust DNS implementation. Forwards to the linked dns runtime shim (std::net ToSocketAddrs). Internal: reached only through the public dns API.>
+# rust DNS implementation. Forwards to the linked dns runtime shim (std::net ToSocketAddrs). Internal: reached only through the public dns API.
 
 dock load
   load <global:dns>, name dns

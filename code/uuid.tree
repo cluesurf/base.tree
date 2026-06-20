@@ -1,4 +1,4 @@
-note <UUID generation. A declarative `bind`: each backend's native v4 generator is inlined at the call site (node / browser crypto.randomUUID, rust the uuid crate, swift Foundation, kotlin java.util). Random by nature, so this is an explicit escape hatch, never used in the deterministic language core.>
+# UUID generation. A declarative `bind`: each backend's native v4 generator is inlined at the call site (node / browser crypto.randomUUID, rust the uuid crate, swift Foundation, kotlin java.util). Random by nature, so this is an explicit escape hatch, never used in the deterministic language core.
 
 bind generate-v4
   like text

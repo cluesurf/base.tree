@@ -66,7 +66,7 @@ task read
     call file/dock/read
       mark async
       read buffer
-      mark 0
+      code 0
       read size
       halt kink
 
@@ -135,7 +135,7 @@ task flush
 task clear
   mark async
   take file, like file
-  take size, like size, fall mark 0
+  take size, like size, fall code 0
 
   call file/dock/truncate
     mark async

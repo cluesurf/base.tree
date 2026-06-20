@@ -1,6 +1,6 @@
 
 wear subtract
-  note <Subtract>
+  # Subtract
 
   task subtract
     link self, like self

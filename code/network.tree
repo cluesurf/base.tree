@@ -1,5 +1,5 @@
 
-note <Network request and response.>
+# Network request and response.
 
 form request
   link method, like text
@@ -11,11 +11,11 @@ form response
   link body, like text
 
 task cast
-  note <Make a request>
+  # Make a request
   mark async
   take request, like request
   like response
 
 task hook
-  note <Handle a response>
+  # Handle a response
   take response, like response

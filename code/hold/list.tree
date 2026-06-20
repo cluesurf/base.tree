@@ -2,7 +2,7 @@
 task make
   head item-type
   take capacity
-  save length, mark 0
+  save length, code 0
   save list, make list, like item-type
   save list/growth-factor, flex 2
   save list/length, read length
@@ -61,11 +61,11 @@ form list
             read capacity
         call self/line/set
           read old-line
-          mark 0
+          code 0
       hook false
         save self/line
           call old-line/slice
-            mark 0
+            code 0
             read capacity
     stem test
       call is-less-than
@@ -125,7 +125,7 @@ form list
         save i
           call subtract
             read self/length
-            mark 1
+            code 1
         walk test
           hook test
             call is-greater-than
@@ -160,7 +160,7 @@ form list
     stem test
       call is-equal
         read self/length
-        mark 0
+        code 0
       hook true
         send back seed, make none
     save self/length, call decrement, read self/length

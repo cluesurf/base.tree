@@ -9,15 +9,15 @@ form reader
 task create
   mark async
   take path, like text
-  take start, like size, fall mark 0
-  take size, like size, fall mark 0
+  take start, like size, fall code 0
+  take size, like size, fall code 0
 
   save options, make object
 
   fork test
     call is-above
       bind a, read start
-      bind b, mark 0
+      bind b, code 0
     hook true
       call options/set
         text <start>
@@ -26,7 +26,7 @@ task create
   fork test
     call is-above
       bind a, read size
-      bind b, mark 0
+      bind b, code 0
     hook true
       call options/set
         text <end>

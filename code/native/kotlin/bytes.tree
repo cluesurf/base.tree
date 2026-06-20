@@ -1,4 +1,4 @@
-note <kotlin raw byte buffer implementation (ByteArray, java.util.Base64). Forwards to the linked bytes runtime shim. Internal: reached only through the public bytes API.>
+# kotlin raw byte buffer implementation (ByteArray, java.util.Base64). Forwards to the linked bytes runtime shim. Internal: reached only through the public bytes API.
 
 dock load
   load <global:octets>, name octets

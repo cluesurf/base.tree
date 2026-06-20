@@ -1,4 +1,4 @@
-note <Browser digest implementation. Forwards to the linked crypto runtime shim, which wraps the Web Crypto API (globalThis.crypto.subtle). Internal: reached only through the public digest API.>
+# Browser digest implementation. Forwards to the linked crypto runtime shim, which wraps the Web Crypto API (globalThis.crypto.subtle). Internal: reached only through the public digest API.
 
 dock load
   load <global:crypto>, name crypto

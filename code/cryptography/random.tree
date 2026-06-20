@@ -1,4 +1,4 @@
-note <Cryptographically secure random bytes. A declarative `bind`: each backend's OS-backed generator is inlined at the call site (node randomBytes, rust OsRng, swift the system RNG, kotlin SecureRandom, browser getRandomValues). The result is raw `bytes` (the zero-copy crypto currency); render to hex / base64 with the `bytes` codecs at the edge. This is synchronous: every host exposes secure random generation without an async boundary.>
+# Cryptographically secure random bytes. A declarative `bind`: each backend's OS-backed generator is inlined at the call site (node randomBytes, rust OsRng, swift the system RNG, kotlin SecureRandom, browser getRandomValues). The result is raw `bytes` (the zero-copy crypto currency); render to hex / base64 with the `bytes` codecs at the edge. This is synchronous: every host exposes secure random generation without an async boundary.
 
 bind random-bytes
   take size, like number

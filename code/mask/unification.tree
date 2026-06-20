@@ -1,6 +1,6 @@
 
 mask unification
-  note <Bitwise Or.>
+  # Bitwise Or.
   head other, base self
   take output
 

@@ -1,5 +1,5 @@
 
-note <Hash map: the stdlib map type, backed by the native map. Build a value with `make find`.>
+# Hash map: the stdlib map type, backed by the native map. Build a value with `make find`.
 
 load @cluesurf/base/code/maybe
   find maybe
@@ -66,7 +66,7 @@ form hash
     send back
       call is-equal
         read self/size
-        mark 0
+        code 0
 
   task keys
     take self

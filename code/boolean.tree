@@ -1,5 +1,5 @@
 form boolean
-  note <Boolean: the stdlib source of truth for the boolean type. The compiler uses its native representation.>
+  # Boolean: the stdlib source of truth for the boolean type. The compiler uses its native representation.
   case true
   case false
   task and

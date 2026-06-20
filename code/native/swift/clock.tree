@@ -1,4 +1,4 @@
-note <swift clock implementation. Forwards to the linked clock runtime shim. Internal: reached only through the public clock API.>
+# swift clock implementation. Forwards to the linked clock runtime shim. Internal: reached only through the public clock API.
 
 dock load
   load <global:clock>, name clock

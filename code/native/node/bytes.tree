@@ -1,4 +1,4 @@
-note <node raw byte buffer implementation (Buffer / TextEncoder). Forwards to the linked bytes runtime shim. Internal: reached only through the public bytes API.>
+# node raw byte buffer implementation (Buffer / TextEncoder). Forwards to the linked bytes runtime shim. Internal: reached only through the public bytes API.
 
 dock load
   load <global:octets>, name octets

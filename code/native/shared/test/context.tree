@@ -51,7 +51,7 @@ task is-passed
         hook test
           call is-equal
             bind a, read count
-            bind b, mark 0
+            bind b, code 0
         hook hold
           send back, wave true
         hook miss

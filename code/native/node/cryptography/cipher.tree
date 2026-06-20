@@ -1,4 +1,4 @@
-note <node AES-256-GCM implementation. Forwards to the linked cipher runtime shim (node / browser Web Crypto SubtleCrypto). Internal: reached only through the public cipher API.>
+# node AES-256-GCM implementation. Forwards to the linked cipher runtime shim (node / browser Web Crypto SubtleCrypto). Internal: reached only through the public cipher API.
 
 dock load
   load <global:cipher>, name cipher

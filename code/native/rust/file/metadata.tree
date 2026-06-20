@@ -1,4 +1,4 @@
-note <rust file metadata. Forwards to the linked io runtime shim (the platform filesystem). Internal: reached only through the public file/metadata API.>
+# rust file metadata. Forwards to the linked io runtime shim (the platform filesystem). Internal: reached only through the public file/metadata API.
 
 dock load
   load <global:io>, name io

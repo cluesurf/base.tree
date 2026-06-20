@@ -1,4 +1,4 @@
-note <swift UUID implementation. Forwards to the linked uuid runtime shim. Internal: reached only through the public uuid API.>
+# swift UUID implementation. Forwards to the linked uuid runtime shim. Internal: reached only through the public uuid API.
 
 dock load
   load <global:uuid>, name uuid

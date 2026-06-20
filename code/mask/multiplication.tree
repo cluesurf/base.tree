@@ -1,6 +1,6 @@
 
 mask multiplication
-  note <Multiply.>
+  # Multiply.
   head other, base self
   take output
 

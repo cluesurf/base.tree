@@ -1,5 +1,5 @@
 
-note <Concurrency: spawn and manage tasks.>
+# Concurrency: spawn and manage tasks.
 
 form handle
   link name, like text

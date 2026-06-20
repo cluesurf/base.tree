@@ -1,4 +1,4 @@
-note <rust console implementation. Forwards to the linked console runtime shim. Internal: reached only through the public console API.>
+# rust console implementation. Forwards to the linked console runtime shim. Internal: reached only through the public console API.
 
 dock load
   load <global:console>, name console

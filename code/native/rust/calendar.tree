@@ -1,4 +1,4 @@
-note <rust calendar implementation. Forwards to the linked calendar runtime shim (the chrono crate). All operations are UTC. Internal: reached only through the public calendar API.>
+# rust calendar implementation. Forwards to the linked calendar runtime shim (the chrono crate). All operations are UTC. Internal: reached only through the public calendar API.
 
 dock load
   load <global:calendar>, name calendar

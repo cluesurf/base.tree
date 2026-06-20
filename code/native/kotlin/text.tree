@@ -22,7 +22,7 @@ task slice
 task find
   take value, like text
   take search, like text
-  take start, like size, fall mark 0
+  take start, like size, fall code 0
 
   send back
     call kotlin-index-of

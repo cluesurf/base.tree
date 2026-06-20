@@ -1,4 +1,4 @@
-note <swift process implementation. Forwards to the linked process runtime shim. Internal: reached only through the public process API.>
+# swift process implementation. Forwards to the linked process runtime shim. Internal: reached only through the public process API.
 
 dock load
   load <global:process>, name process

@@ -1,6 +1,6 @@
 
 mask incomplete-comparison
-  note <Partial Equality.>
+  # Partial Equality.
   head other, like dimension, base self
 
   task is-equal
@@ -14,4 +14,4 @@ mask incomplete-comparison
     free wave
 
 mask comparison
-  note <Total equality.>
+  # Total equality.

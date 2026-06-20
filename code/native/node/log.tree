@@ -1,4 +1,4 @@
-note <Node.js logger implementation. Forwards each level to the matching console method. Internal: reached only through the public log API.>
+# Node.js logger implementation. Forwards each level to the matching console method. Internal: reached only through the public log API.
 
 dock load
   load <global:console>, name console

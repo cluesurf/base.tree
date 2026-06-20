@@ -23,8 +23,8 @@ task read
       save fc
         make file-coverage
           bind path, read entry/url
-          bind lines, mark 0
-          bind branches, mark 0
+          bind lines, code 0
+          bind branches, code 0
           bind functions, read entry/functions/length
           bind uncovered
             make list
@@ -41,8 +41,8 @@ task format
   take style, like text, fall text <summary>
   like text
 
-  save total, mark 0
-  save covered, mark 0
+  save total, code 0
+  save covered, code 0
 
   walk list, read coverage/files
     hook next

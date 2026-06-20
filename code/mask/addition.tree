@@ -1,6 +1,6 @@
 
 suit addition
-  note <Add trait>
+  # Add trait
   head output
   head other, base self
 

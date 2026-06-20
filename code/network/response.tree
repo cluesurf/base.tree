@@ -1,4 +1,4 @@
-note <An HTTP response: the status code and the body text. Shared by the public http interface and every native impl.>
+# An HTTP response: the status code and the body text. Shared by the public http interface and every native impl.
 
 form http-response
   link status, like number

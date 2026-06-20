@@ -1,6 +1,6 @@
 
 mask division
-  note <Divide.>
+  # Divide.
   head other, base self
   head output
 

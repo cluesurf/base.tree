@@ -1,5 +1,5 @@
 
-note <Vec for dynamically sized arrays.>
+# Vec for dynamically sized arrays.
 
 # std::mem::replace(&mut v[3], 42);
 

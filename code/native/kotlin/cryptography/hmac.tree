@@ -1,4 +1,4 @@
-note <kotlin HMAC implementation. Forwards to the linked crypto runtime shim, which wraps the platform's built-in crypto library. Internal: reached only through the public hmac API.>
+# kotlin HMAC implementation. Forwards to the linked crypto runtime shim, which wraps the platform's built-in crypto library. Internal: reached only through the public hmac API.
 
 dock load
   load <global:crypto>, name crypto

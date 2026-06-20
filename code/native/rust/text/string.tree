@@ -1,4 +1,4 @@
-note <rust string implementation. Forwards to the linked text runtime shim, which wraps the platform's string API. Internal: reached only through the public string API.>
+# rust string implementation. Forwards to the linked text runtime shim, which wraps the platform's string API. Internal: reached only through the public string API.
 
 dock load
   load <global:text>, name text

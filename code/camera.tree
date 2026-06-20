@@ -7,7 +7,7 @@ task get-default-device
 task clear-take-photo-settings
 
 task is-auto-red-eye-reduction-enabled
-  note <A Boolean value that determines whether to use auto red-eye reduction on flash captures.>
+  # A Boolean value that determines whether to use auto red-eye reduction on flash captures.
 
 form camera
   task has-flash

@@ -1,5 +1,5 @@
 
-note <Set: a collection of unique values, backed by the native map for O(1) membership.>
+# Set: a collection of unique values, backed by the native map for O(1) membership.
 
 load @cluesurf/base/code/hash
   find hash
@@ -53,7 +53,7 @@ form set
       call is-equal
         call size
           read self/items
-        mark 0
+        code 0
 
   # the canonical length verb (alias of size)
   task count

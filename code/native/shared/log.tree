@@ -38,17 +38,17 @@ task log-level-rank
   take level, like log-level
   fork case, read level
     hook trace
-      send back, mark 0
+      send back, code 0
     hook debug
-      send back, mark 1
+      send back, code 1
     hook info
-      send back, mark 2
+      send back, code 2
     hook warn
-      send back, mark 3
+      send back, code 3
     hook error
-      send back, mark 4
+      send back, code 4
     hook fatal
-      send back, mark 5
+      send back, code 5
 
 task log-level-is-above
   take a, like log-level

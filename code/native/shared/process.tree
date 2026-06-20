@@ -26,7 +26,7 @@ task process-result-ok
       send back
         call is-equal
           bind a, read code
-          bind b, mark 0
+          bind b, code 0
 
 task process-result-code
   take r, like process-result

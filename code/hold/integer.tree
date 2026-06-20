@@ -1,5 +1,5 @@
 
-note <Generic BigUint.>
+# Generic BigUint.
 
 # http://supertech.csail.mit.edu/papers/debruijn.pdf
 # https://github.com/brix/crypto-js/tree/develop/src
@@ -14,150 +14,150 @@ task round-down-to-power-of-two-8
   save x
     call mix-for-power-rounding
       read x
-      mark 1
+      code 1
   save x
     call mix-for-power-rounding
       read x
-      mark 2
+      code 2
   save x
     call mix-for-power-rounding
       read x
-      mark 4
+      code 4
   call subtract
     read x
     call shift-right
       read x
-      mark 1
+      code 1
 
 task round-down-to-power-of-two-16
   take x
   save x
     call mix-for-power-rounding
       read x
-      mark 1
+      code 1
   save x
     call mix-for-power-rounding
       read x
-      mark 2
+      code 2
   save x
     call mix-for-power-rounding
       read x
-      mark 4
+      code 4
   save x
     call mix-for-power-rounding
       read x
-      mark 8
+      code 8
   call subtract
     read x
     call shift-right
       read x
-      mark 1
+      code 1
 
 task round-down-to-power-of-two-32
   take x
   save x
     call mix-for-power-rounding
       read x
-      mark 1
+      code 1
   save x
     call mix-for-power-rounding
       read x
-      mark 2
+      code 2
   save x
     call mix-for-power-rounding
       read x
-      mark 4
+      code 4
   save x
     call mix-for-power-rounding
       read x
-      mark 8
+      code 8
   save x
     call mix-for-power-rounding
       read x
-      mark 16
+      code 16
   call subtract
     read x
     call shift-right
       read x
-      mark 1
+      code 1
 
 task round-up-to-power-of-two-8
   take x
   save x
     call subtract
       read x
-      mark 1
+      code 1
   save x
     call mix-for-power-rounding
       read x
-      mark 1
+      code 1
   save x
     call mix-for-power-rounding
       read x
-      mark 2
+      code 2
   save x
     call mix-for-power-rounding
       read x
-      mark 4
+      code 4
   call add
     read x
-    mark 1
+    code 1
 
 task round-up-to-power-of-two-16
   take x
   save x
     call subtract
       read x
-      mark 1
+      code 1
   save x
     call mix-for-power-rounding
       read x
-      mark 1
+      code 1
   save x
     call mix-for-power-rounding
       read x
-      mark 2
+      code 2
   save x
     call mix-for-power-rounding
       read x
-      mark 4
+      code 4
   save x
     call mix-for-power-rounding
       read x
-      mark 8
+      code 8
   call add
     read x
-    mark 1
+    code 1
 
 task round-up-to-power-of-two-32
   take x
   save x
     call subtract
       read x
-      mark 1
+      code 1
   save x
     call mix-for-power-rounding
       read x
-      mark 1
+      code 1
   save x
     call mix-for-power-rounding
       read x
-      mark 2
+      code 2
   save x
     call mix-for-power-rounding
       read x
-      mark 4
+      code 4
   save x
     call mix-for-power-rounding
       read x
-      mark 8
+      code 8
   save x
     call mix-for-power-rounding
       read x
-      mark 16
+      code 16
   call add
     read x
-    mark 1
+    code 1
 
 task mix-for-power-rounding
   take a
@@ -193,7 +193,7 @@ task gcd
           call remainder
             read a
             read b
-          mark 0
+          code 0
         hook true
           send back seed
             call math/abs
@@ -224,8 +224,8 @@ tree is-even
     call is-equal
       call intersect-bitwise
         read n
-        mark 1
-      mark 0
+        code 1
+      code 0
 
 tree is-odd
   take size, like mark-8
@@ -235,8 +235,8 @@ tree is-odd
     call is-not-equal
       call intersect-bitwise
         read n
-        mark 1
-      mark 0
+        code 1
+      code 0
 
 tree is-power-of-two
   take size, like mark-8
@@ -247,14 +247,14 @@ tree is-power-of-two
       call and
         call is-not-equal
           read n
-          mark 0
+          code 0
         call is-equal
           call intersect-bitwise
             read n
             call subtract
               read n
-              mark 1
-          mark 0
+              code 1
+          code 0
 
 tree rotate
   take size, like mark-8
@@ -291,20 +291,20 @@ tree rotate
 host binary-reversal-table, call make-reversal-table
 
 task make-reversal-table
-  save table, make list-mark-8, mark 256
-  save i, mark 0
+  save table, make list-mark-8, code 256
+  save i, code 0
   walk test
     hook test
       call is-below
         read i
-        mark 256
+        code 256
     hook true
       save v
         call unsigned-shift-head
           read i
-          mark 1
+          code 1
       save r, read i
-      save s, mark 7
+      save s, code 7
       walk test
         hook test
           call is-not-zero
@@ -313,36 +313,36 @@ task make-reversal-table
           save r
             call shift-base
               read r
-              mark 1
+              code 1
           save r
             call unify-bitwise
               read r
               call intersect-bitwise
                 read v
-                mark 1
+                code 1
           save s
             call subtract
               read s
-              mark 1
+              code 1
           save v
             call unsigned-shift-head
               read v
-              mark 1
+              code 1
       call table/set
         read i
         call intersect-bitwise
           call shift-base
             read r
             read s
-          mark 255
+          code 255
       save i, call add, read i
   send back seed, read table
 
-save binary-trailing-zero-magic-number, mark 0x077cb531
+save binary-trailing-zero-magic-number, code 0x077cb531
 save binary-leading-zero-table, call make-leading-zero-table
 save binary-trailing-zero-table
   call make-de-bruijn-trailing-zero-table
-    mark 5
+    code 5
     read binary-trailing-zero-magic-number
 
 task count-trailing-zeroes-32
@@ -355,7 +355,7 @@ task count-trailing-zeroes-32
           call negate
             read n
         read binary-trailing-zero-magic-number
-      mark 27
+      code 27
 
 task count-trailing-zeroes-16
   take n
@@ -373,7 +373,7 @@ task count-trailing-ones-32
     call unsigned-shift-right
       call negate-bitwise
         read x
-      mark 0
+      code 0
 
 task count-trailing-ones-16
   take x
@@ -381,7 +381,7 @@ task count-trailing-ones-16
     call unsigned-shift-right
       call negate-bitwise
         read x
-      mark 0
+      code 0
 
 task count-trailing-ones-8
   take x
@@ -389,7 +389,7 @@ task count-trailing-ones-8
     call unsigned-shift-right
       call negate-bitwise
         read x
-      mark 0
+      code 0
 
 task count-leading-zeroes-32
   take n
@@ -398,12 +398,12 @@ task count-leading-zeroes-32
     call binary-leading-zero-table/get
       call unsigned-shift-right
         read n
-        mark 24
+        code 24
 
   stem test
     call is-equal
       read r
-      mark 8
+      code 8
     hook true
       save r
         call add
@@ -411,12 +411,12 @@ task count-leading-zeroes-32
           call binary-leading-zero-table/get
             call unsigned-shift-right
               read n
-              mark 16
+              code 16
 
   stem test
     call is-equal
       read r
-      mark 16
+      code 16
     hook true
       save r
         call add
@@ -424,12 +424,12 @@ task count-leading-zeroes-32
           call binary-leading-zero-table/get
             call unsigned-shift-right
               read n
-              mark 8
+              code 8
 
   stem test
     call is-equal
       read r
-      mark 24
+      code 24
     hook true
       save r
         call add
@@ -445,12 +445,12 @@ task count-leading-zeroes-16
     call binary-leading-zero-table/get
       call unsigned-shift-right
         read n
-        mark 8
+        code 8
 
   stem test
     call is-equal
       read r
-      mark 8
+      code 8
     hook true
       save r
         call add
@@ -472,8 +472,8 @@ task count-leading-ones-32
       call unsigned-shift-right
         call negate-bitwise
           read n
-        mark 0
-      mark 0xffffffff
+        code 0
+      code 0xffffffff
 
 task count-leading-ones-16
   take n
@@ -483,8 +483,8 @@ task count-leading-ones-16
       call unsigned-shift-right
         call negate-bitwise
           read n
-        mark 0
-      mark 0xffff
+        code 0
+      code 0xffff
 
 task count-leading-ones-8
   take n
@@ -494,32 +494,32 @@ task count-leading-ones-8
       call unsigned-shift-right
         call negate-bitwise
           read n
-        mark 0
-      mark 0xff
+        code 0
+      code 0xff
 
 task make-leading-zero-table
-  save i, mark 0
-  save table, make uint8-array, mark 256
+  save i, code 0
+  save table, make uint8-array, code 256
   walk test
     hook test
       call is-below
         read i
-        mark 256
+        code 256
     hook true
-      save count, mark 8
+      save count, code 8
       save index, read i
       walk test
         hook test
           call is-above
             read index
-            mark 0
+            code 0
         hook true
           save index
             call bitwise-or
               call divide
                 read index
-                mark 2
-              mark 0
+                code 2
+              code 0
           save count, call decrement, read count
       call table/set
         read i
@@ -532,10 +532,10 @@ task make-de-bruijn-trailing-zero-table
   take de-bruijn-constant
   save n
     call math/pow
-      bind mark 2
+      bind code 2
       bind read exponent
   save table, make array, read n
-  save i, mark 0
+  save i, code 0
   walk test
     hook test
       call is-below
@@ -558,26 +558,26 @@ task make-de-bruijn-trailing-zero-table
 host binary-count-one-table, call make-binary-count-one-table
 
 task make-binary-count-one-table
-  save table, make uint8-array, mark 256
-  save i, mark 0
+  save table, make uint8-array, code 256
+  save i, code 0
   walk test
     hook test
       call is-below
         read i
-        mark 256
+        code 256
     hook true
       call table/set
         read i
         call add
           call bitwise-and
             read i
-            mark 1
+            code 1
           call table/get
             call bitwise-or
               call divide
                 read i
-                mark 2
-              mark 0
+                code 2
+              code 0
       save i, call increment, read i
   send back seed, read table
 
@@ -590,25 +590,25 @@ task count-one-bits-32
         call binary-count-one-table/get
           call bitwise-and
             read x
-            mark 0xff
+            code 0xff
         call binary-count-one-table/get
           call bitwise-and
             call shift-right
               read x
-              mark 8
-            mark 0xff
+              code 8
+            code 0xff
       call binary-count-one-table/get
         call bitwise-and
           call shift-right
             read x
-            mark 16
-          mark 0xff
+            code 16
+          code 0xff
     call binary-count-one-table/get
       call bitwise-and
         call shift-right
           read x
-          mark 24
-        mark 0xff
+          code 24
+        code 0xff
 
 task count-one-bits-16
   take x
@@ -616,20 +616,20 @@ task count-one-bits-16
     call binary-count-one-table/get
       call bitwise-and
         read x
-        mark 0xff
+        code 0xff
     call binary-count-one-table/get
       call bitwise-and
         call shift-right
           read x
-          mark 8
-        mark 0xff
+          code 8
+        code 0xff
 
 task count-one-bits8
   take x
   call binary-count-one-table/get
     call bitwise-and
       read x
-      mark 0xff
+      code 0xff
 
 task count-zero-bits-32
   take x
@@ -637,7 +637,7 @@ task count-zero-bits-32
     call unsigned-shift-right
       call negate-bitwise
         read x
-      mark 0
+      code 0
 
 task count-zero-bits-16
   take x
@@ -645,7 +645,7 @@ task count-zero-bits-16
     call unsigned-shift-right
       call negate-bitwise
         read x
-      mark 0
+      code 0
 
 task count-zero-bits-8
   take x
@@ -653,7 +653,7 @@ task count-zero-bits-8
     call unsigned-shift-right
       call negate-bitwise
         read x
-      mark 0
+      code 0
 
 task reverse-bits-8
   take n
@@ -667,14 +667,14 @@ task reverse-bits-16
       call bitwise-and
         call shift-right
           read n
-          mark 8
-        mark 0xff
+          code 8
+        code 0xff
     call shift-left
       call bit-reversal-table/get
         call bitwise-and
           read n
-          mark 0xff
-      mark 8
+          code 0xff
+      code 8
 
 task reverse-bits-32
   take n
@@ -685,36 +685,36 @@ task reverse-bits-32
           call bit-reversal-table/get
             call bitwise-and
               read n
-              mark 0xff
+              code 0xff
           call math/pow
-            bind mark 2
-            bind mark 24
+            bind code 2
+            bind code 24
         call multiply
           call bit-reversal-table/get
             call bitwise-and
               call unsigned-shift-right
                 read n
-                mark 8
-              mark 0xff
+                code 8
+              code 0xff
           call math/pow
-            bind mark 2
-            bind mark 16
+            bind code 2
+            bind code 16
       call multiply
         call bit-reversal-table/get
           call bitwise-and
             call unsigned-shift-right
               read n
-              mark 16
-            mark 0xff
+              code 16
+            code 0xff
         call math/pow
-          bind mark 2
-          bind mark 8
+          bind code 2
+          bind code 8
     call bit-reversal-table/get
       call bitwise-and
         call unsigned-shift-right
           read n
-          mark 24
-        mark 0xff
+          code 24
+        code 0xff
 
 task has-flag
   take flags
@@ -753,7 +753,7 @@ task toggle-flag
 
 task walk-bits
   take self
-  save i, mark 0
+  save i, code 0
   save n, read self/bit-capacity
   walk test
     hook test
@@ -777,6 +777,6 @@ task is-bit-set
     call bitwise-and
       read mark
       call shift-left
-        mark 1
+        code 1
         read position
-    mark 0
+    code 0

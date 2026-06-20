@@ -5,20 +5,20 @@
 # https://github.com/xsoh/solarHijri-js
 # https://github.com/vvo/tzdb
 
-host hours-per-day, mark 24
-host minutes-per-hour, mark 60
-host seconds-per-minute, mark 60
-host milliseconds-per-second, mark 1,000
-host milliseconds-per-minute, mark 60,000
-host milliseconds-per-hour, mark 3,600,000
-host milliseconds-per-day, mark 86,400,000
-host milliseconds-per-month, mark 2,592,000,000
+host hours-per-day, code 24
+host minutes-per-hour, code 60
+host seconds-per-minute, code 60
+host milliseconds-per-second, code 1,000
+host milliseconds-per-minute, code 60,000
+host milliseconds-per-hour, code 3,600,000
+host milliseconds-per-day, code 86,400,000
+host milliseconds-per-month, code 2,592,000,000
 
-host k-day-zero-in-julian-day, mark 2,440,588 # ToJulianDay(1970, 0, 1)
+host k-day-zero-in-julian-day, code 2,440,588 # ToJulianDay(1970, 0, 1)
 host k-month-mask, mark #h1e0
 host k-day-mask, mark #h01f
-host k-year-shift, mark 9
-host k-month-shift, mark 5
+host k-year-shift, code 9
+host k-month-shift, code 5
 
 task get-days-in-year
   take year
@@ -27,8 +27,8 @@ task get-days-in-year
     call is-not-equal
       call remainder
         read year
-        mark 4
-      mark 0
+        code 4
+      code 0
     hook true, back 365
 
   fork and
@@ -36,14 +36,14 @@ task get-days-in-year
       call is-equal
         call remainder
           read year
-          mark 100
-        mark 0
+          code 100
+        code 0
     fork test
       call is-not-equal
         call remainder
           read year
-          mark 400
-        mark 0
+          code 400
+        code 0
     hook true, back 365
 
   send back 366
@@ -183,7 +183,7 @@ form date
     call add
       call multiply
         read self/second
-        mark 1000
+        code 1000
       read self/millisecond
 
   task get-day
@@ -235,28 +235,28 @@ task convert-from-julian-day-to-gregorian-day
         call subtract
           read day
           read k-day-zero-in-julian-day
-        mark 40177
+        code 40177
       hook true
         save jsimple
           call add
             call subtract
               read day
               read k-day-zero-in-julian-day
-            mark 731
-        save y, mark 1968
+            code 731
+        save y, code 1968
         save after-1968
           call shift-right
             call multiply
               read jsimple
-              mark 22967
-            mark 25
+              code 22967
+            code 25
         save y
           call shift-left
             read after-1968
-            mark 2
+            code 2
         save jsimple
           call multiply
-            mark 1461
+            code 1461
             read after-1968
         save four-year-cycle, read four-year-cycle-table[jsimple]
         send back seed
@@ -279,40 +279,40 @@ task convert-from-julian-day-to-gregorian-day
       call divide
         call subtract
           read day
-          mark 1867216.25
-        mark 36524.25
+          code 1867216.25
+        code 36524.25
   save jb
     call add
       call subtract
         call add
           call add
             read day
-            mark 1
+            code 1
           read jalpha
         call floor
           call multiply
-            mark 0.25
+            code 0.25
             read jalpha
-      mark 1524
+      code 1524
   save jc
     call floor
       call add
-        mark 6680
+        code 6680
         call divide
           call subtract
             call subtract
               read jb
-              mark 2439870
-            mark 122.1
-          mark 365.25
+              code 2439870
+            code 122.1
+          code 365.25
   save jd
     call floor
       call add
         call multiply
-          mark 365
+          code 365
           read jc
         call multiply
-          mark 0.25
+          code 0.25
           read jc
   save je
     call floor
@@ -320,25 +320,25 @@ task convert-from-julian-day-to-gregorian-day
         call subtract
           read jb
           read jd
-        mark 30.6001
+        code 30.6001
   save m
     call subtract
       read je
-      mark 1
+      code 1
   fork test
     call is-greater-than
       read m
-      mark 12
+      code 12
     hook true
-      save m, mark 13
+      save m, code 13
   save y
     call subtract
       read jc
-      mark 4715
+      code 4715
   fork test
     call is-greater-than
       read m
-      mark 2
+      code 2
     hook true
       save y, call decrement, read y
       save m, call decrement, read m
@@ -349,7 +349,7 @@ task convert-from-julian-day-to-gregorian-day
         read jd
       call floor
         call multiply
-          mark 30.6001
+          code 30.6001
           read je
   send back seed
     make day-triplet
@@ -360,35 +360,35 @@ task convert-from-julian-day-to-gregorian-day
 task calculate-four-year-cycle-table
   save month-lengths
     make list
-      mark 31
-      mark 28
-      mark 31
-      mark 30
-      mark 31
-      mark 30
-      mark 31
-      mark 31
-      mark 30
-      mark 31
-      mark 30
-      mark 31
+      code 31
+      code 28
+      code 31
+      code 30
+      code 31
+      code 30
+      code 31
+      code 31
+      code 30
+      code 31
+      code 30
+      code 31
   save four-year-cycle-table
     make array
-      mark 1461
-  save cumulative, mark 0
-  save position, mark 0
-  save leap-position, mark 0
-  save month, mark 0
+      code 1461
+  save cumulative, code 0
+  save position, code 0
+  save leap-position, code 0
+  save month, code 0
 
   walk test, fork fork5
     hook test
       call is-less-than
         read month
-        mark 12
+        code 12
 
     hook true
       save length, read month-lengths[month]
-      save day, mark 1
+      save day, code 1
 
       walk test, fork fork3
         hook test
@@ -405,13 +405,13 @@ task calculate-four-year-cycle-table
               read day
           save next-position
             call add
-              mark 366
+              code 366
               read position
           save four-year-cycle-table[next-position]
             call add
               call add
                 call shift-left
-                  mark 1
+                  code 1
                   read k-year-shift
                 call shift-left
                   read month
@@ -419,13 +419,13 @@ task calculate-four-year-cycle-table
               read day
           save next-position
             call add
-              mark 731
+              code 731
               read position
           save four-year-cycle-table[next-position]
             call add
               call add
                 call shift-left
-                  mark 2
+                  code 2
                   read k-year-shift
                 call shift-left
                   read month
@@ -433,13 +433,13 @@ task calculate-four-year-cycle-table
               read day
           save next-position
             call add
-              mark 1096
+              code 1096
               read position
           save four-year-cycle-table[next-position]
             call add
               call add
                 call shift-left
-                  mark 3
+                  code 3
                   read k-year-shift
                 call shift-left
                   read month
@@ -461,7 +461,7 @@ task calculate-four-year-cycle-table
       fork test
         call is-equal
           read month
-          mark 1
+          code 1
 
         hook true
           save next-position
@@ -473,7 +473,7 @@ task calculate-four-year-cycle-table
               call shift-left
                 read month
                 read k-month-shift
-              mark 29
+              code 29
 
       save month
         call increment

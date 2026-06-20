@@ -1,4 +1,4 @@
-note <browser raw byte buffer implementation (TextEncoder / atob / btoa). Forwards to the linked bytes runtime shim. Internal: reached only through the public bytes API.>
+# browser raw byte buffer implementation (TextEncoder / atob / btoa). Forwards to the linked bytes runtime shim. Internal: reached only through the public bytes API.
 
 dock load
   load <global:octets>, name octets

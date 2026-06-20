@@ -54,7 +54,7 @@ task handle
 
       send back
         make response
-          bind status, mark 404
+          bind status, code 404
           bind headers, call hash-map/new
           bind body, text <Not Found>
           bind dock, wave true

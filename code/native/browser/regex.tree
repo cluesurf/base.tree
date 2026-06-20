@@ -1,4 +1,4 @@
-note <browser regex implementation. Forwards to the linked regex runtime shim, which wraps the platform's regex engine. Internal: reached only through the public regex API.>
+# browser regex implementation. Forwards to the linked regex runtime shim, which wraps the platform's regex engine. Internal: reached only through the public regex API.
 
 dock load
   load <global:regex>, name regex

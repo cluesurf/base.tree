@@ -1,5 +1,5 @@
 
-note <Text (string) operations. Each delegates to the native string method on the value.>
+# Text (string) operations. Each delegates to the native string method on the value.
 
 task char-at
   take value, like text
@@ -149,7 +149,7 @@ task contains
     call value/includes
       read search
 
-note <Character encodings.>
+# Character encodings.
 
 form encoding
   case ascii

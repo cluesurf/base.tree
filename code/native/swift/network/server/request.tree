@@ -17,9 +17,9 @@ task read
         take fail
         call raw/receive
           text <minimumIncompleteLength>
-          mark 1
+          code 1
           text <maximumLength>
-          mark 1048576
+          code 1048576
           task on-receive
             take content
             take context

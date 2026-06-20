@@ -1,5 +1,5 @@
 
 form unit
-  note <Unit type with a single constructor. Represents trivial truth.>
+  # Unit type with a single constructor. Represents trivial truth.
 
   case sole

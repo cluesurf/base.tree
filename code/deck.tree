@@ -6,7 +6,7 @@ load ../term
   find term
 
 form deck
-  note <Package manifest>
+  # Package manifest
   link name, like text
   link mark, like text
   link head, like text
@@ -19,12 +19,12 @@ form deck
   link read, like text
 
 form deck-link
-  note <Package dependency>
+  # Package dependency
   link name, like text
   link mark, like deck-mark
 
 form deck-mark
-  note <Version constraint>
+  # Version constraint
 
   case exact
     link mark, like text

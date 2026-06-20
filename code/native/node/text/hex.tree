@@ -1,4 +1,4 @@
-note <Node.js hexadecimal implementation (the host Buffer). Internal: reached only through the public hex API.>
+# Node.js hexadecimal implementation (the host Buffer). Internal: reached only through the public hex API.
 
 dock load
   load <global:Buffer>, name buffer

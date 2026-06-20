@@ -177,7 +177,7 @@ task assert
             call subtract
               bind a, read value
               bind b, read expected
-      save tol, mark 0.001
+      save tol, code 0.001
       fork test
         hook test
           call is-null

@@ -1,4 +1,4 @@
-note <kotlin time implementation. Forwards to the linked time runtime shim. Internal: reached only through the public time API.>
+# kotlin time implementation. Forwards to the linked time runtime shim. Internal: reached only through the public time API.
 
 dock load
   load <global:time>, name time

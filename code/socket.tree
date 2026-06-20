@@ -1,5 +1,5 @@
 
-note <TCP socket.>
+# TCP socket.
 
 form socket-address
   link host, like text

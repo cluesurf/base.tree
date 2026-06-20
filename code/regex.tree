@@ -1,4 +1,4 @@
-note <Regular expressions. The clean uniform interface; the per-env native implementation wraps the platform's regex engine and is selected at build time, hidden behind the API.>
+# Regular expressions. The clean uniform interface; the per-env native implementation wraps the platform's regex engine and is selected at build time, hidden behind the API.
 
 load @cluesurf/base/code/native/regex
   find do-matches

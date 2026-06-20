@@ -1,7 +1,7 @@
 
 form file
   take dock
-    note <File descriptor>
+    # File descriptor
     mark private
   take path
 

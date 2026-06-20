@@ -4,13 +4,13 @@ task check-authorization-status
     call av-capture-device/authorization-status
       read av-media-type/video
     case read av-authorization-atatus/authorized
-      note <The user has previously granted access to the camera.>
+      # The user has previously granted access to the camera.
     case read av-authorization-atatus/not-determined
-      note <The user has not yet been asked for camera access.>
+      # The user has not yet been asked for camera access.
     case read av-authorization-atatus/denied
-      note <The user has previously denied access.>
+      # The user has previously denied access.
     case read av-authorization-atatus/restricted
-      note <The user can't grant access due to restrictions.>
+      # The user can't grant access due to restrictions.
 
 task request-access
   mark async
@@ -28,7 +28,7 @@ task get-default-device
 task clear-take-photo-settings
 
 task is-auto-red-eye-reduction-enabled
-  note <A Boolean value that determines whether to use auto red-eye reduction on flash captures.>
+  # A Boolean value that determines whether to use auto red-eye reduction on flash captures.
 
 form camera
   take native

@@ -1,4 +1,4 @@
-note <ECDH key agreement over X25519. A declarative `bind`: each backend's built-in X25519 is inlined at the call site (node / browser Web Crypto, rust x25519-dalek, swift CryptoKit, kotlin java.security). Keys and the shared secret are all raw `bytes` (the zero-copy crypto currency): the private key and public key are 32 bytes each, the shared secret is the raw 32-byte X25519 output. make-key-pair generates a matched pair together as the 64-byte private || public buffer, which the public verb splits. shared-secret(my private, their public) equals shared-secret(their private, my public): that agreement is the whole point of ECDH. Web Crypto and java.security import a raw key inside a fixed DER envelope, so the constant X25519 PKCS8 (private) and X.509 (public) prefixes are prepended inline. The interface is async to stay uniform with the browser's async-only Web Crypto; rust wraps its synchronous crate work in an `async move` block.>
+# ECDH key agreement over X25519. A declarative `bind`: each backend's built-in X25519 is inlined at the call site (node / browser Web Crypto, rust x25519-dalek, swift CryptoKit, kotlin java.security). Keys and the shared secret are all raw `bytes` (the zero-copy crypto currency): the private key and public key are 32 bytes each, the shared secret is the raw 32-byte X25519 output. make-key-pair generates a matched pair together as the 64-byte private || public buffer, which the public verb splits. shared-secret(my private, their public) equals shared-secret(their private, my public): that agreement is the whole point of ECDH. Web Crypto and java.security import a raw key inside a fixed DER envelope, so the constant X25519 PKCS8 (private) and X.509 (public) prefixes are prepended inline. The interface is async to stay uniform with the browser's async-only Web Crypto; rust wraps its synchronous crate work in an `async move` block.
 
 # generate a fresh X25519 key pair as the 64-byte buffer: 32-byte private key followed by 32-byte public key
 bind make-key-pair-bytes
@@ -59,13 +59,13 @@ task make-key-pair
       bind private-key
         call slice
           read raw
-          mark 0
-          mark 32
+          code 0
+          code 32
       bind public-key
         call slice
           read raw
-          mark 32
-          mark 64
+          code 32
+          code 64
 
 # derive the shared secret (your private key, their public key)
 task shared-secret

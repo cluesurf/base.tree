@@ -38,17 +38,17 @@ task listen
         call is-equal
           bind a, read signal
           bind b, text <terminate>
-        send back, mark 15
+        send back, code 15
       hook test
         call is-equal
           bind a, read signal
           bind b, text <interrupt>
-        send back, mark 2
+        send back, code 2
       hook test
         call is-equal
           bind a, read signal
           bind b, text <hangup>
-        send back, mark 1
+        send back, code 1
       hook fall
         halt text <unknown signal>
 

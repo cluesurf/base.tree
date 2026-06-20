@@ -1,4 +1,4 @@
-note <Browser file system implementation over the Origin Private File System (OPFS). Forwards to the linked `io` runtime shim, which drives navigator.storage.getDirectory(). OPFS is asynchronous, so every operation (including existence) is async. Internal: reached only through the public file API.>
+# Browser file system implementation over the Origin Private File System (OPFS). Forwards to the linked `io` runtime shim, which drives navigator.storage.getDirectory(). OPFS is asynchronous, so every operation (including existence) is async. Internal: reached only through the public file API.
 
 dock load
   load <global:io>, name io

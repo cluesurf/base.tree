@@ -1,6 +1,6 @@
 
 task set-flash-mode
-  note <The flash setting of the capture device.>
+  # The flash setting of the capture device.
 
 task take-photo
   take image-height, like decimal

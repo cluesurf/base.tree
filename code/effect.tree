@@ -1,5 +1,5 @@
 
-note <IO effect ADT for the HVM backend. Maps to IO_Done, IO_Call, IO_bind protocol.>
+# IO effect ADT for the HVM backend. Maps to IO_Done, IO_Call, IO_bind protocol.
 
 form effect
   head result

@@ -1,4 +1,4 @@
-note <rust random implementation. Forwards to the linked random runtime shim. Internal: reached only through the public random API.>
+# rust random implementation. Forwards to the linked random runtime shim. Internal: reached only through the public random API.
 
 dock load
   load <global:random>, name random

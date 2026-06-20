@@ -1,5 +1,5 @@
 
-note <Console output. Platform implementation is selected at build time and hidden behind this API.>
+# Console output. Platform implementation is selected at build time and hidden behind this API.
 
 load @cluesurf/base/code/native/console
   find write-line

@@ -1,4 +1,4 @@
-note <kotlin float math (the linked fmath shim). Internal: reached only through the public float API.>
+# kotlin float math (the linked fmath shim). Internal: reached only through the public float API.
 
 dock load
   load <global:fmath>, name fmath

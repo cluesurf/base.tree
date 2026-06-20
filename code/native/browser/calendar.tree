@@ -1,4 +1,4 @@
-note <browser calendar implementation. Forwards to the linked calendar runtime shim (the host Date). All operations are UTC. Internal: reached only through the public calendar API.>
+# browser calendar implementation. Forwards to the linked calendar runtime shim (the host Date). All operations are UTC. Internal: reached only through the public calendar API.
 
 dock load
   load <global:calendar>, name calendar

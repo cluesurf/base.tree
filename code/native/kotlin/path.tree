@@ -1,4 +1,4 @@
-note <kotlin path implementation. Forwards to the linked path runtime shim (the platform path library). Internal: reached only through the public path API.>
+# kotlin path implementation. Forwards to the linked path runtime shim (the platform path library). Internal: reached only through the public path API.
 
 dock load
   load <global:path>, name path

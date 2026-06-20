@@ -3,4 +3,4 @@ host max
 host min
 
 form f64
-  note <A 64-bit floating point type with 15 digits of decimal precision.>
+  # A 64-bit floating point type with 15 digits of decimal precision.

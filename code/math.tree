@@ -1,4 +1,4 @@
-note <Math: the clean uniform interface. Each operation with a host equivalent is a declarative `bind`: one name, the native expression per backend, emitted inline at the call site (no per-env shim, no runtime library). Operations with no host primitive (clamp, gcd, factorial) compose from the interface. `number` is the platform integer (i64 / Int / Long), so floor / ceil / round are the identity.>
+# Math: the clean uniform interface. Each operation with a host equivalent is a declarative `bind`: one name, the native expression per backend, emitted inline at the call site (no per-env shim, no runtime library). Operations with no host primitive (clamp, gcd, factorial) compose from the interface. `number` is the platform integer (i64 / Int / Long), so floor / ceil / round are the identity.
 
 bind abs
   take value, like number
@@ -164,7 +164,7 @@ task greatest-common-divisor
     hook test
       call is-above
         read y
-        mark 0
+        code 0
     hook step
       save temp, read y
       save y
@@ -177,8 +177,8 @@ task greatest-common-divisor
 task factorial
   take n, like number
   like number
-  save result, mark 1
-  save count, mark 1
+  save result, code 1
+  save count, code 1
   walk test
     hook test
       call is-maximum
@@ -192,5 +192,5 @@ task factorial
       save count
         call add
           read count
-          mark 1
+          code 1
   send back, read result

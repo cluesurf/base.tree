@@ -1,5 +1,5 @@
 
-note <Get by index>
+# Get by index
 
 mask position
   head i, like dimension-free

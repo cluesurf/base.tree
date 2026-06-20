@@ -6,7 +6,7 @@ load @cluesurf/base/code/side
   find side
 
 form list
-  note <List: the stdlib source of truth for the list type. The compiler uses the native array representation, so a list value is built with `make list`. Each method delegates to the native array operation.>
+  # List: the stdlib source of truth for the list type. The compiler uses the native array representation, so a list value is built with `make list`. Each method delegates to the native array operation.
 
   head t
 
@@ -21,7 +21,7 @@ form list
     send back
       call is-equal
         read self/length
-        mark 0
+        code 0
 
   task push
     take self
@@ -171,13 +171,13 @@ form list
       hook test
         call is-above
           read self/length
-          mark 0
+          code 0
       hook hold
         send back
           make some
             bind value
               call self/at
-                mark 0
+                code 0
       hook miss
         send back
           make none
@@ -190,7 +190,7 @@ form list
       hook test
         call is-above
           read self/length
-          mark 0
+          code 0
       hook hold
         send back
           make some
@@ -198,7 +198,7 @@ form list
               call self/at
                 call subtract
                   read self/length
-                  mark 1
+                  code 1
       hook miss
         send back
           make none
@@ -218,7 +218,7 @@ form list
       like t
     send back
       call self/slice
-        mark 0
+        code 0
         read count
 
   task drop-first
@@ -254,12 +254,12 @@ form list
       case start
         send back
           call self/slice
-            mark 0
+            code 0
             read count
       case both
         send back
           call self/slice
-            mark 0
+            code 0
             read count
 
   # drop `count` items from the chosen side
@@ -273,7 +273,7 @@ form list
       case end
         send back
           call self/slice
-            mark 0
+            code 0
             call subtract
               read self/length
               read count
@@ -305,7 +305,7 @@ form list
       like t
     send back
       call self/slice
-        mark 0
+        code 0
         call subtract
           read self/length
           read count
@@ -329,7 +329,7 @@ form list
   task sum
     take self
     like number
-    save total, mark 0
+    save total, code 0
     walk list, read self
       hook next
         take item, name value
@@ -342,7 +342,7 @@ form list
   task product
     take self
     like number
-    save total, mark 1
+    save total, code 1
     walk list, read self
       hook next
         take item, name value
@@ -390,7 +390,7 @@ form list
       hook test
         call is-minimum
           read index
-          mark 0
+          code 0
       hook hold
         send back
           make some

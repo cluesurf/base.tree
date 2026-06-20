@@ -44,9 +44,9 @@ task start
 
       call conn/receive
         text <minimumIncompleteLength>
-        mark 1
+        code 1
         text <maximumLength>
-        mark 65536
+        code 65536
         task on-receive
           mark async
           take content

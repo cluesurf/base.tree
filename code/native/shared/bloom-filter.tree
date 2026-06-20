@@ -16,12 +16,12 @@ form bloom-filter
     save b
       call fnv-1a
         bind read v
-        bind mark 1576284489
+        bind code 1576284489
     save x
       call remainder
         read a
         read m
-    save i, mark 0
+    save i, code 0
     walk test
       hook test
         call is-less-than
@@ -31,7 +31,7 @@ form bloom-filter
         save tmp6
           call is-less-than
             read x
-            mark 0
+            code 0
         save tmp7
           call add
             read x
@@ -64,7 +64,7 @@ form bloom-filter
     save l, read tmp10
     save k, read self/k
     save buckets, read self/buckets
-    save i, mark 0
+    save i, code 0
     walk test, fork fork12
       hook test
         call test
@@ -76,15 +76,15 @@ form bloom-filter
           call math/floor
             call divide
               read l[i]
-              mark 32
+              code 32
         save buckets[tmp11]
           call assign-bitwise-or
             bind buckets[tmp11]
             call shift-left
-              mark 1
+              code 1
               call remainder
                 read l[i]
-                mark 32
+                code 32
         save i
           call increment
             bind value, read i
@@ -98,7 +98,7 @@ form bloom-filter
     save l, read tmp13
     save k, read self/k
     save buckets, read self/buckets
-    save i, mark 0
+    save i, code 0
     walk test, fork fork15
       hook test
         call test
@@ -111,17 +111,17 @@ form bloom-filter
           call math/floor
             call divide
               read b
-              mark 32
+              code 32
         call test
           call is-strictly-equal
             call bitwise-and
               read buckets[tmp14]
               call shift-left
-                mark 1
+                code 1
                 call remainder
                   read b
-                  mark 32
-            mark 0
+                  code 32
+            code 0
           hook true
             send back seed, read false
         save i
@@ -132,8 +132,8 @@ form bloom-filter
     send back seed, read true
   task get-size
     save buckets, read self/buckets
-    save bits, mark 0
-    save i, mark 0
+    save bits, code 0
+    save i, code 0
     save n, read buckets/length
     walk test, fork fork16
       hook test
@@ -159,7 +159,7 @@ form bloom-filter
             bind bits, read self/m
           call math/log
             call subtract
-              mark 1
+              code 1
               call divide
                 read bits
                 read self/m
@@ -172,14 +172,14 @@ task make-bloom-filter
     call math/ceil
       call divide
         read m
-        mark 32
+        code 32
   save i
     call negative
-      bind bits, mark 1
+      bind bits, code 1
   save m
     call multiply
       read n
-      mark 32
+      code 32
   save bloom, make bloom-filter
   save bloom/m, read m
   save bloom/k, read k
@@ -194,5 +194,5 @@ task make-bloom-filter
     hook true
       call bloom/buckets/set
         read i
-        mark 0
+        code 0
   read bloom

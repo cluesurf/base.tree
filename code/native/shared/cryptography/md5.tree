@@ -1,15 +1,15 @@
 save t, call create-table
 task create-table
   save t, make list
-  save i, mark 0
+  save i, code 0
   walk test
     hook test
-      call i/is-below, mark 64
+      call i/is-below, code 64
     hook step
       save t[i]
-        call math/abs, call math/sin, call i/add, mark 1
-          link multiply, mark 4294967296
-          link unite-bitwise, mark 0
+        call math/abs, call math/sin, call i/add, code 1
+          link multiply, code 4294967296
+          link unite-bitwise, code 0
       save i, call increment, read i
   send back seed, read t
 
@@ -17,62 +17,62 @@ task doreset
   save self/hash
     make word-array/init
       make list
-        mark 1732584193
-        mark 4023233417
-        mark 2562383102
-        mark 271733878
+        code 1732584193
+        code 4023233417
+        code 2562383102
+        code 271733878
 
 task process
   take m
   take offset
-  save i, mark 0
+  save i, code 0
   walk test
     hook test
-      call i/is-below, mark 16
+      call i/is-below, code 16
     hook step
       save offset-i, call offset/add, read i
       save m-offset-i, m[offset-i]
       save m[offset-i]
-        call m-offset-i/shift-base, mark 8
-          link unite-bitwise, call m-offset-i/shift-head-unsigned, mark 24
-          link intersect-bitwise, mark 16711935
+        call m-offset-i/shift-base, code 8
+          link unite-bitwise, call m-offset-i/shift-head-unsigned, code 24
+          link intersect-bitwise, code 16711935
           link unite-bitwise
-            call m-offset-i/shift-base, mark 24
-              link unite-bitwise, call m-offset-i/shift-head-unsigned, mark 8
-              link intersect-bitwise, mark 4278255360
+            call m-offset-i/shift-base, code 24
+              link unite-bitwise, call m-offset-i/shift-head-unsigned, code 8
+              link intersect-bitwise, code 4278255360
       save i, call increment, read i
   save h, self/hash/words
-  save tmp2, call offset/add, mark 0
+  save tmp2, call offset/add, code 0
   save m-offset-0, m[tmp2]
-  save tmp3, call offset/add, mark 1
+  save tmp3, call offset/add, code 1
   save m-offset-1, m[tmp3]
-  save tmp4, call offset/add, mark 2
+  save tmp4, call offset/add, code 2
   save m-offset-2, m[tmp4]
-  save tmp5, call offset/add, mark 3
+  save tmp5, call offset/add, code 3
   save m-offset-3, m[tmp5]
-  save tmp6, call offset/add, mark 4
+  save tmp6, call offset/add, code 4
   save m-offset-4, m[tmp6]
-  save tmp7, call offset/add, mark 5
+  save tmp7, call offset/add, code 5
   save m-offset-5, m[tmp7]
-  save tmp8, call offset/add, mark 6
+  save tmp8, call offset/add, code 6
   save m-offset-6, m[tmp8]
-  save tmp9, call offset/add, mark 7
+  save tmp9, call offset/add, code 7
   save m-offset-7, m[tmp9]
-  save tmp10, call offset/add, mark 8
+  save tmp10, call offset/add, code 8
   save m-offset-8, m[tmp10]
-  save tmp11, call offset/add, mark 9
+  save tmp11, call offset/add, code 9
   save m-offset-9, m[tmp11]
-  save tmp12, call offset/add, mark 10
+  save tmp12, call offset/add, code 10
   save m-offset-10, m[tmp12]
-  save tmp13, call offset/add, mark 11
+  save tmp13, call offset/add, code 11
   save m-offset-11, m[tmp13]
-  save tmp14, call offset/add, mark 12
+  save tmp14, call offset/add, code 12
   save m-offset-12, m[tmp14]
-  save tmp15, call offset/add, mark 13
+  save tmp15, call offset/add, code 13
   save m-offset-13, m[tmp15]
-  save tmp16, call offset/add, mark 14
+  save tmp16, call offset/add, code 14
   save m-offset-14, m[tmp16]
-  save tmp17, call offset/add, mark 15
+  save tmp17, call offset/add, code 15
   save m-offset-15, m[tmp17]
   save a, h[0]
   save b, h[1]
@@ -85,7 +85,7 @@ task process
       read c
       read d
       read m-offset-0
-      mark 7
+      code 7
       read t[0]
   save d
     call ff
@@ -94,7 +94,7 @@ task process
       read b
       read c
       read m-offset-1
-      mark 12
+      code 12
       read t[1]
   save c
     call ff
@@ -103,7 +103,7 @@ task process
       read a
       read b
       read m-offset-2
-      mark 17
+      code 17
       read t[2]
   save b
     call ff
@@ -112,7 +112,7 @@ task process
       read d
       read a
       read m-offset-3
-      mark 22
+      code 22
       read t[3]
   save a
     call ff
@@ -121,7 +121,7 @@ task process
       read c
       read d
       read m-offset-4
-      mark 7
+      code 7
       read t[4]
   save d
     call ff
@@ -130,7 +130,7 @@ task process
       read b
       read c
       read m-offset-5
-      mark 12
+      code 12
       read t[5]
   save c
     call ff
@@ -139,7 +139,7 @@ task process
       read a
       read b
       read m-offset-6
-      mark 17
+      code 17
       read t[6]
   save b
     call ff
@@ -148,7 +148,7 @@ task process
       read d
       read a
       read m-offset-7
-      mark 22
+      code 22
       read t[7]
   save a
     call ff
@@ -157,7 +157,7 @@ task process
       read c
       read d
       read m-offset-8
-      mark 7
+      code 7
       read t[8]
   save d
     call ff
@@ -166,7 +166,7 @@ task process
       read b
       read c
       read m-offset-9
-      mark 12
+      code 12
       read t[9]
   save c
     call ff
@@ -175,7 +175,7 @@ task process
       read a
       read b
       read m-offset-10
-      mark 17
+      code 17
       read t[10]
   save b
     call ff
@@ -184,7 +184,7 @@ task process
       read d
       read a
       read m-offset-11
-      mark 22
+      code 22
       read t[11]
   save a
     call ff
@@ -193,7 +193,7 @@ task process
       read c
       read d
       read m-offset-12
-      mark 7
+      code 7
       read t[12]
   save d
     call ff
@@ -202,7 +202,7 @@ task process
       read b
       read c
       read m-offset-13
-      mark 12
+      code 12
       read t[13]
   save c
     call ff
@@ -211,7 +211,7 @@ task process
       read a
       read b
       read m-offset-14
-      mark 17
+      code 17
       read t[14]
   save b
     call ff
@@ -220,7 +220,7 @@ task process
       read d
       read a
       read m-offset-15
-      mark 22
+      code 22
       read t[15]
   save a
     call gg
@@ -229,7 +229,7 @@ task process
       read c
       read d
       read m-offset-1
-      mark 5
+      code 5
       read t[16]
   save d
     call gg
@@ -238,7 +238,7 @@ task process
       read b
       read c
       read m-offset-6
-      mark 9
+      code 9
       read t[17]
   save c
     call gg
@@ -247,7 +247,7 @@ task process
       read a
       read b
       read m-offset-11
-      mark 14
+      code 14
       read t[18]
   save b
     call gg
@@ -256,7 +256,7 @@ task process
       read d
       read a
       read m-offset-0
-      mark 20
+      code 20
       read t[19]
   save a
     call gg
@@ -265,7 +265,7 @@ task process
       read c
       read d
       read m-offset-5
-      mark 5
+      code 5
       read t[20]
   save d
     call gg
@@ -274,7 +274,7 @@ task process
       read b
       read c
       read m-offset-10
-      mark 9
+      code 9
       read t[21]
   save c
     call gg
@@ -283,7 +283,7 @@ task process
       read a
       read b
       read m-offset-15
-      mark 14
+      code 14
       read t[22]
   save b
     call gg
@@ -292,7 +292,7 @@ task process
       read d
       read a
       read m-offset-4
-      mark 20
+      code 20
       read t[23]
   save a
     call gg
@@ -301,7 +301,7 @@ task process
       read c
       read d
       read m-offset-9
-      mark 5
+      code 5
       read t[24]
   save d
     call gg
@@ -310,7 +310,7 @@ task process
       read b
       read c
       read m-offset-14
-      mark 9
+      code 9
       read t[25]
   save c
     call gg
@@ -319,7 +319,7 @@ task process
       read a
       read b
       read m-offset-3
-      mark 14
+      code 14
       read t[26]
   save b
     call gg
@@ -328,7 +328,7 @@ task process
       read d
       read a
       read m-offset-8
-      mark 20
+      code 20
       read t[27]
   save a
     call gg
@@ -337,7 +337,7 @@ task process
       read c
       read d
       read m-offset-13
-      mark 5
+      code 5
       read t[28]
   save d
     call gg
@@ -346,7 +346,7 @@ task process
       read b
       read c
       read m-offset-2
-      mark 9
+      code 9
       read t[29]
   save c
     call gg
@@ -355,7 +355,7 @@ task process
       read a
       read b
       read m-offset-7
-      mark 14
+      code 14
       read t[30]
   save b
     call gg
@@ -364,7 +364,7 @@ task process
       read d
       read a
       read m-offset-12
-      mark 20
+      code 20
       read t[31]
   save a
     call hh
@@ -373,7 +373,7 @@ task process
       read c
       read d
       read m-offset-5
-      mark 4
+      code 4
       read t[32]
   save d
     call hh
@@ -382,7 +382,7 @@ task process
       read b
       read c
       read m-offset-8
-      mark 11
+      code 11
       read t[33]
   save c
     call hh
@@ -391,7 +391,7 @@ task process
       read a
       read b
       read m-offset-11
-      mark 16
+      code 16
       read t[34]
   save b
     call hh
@@ -400,7 +400,7 @@ task process
       read d
       read a
       read m-offset-14
-      mark 23
+      code 23
       read t[35]
   save a
     call hh
@@ -409,7 +409,7 @@ task process
       read c
       read d
       read m-offset-1
-      mark 4
+      code 4
       read t[36]
   save d
     call hh
@@ -418,7 +418,7 @@ task process
       read b
       read c
       read m-offset-4
-      mark 11
+      code 11
       read t[37]
   save c
     call hh
@@ -427,7 +427,7 @@ task process
       read a
       read b
       read m-offset-7
-      mark 16
+      code 16
       read t[38]
   save b
     call hh
@@ -436,7 +436,7 @@ task process
       read d
       read a
       read m-offset-10
-      mark 23
+      code 23
       read t[39]
   save a
     call hh
@@ -445,7 +445,7 @@ task process
       read c
       read d
       read m-offset-13
-      mark 4
+      code 4
       read t[40]
   save d
     call hh
@@ -454,7 +454,7 @@ task process
       read b
       read c
       read m-offset-0
-      mark 11
+      code 11
       read t[41]
   save c
     call hh
@@ -463,7 +463,7 @@ task process
       read a
       read b
       read m-offset-3
-      mark 16
+      code 16
       read t[42]
   save b
     call hh
@@ -472,7 +472,7 @@ task process
       read d
       read a
       read m-offset-6
-      mark 23
+      code 23
       read t[43]
   save a
     call hh
@@ -481,7 +481,7 @@ task process
       read c
       read d
       read m-offset-9
-      mark 4
+      code 4
       read t[44]
   save d
     call hh
@@ -490,7 +490,7 @@ task process
       read b
       read c
       read m-offset-12
-      mark 11
+      code 11
       read t[45]
   save c
     call hh
@@ -499,7 +499,7 @@ task process
       read a
       read b
       read m-offset-15
-      mark 16
+      code 16
       read t[46]
   save b
     call hh
@@ -508,7 +508,7 @@ task process
       read d
       read a
       read m-offset-2
-      mark 23
+      code 23
       read t[47]
   save a
     call ii
@@ -517,7 +517,7 @@ task process
       read c
       read d
       read m-offset-0
-      mark 6
+      code 6
       read t[48]
   save d
     call ii
@@ -526,7 +526,7 @@ task process
       read b
       read c
       read m-offset-7
-      mark 10
+      code 10
       read t[49]
   save c
     call ii
@@ -535,7 +535,7 @@ task process
       read a
       read b
       read m-offset-14
-      mark 15
+      code 15
       read t[50]
   save b
     call ii
@@ -544,7 +544,7 @@ task process
       read d
       read a
       read m-offset-5
-      mark 21
+      code 21
       read t[51]
   save a
     call ii
@@ -553,7 +553,7 @@ task process
       read c
       read d
       read m-offset-12
-      mark 6
+      code 6
       read t[52]
   save d
     call ii
@@ -562,7 +562,7 @@ task process
       read b
       read c
       read m-offset-3
-      mark 10
+      code 10
       read t[53]
   save c
     call ii
@@ -571,7 +571,7 @@ task process
       read a
       read b
       read m-offset-10
-      mark 15
+      code 15
       read t[54]
   save b
     call ii
@@ -580,7 +580,7 @@ task process
       read d
       read a
       read m-offset-1
-      mark 21
+      code 21
       read t[55]
   save a
     call ii
@@ -589,7 +589,7 @@ task process
       read c
       read d
       read m-offset-8
-      mark 6
+      code 6
       read t[56]
   save d
     call ii
@@ -598,7 +598,7 @@ task process
       read b
       read c
       read m-offset-15
-      mark 10
+      code 10
       read t[57]
   save c
     call ii
@@ -607,7 +607,7 @@ task process
       read a
       read b
       read m-offset-6
-      mark 15
+      code 15
       read t[58]
   save b
     call ii
@@ -616,7 +616,7 @@ task process
       read d
       read a
       read m-offset-13
-      mark 21
+      code 21
       read t[59]
   save a
     call ii
@@ -625,7 +625,7 @@ task process
       read c
       read d
       read m-offset-4
-      mark 6
+      code 6
       read t[60]
   save d
     call ii
@@ -634,7 +634,7 @@ task process
       read b
       read c
       read m-offset-11
-      mark 10
+      code 10
       read t[61]
   save c
     call ii
@@ -643,7 +643,7 @@ task process
       read a
       read b
       read m-offset-2
-      mark 15
+      code 15
       read t[62]
   save b
     call ii
@@ -652,77 +652,77 @@ task process
       read d
       read a
       read m-offset-9
-      mark 21
+      code 21
       read t[63]
   save h[0]
     call h[0]/add, read a
-      link unite-bitwise, mark 0
+      link unite-bitwise, code 0
   save h[1]
     call h[1]/add, read b
-      link unite-bitwise, mark 0
+      link unite-bitwise, code 0
   save h[2]
     call h[2]/add, read c
-      link unite-bitwise, mark 0
+      link unite-bitwise, code 0
   save h[3]
     call h[3]/add, read d
-      link unite-bitwise, mark 0
+      link unite-bitwise, code 0
 
 task finalize
   save data, self/data
   save data-words, data/words
-  save n-bits-total, call self/ndatabytes/multiply, mark 8
-  save n-bits-left, call data/sig-bytes/multiply, mark 8
-  save tmp18, call n-bits-left/shift-head-unsigned, mark 5
+  save n-bits-total, call self/ndatabytes/multiply, code 8
+  save n-bits-left, call data/sig-bytes/multiply, code 8
+  save tmp18, call n-bits-left/shift-head-unsigned, code 5
   save data-words[tmp18]
     call unite-bitwise
       read data-words[tmp18]
-      call 128/shift-base, call 24/subtract, call n-bits-left/remainder, mark 32
-  save n-bits-total-h, call math/floor, call n-bits-total/divide, mark 4294967296
+      call 128/shift-base, call 24/subtract, call n-bits-left/remainder, code 32
+  save n-bits-total-h, call math/floor, call n-bits-total/divide, code 4294967296
   save n-bits-total-l, read n-bits-total
   call data-words/set
-    call n-bits-left/add, mark 64
-      link shift-head-unsigned, mark 9
-      link shift-base, mark 4
-      link add, mark 15
-    call n-bits-total-h/shift-base, mark 8
-      link unite-bitwise, call n-bits-total-h/shift-head-unsigned, mark 24
-      link intersect-bitwise, mark 16711935
+    call n-bits-left/add, code 64
+      link shift-head-unsigned, code 9
+      link shift-base, code 4
+      link add, code 15
+    call n-bits-total-h/shift-base, code 8
+      link unite-bitwise, call n-bits-total-h/shift-head-unsigned, code 24
+      link intersect-bitwise, code 16711935
       link unite-bitwise
-        call n-bits-total-h/shift-base, mark 24
-          link unite-bitwise, call n-bits-total-h/shift-head-unsigned, mark 8
-          link intersect-bitwise, mark 4278255360
+        call n-bits-total-h/shift-base, code 24
+          link unite-bitwise, call n-bits-total-h/shift-head-unsigned, code 8
+          link intersect-bitwise, code 4278255360
   call data-words/set
-    call n-bits-left/add, mark 64
-      link shift-head-unsigned, mark 9
-      link shift-base, mark 4
-      link add, mark 14
-    call n-bits-total-l/shift-base, mark 8
-      link unite-bitwise, call n-bits-total-l/shift-head-unsigned, mark 24
-      link intersect-bitwise, mark 16711935
+    call n-bits-left/add, code 64
+      link shift-head-unsigned, code 9
+      link shift-base, code 4
+      link add, code 14
+    call n-bits-total-l/shift-base, code 8
+      link unite-bitwise, call n-bits-total-l/shift-head-unsigned, code 24
+      link intersect-bitwise, code 16711935
       link unite-bitwise
-        call n-bits-total-l/shift-base, mark 24
-          link unite-bitwise, call n-bits-total-l/shift-head-unsigned, mark 8
-          link intersect-bitwise, mark 4278255360
+        call n-bits-total-l/shift-base, code 24
+          link unite-bitwise, call n-bits-total-l/shift-head-unsigned, code 8
+          link intersect-bitwise, code 4278255360
   save data/sig-bytes
-    call data-words/length/add, mark 1
-      link multiply, mark 4
+    call data-words/length/add, code 1
+      link multiply, code 4
   call self/process
   save hash, self/hash
   save h, hash/words
-  save i, mark 0
+  save i, code 0
   walk test
     hook test
-      call i/is-below, mark 4
+      call i/is-below, code 4
     hook step
       save h-i, h[i]
       save h[i]
-        call h-i/shift-base, mark 8
-          link unite-bitwise, call h-i/shift-head-unsigned, mark 24
-          link intersect-bitwise, mark 16711935
+        call h-i/shift-base, code 8
+          link unite-bitwise, call h-i/shift-head-unsigned, code 24
+          link intersect-bitwise, code 16711935
           link unite-bitwise
-            call h-i/shift-base, mark 24
-              link unite-bitwise, call h-i/shift-head-unsigned, mark 8
-              link intersect-bitwise, mark 4278255360
+            call h-i/shift-base, code 24
+              link unite-bitwise, call h-i/shift-head-unsigned, code 8
+              link intersect-bitwise, code 4278255360
       save i, call increment, read i
   send back seed, read hash
 

@@ -36,7 +36,7 @@ task receive
   save raw, read socket/dock
 
   save buf
-    call vec/with-capacity, mark 65536
+    call vec/with-capacity, code 65536
 
   save result
     call raw/recv-from

@@ -1,5 +1,5 @@
 
-note <Numeric range: from start (inclusive) to end (exclusive) by step.>
+# Numeric range: from start (inclusive) to end (exclusive) by step.
 
 form range
   link start, like number

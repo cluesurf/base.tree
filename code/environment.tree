@@ -1,5 +1,5 @@
 
-note <Environment: working directory, platform info, and environment variables. Implementation selected at build time, hidden behind this API.>
+# Environment: working directory, platform info, and environment variables. Implementation selected at build time, hidden behind this API.
 
 load @cluesurf/base/code/native/environment
   find current-directory

@@ -7,7 +7,7 @@ task read
 
   send back
     make process-info
-      bind id, mark 0
+      bind id, code 0
       bind arguments, make list
       bind directory
         call browser-current-directory

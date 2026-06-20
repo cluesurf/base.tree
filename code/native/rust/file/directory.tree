@@ -1,4 +1,4 @@
-note <rust directory operations. Forwards to the linked io runtime shim (the platform filesystem). Internal: reached only through the public file/directory API.>
+# rust directory operations. Forwards to the linked io runtime shim (the platform filesystem). Internal: reached only through the public file/directory API.
 
 dock load
   load <global:io>, name io

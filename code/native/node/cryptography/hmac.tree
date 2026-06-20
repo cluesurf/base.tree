@@ -1,4 +1,4 @@
-note <Node.js HMAC implementation (the host node:crypto module). Key, data, and result are raw bytes (a Uint8Array / Buffer). Internal: reached only through the public hmac API.>
+# Node.js HMAC implementation (the host node:crypto module). Key, data, and result are raw bytes (a Uint8Array / Buffer). Internal: reached only through the public hmac API.
 
 dock load
   load <node:crypto>, name crypto

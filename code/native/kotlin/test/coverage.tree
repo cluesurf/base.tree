@@ -17,8 +17,8 @@ task format
   take style, like text, fall text <summary>
   like text
 
-  save total, mark 0
-  save covered, mark 0
+  save total, code 0
+  save covered, code 0
 
   walk list, read coverage/files
     hook next

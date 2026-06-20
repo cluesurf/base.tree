@@ -40,8 +40,8 @@ task make-utf-8-from-utf-16
   save h
   save l
   save j
-  save i, mark 0
-  save size, mark 0
+  save i, code 0
+  save size, code 0
 
   walk test
     hook test
@@ -53,72 +53,72 @@ task make-utf-8-from-utf-16
       stem and
         call is-greater-than-or-equal-to
           read h
-          mark 0xD800
+          code 0xD800
         call is-less-than-or-equal-to
           read h
-          mark 0xDBFF
+          code 0xDBFF
         hook true
           stem test
             call is-less-than
               call add
                 read i
-                mark 1
+                code 1
               read text/get-size
             hook true
               save l, read text[i]
               stem and
                 call is-greater-than-or-equal-to
                   read l
-                  mark 0xDC00
+                  code 0xDC00
                 call is-less-than-or-equal-to
                   read l
-                  mark 0xDFFF
+                  code 0xDFFF
                 hook true
                   save size
                     call increment
                       read size
-                      mark 4
+                      code 4
                 hook false
                   save size
                     call increment
                       read size
-                      mark 3
+                      code 3
             hook false
               save size
                 call increment
                   read size
-                  mark 3
+                  code 3
         hook false
           stem roll
             stem test
               call is-less-than
                 read h
-                mark 0x80
+                code 0x80
               hook true
                 save size
                   call increment
                     read size
-                    mark 1
+                    code 1
             stem test
               call is-less-than
                 read h
-                mark 0x800
+                code 0x800
               hook true
                 save size
                   call increment
                     read size
-                    mark 2
+                    code 2
             stem test
               call is-less-than
                 read h
-                mark 0x10000
+                code 0x10000
               hook true
                 save size
                   call increment
                     read size
-                    mark 3
+                    code 3
   save head-text, make array, read size
-  save i, mark 0
+  save i, code 0
   walk test
     hook test
       call is-less-than
@@ -129,99 +129,99 @@ task make-utf-8-from-utf-16
       stem and
         call is-greater-than-or-equal-to
           read h
-          mark 0xD800
+          code 0xD800
         call is-less-than-or-equal-to
           read h
-          mark 0xDBFF
+          code 0xDBFF
         hook true
           stem test
             call is-less-than
               call add
                 read i
-                mark 1
+                code 1
               read text/get-size
             hook true
               save l, read text[i]
               stem and
                 call is-greater-than-or-equal-to
                   read l
-                  mark 0xDC00
+                  code 0xDC00
                 call is-less-than-or-equal-to
                   read l
-                  mark 0xDFFF
+                  code 0xDFFF
                 hook true
                   save cp
                     call add
                       call shift-left
                         call subtract
                           read h
-                          mark 0xD800
-                        mark 10
+                          code 0xD800
+                        code 10
                       call add
                         read l
-                        mark 0x2400
+                        code 0x2400
                   save tmp, read j
                   save j, call increment, read j
                   save head-text[tmp]
                     call bitwise-or
-                      mark 0xF0
+                      code 0xF0
                       call shift-right
                         read cp
-                        mark 0x12
+                        code 0x12
                   save tmp, read j
                   save j, call increment, read j
                   save head-text[tmp]
                     call bitwise-or
-                      mark 0x80
+                      code 0x80
                       call bitwise-and
                         call shift-right
                           read cp
-                          mark 0x0C
-                        mark 0x3F
+                          code 0x0C
+                        code 0x3F
                   save tmp, read j
                   save j, call increment, read j
                   save head-text[tmp]
                     call bitwise-or
-                      mark 0x80
+                      code 0x80
                       call bitwise-and
                         call shift-right
                           read cp
-                          mark 0x06
-                        mark 0x3F
+                          code 0x06
+                        code 0x3F
                   save tmp, read j
                   save j, call increment, read j
                   save head-text[tmp]
                     call bitwise-or
-                      mark 0x80
+                      code 0x80
                       call bitwise-and
                         read cp
-                        mark 0x3F
+                        code 0x3F
                 hook false
                   save tmp, read j
                   save j, call increment, read j
-                  save head-text[tmp], mark 0xEF
+                  save head-text[tmp], code 0xEF
                   save tmp, read j
                   save j, call increment, read j
-                  save head-text[tmp], mark 0xBF
+                  save head-text[tmp], code 0xBF
                   save tmp, read j
                   save j, call increment, read j
-                  save head-text[tmp], mark 0xBD
+                  save head-text[tmp], code 0xBD
             hook false
               save tmp, read j
               save j, call increment, read j
-              save head-text[tmp], mark 0xEF
+              save head-text[tmp], code 0xEF
               save tmp, read j
               save j, call increment, read j
-              save head-text[tmp], mark 0xBF
+              save head-text[tmp], code 0xBF
               save tmp, read j
               save j, call increment, read j
-              save head-text[tmp], mark 0xBD
+              save head-text[tmp], code 0xBD
         hook false
           stem roll
             stem test
               call is-less-than
                 read h
-                mark 0x80
+                code 0x80
               hook true
                 save tmp, read j
                 save j, call increment, read j
@@ -229,71 +229,71 @@ task make-utf-8-from-utf-16
             stem test
               call is-less-than
                 read h
-                mark 0x800
+                code 0x800
               hook true
                 save tmp, read j
                 save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
-                    mark 0xC0
+                    code 0xC0
                     call shift-right
                       read h
-                      mark 6
+                      code 6
                 save tmp, read j
                 save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
-                    mark 0x80
+                    code 0x80
                     call bitwise-and
                       read h
-                      mark 0x3F
+                      code 0x3F
                 save size
                   call increment
                     read size
-                    mark 2
+                    code 2
             stem test
               call is-less-than
                 read h
-                mark 0x10000
+                code 0x10000
               hook true
                 save tmp, read j
                 save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
-                    mark 0xE0
+                    code 0xE0
                     call shift-right
                       read h
-                      mark 0xC
+                      code 0xC
                 save tmp, read j
                 save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
-                    mark 0x80
+                    code 0x80
                     call bitwise-and
                       call shift-right
                         read h
-                        mark 0x6
-                      mark 0x3F
+                        code 0x6
+                      code 0x3F
                 save tmp, read j
                 save j, call increment, read j
                 save head-text[tmp]
                   call bitwise-or
-                    mark 0x80
+                    code 0x80
                     call bitwise-and
                       call shift-right
                         read h
-                        mark 0x0
-                      mark 0x3F
+                        code 0x0
+                      code 0x3F
                 save size
                   call increment
                     read size
-                    mark 3
+                    code 3
   send back seed, read head-text
 
 task make-utf-16-from-utf-8
   take text
-  save point, mark 0
-  save state, mark 0
+  save point, code 0
+  save state, code 0
   save head-text, make text-utf-16
 
   task decode-byte
@@ -302,63 +302,63 @@ task make-utf-16-from-utf-8
     stem test
       call is-not-equal
         read state
-        mark 0
+        code 0
       hook true
         save point
           call bitwise-or
             call bitwise-and
               read byte
-              mark 0x3f
+              code 0x3f
             call shift-left
               read point
-              mark 6
+              code 6
       hook false
         save point
           call bitwise-and
             call shift-right
-              mark 0xff
+              code 0xff
               read type
             read byte
     save state
       call utf-8-decoding-table/get
         call add
           call add
-            mark 256
+            code 256
             call multiply
               read state
-              mark 16
+              code 16
           read type
     send back seed, read state
-  save i, mark 0
+  save i, code 0
   walk test, fork decode-byte-walk
     hook test
       call is-less-than
         read i
         read text/length
     hook step
-      save point, mark 0
+      save point, code 0
       stem case, call decode-byte, read text[i]
         fork case
         case 0, bust case
         case 1
           call head-text/push
-            mark 0xfffd
+            code 0xfffd
           walk test, fork fork3
             hook test
               stem and
                 call is-less-than
                   call add
                     read i
-                    mark 1
+                    code 1
                   read text/length
                 call is-equal
                   call bitwise-and
                     call text/get
                       call add
                         read i
-                        mark 1
-                    mark 0xc0
-                  mark 0x80
+                        code 1
+                    code 0xc0
+                  code 0x80
             hook step
               save i, call increment, read i
           save state, read point
@@ -368,24 +368,24 @@ task make-utf-16-from-utf-8
       stem test
         call is-less-than-or-equal-to
           read point
-          mark 0xffff
+          code 0xffff
         hook true
           call head-text/push
             bind read point
         hook false
           call head-text/push
             call add
-              mark 0xd7c0
+              code 0xd7c0
               call shift-right
                 read point
-                mark 10
+                code 10
           call head-text/push
             call add
-              mark 0xdc00
+              code 0xdc00
               call bitwise-and
                 read point
-                mark 0x3ff
-      save point, mark 0
+                code 0x3ff
+      save point, code 0
       save i, call increment, read i
 
   send back seed, read head-text

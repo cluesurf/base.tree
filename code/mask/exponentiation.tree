@@ -1,5 +1,5 @@
 
-note <Raise to power.>
+# Raise to power.
 
 mask exponentiation
   task exponentiate

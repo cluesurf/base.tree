@@ -1,5 +1,5 @@
 
-note <Ordered set: unique values in insertion order, backed by the native array.>
+# Ordered set: unique values in insertion order, backed by the native array.
 
 load @cluesurf/base/code/list
   find list

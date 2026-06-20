@@ -1,4 +1,4 @@
-note <browser string implementation (host JS String methods). Internal: reached only through the public string API.>
+# browser string implementation (host JS String methods). Internal: reached only through the public string API.
 task do-upper
   take input, like text
   like text

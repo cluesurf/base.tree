@@ -1,5 +1,5 @@
 
-note <Process: platform info and lifecycle. Platform implementation is selected at build time and hidden behind this API.>
+# Process: platform info and lifecycle. Platform implementation is selected at build time and hidden behind this API.
 
 load @cluesurf/base/code/native/process
   find get-platform

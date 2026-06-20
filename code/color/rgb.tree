@@ -1,4 +1,4 @@
-note <RGB color: three integer channels, each 0 to 255. Pure-logic color operations, no platform dependency.>
+# RGB color: three integer channels, each 0 to 255. Pure-logic color operations, no platform dependency.
 
 form rgb-color
   link red, like number
@@ -15,7 +15,7 @@ form rgb-color
             read self/red
             read self/green
           read self/blue
-        mark 3
+        code 3
 
   task luminance
     take self
@@ -26,14 +26,14 @@ form rgb-color
           call add
             call multiply
               read self/red
-              mark 299
+              code 299
             call multiply
               read self/green
-              mark 587
+              code 587
           call multiply
             read self/blue
-            mark 114
-        mark 1000
+            code 114
+        code 1000
 
   task invert
     take self
@@ -42,15 +42,15 @@ form rgb-color
       make rgb-color
         bind red
           call subtract
-            mark 255
+            code 255
             read self/red
         bind green
           call subtract
-            mark 255
+            code 255
             read self/green
         bind blue
           call subtract
-            mark 255
+            code 255
             read self/blue
 
   task is-dark
@@ -60,7 +60,7 @@ form rgb-color
       call is-below
         call luminance
           read self
-        mark 128
+        code 128
 
   task blend
     take self
@@ -73,16 +73,16 @@ form rgb-color
             call add
               read self/red
               read other/red
-            mark 2
+            code 2
         bind green
           call divide
             call add
               read self/green
               read other/green
-            mark 2
+            code 2
         bind blue
           call divide
             call add
               read self/blue
               read other/blue
-            mark 2
+            code 2

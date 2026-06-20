@@ -1,4 +1,4 @@
-note <rust AES-256-GCM implementation. Forwards to the linked cipher runtime shim (the aes-gcm crate). Internal: reached only through the public cipher API.>
+# rust AES-256-GCM implementation. Forwards to the linked cipher runtime shim (the aes-gcm crate). Internal: reached only through the public cipher API.
 
 dock load
   load <global:cipher>, name cipher

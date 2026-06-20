@@ -1,4 +1,4 @@
-note <Node.js base64 implementation (the host Buffer). Internal: reached only through the public base64 API.>
+# Node.js base64 implementation (the host Buffer). Internal: reached only through the public base64 API.
 
 dock load
   load <global:Buffer>, name buffer

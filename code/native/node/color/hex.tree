@@ -1,4 +1,4 @@
-note <Node.js hex color implementation (the host Buffer formats the three bytes as hex). Internal: reached only through the public hex color API.>
+# Node.js hex color implementation (the host Buffer formats the three bytes as hex). Internal: reached only through the public hex color API.
 
 dock load
   load <global:Buffer>, name buffer

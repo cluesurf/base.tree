@@ -1,5 +1,5 @@
 
-note <Node.js console implementation. Internal: reached only through the public console API.>
+# Node.js console implementation. Internal: reached only through the public console API.
 
 dock load
   load <global:console>, name console

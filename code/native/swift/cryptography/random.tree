@@ -1,4 +1,4 @@
-note <swift secure random implementation. Forwards to the linked crypto runtime shim (SystemRandomNumberGenerator). Internal: reached only through the public random API.>
+# swift secure random implementation. Forwards to the linked crypto runtime shim (SystemRandomNumberGenerator). Internal: reached only through the public random API.
 
 dock load
   load <global:crypto>, name crypto

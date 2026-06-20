@@ -1,5 +1,5 @@
 
-note <Handle to a concurrently-running task, generic over result type.>
+# Handle to a concurrently-running task, generic over result type.
 
 form task-handle
   head result

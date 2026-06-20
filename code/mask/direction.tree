@@ -1,9 +1,9 @@
 
 mask incomplete-direction
-  note <Partial order.>
+  # Partial order.
 
 mask direction
-  note <Total order.>
+  # Total order.
 
 host direction-type
   term base, diff -1

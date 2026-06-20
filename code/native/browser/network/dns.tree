@@ -1,4 +1,4 @@
-note <browser DNS implementation. Forwards to the linked dns runtime shim (DNS-over-HTTPS via fetch). Internal: reached only through the public dns API.>
+# browser DNS implementation. Forwards to the linked dns runtime shim (DNS-over-HTTPS via fetch). Internal: reached only through the public dns API.
 
 dock load
   load <global:dns>, name dns

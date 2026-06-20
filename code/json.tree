@@ -1,4 +1,4 @@
-note <JSON. parse / stringify and navigation over the host JSON library, hidden per-env. The parsed value is the opaque dynamic value (a JS any, a rust serde_json::Value, a swift / kotlin Any); the accessors read it natively. No hand-rolled parser or value representation.>
+# JSON. parse / stringify and navigation over the host JSON library, hidden per-env. The parsed value is the opaque dynamic value (a JS any, a rust serde_json::Value, a swift / kotlin Any); the accessors read it natively. No hand-rolled parser or value representation.
 
 load @cluesurf/base/code/native/json
   find do-parse
@@ -108,7 +108,7 @@ task field-boolean
         read value
         read key
 
-note <Builder side: assemble a dynamic value from a typed form's fields, then stringify. Symmetric with the field accessors above. set-field and push-item return the container so calls chain.>
+# Builder side: assemble a dynamic value from a typed form's fields, then stringify. Symmetric with the field accessors above. set-field and push-item return the container so calls chain.
 
 task make-object
   like dynamic

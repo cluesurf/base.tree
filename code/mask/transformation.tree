@@ -1,5 +1,5 @@
 
-note <Octal, Hex traits.>
+# Octal, Hex traits.
 
 mask text-transformation
   take encoding

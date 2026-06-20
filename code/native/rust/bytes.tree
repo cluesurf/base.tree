@@ -1,4 +1,4 @@
-note <rust raw byte buffer implementation (byte vector, the hex and base64 crates). Forwards to the linked bytes runtime shim. Internal: reached only through the public bytes API.>
+# rust raw byte buffer implementation (byte vector, the hex and base64 crates). Forwards to the linked bytes runtime shim. Internal: reached only through the public bytes API.
 
 dock load
   load <global:octets>, name octets

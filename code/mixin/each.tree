@@ -1,5 +1,5 @@
 
-note <Compile-time mixin: map a template over an enumeration, generating its body for each item.>
+# Compile-time mixin: map a template over an enumeration, generating its body for each item.
 
 tree define-each
   take list

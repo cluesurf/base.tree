@@ -1,5 +1,5 @@
 
-note <Date and time.>
+# Date and time.
 
 load @cluesurf/base/code/mixin/each
   find define-each

@@ -46,7 +46,7 @@ form unique-bag
     send back
       call is-equal
         read self/items/length
-        mark 0
+        code 0
 
   task to-list
     take self

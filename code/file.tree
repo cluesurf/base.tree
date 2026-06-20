@@ -1,5 +1,5 @@
 
-note <File system operations. The platform implementation is selected at build time and hidden behind this API.>
+# File system operations. The platform implementation is selected at build time and hidden behind this API.
 
 load @cluesurf/base/code/native/file
   find read-file
@@ -29,7 +29,7 @@ task write
       read path
       read data
 
-note <Raw byte IO. The data stays a native buffer end to end (node fs returns a Buffer, rust std::fs returns a byte vector), with no utf8 round-trip. This is the zero-copy path for binary files.>
+# Raw byte IO. The data stays a native buffer end to end (node fs returns a Buffer, rust std::fs returns a byte vector), with no utf8 round-trip. This is the zero-copy path for binary files.
 
 task read-bytes
   mark async

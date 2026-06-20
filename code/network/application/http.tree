@@ -34,11 +34,11 @@ form server
     free seed, like self
 
 task host
-  note <Start server>
+  # Start server
 
 task free
 
 task fork
 
 task work
-  note <Process request>
+  # Process request

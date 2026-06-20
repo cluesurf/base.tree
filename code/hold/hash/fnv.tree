@@ -4,11 +4,11 @@ task fnv-hash-32-1a
   take seed
   save a
     call bitwise-xor
-      mark 2166136261
+      code 2166136261
       call or
         read seed
-        mark 0
-  save i, mark 0
+        code 0
+  save i, code 0
   save n, read v/length
   walk test
     hook test
@@ -20,7 +20,7 @@ task fnv-hash-32-1a
       save d
         call bitwise-and
           read c
-          mark 0xff00
+          code 0xff00
       stem test
         call is-present
           read d
@@ -31,14 +31,14 @@ task fnv-hash-32-1a
                 read a
                 call shift-right
                   read d
-                  mark 8
+                  code 8
       save a
         call fnv-hash-32-multiply
           call bitwise-xor
             read a
             call bitwise-and
               read c
-              mark 0xff
+              code 0xff
       save i, call increment, read i
   send back seed, call fnv-hash-32-mixer, read a
 
@@ -49,38 +49,38 @@ task fnv-hash-32-mixer
       bind a
       call shift-left
         read a
-        mark 13
+        code 13
   save a
     call bitwise-xor
       bind a
       call unsigned-shift-right
         read a
-        mark 7
+        code 7
   save a
     call add
       bind a
       call shift-left
         read a
-        mark 3
+        code 3
   save a
     call bitwise-xor
       bind a
       call unsigned-shift-right
         read a
-        mark 17
+        code 17
   save a
     call add
       bind a
       call shift-left
         read a
-        mark 5
+        code 5
   send back seed
     call bitwise-and
       read a
-      mark 0xffffffff
+      code 0xffffffff
 
 task fnv-hash-32-multiply
-  note <a * 16777619 mod 2**32.>
+  # a * 16777619 mod 2**32.
   take a
   send back seed
     call add
@@ -91,16 +91,16 @@ task fnv-hash-32-multiply
               read a
               call shift-left
                 read a
-                mark 1
+                code 1
             call shift-left
               read a
-              mark 4
+              code 4
           call shift-left
             read a
-            mark 7
+            code 7
         call shift-left
           read a
-          mark 8
+          code 8
       call shift-left
         read a
-        mark 24
+        code 24

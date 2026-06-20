@@ -1,4 +1,4 @@
-note <node JSON implementation. Forwards to the linked json runtime shim (the host JSON library over the opaque dynamic value). Internal: reached only through the public json API.>
+# node JSON implementation. Forwards to the linked json runtime shim (the host JSON library over the opaque dynamic value). Internal: reached only through the public json API.
 
 dock load
   load <global:json>, name json

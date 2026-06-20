@@ -14,11 +14,11 @@ task is-success
   send back
     call is-equal
       bind a, read code
-      bind b, mark 0
+      bind b, code 0
 
 task from-signal
   take signal, like size
   send back
     call add
-      bind a, mark 128
+      bind a, code 128
       bind b, read signal

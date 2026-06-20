@@ -60,7 +60,7 @@ task read
         hook test
           call is-equal
             bind a, read len
-            bind b, mark 0
+            bind b, code 0
         hook hold
           send back
 
@@ -70,7 +70,7 @@ task read
           bind index
             call subtract
               bind a, read len
-              bind b, mark 1
+              bind b, code 1
 
   fork test
     hook test
@@ -85,7 +85,7 @@ task read
         hook test
           call is-equal
             bind a, read len
-            bind b, mark 0
+            bind b, code 0
         hook hold
           send back
 
@@ -95,7 +95,7 @@ task read
           bind index
             call subtract
               bind a, read len
-              bind b, mark 1
+              bind b, code 1
       send back, read last/arguments
 
 task reset

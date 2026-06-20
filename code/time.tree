@@ -1,5 +1,5 @@
 
-note <Time: the current epoch time. Implementation selected at build time, hidden behind this API.>
+# Time: the current epoch time. Implementation selected at build time, hidden behind this API.
 
 load @cluesurf/base/code/native/time
   find epoch-millis

@@ -1,4 +1,4 @@
-note <Calendar: formatting, components, construction, and arithmetic over a UTC timestamp (epoch milliseconds, an integer). The clean uniform interface; the per-env native implementation is selected at build time and hidden. Each platform delegates to its best date library (node / browser the host Date, rust chrono, swift Foundation, kotlin java.time). Everything is UTC, so results are deterministic across hosts. Formatting and parsing use ISO 8601 with millisecond precision and a Z suffix (2026-06-19T12:34:56.000Z). Fixed-length units (second / minute / hour / day) are pure integer arithmetic on the timestamp; calendar-aware units (month / year) delegate to the platform, which handles month lengths and leap years.>
+# Calendar: formatting, components, construction, and arithmetic over a UTC timestamp (epoch milliseconds, an integer). The clean uniform interface; the per-env native implementation is selected at build time and hidden. Each platform delegates to its best date library (node / browser the host Date, rust chrono, swift Foundation, kotlin java.time). Everything is UTC, so results are deterministic across hosts. Formatting and parsing use ISO 8601 with millisecond precision and a Z suffix (2026-06-19T12:34:56.000Z). Fixed-length units (second / minute / hour / day) are pure integer arithmetic on the timestamp; calendar-aware units (month / year) delegate to the platform, which handles month lengths and leap years.
 
 load @cluesurf/base/code/native/calendar
   find do-format
@@ -107,7 +107,7 @@ task add-seconds
       read millis
       call multiply
         read count
-        mark 1000
+        code 1000
 
 task add-minutes
   take millis, like number
@@ -118,7 +118,7 @@ task add-minutes
       read millis
       call multiply
         read count
-        mark 60000
+        code 60000
 
 task add-hours
   take millis, like number
@@ -129,7 +129,7 @@ task add-hours
       read millis
       call multiply
         read count
-        mark 3600000
+        code 3600000
 
 task add-days
   take millis, like number
@@ -140,7 +140,7 @@ task add-days
       read millis
       call multiply
         read count
-        mark 86400000
+        code 86400000
 
 task add-months
   take millis, like number

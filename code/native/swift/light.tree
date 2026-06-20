@@ -4,19 +4,19 @@ task get-light-level
   read device/native/torch-level
 
 task has-light
-  note <A Boolean value that specifies whether the capture device has a torch.>
+  # A Boolean value that specifies whether the capture device has a torch.
   take device
   like boolean
   read device/native/has-torch
 
 task is-light-available
-  note <Indicates whether the torch is currently available for use.>
+  # Indicates whether the torch is currently available for use.
   take device
   like boolean
   read device/native/is-torch-available
 
 task is-light-active
-  note <A Boolean value indicating whether the device's torch is currently active.>
+  # A Boolean value indicating whether the device's torch is currently active.
   take device
   like boolean
   read device/native/is-torch-active

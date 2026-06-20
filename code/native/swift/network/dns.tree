@@ -1,4 +1,4 @@
-note <swift DNS implementation. Forwards to the linked dns runtime shim (POSIX getaddrinfo). Internal: reached only through the public dns API.>
+# swift DNS implementation. Forwards to the linked dns runtime shim (POSIX getaddrinfo). Internal: reached only through the public dns API.
 
 dock load
   load <global:dns>, name dns

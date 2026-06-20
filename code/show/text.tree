@@ -1,11 +1,11 @@
 
 form show-text
-  note <Log>
+  # Log
   link time, form time
   link host, form term
   link term, list term
-    note <Type of log>
+    # Type of log
   link text, form text
-    note <Message>
+    # Message
   link tree
-    note <Data>
+    # Data

@@ -1,4 +1,4 @@
-note <rust environment implementation. Forwards to the linked environment runtime shim. Internal: reached only through the public environment API.>
+# rust environment implementation. Forwards to the linked environment runtime shim. Internal: reached only through the public environment API.
 
 dock load
   load <global:environment>, name environment

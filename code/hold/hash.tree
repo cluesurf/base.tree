@@ -3,8 +3,8 @@ task hash-djb2-xor
   like mark-32
   take text
   save size, read text/get-size
-  save hash, mark 5381
-  save mark, mark 0
+  save hash, code 5381
+  save mark, code 0
 
   walk test
     hook step
@@ -16,7 +16,7 @@ task hash-djb2-xor
         call bitwise-xor
           call multiply
             read hash
-            mark 33
+            code 33
           read text/[i]
       save mark
         call increment
@@ -24,4 +24,4 @@ task hash-djb2-xor
 
   call unsigned-shift-right
     read hash
-    mark 0
+    code 0

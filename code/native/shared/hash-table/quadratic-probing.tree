@@ -14,7 +14,7 @@ form hash-table
     save self/list
       make array
         read capacity
-    save self/size, mark 0
+    save self/size, code 0
 
   task is-full
     call is-equal
@@ -24,7 +24,7 @@ form hash-table
   task is-empty
     call is-equal
       read self/list/size
-      mark 0
+      code 0
 
   save set
     take key
@@ -109,4 +109,4 @@ tree initialize-loop
   hook bind
     save base, call hash, read key
     save i, read base
-    save step, mark 1
+    save step, code 1

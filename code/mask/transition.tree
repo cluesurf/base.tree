@@ -1,10 +1,10 @@
 
 mask transition-base
-  note <Shift left>
+  # Shift left
 
   task transition-base
 
 mask transition-head
-  note <Shift right>
+  # Shift right
 
   task transition-head

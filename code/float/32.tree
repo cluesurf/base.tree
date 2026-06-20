@@ -3,4 +3,4 @@ host max
 host min
 
 form f32
-  note <A 32-bit floating point type with 7 digits of decimal precision.>
+  # A 32-bit floating point type with 7 digits of decimal precision.
