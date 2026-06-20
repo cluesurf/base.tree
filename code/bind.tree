@@ -1,9 +1,6 @@
+load ../term, find term
 
-load ../term
-  find term
-
-load ../bond
-  find bond
+load ../bond, find bond
 
 form bind
   link term, like term

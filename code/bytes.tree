@@ -14,51 +14,37 @@ load @cluesurf/base/code/native/bytes
 task from-text
   take text, like text
   like bytes
-  send back
-    call do-from-text
-      read text
+  send back, call do-from-text, read text
 
 task to-text
   take value, like bytes
   like text
-  send back
-    call do-to-text
-      read value
+  send back, call do-to-text, read value
 
 task to-hex
   take value, like bytes
   like text
-  send back
-    call do-to-hex
-      read value
+  send back, call do-to-hex, read value
 
 task from-hex
   take text, like text
   like bytes
-  send back
-    call do-from-hex
-      read text
+  send back, call do-from-hex, read text
 
 task to-base64
   take value, like bytes
   like text
-  send back
-    call do-to-base64
-      read value
+  send back, call do-to-base64, read value
 
 task from-base64
   take text, like text
   like bytes
-  send back
-    call do-from-base64
-      read text
+  send back, call do-from-base64, read text
 
 task length
   take value, like bytes
   like number
-  send back
-    call do-length
-      read value
+  send back, call do-length, read value
 
 task concat
   take left, like bytes

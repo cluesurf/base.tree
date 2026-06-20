@@ -1,6 +1,4 @@
-
-load ../bind
-  find bind
+load ../bind, find bind
 
 load ../task
   find base
@@ -23,8 +21,6 @@ form flow
   case save
   case back
 
-form save
-  link road, like road
+form save, link road, like road
 
-form back
-  link term, like term
+form back, link term, like term

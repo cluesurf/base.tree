@@ -1,4 +1,3 @@
-
 task check-authorization-status
 
 task request-access
@@ -12,8 +11,5 @@ task is-auto-red-eye-reduction-enabled
 
 form camera
   task has-flash
-
-  task set-flash
-    take mode
-
+  task set-flash, take mode
   task clear-settings
