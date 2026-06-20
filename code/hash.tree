@@ -65,3 +65,17 @@ form hash
       call is-equal
         read self/size
         mark 0
+
+  task keys
+    take self
+    like list
+      like k
+    send back
+      call self/keys
+
+  task values
+    take self
+    like list
+      like v
+    send back
+      call self/values

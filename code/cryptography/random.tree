@@ -1,0 +1,11 @@
+note <Cryptographically secure random bytes. The clean uniform interface; the per-env native implementation is selected at build time and hidden. Each platform delegates to its OS-backed cryptographic generator (node randomBytes, rust OsRng, swift SystemRandomNumberGenerator, kotlin SecureRandom, browser getRandomValues). The bytes are returned as lowercase hex text, so a request for `size` bytes yields a string of length `size * 2`. This is synchronous: every host exposes secure random generation without an async boundary.>
+
+load @cluesurf/base/code/native/cryptography/random
+  find random-bytes
+
+task bytes
+  take size, like number
+  like text
+  send back
+    call random-bytes
+      read size

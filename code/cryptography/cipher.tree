@@ -1,0 +1,31 @@
+note <Authenticated encryption with AES-256-GCM. The clean uniform interface; the per-env native implementation is selected at build time and hidden. Each platform delegates to its built-in AEAD (node / browser Web Crypto SubtleCrypto, rust aes-gcm, swift CryptoKit AES.GCM, kotlin javax.crypto). The key (32 bytes) and nonce (12 bytes) are passed as hex text, the plaintext as utf-8 text. encrypt returns the ciphertext with the 16-byte authentication tag appended, as hex text. decrypt takes that same hex and returns the plaintext, or fails if the tag does not verify. The interface is async because the Web Crypto API only exposes encryption asynchronously, and it stays uniform across every target.>
+
+load @cluesurf/base/code/native/cryptography/cipher
+  find encrypt-aes-gcm
+  find decrypt-aes-gcm
+
+task encrypt
+  mark async
+  take key, like text
+  take nonce, like text
+  take plain, like text
+  like text
+  send back
+    call encrypt-aes-gcm
+      read key
+      read nonce
+      read plain
+      wait true
+
+task decrypt
+  mark async
+  take key, like text
+  take nonce, like text
+  take sealed, like text
+  like text
+  send back
+    call decrypt-aes-gcm
+      read key
+      read nonce
+      read sealed
+      wait true

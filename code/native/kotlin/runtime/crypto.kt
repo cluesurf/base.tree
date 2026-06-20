@@ -15,4 +15,9 @@ object crypto {
     }
     fun hmacSha256(key: String, data: String): String = mac("HmacSHA256", key, data)
     fun hmacSha512(key: String, data: String): String = mac("HmacSHA512", key, data)
+    fun randomBytes(size: Long): String {
+        val bytes = ByteArray(size.toInt())
+        java.security.SecureRandom().nextBytes(bytes)
+        return hex(bytes)
+    }
 }

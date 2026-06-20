@@ -7,4 +7,5 @@ object text {
     fun startsWith(s: String, prefix: String): Boolean = s.startsWith(prefix)
     fun endsWith(s: String, suffix: String): Boolean = s.endsWith(suffix)
     fun replace(s: String, from: String, to: String): String = s.replace(from, to)
+    fun slice(s: String, start: Long, end: Long): String = s.substring(start.toInt(), end.toInt())
 }

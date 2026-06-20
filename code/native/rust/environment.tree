@@ -7,3 +7,10 @@ task current-directory
   like text
   send back
     call environment/current-directory
+
+task get-variable
+  take name, like text
+  like text
+  send back
+    call environment/get-variable
+      read name

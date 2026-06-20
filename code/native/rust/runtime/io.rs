@@ -23,4 +23,19 @@ mod io {
     pub fn file_exists(path: String) -> bool {
         std::path::Path::new(&path).exists()
     }
+    pub fn file_size(path: String) -> i64 {
+        std::fs::metadata(&path).map(|m| m.len() as i64).unwrap_or(0)
+    }
+    pub fn is_directory(path: String) -> bool {
+        std::fs::metadata(&path).map(|m| m.is_dir()).unwrap_or(false)
+    }
+    pub fn is_file(path: String) -> bool {
+        std::fs::metadata(&path).map(|m| m.is_file()).unwrap_or(false)
+    }
+    pub fn dir_make(path: String) {
+        let _ = std::fs::create_dir_all(&path);
+    }
+    pub fn dir_remove(path: String) {
+        let _ = std::fs::remove_dir_all(&path);
+    }
 }

@@ -51,3 +51,85 @@ form set
         call size
           read self/items
         mark 0
+
+  task to-list
+    take self
+    like list
+      like t
+    send back
+      call keys
+        read self/items
+
+  task union
+    take self
+    take other, like set
+    like set
+    save result
+      make set
+        bind items
+          make find
+    walk list
+      call to-list
+        read self
+      hook next
+        take site, name item
+        call insert
+          read result
+          read item
+    walk list
+      call to-list
+        read other
+      hook next
+        take site, name item
+        call insert
+          read result
+          read item
+    send back, read result
+
+  task intersect
+    take self
+    take other, like set
+    like set
+    save result
+      make set
+        bind items
+          make find
+    walk list
+      call to-list
+        read self
+      hook next
+        take site, name item
+        fork test
+          hook test
+            call has
+              read other
+              read item
+          hook hold
+            call insert
+              read result
+              read item
+    send back, read result
+
+  task difference
+    take self
+    take other, like set
+    like set
+    save result
+      make set
+        bind items
+          make find
+    walk list
+      call to-list
+        read self
+      hook next
+        take site, name item
+        fork test
+          hook test
+            call has
+              read other
+              read item
+          hook miss
+            call insert
+              read result
+              read item
+    send back, read result

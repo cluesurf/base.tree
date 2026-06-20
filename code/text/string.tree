@@ -9,6 +9,7 @@ load @cluesurf/base/code/native/text/string
   find do-starts-with
   find do-ends-with
   find do-replace
+  find do-slice
 
 task to-upper
   take input, like text
@@ -77,3 +78,14 @@ task replace
       read input
       read from
       read to
+
+task slice
+  take input, like text
+  take start, like number
+  take end, like number
+  like text
+  send back
+    call do-slice
+      read input
+      read start
+      read end

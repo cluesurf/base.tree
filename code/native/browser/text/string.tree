@@ -58,3 +58,13 @@ task do-replace
     call input/replace-all
       read from
       read to
+
+task do-slice
+  take input, like text
+  take start, like number
+  take end, like number
+  like text
+  send back
+    call input/slice
+      read start
+      read end

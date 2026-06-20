@@ -1,0 +1,42 @@
+note <ECDH key agreement over X25519. The clean uniform interface; the per-env native implementation is selected at build time and hidden. Each platform delegates to its built-in X25519 (node / browser Web Crypto, rust x25519-dalek, swift CryptoKit, kotlin java.security). Keys and the shared secret are hex: the private key and public key are 32 bytes each, the shared secret is the raw 32-byte X25519 output. make-key-pair generates a matched pair together. shared-secret(my private, their public) equals shared-secret(their private, my public): that agreement is the whole point of ECDH. The interface is async to stay uniform with the rest of cryptography.>
+
+load @cluesurf/base/code/native/cryptography/key-agreement
+  find make-key-pair-bytes
+  find compute-shared-secret
+
+load @cluesurf/base/code/text/string
+  find slice
+
+form exchange-pair
+  link private-key, like text
+  link public-key, like text
+
+task make-key-pair
+  mark async
+  like exchange-pair
+  save raw
+    call make-key-pair-bytes
+      wait true
+  send back
+    make exchange-pair
+      bind private-key
+        call slice
+          read raw
+          mark 0
+          mark 64
+      bind public-key
+        call slice
+          read raw
+          mark 64
+          mark 128
+
+task shared-secret
+  mark async
+  take private-key, like text
+  take public-key, like text
+  like text
+  send back
+    call compute-shared-secret
+      read private-key
+      read public-key
+      wait true

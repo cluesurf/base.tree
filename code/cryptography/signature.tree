@@ -1,0 +1,56 @@
+note <EdDSA (Ed25519) digital signatures. The clean uniform interface; the per-env native implementation is selected at build time and hidden. Each platform delegates to its built-in Ed25519 (node / browser Web Crypto, rust ed25519-dalek, swift CryptoKit Curve25519, kotlin java.security). Keys and signatures are hex text: the private key and public key are 32 bytes each, a signature is 64 bytes. make-key-pair generates a matched pair together (the only safe way, since a public key cannot be re-derived from a private one on every host). The interface is async to stay uniform with the rest of cryptography.>
+
+load @cluesurf/base/code/native/cryptography/signature
+  find make-key-pair-bytes
+  find sign-message
+  find verify-message
+
+load @cluesurf/base/code/text/string
+  find slice
+
+form key-pair
+  link private-key, like text
+  link public-key, like text
+
+task make-key-pair
+  mark async
+  like key-pair
+  save raw
+    call make-key-pair-bytes
+      wait true
+  send back
+    make key-pair
+      bind private-key
+        call slice
+          read raw
+          mark 0
+          mark 64
+      bind public-key
+        call slice
+          read raw
+          mark 64
+          mark 128
+
+task sign
+  mark async
+  take private-key, like text
+  take message, like text
+  like text
+  send back
+    call sign-message
+      read private-key
+      read message
+      wait true
+
+task verify
+  mark async
+  take public-key, like text
+  take message, like text
+  take signature, like text
+  like boolean
+  send back
+    call verify-message
+      read public-key
+      read message
+      read signature
+      wait true

@@ -1,21 +1,28 @@
 
-form walk-entry
-  link path, like text
-  link kind, like text
-  link depth, like size
+note <Directory operations: make, remove, and existence. The clean uniform interface, the per-env native implementation is selected at build time and hidden. make is recursive, remove is recursive, both best effort so the API stays total.>
 
-task list
-  mark async
-  take path, like text
-  take deep, like bool, fall false
-  like list
+load @cluesurf/base/code/native/file/directory
+  find directory-make
+  find directory-remove
+  find directory-exists
 
 task make
-  mark async
   take path, like text
+  like void
+  send back
+    call directory-make
+      read path
 
-task walk
-  mark async
+task remove
   take path, like text
-  take depth, like size, fall 0
-  like list
+  like void
+  send back
+    call directory-remove
+      read path
+
+task exists
+  take path, like text
+  like boolean
+  send back
+    call directory-exists
+      read path

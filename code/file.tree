@@ -62,6 +62,7 @@ task move
       read to
 
 task test
+  mark async
   take path, like text
   like boolean
   send back

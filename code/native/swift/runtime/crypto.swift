@@ -16,4 +16,10 @@ enum crypto {
         let mac = HMAC<SHA512>.authenticationCode(for: Data(data.utf8), using: SymmetricKey(data: Data(key.utf8)))
         return hex(mac)
     }
+    static func randomBytes(_ size: Int) -> String {
+        var generator = SystemRandomNumberGenerator()
+        var bytes = [UInt8]()
+        for _ in 0..<size { bytes.append(UInt8.random(in: UInt8.min...UInt8.max, using: &generator)) }
+        return hex(bytes)
+    }
 }

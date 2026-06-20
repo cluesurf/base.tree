@@ -23,4 +23,24 @@ enum io {
     static func fileExists(_ path: String) -> Bool {
         return FileManager.default.fileExists(atPath: path)
     }
+    static func fileSize(_ path: String) -> Int {
+        let attributes = try? FileManager.default.attributesOfItem(atPath: path)
+        return (attributes?[.size] as? Int) ?? 0
+    }
+    static func isDirectory(_ path: String) -> Bool {
+        var directory: ObjCBool = false
+        let exists = FileManager.default.fileExists(atPath: path, isDirectory: &directory)
+        return exists && directory.boolValue
+    }
+    static func isFile(_ path: String) -> Bool {
+        var directory: ObjCBool = false
+        let exists = FileManager.default.fileExists(atPath: path, isDirectory: &directory)
+        return exists && !directory.boolValue
+    }
+    static func dirMake(_ path: String) {
+        try? FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true)
+    }
+    static func dirRemove(_ path: String) {
+        try? FileManager.default.removeItem(atPath: path)
+    }
 }
