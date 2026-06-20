@@ -1,150 +1,62 @@
+note <swift float math (the linked fmath shim). Internal: reached only through the public float API.>
 
-tree float
-  take self-type, like like
+dock load
+  load <global:fmath>, name fmath
 
-  hook fuse
-    task abs
-      take v, like self-type
-      like self-type
+task do-sqrt
+  take value, like decimal
+  like decimal
+  send back
+    call fmath/sqrt
+      read value
 
-    task round-up
-      take v, like self-type
-      like self-type
+task do-floor
+  take value, like decimal
+  like decimal
+  send back
+    call fmath/floor
+      read value
 
-    task round-down
-      take v, like self-type
-      like self-type
+task do-ceil
+  take value, like decimal
+  like decimal
+  send back
+    call fmath/ceil
+      read value
 
-    task round
-      take v, like self-type
-      like self-type
+task do-round
+  take value, like decimal
+  like decimal
+  send back
+    call fmath/round
+      read value
 
-    task truncate
-      take v, like self-type
-      like self-type
+task do-power
+  take base, like decimal
+  take exponent, like decimal
+  like decimal
+  send back
+    call fmath/pow
+      read base
+      read exponent
 
-    task get-sign
-      take v, like self-type
-      like self-type
+task do-absolute
+  take value, like decimal
+  like decimal
+  send back
+    call fmath/abs
+      read value
 
-    task square-root
-      take v, like self-type
-      like self-type
+task do-sine
+  take value, like decimal
+  like decimal
+  send back
+    call fmath/sin
+      read value
 
-    task compute-sine
-      take v, like self-type
-      like self-type
-
-    task compute-cosine
-      take v, like self-type
-      like self-type
-
-    task compute-tangent
-      take v, like self-type
-      like self-type
-
-    task compute-inverse-sine
-      take v, like self-type
-      like self-type
-
-    task compute-inverse-cosine
-      take v, like self-type
-      like self-type
-
-    task compute-inverse-tangent
-      take v, like self-type
-      like self-type
-
-    task compute-inverse-tangent-2
-      take y, like self-type
-      take x, like self-type
-      like self-type
-
-    task compute-hyperbolic-sine
-      take v, like self-type
-      like self-type
-
-    task compute-hyperbolic-cosine
-      take v, like self-type
-      like self-type
-
-    task compute-hyperbolic-tangent
-      take v, like self-type
-      like self-type
-
-    task compute-inverse-hyperbolic-sine
-      take v, like self-type
-      like self-type
-
-    task compute-inverse-hyperbolic-cosine
-      take v, like self-type
-      like self-type
-
-    task compute-inverse-hyperbolic-tangent
-      take v, like self-type
-      like self-type
-
-    task exponential
-      take v, like self-type
-      like self-type
-
-    task logarithm
-      take v, like self-type
-      like self-type
-
-    task logarithm-2
-      take v, like self-type
-      like self-type
-
-    task logarithm-10
-      take v, like self-type
-      like self-type
-
-    task pow
-      take v, like self-type
-      take exp, like self-type
-      like self-type
-
-    task max
-      take a, like self-type
-      take b, like self-type
-      like self-type
-
-    task min
-      take a, like self-type
-      take b, like self-type
-      like self-type
-
-    task is-finite
-      take v, like self-type
-      like bool
-
-    task is-nan
-      take v, like self-type
-      like bool
-
-    task is-infinite
-      take v, like self-type
-      like bool
-
-    task is-normal
-      take v, like self-type
-      like bool
-
-    task is-sign-positive
-      take v, like self-type
-      like bool
-
-    task is-sign-negative
-      take v, like self-type
-      like bool
-
-    task clone
-
-form f32
-  fuse float
-    bind self-type, like f32
-
-form f64
-  fuse float
-    bind self-type, like f64
+task do-cosine
+  take value, like decimal
+  like decimal
+  send back
+    call fmath/cos
+      read value

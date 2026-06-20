@@ -1,51 +1,71 @@
-note <JSON. The clean uniform interface; parse / stringify are native-delegated to the host JSON, hidden behind the API. The json-value type and its leaf accessors live in json/value.>
+note <JSON. parse / stringify and navigation over the host JSON library, hidden per-env. The parsed value is the opaque dynamic value (a JS any, a rust serde_json::Value, a swift / kotlin Any); the accessors read it natively. No hand-rolled parser or value representation.>
 
 load @cluesurf/base/code/native/json
   find do-parse
   find do-stringify
-  find do-stringify-value
   find do-get-field
   find do-get-item
-
-load @cluesurf/base/code/json/value
-  find json-value
+  find do-as-number
+  find do-as-text
+  find do-as-boolean
+  find do-is-null
 
 task parse
   take text, like text
-  like json-value
+  like dynamic
   send back
     call do-parse
       read text
 
 task stringify
-  head t
-  take value, like t
+  take value, like dynamic
   like text
   send back
     call do-stringify
       read value
 
-task stringify-value
-  take value, like json-value
-  like text
-  send back
-    call do-stringify-value
-      read value
-
 task get-field
-  take self, like json-value
+  take value, like dynamic
   take key, like text
-  like json-value
+  like dynamic
   send back
     call do-get-field
-      read self
+      read value
       read key
 
 task get-item
-  take self, like json-value
+  take value, like dynamic
   take index, like number
-  like json-value
+  like dynamic
   send back
     call do-get-item
-      read self
+      read value
       read index
+
+task as-number
+  take value, like dynamic
+  like decimal
+  send back
+    call do-as-number
+      read value
+
+task as-text
+  take value, like dynamic
+  like text
+  send back
+    call do-as-text
+      read value
+
+task as-boolean
+  take value, like dynamic
+  like boolean
+  send back
+    call do-as-boolean
+      read value
+
+task is-null
+  take value, like dynamic
+  like boolean
+  send back
+    call do-is-null
+      read value

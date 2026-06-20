@@ -1,121 +1,69 @@
+note <Floating-point math. The clean uniform interface over the host float library, hidden per-env. Operates on the float type (decimal literals, JSON numbers, fractional results). Distinct from the integer `math` module.>
 
-host infinity, term infinity
-host negative-infinity, term negative-infinity
+load @cluesurf/base/code/native/float
+  find do-sqrt
+  find do-floor
+  find do-ceil
+  find do-round
+  find do-power
+  find do-absolute
+  find do-sine
+  find do-cosine
 
-tree float
-  hook fuse
-    task round-up
-    task round-down
-    task round
-    task truncate-start
-    task truncate-end
-    task get-sign-as-number
+task square-root
+  take value, like decimal
+  like decimal
+  send back
+    call do-sqrt
+      read value
 
-    task square-root
-    task compute-sine
-    task compute-cosine
-    task compute-tangent
-    task compute-inverse-sine
-    task compute-inverse-cosine
-    task compute-inverse-tangent
-    task compute-hyperbolic-sine
-    task compute-hyperbolic-cosine
-    task compute-hyperbolic-tangent
-    task compute-inverse-hyperbolic-sine
-    task compute-inverse-hyperbolic-cosine
-    task compute-inverse-hyperbolic-tangent
+task round-down
+  take value, like decimal
+  like decimal
+  send back
+    call do-floor
+      read value
 
-task abs
-  take v, like f64
-  like f64
-
-task acos
-  take v, like f64
-  like f64
-
-task asin
-  take v, like f64
-  like f64
-
-task atan
-  take v, like f64
-  like f64
-
-task atan2
-  take y, like f64
-  take x, like f64
-  like f64
-
-task ceil
-  take v, like f64
-  like i32
-
-task cos
-  take v, like f64
-  like f64
-
-task exp
-  take v, like f64
-  like f64
-
-task fceil
-  take v, like f64
-  like f64
-
-task ffloor
-  take v, like f64
-  like f64
-
-task floor
-  take v, like f64
-  like i32
-
-task fround
-  take v, like f64
-  like f64
-
-task is-finite
-  take f, like f64
-  like bool
-
-task is-nan
-  take f, like f64
-  like bool
-
-task log
-  take v, like f64
-  like f64
-
-task max
-  take a, like f64
-  take b, like f64
-  like f64
-
-task min
-  take a, like f64
-  take b, like f64
-  like f64
-
-task pow
-  take v, like f64
-  take exp, like f64
-  like f64
-
-task random
-  like f64
+task round-up
+  take value, like decimal
+  like decimal
+  send back
+    call do-ceil
+      read value
 
 task round
-  take v, like f64
-  like i32
+  take value, like decimal
+  like decimal
+  send back
+    call do-round
+      read value
 
-task sin
-  take v, like f64
-  like f64
+task power
+  take base, like decimal
+  take exponent, like decimal
+  like decimal
+  send back
+    call do-power
+      read base
+      read exponent
 
-task sqrt
-  take v, like f64
-  like f64
+task absolute
+  take value, like decimal
+  like decimal
+  send back
+    call do-absolute
+      read value
 
-task tan
-  take v, like f64
-  like f64
+task sine
+  take value, like decimal
+  like decimal
+  send back
+    call do-sine
+      read value
+
+task cosine
+  take value, like decimal
+  like decimal
+  send back
+    call do-cosine
+      read value
