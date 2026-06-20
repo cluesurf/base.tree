@@ -5,24 +5,24 @@ dock load
 
 task digest-sha256
   mark async
-  take input, like text
-  like text
+  take input, like bytes
+  like bytes
   send back
     call crypto/sha256
       read input
 
 task digest-sha512
   mark async
-  take input, like text
-  like text
+  take input, like bytes
+  like bytes
   send back
     call crypto/sha512
       read input
 
 task digest-md5
   mark async
-  take input, like text
-  like text
+  take input, like bytes
+  like bytes
   send back
     call crypto/md5
       read input

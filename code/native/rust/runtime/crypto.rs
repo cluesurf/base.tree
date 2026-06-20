@@ -1,18 +1,18 @@
 mod crypto {
     use sha2::{Sha256, Sha512, Digest};
     use hmac::{Hmac, Mac};
-    pub fn sha256(input: String) -> String { format!("{:x}", Sha256::digest(input.as_bytes())) }
-    pub fn sha512(input: String) -> String { format!("{:x}", Sha512::digest(input.as_bytes())) }
-    pub fn md5(input: String) -> String { format!("{:x}", ::md5::Md5::digest(input.as_bytes())) }
-    pub fn hmac_sha256(key: String, data: String) -> String {
-        let mut mac = Hmac::<Sha256>::new_from_slice(key.as_bytes()).unwrap();
-        mac.update(data.as_bytes());
-        format!("{:x}", mac.finalize().into_bytes())
+    pub fn sha256(input: Vec<u8>) -> Vec<u8> { Sha256::digest(&input).to_vec() }
+    pub fn sha512(input: Vec<u8>) -> Vec<u8> { Sha512::digest(&input).to_vec() }
+    pub fn md5(input: Vec<u8>) -> Vec<u8> { ::md5::Md5::digest(&input).to_vec() }
+    pub fn hmac_sha256(key: Vec<u8>, data: Vec<u8>) -> Vec<u8> {
+        let mut mac = Hmac::<Sha256>::new_from_slice(&key).unwrap();
+        mac.update(&data);
+        mac.finalize().into_bytes().to_vec()
     }
-    pub fn hmac_sha512(key: String, data: String) -> String {
-        let mut mac = Hmac::<Sha512>::new_from_slice(key.as_bytes()).unwrap();
-        mac.update(data.as_bytes());
-        format!("{:x}", mac.finalize().into_bytes())
+    pub fn hmac_sha512(key: Vec<u8>, data: Vec<u8>) -> Vec<u8> {
+        let mut mac = Hmac::<Sha512>::new_from_slice(&key).unwrap();
+        mac.update(&data);
+        mac.finalize().into_bytes().to_vec()
     }
     pub fn random_bytes(size: i64) -> String {
         use ::rand::RngCore;

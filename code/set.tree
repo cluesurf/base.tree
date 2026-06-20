@@ -55,6 +55,14 @@ form set
           read self/items
         mark 0
 
+  # the canonical length verb (alias of size)
+  task count
+    take self
+    like number
+    send back
+      call size
+        read self/items
+
   task to-list
     take self
     like list

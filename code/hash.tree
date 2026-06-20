@@ -81,3 +81,9 @@ form hash
       like v
     send back
       call self/values
+
+  # the canonical length verb (alias of size)
+  task count
+    take self
+    like number
+    send back, read self/size

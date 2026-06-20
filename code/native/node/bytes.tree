@@ -1,55 +1,55 @@
 note <node raw byte buffer implementation (Buffer / TextEncoder). Forwards to the linked bytes runtime shim. Internal: reached only through the public bytes API.>
 
 dock load
-  load <global:bytes>, name bytes
+  load <global:octets>, name octets
 
 task do-from-text
   take text, like text
   like bytes
   send back
-    call bytes/from-text
+    call octets/from-text
       read text
 
 task do-to-text
   take value, like bytes
   like text
   send back
-    call bytes/to-text
+    call octets/to-text
       read value
 
 task do-to-hex
   take value, like bytes
   like text
   send back
-    call bytes/to-hex
+    call octets/to-hex
       read value
 
 task do-from-hex
   take text, like text
   like bytes
   send back
-    call bytes/from-hex
+    call octets/from-hex
       read text
 
 task do-to-base64
   take value, like bytes
   like text
   send back
-    call bytes/to-base64
+    call octets/to-base64
       read value
 
 task do-from-base64
   take text, like text
   like bytes
   send back
-    call bytes/from-base64
+    call octets/from-base64
       read text
 
 task do-length
   take value, like bytes
   like number
   send back
-    call bytes/length
+    call octets/length
       read value
 
 task do-concat
@@ -57,7 +57,7 @@ task do-concat
   take right, like bytes
   like bytes
   send back
-    call bytes/concat
+    call octets/concat
       read left
       read right
 
@@ -67,7 +67,7 @@ task do-slice
   take end, like number
   like bytes
   send back
-    call bytes/slice
+    call octets/slice
       read value
       read start
       read end

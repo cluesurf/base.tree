@@ -1,10 +1,10 @@
 const crypto = (() => {
+  // digest / hmac take and return raw bytes (Uint8Array), the crypto currency; random is hex; hex is an edge codec
   const hex = (buffer) => Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, '0')).join('')
-  const bytes = (text) => new TextEncoder().encode(text)
-  const digest = async (algorithm, input) => hex(await globalThis.crypto.subtle.digest(algorithm, bytes(input)))
+  const digest = async (algorithm, input) => new Uint8Array(await globalThis.crypto.subtle.digest(algorithm, input))
   const mac = async (algorithm, key, data) => {
-    const cryptoKey = await globalThis.crypto.subtle.importKey('raw', bytes(key), { name: 'HMAC', hash: algorithm }, false, ['sign'])
-    return hex(await globalThis.crypto.subtle.sign('HMAC', cryptoKey, bytes(data)))
+    const cryptoKey = await globalThis.crypto.subtle.importKey('raw', key, { name: 'HMAC', hash: algorithm }, false, ['sign'])
+    return new Uint8Array(await globalThis.crypto.subtle.sign('HMAC', cryptoKey, data))
   }
   return {
     sha256: (input) => digest('SHA-256', input),
