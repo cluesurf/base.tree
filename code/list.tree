@@ -163,6 +163,7 @@ form list
   task first
     take self
     like maybe
+      like t
     fork test
       hook test
         call is-above
@@ -181,6 +182,7 @@ form list
   task last
     take self
     like maybe
+      like t
     fork test
       hook test
         call is-above
@@ -287,6 +289,7 @@ form list
         take item, like t
         like boolean
     like maybe
+      like t
     save index
       call find-index
         read self
