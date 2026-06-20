@@ -8,7 +8,7 @@ form request
   link dock, mark private
 
 task read
-  mark async
+  note async
   take request, like request
   take format, like text, fall text <text>
   like text

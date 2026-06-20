@@ -13,7 +13,7 @@ load @cluesurf/base/code/native/file
   find file-exists
 
 task read
-  mark async
+  note async
   take path, like text
   like text
   send back
@@ -21,7 +21,7 @@ task read
       read path
 
 task write
-  mark async
+  note async
   take path, like text
   take data, like text
   send back
@@ -32,7 +32,7 @@ task write
 # Raw byte IO. The data stays a native buffer end to end (node fs returns a Buffer, rust std::fs returns a byte vector), with no utf8 round-trip. This is the zero-copy path for binary files.
 
 task read-bytes
-  mark async
+  note async
   take path, like text
   like bytes
   send back
@@ -40,7 +40,7 @@ task read-bytes
       read path
 
 task write-bytes
-  mark async
+  note async
   take path, like text
   take data, like bytes
   send back
@@ -49,7 +49,7 @@ task write-bytes
       read data
 
 task append
-  mark async
+  note async
   take path, like text
   take data, like text
   send back
@@ -58,14 +58,14 @@ task append
       read data
 
 task remove
-  mark async
+  note async
   take path, like text
   send back
     call remove-file
       read path
 
 task copy
-  mark async
+  note async
   take from, like text
   take to, like text
   send back
@@ -74,7 +74,7 @@ task copy
       read to
 
 task move
-  mark async
+  note async
   take from, like text
   take to, like text
   send back
@@ -83,7 +83,7 @@ task move
       read to
 
 task test
-  mark async
+  note async
   take path, like text
   like boolean
   send back

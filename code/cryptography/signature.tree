@@ -69,7 +69,7 @@ form key-pair
 
 # generate a matched private / public key pair
 task make-key-pair
-  mark async
+  note async
   like key-pair
   save raw
     call make-key-pair-bytes
@@ -88,7 +88,7 @@ task make-key-pair
           code 64
 
 task sign
-  mark async
+  note async
   take private-key, like bytes
   take message, like bytes
   like bytes
@@ -99,7 +99,7 @@ task sign
       wait true
 
 task verify
-  mark async
+  note async
   take public-key, like bytes
   take message, like bytes
   take signature, like bytes

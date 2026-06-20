@@ -3,7 +3,7 @@ load @cluesurf/base/code/network/websocket
   find socket
 
 task connect
-  mark async
+  note async
   take url, like text
   take headers, like hash, need false
   take protocols, like list, need false
@@ -31,7 +31,7 @@ task connect
 
   save result
     call tokio-tungstenite/connect-async
-      mark async
+      note async
       read request
       halt kink
 

@@ -54,37 +54,37 @@ task read
           read child/dock
 
 task kotlin-wait-process
-  mark private
+  note private
   take proc
   dock call <run { proc.waitFor(); proc.exitValue() }>
 
 task kotlin-destroy-forcibly
-  mark private
+  note private
   take proc
   dock call <proc.destroyForcibly()>
 
 task kotlin-destroy
-  mark private
+  note private
   take proc
   dock call <proc.destroy()>
 
 task kotlin-write-stdin
-  mark private
+  note private
   take proc
   take data, like text
   dock call <proc.outputStream.write(data.toByteArray())>
 
 task kotlin-close-stdin
-  mark private
+  note private
   take proc
   dock call <proc.outputStream.close()>
 
 task kotlin-read-stdout
-  mark private
+  note private
   take proc
   dock call <proc.inputStream.bufferedReader().readText()>
 
 task kotlin-read-stderr
-  mark private
+  note private
   take proc
   dock call <proc.errorStream.bufferedReader().readText()>

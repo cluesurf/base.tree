@@ -4,7 +4,7 @@ load @cluesurf/base/code/process
   find child
 
 task run
-  mark async
+  note async
   take command, like text
   take arguments, like list, need false
   take directory, like text, need false
@@ -20,7 +20,7 @@ task run
 
   save output
     call browser-worker-run
-      mark async
+      note async
       read worker
       read input
       read timeout
@@ -28,7 +28,7 @@ task run
   send back, read output
 
 task spawn
-  mark async
+  note async
   take command, like text
   take arguments, like list, need false
   take directory, like text, need false
@@ -49,16 +49,16 @@ task spawn
       bind id, read id
 
 task browser-make-worker
-  mark private
+  note private
   take url
   dock call <new Worker(url)>
 
 host browser-worker-counter
-  mark private
+  note private
   dock call <{ value: 0 }>
 
 task browser-next-worker-id
-  mark private
+  note private
   dock call <run {
     const c = browser_worker_counter;
     c.value += 1;
@@ -66,8 +66,8 @@ task browser-next-worker-id
   }>
 
 task browser-worker-run
-  mark private
-  mark async
+  note private
+  note async
   take worker
   take input
   take timeout

@@ -35,5 +35,5 @@ task list
       read tag
 
 task intl-date-time-format-resolved-options
-  mark private
+  note private
   dock call <() => Intl.DateTimeFormat().resolvedOptions()>

@@ -7,7 +7,7 @@ form reader
   link path, like text
 
 task create
-  mark async
+  note async
   take path, like text
   take start, like size, fall code 0
   take size, like size, fall code 0
@@ -45,18 +45,18 @@ task create
       bind path, read path
 
 task read
-  mark async
+  note async
   take stream, like reader
 
   save chunk
     call stream/dock/read
-      mark async
+      note async
 
   send back, read chunk
 
 task close
-  mark async
+  note async
   take stream, like reader
 
   call stream/dock/destroy
-    mark async
+    note async

@@ -5,7 +5,7 @@ load @cluesurf/base/code/native/network/dns
   find do-resolve-one
 
 task resolve
-  mark async
+  note async
   take hostname, like text
   like list
     like text
@@ -15,7 +15,7 @@ task resolve
       wait true
 
 task resolve-one
-  mark async
+  note async
   take hostname, like text
   like text
   send back

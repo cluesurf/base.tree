@@ -6,7 +6,7 @@ load @cluesurf/base/code/network/websocket
   find socket
 
 task connect
-  mark async
+  note async
   take url, like text
   take headers, like hash, need false
   take protocols, like list, need false
@@ -45,7 +45,7 @@ task connect
   call task/resume
 
   call make-continuation
-    mark async
+    note async
     task resolve
       take ok
       take fail

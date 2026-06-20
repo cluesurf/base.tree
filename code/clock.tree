@@ -11,7 +11,7 @@ task now
     call current-time
 
 task sleep
-  mark async
+  note async
   take ms, like number
   send back
     call delay

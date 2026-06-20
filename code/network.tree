@@ -12,7 +12,7 @@ form response
 
 task cast
   # Make a request
-  mark async
+  note async
   take request, like request
   like response
 

@@ -7,7 +7,7 @@ dock load
   load <global:http>, name http
 
 task do-request
-  mark async
+  note async
   take method, like text
   take url, like text
   take body, like text

@@ -3,13 +3,13 @@ load @cluesurf/base/code/process
   find child
 
 task wait
-  mark async
+  note async
   take child, like child
   like size
 
   save code
     call browser-worker-wait
-      mark async
+      note async
       read child/dock
 
   send back, read code
@@ -21,7 +21,7 @@ task stop
   call child/dock/terminate
 
 task write
-  mark async
+  note async
   take child, like child
   take data, like text
 
@@ -29,7 +29,7 @@ task write
     read data
 
 task close
-  mark async
+  note async
   take child, like child
 
   call child/dock/post-message
@@ -37,7 +37,7 @@ task close
       bind type, text <close>
 
 task read
-  mark async
+  note async
   take child, like child
   take kind, like text, fall text <stdout>
   take format, like text, fall text <text>
@@ -45,13 +45,13 @@ task read
 
   save output
     call browser-worker-read
-      mark async
+      note async
       read child/dock
 
   send back, read output
 
 task stream
-  mark async
+  note async
   take child, like child
   take kind, like text, fall text <stdout>
   take format, like text, fall text <bytes>
@@ -66,8 +66,8 @@ task stream
   send back, read messages
 
 task browser-worker-wait
-  mark private
-  mark async
+  note private
+  note async
   take worker
   dock call <run {
     return new Promise((resolve) => {
@@ -83,8 +83,8 @@ task browser-worker-wait
   }>
 
 task browser-worker-read
-  mark private
-  mark async
+  note private
+  note async
   take worker
   dock call <run {
     return new Promise((resolve) => {
@@ -103,7 +103,7 @@ task browser-worker-read
   }>
 
 task browser-worker-stream
-  mark private
+  note private
   take worker
   take messages
   dock call <run {

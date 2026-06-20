@@ -12,10 +12,10 @@ task set
     read path
 
 task rust-current-dir
-  mark private
+  note private
   dock call <std::env::current_dir().unwrap().to_string_lossy().to_string()>
 
 task rust-set-current-dir
-  mark private
+  note private
   take path, like text
   dock call <std::env::set_current_dir(&path).unwrap()>

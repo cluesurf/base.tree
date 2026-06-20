@@ -3,7 +3,7 @@ load @cluesurf/base/code/process
   find child
 
 task wait
-  mark async
+  note async
   take child, like child
   like size
 
@@ -12,23 +12,23 @@ task stop
   take form, like text, fall text <gentle>
 
 task write
-  mark async
+  note async
   take child, like child
   take data, like text
 
 task close
-  mark async
+  note async
   take child, like child
 
 task read
-  mark async
+  note async
   take child, like child
   take kind, like text, fall text <stdout>
   take format, like text, fall text <text>
   like text
 
 task stream
-  mark async
+  note async
   take child, like child
   take kind, like text, fall text <stdout>
   take format, like text, fall text <bytes>

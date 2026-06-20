@@ -14,12 +14,12 @@ task make
 
 task send
   head item
-  mark async
+  note async
   take target, like channel
   take value, like item
 
 task receive
   head item
-  mark async
+  note async
   take source, like channel
   like item

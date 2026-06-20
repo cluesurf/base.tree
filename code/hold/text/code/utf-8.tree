@@ -16,7 +16,7 @@ form text-utf-8
   take list
     like list-type
       like mark-8
-    mark private
+    note private
 
   task make-upper-case
   task make-lower-case

@@ -3,22 +3,22 @@ load @cluesurf/base/code/network/tcp
   find connection
 
 task read
-  mark async
+  note async
   take connection, like connection
   take size, like size, need false
   like text
 
 task write
-  mark async
+  note async
   take connection, like connection
   take data, like text
   like size
 
 task close
-  mark async
+  note async
   take connection, like connection
 
 task stream
-  mark async
+  note async
   take connection, like connection
   like list

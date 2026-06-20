@@ -10,7 +10,7 @@ form file-coverage
   link uncovered, like list
 
 task read
-  mark async
+  note async
   like coverage
 
 task format

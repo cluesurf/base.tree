@@ -4,15 +4,15 @@ load @cluesurf/base/code/network/tcp
   find connection
 
 task accept
-  mark async
+  note async
   take listener, like listener
   like connection
 
 task close
-  mark async
+  note async
   take listener, like listener
 
 task stream
-  mark async
+  note async
   take listener, like listener
   like list

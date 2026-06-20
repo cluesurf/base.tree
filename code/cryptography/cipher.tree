@@ -48,7 +48,7 @@ bind decrypt-aes-gcm
 
 # seal plaintext under a 32-byte key and 12-byte nonce, returning ciphertext || 16-byte tag
 task encrypt
-  mark async
+  note async
   take key, like bytes
   take nonce, like bytes
   take plain, like bytes
@@ -62,7 +62,7 @@ task encrypt
 
 # open ciphertext || tag under the same key and nonce, returning the plaintext (fails if the tag does not verify)
 task decrypt
-  mark async
+  note async
   take key, like bytes
   take nonce, like bytes
   take sealed, like bytes

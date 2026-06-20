@@ -6,7 +6,7 @@ load @cluesurf/base/code/network/websocket/socket
   find message
 
 task send
-  mark async
+  note async
   take socket, like socket
   take data, like text
 
@@ -27,11 +27,11 @@ task send
               call fail, read error
             hook miss
               call ok
-    mark async
+    note async
     halt kink
 
 task close
-  mark async
+  note async
   take socket, like socket
   take code, like size, fall 1000
   take reason, like text, need false
@@ -49,10 +49,10 @@ task close
         text <close>
         task on-close
           call ok
-    mark async
+    note async
 
 task stream
-  mark async
+  note async
   take socket, like socket
 
   save raw, read socket/dock

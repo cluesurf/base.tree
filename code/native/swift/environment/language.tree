@@ -36,13 +36,13 @@ task list
     call swift-preferred-languages
 
 task swift-get-locale
-  mark private
+  note private
   dock call <Locale.current.identifier.replacingOccurrences(of: "_", with: "-")>
 
 task swift-get-timezone
-  mark private
+  note private
   dock call <TimeZone.current.identifier>
 
 task swift-preferred-languages
-  mark private
+  note private
   dock call <Locale.preferredLanguages>

@@ -64,7 +64,7 @@ form digest-algorithm
 # compute a one-way hash of the input bytes with the chosen algorithm. The named sha256 / sha512 / md5 forms below are
 # the readable default; this verb is for an algorithm chosen at runtime.
 task digest
-  mark async
+  note async
   take input, like bytes
   take algorithm, like digest-algorithm
   like bytes
@@ -87,7 +87,7 @@ task digest
 
 # named algorithm forms: the readable, primary surface
 task sha256
-  mark async
+  note async
   take input, like bytes
   like bytes
   send back
@@ -96,7 +96,7 @@ task sha256
       wait true
 
 task sha512
-  mark async
+  note async
   take input, like bytes
   like bytes
   send back
@@ -105,7 +105,7 @@ task sha512
       wait true
 
 task md5
-  mark async
+  note async
   take input, like bytes
   like bytes
   send back

@@ -2,7 +2,7 @@
 form file
   take dock
     # File descriptor
-    mark private
+    note private
   take path
 
 tree open-head

@@ -36,7 +36,7 @@ task check
       read name
 
 task browser-list-variables
-  mark private
+  note private
   dock call <run {
     const result = {};
     for (let i = 0; i < localStorage.length; i++) {
@@ -47,6 +47,6 @@ task browser-list-variables
   }>
 
 task browser-check-variable
-  mark private
+  note private
   take name
   dock call <localStorage.getItem(name) !== null>

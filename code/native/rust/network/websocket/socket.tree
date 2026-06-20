@@ -6,20 +6,20 @@ load @cluesurf/base/code/network/websocket/socket
   find message
 
 task send
-  mark async
+  note async
   take socket, like socket
   take data, like text
 
   save raw, read socket/dock
 
   call raw/send
-    mark async
+    note async
     call tungstenite/message/text
       read data
     halt kink
 
 task close
-  mark async
+  note async
   take socket, like socket
   take code, like size, fall 1000
   take reason, like text, need false
@@ -27,7 +27,7 @@ task close
   save raw, read socket/dock
 
   call raw/close
-    mark async
+    note async
     call some
       call tungstenite/protocol/close-frame
         make close-frame
@@ -45,7 +45,7 @@ task close
     halt kink
 
 task stream
-  mark async
+  note async
   take socket, like socket
 
   save raw, read socket/dock

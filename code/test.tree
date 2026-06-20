@@ -12,7 +12,7 @@ form test
   link name, like text
   link work
     like task
-      mark async
+      note async
       like boolean
 
 form report
@@ -25,7 +25,7 @@ task case
   take name, like text
   take work
     like task
-      mark async
+      note async
       like boolean
   like test
   send back
@@ -46,7 +46,7 @@ task check
       bind name, read name
       bind work
         task work
-          mark async
+          note async
           like boolean
           send back
             call is-equal
@@ -124,7 +124,7 @@ task want-under
 # run a list of tests, print each name and result, return a pass/fail tally
 
 task run
-  mark async
+  note async
   take cases
     like list
       like test

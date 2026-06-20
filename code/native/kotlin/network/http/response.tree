@@ -21,17 +21,17 @@ task read
           read response/dock
 
 task kotlin-response-text
-  mark private
+  note private
   take raw
   dock call <raw["body"] as? String ?: "">
 
 task kotlin-response-bytes
-  mark private
+  note private
   take raw
   dock call <(raw["body"] as? String ?: "").toByteArray()>
 
 task kotlin-response-json
-  mark private
+  note private
   take raw
   dock call <run {
     val text = raw["body"] as? String ?: "{}"

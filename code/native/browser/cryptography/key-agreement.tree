@@ -4,13 +4,13 @@ dock load
   load <global:x25519>, name x25519
 
 task make-key-pair-bytes
-  mark async
+  note async
   like text
   send back
     call x25519/make-key-pair
 
 task compute-shared-secret
-  mark async
+  note async
   take private-key, like text
   take public-key, like text
   like text

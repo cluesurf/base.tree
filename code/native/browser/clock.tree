@@ -3,11 +3,11 @@ load ./clock/now
   find get
 
 task delay
-  mark async
+  note async
   take duration, like size
 
   call browser-set-timeout-promise
-    mark async
+    note async
     read duration
 
 task now
@@ -15,7 +15,7 @@ task now
     call get
 
 task browser-set-timeout-promise
-  mark private
-  mark async
+  note private
+  note async
   take duration, like size
   dock call <new Promise(resolve => setTimeout(resolve, duration))>

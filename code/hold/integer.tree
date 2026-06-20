@@ -7,7 +7,7 @@
 
 form integer
   take list, list integer-32
-    mark private
+    note private
 
 task round-down-to-power-of-two-8
   take x
@@ -162,7 +162,7 @@ task round-up-to-power-of-two-32
 task mix-for-power-rounding
   take a
   take b
-  mark private
+  note private
   call bitwise-or
     read a
     call shift-right

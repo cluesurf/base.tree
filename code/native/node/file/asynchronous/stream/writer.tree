@@ -7,7 +7,7 @@ form writer
   link path, like text
 
 task create
-  mark async
+  note async
   take path, like text
   take append, like bool, fall wave false
 
@@ -28,17 +28,17 @@ task create
       bind path, read path
 
 task write
-  mark async
+  note async
   take stream, like writer
   take data, like text
 
   call stream/dock/write
-    mark async
+    note async
     read data
 
 task close
-  mark async
+  note async
   take stream, like writer
 
   call stream/dock/end
-    mark async
+    note async

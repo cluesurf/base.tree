@@ -7,7 +7,7 @@ form line
   head item-type
 
   link dock, like native-array
-    mark private
+    note private
 
   task get
     like item-type

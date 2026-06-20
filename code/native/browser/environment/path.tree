@@ -7,5 +7,5 @@ task get
     call browser-get-origin
 
 task browser-get-origin
-  mark private
+  note private
   dock call <location.origin>

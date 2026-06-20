@@ -72,7 +72,7 @@ task length
       send back, read local-storage/length
 
 task browser-storage-keys
-  mark private
+  note private
   take storage
   dock call <run {
     const keys = [];

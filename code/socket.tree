@@ -13,7 +13,7 @@ form socket
   task close
 
   task connect
-    mark async
+    note async
     take host, like text
     take port, like integer
 
@@ -27,7 +27,7 @@ form socket
     like socket-address
 
   task read
-    mark async
+    note async
     like text
 
   task set-blocking
@@ -44,8 +44,8 @@ form socket
     take write, like boolean
 
   task wait-for-read
-    mark async
+    note async
 
   task write
-    mark async
+    note async
     take content, like text

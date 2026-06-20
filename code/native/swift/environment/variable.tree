@@ -36,26 +36,26 @@ task check
       read name
 
 task swift-get-env
-  mark private
+  note private
   take name, like text
   dock call <ProcessInfo.processInfo.environment[name] ?? "">
 
 task swift-set-env
-  mark private
+  note private
   take name, like text
   take value, like text
   dock call <setenv(name, value, 1)>
 
 task swift-unset-env
-  mark private
+  note private
   take name, like text
   dock call <unsetenv(name)>
 
 task swift-list-env
-  mark private
+  note private
   dock call <ProcessInfo.processInfo.environment>
 
 task swift-check-env
-  mark private
+  note private
   take name, like text
   dock call <ProcessInfo.processInfo.environment[name] != nil>

@@ -36,23 +36,23 @@ task check
       read name
 
 task rust-env-var
-  mark private
+  note private
   take name, like text
   dock call <std::env::var(&name).unwrap_or_default()>
 
 task rust-set-var
-  mark private
+  note private
   take name, like text
   take value, like text
   dock call <std::env::set_var(&name, &value)>
 
 task rust-remove-var
-  mark private
+  note private
   take name, like text
   dock call <std::env::remove_var(&name)>
 
 task rust-env-vars
-  mark private
+  note private
   dock call <run {
     let mut map = std::collections::HashMap::new();
     for (key, value) in std::env::vars() {
@@ -62,6 +62,6 @@ task rust-env-vars
   }>
 
 task rust-env-var-is-set
-  mark private
+  note private
   take name, like text
   dock call <std::env::var(&name).is_ok()>

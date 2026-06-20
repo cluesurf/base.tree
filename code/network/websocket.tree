@@ -6,7 +6,7 @@ form socket
   link ready, like bool
 
 task connect
-  mark async
+  note async
   take url, like text
   take headers, like hash, need false
   take protocols, like list, need false

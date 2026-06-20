@@ -4,7 +4,7 @@ dock load
   load <global:crypto>, name crypto
 
 task digest-sha256
-  mark async
+  note async
   take input, like bytes
   like bytes
   send back
@@ -12,7 +12,7 @@ task digest-sha256
       read input
 
 task digest-sha512
-  mark async
+  note async
   take input, like bytes
   like bytes
   send back
@@ -20,7 +20,7 @@ task digest-sha512
       read input
 
 task digest-md5
-  mark async
+  note async
   take input, like bytes
   like bytes
   send back

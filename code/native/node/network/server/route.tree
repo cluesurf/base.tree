@@ -31,7 +31,7 @@ task handle
 
   send back
     task dispatch
-      mark async
+      note async
       take request
 
       save routes, read router/dock/routes
@@ -49,7 +49,7 @@ task handle
             hook hold
               send back
                 call route/handler
-                  mark async
+                  note async
                   read request
 
       send back

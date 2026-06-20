@@ -32,15 +32,15 @@ task listen
         read handler
 
 task browser-current-directory
-  mark private
+  note private
   dock call <location.pathname>
 
 task browser-current-executable
-  mark private
+  note private
   dock call <location.href>
 
 task browser-exit
-  mark private
+  note private
   dock call <run {
     if (typeof self !== "undefined" && typeof self.close === "function" && typeof window === "undefined") {
       self.close();
@@ -50,12 +50,12 @@ task browser-exit
   }>
 
 task browser-listen-beforeunload
-  mark private
+  note private
   take handler
   dock call <window.addEventListener("beforeunload", handler)>
 
 task browser-listen-visibility
-  mark private
+  note private
   take handler
   dock call <run {
     document.addEventListener("visibilitychange", () => {

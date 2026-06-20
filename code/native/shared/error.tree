@@ -23,7 +23,7 @@ task throw
 
 task catch
   take work, like task
-  mark unsafe
+  note unsafe
     save value
       call work
     send back

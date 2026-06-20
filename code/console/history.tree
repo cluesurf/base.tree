@@ -11,10 +11,10 @@ task search
 task clear
 
 task save
-  mark async
+  note async
   take path, like text
 
 task load
-  mark async
+  note async
   take path, like text
   like list

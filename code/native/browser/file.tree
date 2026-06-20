@@ -4,7 +4,7 @@ dock load
   load <global:io>, name io
 
 task read-file
-  mark async
+  note async
   take path, like text
   like text
   send back
@@ -12,7 +12,7 @@ task read-file
       read path
 
 task write-file
-  mark async
+  note async
   take path, like text
   take data, like text
   send back
@@ -21,7 +21,7 @@ task write-file
       read data
 
 task read-file-bytes
-  mark async
+  note async
   take path, like text
   like bytes
   send back
@@ -29,7 +29,7 @@ task read-file-bytes
       read path
 
 task write-file-bytes
-  mark async
+  note async
   take path, like text
   take data, like bytes
   send back
@@ -38,7 +38,7 @@ task write-file-bytes
       read data
 
 task append-file
-  mark async
+  note async
   take path, like text
   take data, like text
   send back
@@ -47,14 +47,14 @@ task append-file
       read data
 
 task remove-file
-  mark async
+  note async
   take path, like text
   send back
     call io/file-remove
       read path
 
 task copy-file
-  mark async
+  note async
   take from, like text
   take to, like text
   send back
@@ -63,7 +63,7 @@ task copy-file
       read to
 
 task move-file
-  mark async
+  note async
   take from, like text
   take to, like text
   send back
@@ -72,7 +72,7 @@ task move-file
       read to
 
 task file-exists
-  mark async
+  note async
   take path, like text
   like boolean
   send back

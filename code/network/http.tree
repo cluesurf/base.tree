@@ -7,7 +7,7 @@ load @cluesurf/base/code/network/response
   find http-response
 
 task request
-  mark async
+  note async
   take method, like text
   take url, like text
   take body, like text
@@ -20,7 +20,7 @@ task request
       wait true
 
 task get
-  mark async
+  note async
   take url, like text
   like http-response
   send back
@@ -31,7 +31,7 @@ task get
       wait true
 
 task post
-  mark async
+  note async
   take url, like text
   take body, like text
   like http-response

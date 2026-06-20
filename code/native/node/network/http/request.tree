@@ -1,7 +1,7 @@
 
 form request
   take x-request
-    mark private
+    note private
 
   task get-header-by-key
     take self

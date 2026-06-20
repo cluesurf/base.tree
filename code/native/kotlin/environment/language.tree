@@ -39,9 +39,9 @@ task list
       read tag
 
 task kotlin-get-locale-tag
-  mark private
+  note private
   dock call <java.util.Locale.getDefault().toLanguageTag()>
 
 task kotlin-get-timezone
-  mark private
+  note private
   dock call <java.util.TimeZone.getDefault().id>

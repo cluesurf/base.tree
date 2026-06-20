@@ -4,7 +4,7 @@ form file
   link path, like text
 
 task open
-  mark async
+  note async
   take path, like text
   take read, like bool, fall true
   take write, like bool, fall false
@@ -14,32 +14,32 @@ task open
   like file
 
 task close
-  mark async
+  note async
   take file, like file
 
 task read
-  mark async
+  note async
   take file, like file
   take size, like size
   like text
 
 task write
-  mark async
+  note async
   take file, like file
   take data
   like size
 
 task seek
-  mark async
+  note async
   take file, like file
   take offset, like size
   take frame, like text, fall text <start>
 
 task flush
-  mark async
+  note async
   take file, like file
 
 task clear
-  mark async
+  note async
   take file, like file
   take size, like size, fall 0

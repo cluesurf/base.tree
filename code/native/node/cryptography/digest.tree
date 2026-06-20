@@ -4,7 +4,7 @@ dock load
   load <node:crypto>, name crypto
 
 task digest-sha256
-  mark async
+  note async
   take input, like bytes
   like bytes
   save hasher
@@ -17,7 +17,7 @@ task digest-sha256
     call updated/digest
 
 task digest-sha512
-  mark async
+  note async
   take input, like bytes
   like bytes
   save hasher
@@ -30,7 +30,7 @@ task digest-sha512
     call updated/digest
 
 task digest-md5
-  mark async
+  note async
   take input, like bytes
   like bytes
   save hasher

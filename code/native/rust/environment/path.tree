@@ -21,7 +21,7 @@ task get
         call rust-cache-dir
 
 task rust-home-dir
-  mark private
+  note private
   dock call <run {
     match std::env::var("HOME") {
       Ok(h) => h,
@@ -30,11 +30,11 @@ task rust-home-dir
   }>
 
 task rust-temp-dir
-  mark private
+  note private
   dock call <std::env::temp_dir().to_string_lossy().to_string()>
 
 task rust-data-dir
-  mark private
+  note private
   dock call <run {
     if cfg!(target_os = "macos") {
       let home = std::env::var("HOME").unwrap_or_default();
@@ -53,7 +53,7 @@ task rust-data-dir
   }>
 
 task rust-config-dir
-  mark private
+  note private
   dock call <run {
     if cfg!(target_os = "macos") {
       let home = std::env::var("HOME").unwrap_or_default();
@@ -72,7 +72,7 @@ task rust-config-dir
   }>
 
 task rust-cache-dir
-  mark private
+  note private
   dock call <run {
     if cfg!(target_os = "macos") {
       let home = std::env::var("HOME").unwrap_or_default();

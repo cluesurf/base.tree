@@ -11,5 +11,5 @@ task get
         call date/now
 
 task browser-performance-now
-  mark private
+  note private
   dock call <performance.now()>

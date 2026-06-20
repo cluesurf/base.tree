@@ -3,7 +3,7 @@ dock load
   load <node:fs/promises>, name fs-promise
 
 task open
-  mark async
+  note async
   take path, like text
   take read, like bool, fall wave true
   take write, like bool, fall wave false
@@ -35,7 +35,7 @@ task open
 
   save handle
     call fs-promise/open
-      mark async
+      note async
       read path
       read flags
       halt kink
@@ -46,15 +46,15 @@ task open
       bind path, read path
 
 task close
-  mark async
+  note async
   take file, like file
 
   call file/dock/close
-    mark async
+    note async
     halt kink
 
 task read
-  mark async
+  note async
   take file, like file
   take size, like size
 
@@ -64,7 +64,7 @@ task read
 
   save result
     call file/dock/read
-      mark async
+      note async
       read buffer
       code 0
       read size
@@ -73,20 +73,20 @@ task read
   send back, read result/buffer
 
 task write
-  mark async
+  note async
   take file, like file
   take data
 
   save result
     call file/dock/write
-      mark async
+      note async
       read data
       halt kink
 
   send back, read result/bytes-written
 
 task seek
-  mark async
+  note async
   take file, like file
   take offset, like size
   take frame, like text, fall text <start>
@@ -94,7 +94,7 @@ task seek
   fork test, call is-equal, read frame, text <start>
     hook true
       call file/dock/seek
-        mark async
+        note async
         read offset
         halt kink
 
@@ -102,10 +102,10 @@ task seek
     hook true
       save current
         call file/dock/stat
-          mark async
+          note async
           halt kink
       call file/dock/seek
-        mark async
+        note async
         call add
           bind a, read current/size
           bind b, read offset
@@ -115,29 +115,29 @@ task seek
     hook true
       save stats
         call file/dock/stat
-          mark async
+          note async
           halt kink
       call file/dock/seek
-        mark async
+        note async
         call subtract
           bind a, read stats/size
           bind b, read offset
         halt kink
 
 task flush
-  mark async
+  note async
   take file, like file
 
   call file/dock/datasync
-    mark async
+    note async
     halt kink
 
 task clear
-  mark async
+  note async
   take file, like file
   take size, like size, fall code 0
 
   call file/dock/truncate
-    mark async
+    note async
     read size
     halt kink

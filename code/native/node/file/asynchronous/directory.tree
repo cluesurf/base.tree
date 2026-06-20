@@ -4,7 +4,7 @@ dock load
   load <node:path>, name path
 
 task list
-  mark async
+  note async
   take path, like text
   take deep, like bool, fall wave false
 
@@ -17,19 +17,19 @@ task list
     hook false
       send back
         call fs-promise/readdir
-          mark async
+          note async
           read path
           halt kink
 
 task list-deep
-  mark async
-  mark private
+  note async
+  note private
   take base, like text
   take prefix, like text
 
   save entries
     call fs-promise/readdir
-      mark async
+      note async
       read base
       make options
         bind with-file-types, wave true
@@ -68,18 +68,18 @@ task list-deep
   send back, read result
 
 task make
-  mark async
+  note async
   take path, like text
 
   call fs-promise/mkdir
-    mark async
+    note async
     read path
     make options
       bind recursive, wave true
     halt kink
 
 task walk
-  mark async
+  note async
   take path, like text
   take depth, like size, fall code 0
 
@@ -95,8 +95,8 @@ task walk
   send back, read result
 
 task walk-step
-  mark async
-  mark private
+  note async
+  note private
   take base, like text
   take current, like text
   take level, like size
@@ -105,7 +105,7 @@ task walk-step
 
   save entries
     call fs-promise/readdir
-      mark async
+      note async
       read current
       make options
         bind with-file-types, wave true

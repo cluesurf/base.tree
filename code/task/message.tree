@@ -7,10 +7,10 @@ task send
   take data
 
 task receive
-  mark async
+  note async
   take handle, like handle
 
 task stream
-  mark async
+  note async
   take handle, like handle
   like list

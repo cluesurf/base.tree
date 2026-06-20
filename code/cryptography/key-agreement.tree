@@ -49,7 +49,7 @@ form exchange-pair
 
 # generate a matched private / public key pair
 task make-key-pair
-  mark async
+  note async
   like exchange-pair
   save raw
     call make-key-pair-bytes
@@ -69,7 +69,7 @@ task make-key-pair
 
 # derive the shared secret (your private key, their public key)
 task shared-secret
-  mark async
+  note async
   take private-key, like bytes
   take public-key, like bytes
   like bytes

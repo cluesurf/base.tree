@@ -4,7 +4,7 @@ load @cluesurf/base/code/network/tcp
   find connection
 
 task accept
-  mark async
+  note async
   take listener, like listener
 
   save raw, read listener/dock
@@ -24,7 +24,7 @@ task accept
           task on-error
             take error
             call fail, read error
-      mark async
+      note async
       halt kink
 
   send back
@@ -37,7 +37,7 @@ task accept
       bind secure, wave false
 
 task close
-  mark async
+  note async
   take listener, like listener
 
   save raw, read listener/dock
@@ -48,10 +48,10 @@ task close
       call raw/close
         task on-close
           call ok
-    mark async
+    note async
 
 task stream
-  mark async
+  note async
   take listener, like listener
 
   save raw, read listener/dock

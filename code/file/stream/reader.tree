@@ -4,16 +4,16 @@ form reader
   link path, like text
 
 task create
-  mark async
+  note async
   take path, like text
   take start, like size, fall code 0
   take size, like size, fall code 0
   like reader
 
 task read
-  mark async
+  note async
   take stream, like reader
 
 task close
-  mark async
+  note async
   take stream, like reader

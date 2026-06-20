@@ -124,85 +124,85 @@ task length
       read value
 
 task kotlin-substring
-  mark private
+  note private
   take value, like text
   take start, like size
   take end, like size
   dock call <value.substring(start.toInt(), end.toInt())>
 
 task kotlin-substring-from
-  mark private
+  note private
   take value, like text
   take start, like size
   dock call <value.substring(start.toInt())>
 
 task kotlin-index-of
-  mark private
+  note private
   take value, like text
   take search, like text
   take start, like size
   dock call <value.indexOf(search, start.toInt())>
 
 task kotlin-replace-all
-  mark private
+  note private
   take value, like text
   take search, like text
   take replacement, like text
   dock call <value.replace(search, replacement)>
 
 task kotlin-replace-first
-  mark private
+  note private
   take value, like text
   take search, like text
   take replacement, like text
   dock call <value.replaceFirst(search, replacement)>
 
 task kotlin-split
-  mark private
+  note private
   take value, like text
   take separator, like text
   dock call <value.split(separator)>
 
 task kotlin-join
-  mark private
+  note private
   take list, like list
   take separator, like text
   dock call <list.joinToString(separator)>
 
 task kotlin-trim
-  mark private
+  note private
   take value, like text
   dock call <value.trim()>
 
 task kotlin-to-upper
-  mark private
+  note private
   take value, like text
   dock call <value.uppercase()>
 
 task kotlin-to-lower
-  mark private
+  note private
   take value, like text
   dock call <value.lowercase()>
 
 task kotlin-starts-with
-  mark private
+  note private
   take value, like text
   take search, like text
   dock call <value.startsWith(search)>
 
 task kotlin-ends-with
-  mark private
+  note private
   take value, like text
   take search, like text
   dock call <value.endsWith(search)>
 
 task kotlin-contains
-  mark private
+  note private
   take value, like text
   take search, like text
   dock call <value.contains(search)>
 
 task kotlin-length
-  mark private
+  note private
   take value, like text
   dock call <value.length>

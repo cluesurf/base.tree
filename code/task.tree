@@ -6,15 +6,15 @@ form handle
   link alive, like boolean
 
 task spawn
-  mark async
+  note async
   take work, like task
   take name, like text, need false
   like handle
 
 task wait
-  mark async
+  note async
   take handle, like handle
 
 task cancel
-  mark async
+  note async
   take handle, like handle

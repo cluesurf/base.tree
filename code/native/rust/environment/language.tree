@@ -37,7 +37,7 @@ task list
       read tag
 
 task rust-get-locale
-  mark private
+  note private
   dock call <run {
     match std::env::var("LANG") {
       Ok(lang) => {

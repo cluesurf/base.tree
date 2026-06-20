@@ -3,9 +3,9 @@ host http, call require, text <http>
 
 form server
   take x-server, like nodejs-http-server
-    mark private
+    note private
   take port, like unsigned-integer-16
-    mark private
+    note private
 
   task listen
     free seed, like self

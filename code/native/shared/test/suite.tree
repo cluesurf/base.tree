@@ -11,7 +11,7 @@ host test-registry
 host group-stack
 
 task init
-  mark private
+  note private
   save test-registry
     make list
   save group-stack
@@ -20,7 +20,7 @@ task init
 task register
   take name, like text
   take work, like task
-  mark private
+  note private
 
   save group, text <>
   save stack-size
@@ -79,7 +79,7 @@ task describe
     bind list, read group-stack
 
 task run
-  mark async
+  note async
   take filter, like text, need false
   take timeout, like size, fall 5000
   take parallel, like boolean, fall wave false
@@ -150,7 +150,7 @@ task run
         bind ctx, read ctx
 
       call work
-        mark async
+        note async
 
       save fail-count
         call count

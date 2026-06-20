@@ -11,9 +11,9 @@ task get
         call kotlin-current-millis
 
 task kotlin-current-millis
-  mark private
+  note private
   dock call <System.currentTimeMillis()>
 
 task kotlin-nano-time
-  mark private
+  note private
   dock call <System.nanoTime()>

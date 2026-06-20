@@ -8,17 +8,17 @@ task make
   like pool
 
 task run
-  mark async
+  note async
   take pool, like pool
   take work, like task
 
 task map
-  mark async
+  note async
   take pool, like pool
   take list, like list
   take work, like task
   like list
 
 task close
-  mark async
+  note async
   take pool, like pool

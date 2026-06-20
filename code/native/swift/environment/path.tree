@@ -21,29 +21,29 @@ task get
         call swift-cache-dir
 
 task swift-home-dir
-  mark private
+  note private
   dock call <NSHomeDirectory()>
 
 task swift-temp-dir
-  mark private
+  note private
   dock call <NSTemporaryDirectory()>
 
 task swift-data-dir
-  mark private
+  note private
   dock call <run {
     let paths = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
     return paths.first?.path ?? ""
   }>
 
 task swift-config-dir
-  mark private
+  note private
   dock call <run {
     let home = NSHomeDirectory()
     return "\(home)/Library/Preferences"
   }>
 
 task swift-cache-dir
-  mark private
+  note private
   dock call <run {
     let paths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
     return paths.first?.path ?? ""

@@ -6,7 +6,7 @@ task make
   like signal
 
 task wait
-  mark async
+  note async
   take signal, like signal
 
 task trigger

@@ -1,10 +1,10 @@
 
 task read
-  mark async
+  note async
   take path, like text
   like size
 
 task write
-  mark async
+  note async
   take path, like text
   take mode, like size
